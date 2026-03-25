@@ -1,9 +1,685 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adelina-Dora Mazilu — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <!-- Snippet 3 goes here, in the <head> -->
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #f5f3ef;
+      color: #1a1a1a;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── NAV placeholder ── paste your real nav here */
+    nav.site-nav {
+      background: #fff;
+      border-bottom: 1px solid #e8e5e0;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      gap: 2rem;
+    }
+    nav.site-nav .nav-brand { font-weight: 500; font-size: 15px; color: #1a1a1a; text-decoration: none; margin-right: 1rem; }
+    nav.site-nav ul { list-style: none; display: flex; gap: .25rem; }
+    nav.site-nav a { font-size: 14px; color: #555; text-decoration: none; padding: 6px 14px; border-radius: 6px; transition: background .18s, color .18s; }
+    nav.site-nav a:hover { background: #f3f1ee; color: #111; }
+    nav.site-nav a.active { background: #f0ede8; color: #111; font-weight: 500; border-bottom: 2px solid #333; }
+
+    /* ── CV wrapper ── */
+    .cv-outer {
+      max-width: 860px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    .cv-card {
+      background: #fff;
+      border: 1px solid #e4e0d8;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .cv-header {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0;
+      border-bottom: 3px solid #1a5c96;
+    }
+
+    .cv-photo {
+      padding: 2rem 1.5rem 2rem 2rem;
+    }
+
+    .cv-photo img {
+      width: 120px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .cv-photo-placeholder {
+      width: 120px;
+      height: 140px;
+      background: #e8e5e0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: #888;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .cv-name-block {
+      padding: 2rem 2rem 2rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .cv-name {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .cv-contact {
+      font-size: 13.5px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    .cv-contact a {
+      color: #1a5c96;
+      text-decoration: none;
+    }
+
+    .cv-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #1a5c96;
+      font-size: 13.5px;
+      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    .cv-linkedin svg { width: 14px; height: 14px; }
+
+    /* ── Body ── */
+    .cv-body {
+      padding: 2rem 2.5rem;
+    }
+
+    /* ── Section ── */
+    .cv-section {
+      margin-bottom: 2rem;
+    }
+
+    .cv-section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #1a5c96;
+      border-bottom: 2px solid #1a5c96;
+      padding-bottom: 4px;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── Entry ── */
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 0 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .cv-entry-logo {
+      padding-top: 3px;
+    }
+
+    .cv-entry-logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .cv-entry-logo-placeholder {
+      width: 40px;
+      height: 40px;
+      background: #f0ede8;
+      border-radius: 4px;
+    }
+
+    .cv-entry-content {}
+
+    .cv-entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 3px;
+    }
+
+    .cv-entry-org {
+      font-weight: 500;
+      font-size: 14px;
+      color: #1a1a1a;
+    }
+
+    .cv-entry-role {
+      font-style: italic;
+      color: #555;
+      font-size: 13.5px;
+    }
+
+    .cv-entry-date {
+      font-size: 13px;
+      color: #1a5c96;
+      white-space: nowrap;
+    }
+
+    .cv-entry-desc {
+      font-size: 13.5px;
+      color: #333;
+      line-height: 1.65;
+    }
+
+    /* ── Education fields ── */
+    .cv-fields {
+      font-size: 13.5px;
+      color: #333;
+      margin-top: 4px;
+      line-height: 1.7;
+    }
+
+    .cv-fields strong {
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    /* ── Skills table ── */
+    .cv-skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 13.5px;
+    }
+
+    .cv-skills-col {
+      padding: 0;
+    }
+
+    .cv-skills-col:first-child {
+      border-right: 1px solid #ddd;
+    }
+
+    .cv-skills-header {
+      background: #f0ede8;
+      font-weight: 500;
+      font-size: 13px;
+      padding: 8px 14px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cv-skill-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 14px;
+      border-bottom: 1px solid #f0ede8;
+      font-size: 13px;
+    }
+
+    .cv-skill-row:last-child { border-bottom: none; }
+
+    .cv-skill-level {
+      color: #666;
+      font-size: 12px;
+    }
+
+    /* ── Volunteering bullets ── */
+    .cv-bullets {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .cv-bullets li {
+      font-size: 13.5px;
+      color: #333;
+      padding: 2px 0 2px 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .cv-bullets li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: #1a5c96;
+    }
+
+    /* ── Language table ── */
+    .cv-lang-section {
+      font-size: 13.5px;
+    }
+
+    .cv-lang-native {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+      font-size: 13.5px;
+      color: #333;
+    }
+
+    .cv-flag {
+      display: inline-block;
+      width: 18px;
+      height: 12px;
+      border-radius: 2px;
+      background: #ddd;
+    }
+
+    .cv-flag-ro { background: linear-gradient(to right, #002B7F 33%, #FCD116 33%, #FCD116 66%, #CE1126 66%); }
+
+    table.cv-lang-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    table.cv-lang-table th {
+      background: #f0ede8;
+      font-weight: 500;
+      padding: 7px 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+      font-size: 12.5px;
+    }
+
+    table.cv-lang-table td {
+      border: 1px solid #ddd;
+      padding: 6px 12px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 1.4;
+    }
+
+    table.cv-lang-table td.lang-name {
+      text-align: left;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-level { font-size: 12px; color: #777; display: block; }
+
+    /* ── Awards ── */
+    .cv-awards ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cv-awards li {
+      font-size: 13.5px;
+      color: #333;
+      padding: 3px 0 3px 16px;
+      position: relative;
+    }
+
+    .cv-awards li::before {
+      content: '•';
+      position: absolute;
+      left: 4px;
+      color: #1a5c96;
+    }
+
+    /* ── Hobbies ── */
+    .cv-hobbies {
+      font-size: 13.5px;
+      color: #444;
+    }
+
+    /* ── Download button ── */
+    .cv-download-bar {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .cv-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a5c96;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 11px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+
+    .cv-download-btn:hover { background: #154d80; }
+
+    .cv-download-btn svg { width: 16px; height: 16px; }
+
+    @media (max-width: 600px) {
+      .cv-header { grid-template-columns: 1fr; }
+      .cv-photo { padding: 1.5rem 1.5rem 0; }
+      .cv-name-block { padding: 1rem 1.5rem 1.5rem; }
+      .cv-name { font-size: 1.8rem; }
+      .cv-body { padding: 1.25rem 1.25rem; }
+      .cv-entry { grid-template-columns: 1fr; }
+      .cv-entry-logo { display: none; }
+      .cv-skills-grid { grid-template-columns: 1fr; }
+      .cv-skills-col:first-child { border-right: none; border-bottom: 1px solid #ddd; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Your navbar goes here ── -->
+  <nav class="site-nav">
+    <a class="nav-brand" href="/index.html">Adelina</a>
+    <ul>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/posts/">Posts</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/cv/" class="active">CV</a></li>
+    </ul>
+  </nav>
+
+  <div class="cv-outer">
+    <div class="cv-card">
+
+      <!-- HEADER -->
+      <div class="cv-header">
+        <div class="cv-photo">
+          <!--
+            To show your photo: upload your photo to the cv folder,
+            then replace the placeholder div below with:
+            <img src="/cv/photo.jpg" alt="Adelina-Dora Mazilu">
+          -->
+          <div class="cv-photo-placeholder">Upload<br>photo.jpg<br>to cv/</div>
+        </div>
+        <div class="cv-name-block">
+          <div class="cv-name">Adelina-Dora Mazilu</div>
+          <div class="cv-contact">
+            <a href="mailto:mazilu.adelina.dora@gmail.com">mazilu.adelina.dora@gmail.com</a><br>
+            (+40) 742 819 703<br>
+            Groningen
+          </div>
+          <a class="cv-linkedin" href="https://www.linkedin.com/in/adelina-dora-mazilu" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.46C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.23 0z"/></svg>
+            Adelina Dora Mazilu
+          </a>
+        </div>
+      </div>
+
+      <!-- BODY -->
+      <div class="cv-body">
+
+        <!-- WORK EXPERIENCE -->
+        <div class="cv-section">
+          <div class="cv-section-title">Work Experience</div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">MGRID</span>, <span class="cv-entry-role">Software Engineering Intern</span></span>
+                <span class="cv-entry-date">Feb 2026 – Present</span>
+              </div>
+              <div class="cv-entry-desc">Currently working on a software for syntactic and semantic validation for YAML configuration files and version history and control for configurations of medical data.</div>
+            </div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">CERN – LHCb Collaboration</span>, <span class="cv-entry-role">AI & Computing Collaborating Student</span></span>
+                <span class="cv-entry-date">Feb 2026 – Present</span>
+              </div>
+              <div class="cv-entry-desc">Currently working on improving tau decay detection at the LHCb using machine learning methods.</div>
+            </div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">University Medical Center Groningen</span>, <span class="cv-entry-role">AI Engineering Intern</span></span>
+                <span class="cv-entry-date">Sept 2025 – Feb 2026</span>
+              </div>
+              <div class="cv-entry-desc">Developed and deployed a prediction model for the severity of side effects which lung cancer patients might face while undergoing immunotherapy. Data used for training included clinical history, blood test results, and full body PET-CT scans. Uncertainty quantification was also implemented to combat overconfidence of the model.</div>
+            </div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">Atos</span>, <span class="cv-entry-role">Student Intern</span></span>
+                <span class="cv-entry-date">Jun 2022 – Jul 2022</span>
+              </div>
+              <div class="cv-entry-desc">Developed an e-learning game in Python with a team of fellow students. Learned about application development and deployment through interactive sessions and gained insight into how IT services are provided to clients.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="cv-section">
+          <div class="cv-section-title">Education</div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">BS. Artificial Intelligence</span></span>
+                <span class="cv-entry-date">Sept 2023 – Present</span>
+              </div>
+              <div class="cv-entry-role" style="margin-bottom:4px;">University of Groningen</div>
+              <div class="cv-fields">
+                <strong>Fields of study and selected courses:</strong><br>
+                <strong>ML:</strong> Machine Learning, Applied Machine Learning, Reinforcement Learning Practical<br>
+                <strong>NLP:</strong> General Linguistics, Natural Language Processing<br>
+                <strong>Robotics:</strong> Autonomous Systems, Robotics Practical<br>
+                <strong>Mathematics:</strong> Calculus for AI, Linear Algebra and Multivariable Calculus, Statistics, Numerical Methods
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">Honours Programme</span></span>
+                <span class="cv-entry-date">Jan 2024 – Present</span>
+              </div>
+              <div class="cv-entry-role" style="margin-bottom:4px;">University of Groningen</div>
+              <div class="cv-fields">
+                <strong>Interdisciplinary collaboration:</strong> Stem Cell Biology and Applications, Particle Physics Tutorial, Interdisciplinary Mindset<br>
+                <strong>Teamwork:</strong> Effective Teamwork, Interdisciplinary Teamwork
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">High School Diploma</span></span>
+                <span class="cv-entry-date">Sept 2019 – Jun 2023</span>
+              </div>
+              <div class="cv-entry-role" style="margin-bottom:4px;">"Grigore Moisil" High School of Computer Science</div>
+              <div class="cv-fields">
+                <strong>Information Technology:</strong> Database and network design, Software development and analysis, Computer use<br>
+                <strong>Natural sciences:</strong> Mathematics, Physics and Biology
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIGITAL SKILLS -->
+        <div class="cv-section">
+          <div class="cv-section-title">Digital Skills</div>
+          <div class="cv-skills-grid">
+            <div class="cv-skills-col">
+              <div class="cv-skills-header">Software usage skills</div>
+              <div class="cv-skill-row"><span>Git, GitLab and GitHub</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>Docker</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>Postman</span><span class="cv-skill-level">basic</span></div>
+              <div class="cv-skill-row"><span>Microsoft Office</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>Operating systems (Windows & Linux)</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>Visual Studio Code</span><span class="cv-skill-level">good</span></div>
+            </div>
+            <div class="cv-skills-col">
+              <div class="cv-skills-header">Programming Languages</div>
+              <div class="cv-skill-row"><span>Python</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>R & R Studio</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>C/C++</span><span class="cv-skill-level">good</span></div>
+              <div class="cv-skill-row"><span>SQL</span><span class="cv-skill-level">basic</span></div>
+              <div class="cv-skill-row"><span>HTML & CSS</span><span class="cv-skill-level">basic</span></div>
+              <div class="cv-skill-row"><span>LaTeX & Overleaf</span><span class="cv-skill-level">good</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VOLUNTEERING -->
+        <div class="cv-section">
+          <div class="cv-section-title">Volunteering</div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">Girl Scout Leader</span>, <span class="cv-entry-role">Mountain Scouts Association</span></span>
+                <span class="cv-entry-date">Jul 2021 – Present</span>
+              </div>
+              <ul class="cv-bullets">
+                <li>Fully organizing and coordinating summer and scout camps (for around 30 people)</li>
+                <li>Processing and organizing personal data</li>
+                <li>Creating pedagogical lessons for teenagers</li>
+                <li>Bringing the idea of responsibility into the new generations</li>
+                <li>Parent-association mediation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-logo"><div class="cv-entry-logo-placeholder"></div></div>
+            <div class="cv-entry-content">
+              <div class="cv-entry-header">
+                <span><span class="cv-entry-org">Sexual Education Teacher</span>, <span class="cv-entry-role">"Grigore Moisil" High School of Computer Science</span></span>
+                <span class="cv-entry-date">May 2020 – Jun 2022</span>
+              </div>
+              <ul class="cv-bullets">
+                <li>Teaching about contraception and sexual health</li>
+                <li>Making students feel comfortable discussing important topics that may be considered taboo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- LANGUAGE SKILLS -->
+        <div class="cv-section">
+          <div class="cv-section-title">Language Skills</div>
+          <div class="cv-lang-section">
+            <div class="cv-lang-native">
+              <span class="cv-flag cv-flag-ro"></span>
+              Romanian — Native Speaker
+            </div>
+            <table class="cv-lang-table">
+              <thead>
+                <tr>
+                  <th style="text-align:left; width:130px;"></th>
+                  <th>Listening</th>
+                  <th>Reading</th>
+                  <th>Speaking</th>
+                  <th>Writing</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align:left; font-weight:500;">🇬🇧 English</td>
+                  <td>C1<span class="lang-level">Proficient</span></td>
+                  <td>C1<span class="lang-level">Proficient</span></td>
+                  <td>C1<span class="lang-level">Proficient</span></td>
+                  <td>C1<span class="lang-level">Proficient</span></td>
+                </tr>
+                <tr>
+                  <td style="text-align:left; font-weight:500;">🇩🇪 German</td>
+                  <td>B1<span class="lang-level">Independent</span></td>
+                  <td>B1<span class="lang-level">Independent</span></td>
+                  <td>B1<span class="lang-level">Independent</span></td>
+                  <td>B1<span class="lang-level">Independent</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- AWARDS -->
+        <div class="cv-section cv-awards">
+          <div class="cv-section-title">Awards</div>
+          <p style="font-size:13.5px; color:#333; margin-bottom:8px; font-weight:500;">Mentions at the following Olympiads and contests</p>
+          <ul>
+            <li>National Linguistics Olympiad 2022</li>
+            <li>National physics contest "Constantin Sălceanu" 2021, 2022</li>
+            <li>Regional physics Olympiad 2020, 2021, 2022</li>
+            <li>Regional astrophysics and astronomy Olympiad 2022</li>
+            <li>Regional biology Olympiad 2020</li>
+          </ul>
+        </div>
+
+        <!-- HOBBIES -->
+        <div class="cv-section">
+          <div class="cv-section-title">Hobbies and Interests</div>
+          <div class="cv-hobbies">Cooking, Traveling, Hiking, Cycling, Sewing, Opera</div>
+        </div>
+
+      </div><!-- end cv-body -->
+    </div><!-- end cv-card -->
+
+    <!-- DOWNLOAD BUTTON -->
+    <div class="cv-download-bar">
+      <a class="cv-download-btn" href="/cv/CV_AdelinaMazilu.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download PDF
+      </a>
+    </div>
+
+  </div><!-- end cv-outer -->
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const links = document.querySelectorAll('.site-nav a');
@@ -12,38 +688,6 @@
       });
     });
   </script>
-</head>
-<body>
-
-  <!-- Snippet 1 goes here, at the top of <body> -->
-  <nav class="site-nav">
-    <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/projects/">Projects</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/cv/">CV</a></li>
-    </ul>
-  </nav>
-  
-  <div style="max-width: 900px; margin: 2rem auto; padding: 0 1rem;">
-  
-  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-    <h1 style="margin: 0;">CV</h1>
-    <a href="/cv/CV_AdelinaMazilu.pdf" download style="
-      background: #111;
-      color: #fff;
-      padding: 8px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
-    ">Download PDF</a>
-  </div>
-
-  <embed src="/cv/CV_AdelinaMazilu.pdf" type="application/pdf" width="100%" height="900px">
-
-</div>
- <!-- page contents here -->
 
 </body>
 </html>
