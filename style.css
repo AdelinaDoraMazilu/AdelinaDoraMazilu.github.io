@@ -149,12 +149,16 @@
 
 .cv-entry {
   display: grid;
-  grid-template-columns: 52px 1fr;
+  grid-template-columns: 60px 1fr;
   gap: 0 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  align-items: start;
 }
 
-.cv-entry-logo { padding-top: 3px; }
+.cv-entry-logo {
+  padding-top: 3px;
+  align-self: start;
+}
 
 .cv-entry-logo img {
   width: 40px;
