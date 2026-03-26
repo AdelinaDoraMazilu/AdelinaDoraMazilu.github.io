@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Snippet 3 goes here, in the <head> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const links = document.querySelectorAll('.site-nav a');
+      links.forEach(a => {
+        if (a.href === location.href) a.classList.add('active');
+      });
+    });
+  </script>
+</head>
+<body>
+
+  <!-- Snippet 1 goes here, at the top of <body> -->
+  <nav class="site-nav">
+  <a class="nav-brand" href="/index.html">yourname</a>
+  <ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/posts/">Posts</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/cv/">CV</a></li>
+    <li><a href="/research/">Research Interests</a></li>
+    <li><a href="/ttdil/">Things to do in life</a></li>
+    <li><a href="/news/">News</a></li>
+  </ul>
+  </nav>
+
+  <!-- your page content below -->
+
+</body>
+</html>
