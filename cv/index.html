@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adelina-Dora Mazilu — CV</title>
+  <title>CV — Adelina-Dora Mazilu</title>
   <link rel="stylesheet" href="/style.css">
-  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.site-nav a');
+    links.forEach(a => {
+      if (location.pathname === '/' || location.pathname === '/index.html') {
+        if (a.getAttribute('href') === '/index.html') a.classList.add('active');
+      } else if (location.pathname.startsWith(new URL(a.href).pathname) && a.getAttribute('href') !== '/index.html') {
+        a.classList.add('active');
+      }
+    });
+  });
+  </script>
 </head>
 <body>
 
