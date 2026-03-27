@@ -18,11 +18,16 @@
       line-height: 1.4;
     }
 
-    .stem-stack {
-      position: relative;
-      width: 60%;
-      margin: 0 auto;
-    }
+.stem-stack {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+.stem-section.constrained {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
     .stem-section {
       position: relative;
@@ -166,7 +171,7 @@
       },
       {
         img: '/ttdil/stem_part_full.png',
-        overlap: 60,
+        overlap: 120,
         flowers: [
           { topPct: 15, leftPct: 85, side: 'right', goalIdx: 2 },
           { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 3 },
@@ -174,7 +179,7 @@
       },
       {
         img: '/ttdil/stem_part_full.png',
-        overlap: 60,
+        overlap: 120,
         flowers: [
           { topPct: 15, leftPct: 85, side: 'right', goalIdx: 4 },
           { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 5 },
@@ -182,7 +187,7 @@
       },
       {
         img: '/ttdil/stem_part_full.png',
-        overlap: 60,
+        overlap: 120,
         flowers: [
           { topPct: 15, leftPct: 85, side: 'right', goalIdx: 6 },
           { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 7 },
@@ -190,7 +195,7 @@
       },
       {
         img: '/ttdil/stem_bottom_full.png',
-        overlap: 60,
+        overlap: 120,
         flowers: [
           { topPct: 12.5, leftPct: 62.5, side: 'right', goalIdx: 8 },
           { topPct: 56,   leftPct: 31,   side: 'left',  goalIdx: 9 },
@@ -202,7 +207,7 @@
 
     sections.forEach((sec, si) => {
       const section = document.createElement('div');
-      section.className = 'stem-section';
+      section.className = 'stem-section'+ (si < sections.length - 1 ? ' constrained' : '');
       if (si > 0) {
         section.style.marginTop = `-${sec.overlap}px`;
       }
