@@ -1,49 +1,267 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Things to do in life — Adelina-Dora Mazilu</title>
   <link rel="stylesheet" href="/style.css">
+  <style>
+    .ttdil-intro {
+      text-align: center;
+      padding: 3rem 2rem 1rem;
+      font-family: system-ui, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .vine-container {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding-bottom: 6rem;
+    }
+
+    .vine-svg {
+      width: 100%;
+      display: block;
+    }
+
+    .goal-item {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      color: #fff;
+    }
+
+    .goal-item.left {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    .goal-item.right {
+      flex-direction: row;
+      text-align: left;
+    }
+
+    .goal-text-block { display: flex; flex-direction: column; gap: 2px; }
+
+    .goal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .goal-desc {
+      font-size: 0.9rem;
+      color: #8ab4d4;
+    }
+
+    .goal-checkbox {
+      width: 36px;
+      height: 36px;
+      border: 3px solid #fff;
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+
+    .goal-checkbox.checked::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 14px;
+      border-left: 3px solid #fff;
+      border-bottom: 3px solid #fff;
+      transform: rotate(-45deg) translateY(-3px);
+    }
+
+    .flower-img {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      filter: drop-shadow(0 0 8px #7ab8ffaa);
+    }
+  </style>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
-  const highlight = document.getElementById('navHighlight');
-  const ul = document.querySelector('.site-nav ul');
-
-  links.forEach(a => {
-    const path = new URL(a.href).pathname;
-    const here = location.pathname;
-    const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
-    const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
-    if (isHome || isMatch) {
-      a.classList.add('active');
-      const ulRect = ul.getBoundingClientRect();
-      const aRect = a.getBoundingClientRect();
-      highlight.style.left = (aRect.left - ulRect.left) + 'px';
-      highlight.style.width = aRect.width + 'px';
-    }
+    const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
+    const highlight = document.getElementById('navHighlight');
+    const ul = document.querySelector('.site-nav ul');
+    links.forEach(a => {
+      const path = new URL(a.href).pathname;
+      const here = location.pathname;
+      const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+      const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+      if (isHome || isMatch) {
+        a.classList.add('active');
+        const ulRect = ul.getBoundingClientRect();
+        const aRect = a.getBoundingClientRect();
+        highlight.style.left = (aRect.left - ulRect.left) + 'px';
+        highlight.style.width = aRect.width + 'px';
+      }
+    });
   });
-});
-</script>
+  </script>
 </head>
 <body>
 
-  <!-- Snippet 1 goes here, at the top of <body> -->
   <nav class="site-nav">
-  <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
-  <ul>
-    <div class="nav-highlight" id="navHighlight"></div>
-    <li><a href="/index.html">Home</a></li>
-    <li><a href="/projects/">Projects</a></li>
-    <li><a href="/blog/">Blog</a></li>
-    <li><a href="/cv/">CV</a></li>
-    <li><a href="/research/">Research Interests</a></li>
-    <li><a href="/ttdil/">Things to do in life</a></li>
-    <li><a href="/news/">News</a></li>
-  </ul>
-</nav>
-  <!-- your page content below -->
+    <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
+    <ul>
+      <div class="nav-highlight" id="navHighlight"></div>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/cv/">CV</a></li>
+      <li><a href="/research/">Research Interests</a></li>
+      <li><a href="/ttdil/">Things to do in life</a></li>
+      <li><a href="/news/">News</a></li>
+    </ul>
+  </nav>
+
+  <div class="ttdil-intro">
+    This is a list of things I would like to achieve during my lifetime
+  </div>
+
+  <div class="vine-container" id="vineContainer">
+    <svg class="vine-svg" id="vineSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+  </div>
+
+  <script>
+    const goals = [
+      { id: 1, title: '#goal 1', desc: 'a little bit of text about this', checked: true },
+      { id: 2, title: '#goal 2', desc: 'a little bit of text about this', checked: false },
+      { id: 3, title: '#goal 3', desc: 'a little bit of text about this', checked: true },
+      { id: 4, title: '#goal 4', desc: 'a little bit of text about this', checked: false },
+      { id: 5, title: '#goal 5', desc: 'a little bit of text about this', checked: true },
+      { id: 6, title: '#goal 6', desc: 'a little bit of text about this', checked: false },
+      { id: 7, title: '#goal 7', desc: 'a little bit of text about this', checked: true },
+      { id: 8, title: '#goal 8', desc: 'a little bit of text about this', checked: false },
+      { id: 9, title: '#goal 9', desc: 'a little bit of text about this', checked: true },
+      { id: 10, title: '#goal 10', desc: 'a little bit of text about this', checked: false },
+    ];
+
+    function build() {
+      const container = document.getElementById('vineContainer');
+      const svg = document.getElementById('vineSvg');
+      const W = container.offsetWidth;
+      const cx = W / 2;
+      const stepY = 200;
+      const totalH = goals.length * stepY + 120;
+
+      svg.setAttribute('viewBox', `0 0 ${W} ${totalH}`);
+      svg.setAttribute('height', totalH);
+      svg.style.height = totalH + 'px';
+      svg.innerHTML = '';
+
+      const branchPoints = goals.map((g, i) => {
+        const side = i % 2 === 0 ? -1 : 1;
+        const x = cx + side * (W * 0.22);
+        const y = 80 + i * stepY;
+        return { x, y, side, goal: g };
+      });
+
+      let pathD = `M ${cx} 0`;
+      branchPoints.forEach((bp, i) => {
+        const prevY = i === 0 ? 0 : branchPoints[i - 1].y;
+        const midY = (prevY + bp.y) / 2;
+        const wobble = (i % 2 === 0 ? -1 : 1) * 30;
+        pathD += ` C ${cx + wobble} ${prevY + (midY - prevY) * 0.5}, ${cx - wobble} ${midY}, ${cx} ${bp.y}`;
+      });
+      const lastY = branchPoints[branchPoints.length - 1].y;
+      pathD += ` C ${cx} ${lastY + 60}, ${cx} ${lastY + 100}, ${cx} ${totalH}`;
+
+      const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      mainPath.setAttribute('d', pathD);
+      mainPath.setAttribute('stroke', '#ffffff');
+      mainPath.setAttribute('stroke-width', '5');
+      mainPath.setAttribute('fill', 'none');
+      mainPath.setAttribute('stroke-linecap', 'round');
+      svg.appendChild(mainPath);
+
+      branchPoints.forEach(bp => {
+        const branchLen = W * 0.18;
+        const endX = bp.x;
+        const endY = bp.y - 20;
+        const midX = cx + bp.side * branchLen * 0.5;
+        const midY = bp.y - 40;
+
+        const branch = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        branch.setAttribute('d', `M ${cx} ${bp.y} Q ${midX} ${midY} ${endX} ${endY}`);
+        branch.setAttribute('stroke', '#ffffff');
+        branch.setAttribute('stroke-width', '3.5');
+        branch.setAttribute('fill', 'none');
+        branch.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(branch);
+
+        const flower = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+        flower.setAttribute('href', '/ttdil/blue_flower.png');
+        flower.setAttribute('x', endX - 35);
+        flower.setAttribute('y', endY - 55);
+        flower.setAttribute('width', '70');
+        flower.setAttribute('height', '70');
+        svg.appendChild(flower);
+      });
+
+      container.querySelectorAll('.goal-item').forEach(el => el.remove());
+      container.querySelectorAll('.flower-img').forEach(el => el.remove());
+
+      const svgTop = svg.getBoundingClientRect().top - container.getBoundingClientRect().top;
+
+      branchPoints.forEach(bp => {
+        const item = document.createElement('div');
+        item.className = 'goal-item ' + (bp.side === -1 ? 'left' : 'right');
+
+        const sideOffset = W * 0.04;
+        const itemW = W * 0.28;
+
+        if (bp.side === -1) {
+          item.style.left = sideOffset + 'px';
+          item.style.width = itemW + 'px';
+        } else {
+          item.style.right = sideOffset + 'px';
+          item.style.width = itemW + 'px';
+        }
+        item.style.top = (bp.y - 18) + 'px';
+
+        const checkbox = document.createElement('div');
+        checkbox.className = 'goal-checkbox' + (bp.goal.checked ? ' checked' : '');
+
+        const textBlock = document.createElement('div');
+        textBlock.className = 'goal-text-block';
+
+        const title = document.createElement('div');
+        title.className = 'goal-title';
+        title.textContent = bp.goal.title;
+
+        const desc = document.createElement('div');
+        desc.className = 'goal-desc';
+        desc.textContent = bp.goal.desc;
+
+        textBlock.appendChild(title);
+        textBlock.appendChild(desc);
+        item.appendChild(checkbox);
+        item.appendChild(textBlock);
+        container.appendChild(item);
+      });
+    }
+
+    build();
+    window.addEventListener('resize', build);
+  </script>
 
 </body>
 </html>
