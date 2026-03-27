@@ -28,13 +28,12 @@
     .goal-item {
       position: absolute;
       display: flex;
+      flex-direction: row;
       align-items: center;
       gap: 12px;
       font-family: system-ui, sans-serif;
       color: #fff;
     }
-    .goal-item.left { flex-direction: row-reverse; text-align: right; }
-    .goal-item.right { flex-direction: row; text-align: left; }
     .goal-text-block { display: flex; flex-direction: column; gap: 3px; }
     .goal-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
     .goal-desc { font-size: 0.9rem; color: #8ab4d4; }
@@ -120,6 +119,7 @@
 
     const FLOWER_SIZE = 180;
     const STEP_Y = 300;
+    const GAP = FLOWER_SIZE / 2 + 24;
 
     function build() {
       const container = document.getElementById('vineContainer');
@@ -166,7 +166,6 @@
         const flowerCX = bp.x;
         const flowerCY = bp.y;
 
-        // elegant S-curve branch meeting flower at its centre
         const cp1x = cx + bp.side * W * 0.07;
         const cp1y = bp.y + 40;
         const cp2x = cx + bp.side * W * 0.21;
@@ -180,7 +179,6 @@
         branch.setAttribute('stroke-linecap', 'round');
         svg.appendChild(branch);
 
-        // flower centred on branch tip
         const flower = document.createElementNS('http://www.w3.org/2000/svg', 'image');
         flower.setAttribute('href', '/ttdil/blue_flower.png');
         flower.setAttribute('x', flowerCX - FLOWER_SIZE / 2);
@@ -194,20 +192,21 @@
 
       branchPoints.forEach(bp => {
         const item = document.createElement('div');
-        item.className = 'goal-item ' + (bp.side === -1 ? 'left' : 'right');
+        item.className = 'goal-item';
 
-        const gap = FLOWER_SIZE / 2 + 20;
-        const itemW = Math.min(W * 0.20, 180);
+        const itemW = 180;
 
         if (bp.side === -1) {
-          item.style.left = Math.max(4, bp.x - FLOWER_SIZE / 2 - gap - itemW) + 'px';
-          item.style.width = itemW + 'px';
+          // left side: item starts at flower's left edge minus gap minus item width
+          item.style.left = (bp.x - FLOWER_SIZE / 2 - GAP - itemW) + 'px';
         } else {
-          item.style.left = (bp.x + FLOWER_SIZE / 2 + gap) + 'px';
-          item.style.width = itemW + 'px';
+          // right side: item starts at flower's right edge plus gap
+          item.style.left = (bp.x + FLOWER_SIZE / 2 + GAP) + 'px';
         }
+        item.style.width = itemW + 'px';
         item.style.top = (bp.y - 22) + 'px';
 
+        // checkbox always on the left
         const checkbox = document.createElement('div');
         checkbox.className = 'goal-checkbox' + (bp.goal.checked ? ' checked' : '');
 
