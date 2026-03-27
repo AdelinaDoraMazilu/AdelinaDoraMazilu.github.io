@@ -1,46 +1,63 @@
 /* ── NAVBAR ── */
 .site-nav {
   font-family: system-ui, sans-serif;
-  background: #fff;
-  border-bottom: 1px solid #e8e5e0;
-  padding: 0 2rem;
+  background: #0f1923;
   display: flex;
   align-items: center;
-  height: 56px;
-  gap: 2rem;
+  padding: 0 1.5rem;
+  height: 60px;
+  gap: 4px;
+  position: relative;
 }
 .site-nav .nav-brand {
+  font-size: 14px;
   font-weight: 500;
-  font-size: 15px;
-  color: #1a1a1a;
+  color: #fff;
   text-decoration: none;
-  margin-right: 1rem;
+  padding-right: 16px;
+  margin-right: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  border-right: 1px solid #ffffff22;
 }
 .site-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 0.25rem;
+  align-items: center;
+  gap: 2px;
+  position: relative;
 }
+.site-nav li { position: relative; }
 .site-nav a {
-  font-size: 14px;
-  color: #555;
+  display: flex;
+  align-items: center;
+  padding: 7px 14px;
+  font-size: 13px;
+  color: #8a9bb0;
   text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  transition: background 0.18s, color 0.18s;
+  white-space: nowrap;
+  border-radius: 8px;
+  transition: color 0.2s;
+  position: relative;
+  z-index: 2;
 }
-.site-nav a:hover {
-  background: #f3f1ee;
-  color: #111;
+.site-nav a:hover { color: #c8d8e8; }
+.site-nav a.active { color: #fff; font-weight: 500; }
+.site-nav .nav-highlight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #1a6fc4 0%, #00c6ff 100%);
+  box-shadow: 0 0 16px #00c6ff88, 0 0 32px #1a6fc444;
+  transition: left 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1);
+  z-index: 1;
+  pointer-events: none;
 }
-.site-nav a.active {
-  background: #f0ede8;
-  color: #111;
-  font-weight: 500;
-  border-bottom: 2px solid #333;
-}
+
 
 /* ── CV PAGE ── */
 .cv-outer {
@@ -400,6 +417,9 @@ table.cv-lang-table td {
 }
 
 @media (max-width: 600px) {
+  .site-nav { padding: 0 1rem; overflow-x: auto; }
+  .site-nav .nav-brand { font-size: 13px; }
+  .site-nav a { font-size: 12px; padding: 7px 10px; }
   .cv-header { grid-template-columns: 1fr; }
   .cv-photo { padding: 1.5rem 1.5rem 0; }
   .cv-name-block { padding: 1rem 1.5rem 1.5rem; }

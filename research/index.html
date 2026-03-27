@@ -7,32 +7,42 @@
   <link rel="stylesheet" href="/style.css">
   <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('.site-nav a');
-    links.forEach(a => {
-      if (location.pathname === '/' || location.pathname === '/index.html') {
-        if (a.getAttribute('href') === '/index.html') a.classList.add('active');
-      } else if (location.pathname.startsWith(new URL(a.href).pathname) && a.getAttribute('href') !== '/index.html') {
-        a.classList.add('active');
-      }
-    });
+  const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
+  const highlight = document.getElementById('navHighlight');
+  const ul = document.querySelector('.site-nav ul');
+
+  links.forEach(a => {
+    const path = new URL(a.href).pathname;
+    const here = location.pathname;
+    const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+    const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+    if (isHome || isMatch) {
+      a.classList.add('active');
+      const ulRect = ul.getBoundingClientRect();
+      const aRect = a.getBoundingClientRect();
+      highlight.style.left = (aRect.left - ulRect.left) + 'px';
+      highlight.style.width = aRect.width + 'px';
+    }
   });
-  </script>
+});
+</script>
 </head>
 <body>
 
   <!-- Snippet 1 goes here, at the top of <body> -->
-  <nav class="site-nav">
-    <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
-    <ul>
-      <li><a href="/index.html">Home</a></li>
-      <li><a href="/projects/">Projects</a></li>
-      <li><a href="/blog/">Blog</a></li>
-      <li><a href="/cv/">CV</a></li>
-      <li><a href="/research/">Research Interests</a></li>
-      <li><a href="/ttdil/">Things to do in life</a></li>
-      <li><a href="/news/">News</a></li>
-    </ul>
-  </nav>
+<nav class="site-nav">
+  <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
+  <ul>
+    <div class="nav-highlight" id="navHighlight"></div>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/projects/">Projects</a></li>
+    <li><a href="/blog/">Blog</a></li>
+    <li><a href="/cv/">CV</a></li>
+    <li><a href="/research/">Research Interests</a></li>
+    <li><a href="/ttdil/">Things to do in life</a></li>
+    <li><a href="/news/">News</a></li>
+  </ul>
+</nav>
 
   <!-- your page content below -->
 
