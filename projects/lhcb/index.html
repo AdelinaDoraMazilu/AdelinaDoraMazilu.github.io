@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LHCb Tau Decay — Adelina-Dora Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
+    const highlight = document.getElementById('navHighlight');
+    const ul = document.querySelector('.site-nav ul');
+    links.forEach(a => {
+      const path = new URL(a.href).pathname;
+      const here = location.pathname;
+      const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+      const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+      if (isHome || isMatch) {
+        a.classList.add('active');
+        const ulRect = ul.getBoundingClientRect();
+        const aRect = a.getBoundingClientRect();
+        highlight.style.left = (aRect.left - ulRect.left) + 'px';
+        highlight.style.width = aRect.width + 'px';
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
+    <ul>
+      <div class="nav-highlight" id="navHighlight"></div>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/cv/">CV</a></li>
+      <li><a href="/research/">Research Interests</a></li>
+      <li><a href="/ttdil/">Things to do in life</a></li>
+      <li><a href="/news/">News</a></li>
+    </ul>
+  </nav>
+
+  <div style="max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem;">
+
+    <!-- back link -->
+    <a href="/projects/" style="color: #5ab0f7; font-family: system-ui, sans-serif; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 2rem;">
+      ← Back to Projects
+    </a>
+
+    <!-- title -->
+    <h1 style="color: #fff; font-family: system-ui, sans-serif; font-size: 2.4rem; font-weight: 600; line-height: 1.25; margin: 0 0 1rem;">
+      Machine learning methods for improving tau decay detection at LHCb
+    </h1>
+
+    <!-- status badge -->
+    <div style="display: inline-block; background: #1a6fc422; border: 1px solid #1a6fc4; color: #5ab0f7; font-family: system-ui, sans-serif; font-size: 13px; padding: 5px 14px; border-radius: 20px; margin-bottom: 2.5rem;">
+      Work in progress
+    </div>
+
+    <!-- intro -->
+    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
+      This is a work in progress. I will report on it in full once it concludes.
+    </p>
+
+    <!-- divider -->
+    <div style="border-top: 1px solid #1a6fc433; margin-bottom: 3rem;"></div>
+
+    <!-- image 1 — tau decay, white glow -->
+    <div style="margin-bottom: 3rem;">
+      <div style="
+        display: inline-block;
+        border-radius: 12px;
+        box-shadow: 0 0 30px #ffffff44, 0 0 70px #ffffff18;
+        overflow: hidden;
+        width: 100%;
+      ">
+        <img src="/projects/lhcb/tau_decay.jpg" alt="Hadronic tau decays" style="width: 100%; display: block; border-radius: 12px;">
+      </div>
+      <p style="color: #e0eaf5; font-family: system-ui, sans-serif; font-size: 1rem; margin: 0.75rem 0 0.25rem; font-weight: 500;">
+        These are hadronic tau decays
+      </p>
+      <p style="color: #5a7a9a; font-family: system-ui, sans-serif; font-size: 0.8rem; margin: 0;">
+        Image taken from <a href="https://tikz.net/tau_decay/" target="_blank" style="color: #5ab0f7; text-decoration: none;">https://tikz.net/tau_decay/</a>
+      </p>
+    </div>
+
+    <!-- image 2 — detector, blue-black glow -->
+    <div style="margin-bottom: 3rem;">
+      <div style="
+        display: inline-block;
+        border-radius: 12px;
+        box-shadow: 0 0 30px #00000088, 0 0 60px #1a6fc433;
+        overflow: hidden;
+        width: 100%;
+      ">
+        <img src="/projects/detector.jpg" alt="LHCb detector collecting data" style="width: 100%; display: block; border-radius: 12px;">
+      </div>
+      <p style="color: #e0eaf5; font-family: system-ui, sans-serif; font-size: 1rem; margin: 0.75rem 0 0.25rem; font-weight: 500;">
+        This is an illustration of the detector collecting data
+      </p>
+      <p style="color: #5a7a9a; font-family: system-ui, sans-serif; font-size: 0.8rem; margin: 0;">
+        Image taken from <a href="https://lhcb-outreach.web.cern.ch/2026/03/03/lhcb-releases-service-to-access-run-ii-data/" target="_blank" style="color: #5ab0f7; text-decoration: none;">https://lhcb-outreach.web.cern.ch/2026/03/03/lhcb-releases-service-to-access-run-ii-data/</a>
+      </p>
+    </div>
+
+    <!-- links -->
+    <div style="border-top: 1px solid #1a6fc433; padding-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+      <a href="https://home.cern/science/experiments/lhcb" target="_blank" style="
+        display: inline-flex; align-items: center; gap: 8px;
+        background: #0f1923; border: 1.5px solid #1a6fc4;
+        color: #5ab0f7; font-family: system-ui, sans-serif;
+        font-size: 14px; padding: 10px 20px; border-radius: 8px;
+        text-decoration: none; transition: box-shadow 0.2s;
+        box-shadow: 0 0 12px #1a6fc433;
+      " onmouseover="this.style.boxShadow='0 0 24px #1a6fc466'"
+         onmouseout="this.style.boxShadow='0 0 12px #1a6fc433'">
+        LHCb at CERN →
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
