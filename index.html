@@ -50,7 +50,16 @@
     <p style="color:#8a9bb0; font-size:1rem; line-height:1.8; margin:0;">I am a BSc of Artificial Intelligence student at the University of Groningen</p>
   </div>
 
-  <div style="flex-shrink:0; width:280px; height:280px; perspective:1000px; cursor:pointer;" class="flip-wrap">
+  <div style="
+  position: fixed;
+  right: 4vw;
+  top: calc(60px + 4vw);
+  bottom: 4vw;
+  aspect-ratio: 1;
+  height: calc(100vh - 60px - 8vw);
+  perspective: 1000px;
+  cursor: pointer;
+" class="flip-wrap">
     <div class="flip-inner" style="width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.8s cubic-bezier(.4,0,.2,1);">
       <div style="position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:50%;overflow:hidden;box-shadow:0 0 40px #ffffff33, 0 0 80px #ffffff18;">
         <img src="/index_photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
