@@ -105,23 +105,29 @@
   background: rgba(0,0,0,0.3);
 }
 
-/* When the box is checked */
 .goal-checkbox.checked {
-  background: #fff; /* Fills the box with solid white */
+  background: #fff; /* The solid white box */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* The hollow checkmark inside */
 .goal-checkbox.checked::after {
   content: '';
   display: block;
-  width: 18px;
-  height: 11px;
-  /* Match this color to the unchecked background to look "hollow" */
-  border-left: 3px solid rgba(0,0,0,0.3);
-  border-bottom: 3px solid rgba(0,0,0,0.3);
-  /* Centering and shape */
-  transform: rotate(-45deg) translateY(-2px); 
-  margin-left: 2px; /* Fine-tuning the horizontal visual center */
+  /* Increased height and width for a bolder look */
+  width: 18px; 
+  height: 14px; 
+  
+  /* Thicker "cutout" lines */
+  border-left: 5px solid rgba(0,0,0,0.3);
+  border-bottom: 5px solid rgba(0,0,0,0.3);
+  
+  /* Refined rotation and positioning to keep it centered */
+  transform: rotate(-45deg) translateY(-3px) translateX(1px);
+  
+  /* Ensures the edges of the "cut" stay crisp */
+  box-sizing: border-box;
 }
   </style>
   <script>
