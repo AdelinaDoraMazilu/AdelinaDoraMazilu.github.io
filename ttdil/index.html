@@ -261,13 +261,13 @@ function placeGoals(section, img, sec) {
     const sectionLeft = section.getBoundingClientRect().left;
 
     if (f.side === 'right') {
-      // starts at 8.5% from left, ends at 23% from left
-      overlay.style.left = (screenW * 0.085 - sectionLeft) + 'px';
-      overlay.style.width = (screenW * (0.23 - 0.085)) + 'px';
+      // starts at 11% from left, ends at 32% from left
+      overlay.style.left = (screenW * 0.11 - sectionLeft) + 'px';
+      overlay.style.width = (screenW * (0.32 - 0.11)) + 'px';
     } else {
-      // starts at 23% from right (= 77% from left), ends at 8.5% from right (= 91.5% from left)
-      overlay.style.left = (screenW * 0.77 - sectionLeft) + 'px';
-      overlay.style.width = (screenW * (0.915 - 0.77)) + 'px';
+      // starts at 32% from right (= 68% from left), ends at 11% from right (= 89% from left)
+      overlay.style.left = (screenW * 0.68 - sectionLeft) + 'px';
+      overlay.style.width = (screenW * (0.89 - 0.68)) + 'px';
     }
 
     overlay.style.top = topPx + 'px';
