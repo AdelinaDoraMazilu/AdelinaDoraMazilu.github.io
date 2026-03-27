@@ -8,7 +8,7 @@
   <style>
     .ttdil-intro {
       text-align: center;
-      padding: 3rem 2rem 1rem;
+      padding: 3rem 2rem 0;
       font-family: system-ui, sans-serif;
       font-size: 1.6rem;
       font-weight: 600;
@@ -17,42 +17,79 @@
       margin: 0 auto;
       line-height: 1.4;
     }
-    .vine-container {
+
+    .stem-stack {
       position: relative;
       width: 100%;
-      max-width: 1000px;
       margin: 0 auto;
-      padding-bottom: 6rem;
     }
-    .vine-svg { width: 100%; display: block; }
-    .goal-item {
+
+    .stem-section {
+      position: relative;
+      width: 100%;
+    }
+
+    .stem-section img.stem-img {
+      width: 100%;
+      display: block;
+    }
+
+    .goal-overlay {
       position: absolute;
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-family: system-ui, sans-serif;
       color: #fff;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
     }
-    .goal-text-block { display: flex; flex-direction: column; gap: 3px; }
-    .goal-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
-    .goal-desc { font-size: 0.9rem; color: #8ab4d4; }
+
+    .goal-overlay.side-right {
+      flex-direction: row;
+    }
+
+    .goal-overlay.side-left {
+      flex-direction: row-reverse;
+    }
+
+    .goal-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .goal-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 1px 6px #000a;
+    }
+
+    .goal-desc {
+      font-size: 0.82rem;
+      color: #8ab4d4;
+      text-shadow: 0 1px 4px #000a;
+    }
+
     .goal-checkbox {
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border: 3px solid #fff;
       border-radius: 6px;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: transparent;
+      background: rgba(0,0,0,0.3);
     }
+
     .goal-checkbox.checked::after {
       content: '';
       display: block;
-      width: 20px;
-      height: 12px;
+      width: 18px;
+      height: 11px;
       border-left: 3px solid #fff;
       border-bottom: 3px solid #fff;
       transform: rotate(-45deg) translateY(-3px);
@@ -99,9 +136,7 @@
     This is a list of things I would like to achieve during my lifetime
   </div>
 
-  <div class="vine-container" id="vineContainer">
-    <svg class="vine-svg" id="vineSvg" xmlns="http://www.w3.org/2000/svg"></svg>
-  </div>
+  <div class="stem-stack" id="stemStack"></div>
 
   <script>
     const goals = [
@@ -117,120 +152,141 @@
       { id: 10, title: '#goal 10', desc: 'a little bit of text about this', checked: false },
     ];
 
-    const FLOWER_SIZE = 180;
-    const STEP_Y = 300;
-    const GAP = FLOWER_SIZE / 2 + 24;
+    // flower positions as {top%, left%} within each image
+    // side: 'right' = flower is on right side of stem, text goes further right
+    //       'left'  = flower is on left side of stem, text goes further left
+    const sections = [
+      {
+        img: '/ttdil/stem_top_full.png',
+        overlap: 0,
+        flowers: [
+          { topPct: 53, leftPct: 85, side: 'right', goalIdx: 0 },
+          { topPct: 75, leftPct: 14, side: 'left',  goalIdx: 1 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 60,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 2 },
+          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 3 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 60,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 4 },
+          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 5 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 60,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 6 },
+          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 7 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_bottom_full.png',
+        overlap: 60,
+        flowers: [
+          { topPct: 12.5, leftPct: 62.5, side: 'right', goalIdx: 8 },
+          { topPct: 56,   leftPct: 31,   side: 'left',  goalIdx: 9 },
+        ]
+      },
+    ];
 
-    function build() {
-      const container = document.getElementById('vineContainer');
-      const svg = document.getElementById('vineSvg');
-      const W = container.offsetWidth;
-      const cx = W / 2;
-      const totalH = goals.length * STEP_Y + 160;
+    const stack = document.getElementById('stemStack');
 
-      svg.setAttribute('viewBox', `0 0 ${W} ${totalH}`);
-      svg.setAttribute('height', totalH);
-      svg.style.height = totalH + 'px';
-      svg.innerHTML = '';
+    sections.forEach((sec, si) => {
+      const section = document.createElement('div');
+      section.className = 'stem-section';
+      if (si > 0) {
+        section.style.marginTop = `-${sec.overlap}px`;
+      }
 
-      const branchPoints = goals.map((g, i) => {
-        const side = i % 2 === 0 ? -1 : 1;
-        const x = cx + side * (W * 0.26);
-        const y = 120 + i * STEP_Y;
-        return { x, y, side, goal: g };
-      });
+      const img = document.createElement('img');
+      img.className = 'stem-img';
+      img.src = sec.img;
+      img.alt = '';
+      section.appendChild(img);
 
-      // thick wavy main stem
-      let pathD = `M ${cx} 0`;
-      branchPoints.forEach((bp, i) => {
-        const prevY = i === 0 ? 0 : branchPoints[i - 1].y;
-        const wobble = (i % 2 === 0 ? -1 : 1) * 60;
-        const cp1x = cx + wobble;
-        const cp1y = prevY + (bp.y - prevY) * 0.3;
-        const cp2x = cx - wobble * 0.8;
-        const cp2y = prevY + (bp.y - prevY) * 0.7;
-        pathD += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${cx} ${bp.y}`;
-      });
-      const lastY = branchPoints[branchPoints.length - 1].y;
-      pathD += ` C ${cx} ${lastY + 80}, ${cx} ${lastY + 130}, ${cx} ${totalH}`;
+      // place overlays after image loads so we know dimensions
+      img.addEventListener('load', () => placeGoals(section, img, sec));
+      // fallback in case already cached
+      if (img.complete) placeGoals(section, img, sec);
 
-      const mainPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      mainPath.setAttribute('d', pathD);
-      mainPath.setAttribute('stroke', '#ffffff');
-      mainPath.setAttribute('stroke-width', '10');
-      mainPath.setAttribute('fill', 'none');
-      mainPath.setAttribute('stroke-linecap', 'round');
-      svg.appendChild(mainPath);
+      stack.appendChild(section);
+    });
 
-      branchPoints.forEach(bp => {
-        const flowerCX = bp.x;
-        const flowerCY = bp.y;
+    function placeGoals(section, img, sec) {
+      // remove any existing overlays for this section
+      section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
 
-        const cp1x = cx + bp.side * W * 0.07;
-        const cp1y = bp.y + 40;
-        const cp2x = cx + bp.side * W * 0.21;
-        const cp2y = bp.y - 50;
+      const imgH = img.offsetHeight;
+      const imgW = img.offsetWidth;
 
-        const branch = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        branch.setAttribute('d', `M ${cx} ${bp.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${flowerCX} ${flowerCY}`);
-        branch.setAttribute('stroke', '#ffffff');
-        branch.setAttribute('stroke-width', '5.5');
-        branch.setAttribute('fill', 'none');
-        branch.setAttribute('stroke-linecap', 'round');
-        svg.appendChild(branch);
+      sec.flowers.forEach(f => {
+        const goal = goals[f.goalIdx];
+        if (!goal) return;
 
-        const flower = document.createElementNS('http://www.w3.org/2000/svg', 'image');
-        flower.setAttribute('href', '/ttdil/blue_flower.png');
-        flower.setAttribute('x', flowerCX - FLOWER_SIZE / 2);
-        flower.setAttribute('y', flowerCY - FLOWER_SIZE / 2);
-        flower.setAttribute('width', FLOWER_SIZE);
-        flower.setAttribute('height', FLOWER_SIZE);
-        svg.appendChild(flower);
-      });
+        const overlay = document.createElement('div');
+        overlay.className = 'goal-overlay side-' + f.side;
 
-      container.querySelectorAll('.goal-item').forEach(el => el.remove());
+        // position: centred on flower
+        const topPx  = (f.topPct  / 100) * imgH;
+        const leftPx = (f.leftPct / 100) * imgW;
 
-      branchPoints.forEach(bp => {
-        const item = document.createElement('div');
-        item.className = 'goal-item';
+        overlay.style.top  = topPx  + 'px';
+        overlay.style.left = leftPx + 'px';
 
-        const itemW = 180;
-
-        if (bp.side === -1) {
-          // left side: item starts at flower's left edge minus gap minus item width
-          item.style.left = (bp.x - FLOWER_SIZE / 2 - GAP - itemW) + 'px';
+        // push text away from flower toward the edge
+        const NUDGE = '120px';
+        if (f.side === 'right') {
+          overlay.style.transform = `translate(20px, -50%)`;
         } else {
-          // right side: item starts at flower's right edge plus gap
-          item.style.left = (bp.x + FLOWER_SIZE / 2 + GAP) + 'px';
+          overlay.style.transform = `translate(calc(-100% - 20px), -50%)`;
         }
-        item.style.width = itemW + 'px';
-        item.style.top = (bp.y - 22) + 'px';
 
-        // checkbox always on the left
         const checkbox = document.createElement('div');
-        checkbox.className = 'goal-checkbox' + (bp.goal.checked ? ' checked' : '');
+        checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
 
         const textBlock = document.createElement('div');
         textBlock.className = 'goal-text-block';
 
         const title = document.createElement('div');
         title.className = 'goal-title';
-        title.textContent = bp.goal.title;
+        title.textContent = goal.title;
 
         const desc = document.createElement('div');
         desc.className = 'goal-desc';
-        desc.textContent = bp.goal.desc;
+        desc.textContent = goal.desc;
 
         textBlock.appendChild(title);
         textBlock.appendChild(desc);
-        item.appendChild(checkbox);
-        item.appendChild(textBlock);
-        container.appendChild(item);
+
+        if (f.side === 'right') {
+          overlay.appendChild(checkbox);
+          overlay.appendChild(textBlock);
+        } else {
+          overlay.appendChild(textBlock);
+          overlay.appendChild(checkbox);
+        }
+
+        section.appendChild(overlay);
       });
     }
 
-    build();
-    window.addEventListener('resize', build);
+    // re-place on resize
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.stem-section').forEach((section, si) => {
+        const img = section.querySelector('img');
+        const sec = sections[si];
+        if (img && img.complete) placeGoals(section, img, sec);
+      });
+    });
   </script>
 
 </body>
