@@ -106,28 +106,23 @@
 }
 
 .goal-checkbox.checked {
-  background: #fff; /* The solid white box */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: #659fdf; /* The specific blue from your image */
+  border-color: #659fdf;     /* Matches the border to the background */
 }
 
 .goal-checkbox.checked::after {
   content: '';
   display: block;
-  /* Increased height and width for a bolder look */
-  width: 18px; 
-  height: 14px; 
+  /* Larger dimensions to fill the 32px box like in #3 */
+  width: 20px; 
+  height: 12px;
   
-  /* Thicker "cutout" lines */
-  border-left: 5px solid rgba(0,0,0,0.3);
-  border-bottom: 5px solid rgba(0,0,0,0.3);
+  /* Thick black "hollow" look (adjust to match your page background) */
+  border-left: 6px solid #0b111b; 
+  border-bottom: 6px solid #0b111b;
   
-  /* Refined rotation and positioning to keep it centered */
-  transform: rotate(-45deg) translateY(-3px) translateX(1px);
-  
-  /* Ensures the edges of the "cut" stay crisp */
-  box-sizing: border-box;
+  /* Precise rotation and shift to center the thicker shape */
+  transform: rotate(-45deg) translateY(-4px) translateX(1px);
 }
   </style>
   <script>
