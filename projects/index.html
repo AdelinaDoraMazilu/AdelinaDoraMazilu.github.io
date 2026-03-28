@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-
+  
   <style>
 @media (max-width: 768px) {
   .project-card {
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- your page content below -->
 <div style="padding: 2rem 3rem;">
 
-  <a href="/projects/lhcb/" style="
+  <a class="project-card" href="/projects/lhcb/" style="
     display: flex;
     align-items: center;
     background: #000;
@@ -81,8 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     text-decoration: none;
     overflow: hidden;
     width: 100%;
-    transition: box-shadow 0.2s, border-color 0.2s;
-  " onmouseover="this.style.boxShadow='0 0 40px #1a6fc488, 0 0 80px #00c6ff44'; this.style.borderColor='#00c6ff';"
+    transition: box-shadow 0.2s, border-color 0.2s;"
+     onmouseover="this.style.boxShadow='0 0 40px #1a6fc488, 0 0 80px #00c6ff44'; this.style.borderColor='#00c6ff';"
      onmouseout="this.style.boxShadow='0 0 24px #1a6fc455, 0 0 60px #00c6ff22'; this.style.borderColor='#1a6fc4';">
 
     <div style="flex:1; padding: 3rem 3.5rem;">
@@ -96,45 +95,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ">Machine learning methods for improving tau decay detection at LHCb</h2>
     </div>
 
-    <div style="flex-shrink:0; width:420px; height:280px; padding: 1.5rem 1.5rem 1.5rem 0;">
+    <div class="project-card-img" style="flex-shrink:0; width:420px; height:280px; padding: 1.5rem 1.5rem 1.5rem 0;">
       <img src="/projects/detector.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:10px;">
     </div>
-
-
-
-
-    <a class="project-card" href="/projects/lhcb/" style="display: flex;
-    align-items: center;
-    background: #000;
-    border-radius: 16px;
-    border: 1.5px solid #1a6fc4;
-    box-shadow: 0 0 24px #1a6fc455, 0 0 60px #00c6ff22;
-    text-decoration: none;
-    overflow: hidden;
-    width: 100%;
-    transition: box-shadow 0.2s, border-color 0.2s;" 
-    onmouseover="this.style.boxShadow='0 0 40px #1a6fc488, 0 0 80px #00c6ff44'; this.style.borderColor='#00c6ff';"
-     onmouseout="this.style.boxShadow='0 0 24px #1a6fc455, 0 0 60px #00c6ff22'; this.style.borderColor='#1a6fc4';">
-  <div style="flex:1; padding: 3rem 4rem;">
-    <h2 style="color: #fff;
-        font-family: system-ui, sans-serif;
-        font-size: 3.5rem;
-        font-weight: 600;
-        line-height: 1.35;
-        margin: 0;">Machine learning methods for improving tau decay detection at LHCb</h2>
-  </div>
-  <div class="project-card-img" style="flex-shrink:0; width:420px; height:280px; padding: 1.5rem 1.5rem 1.5rem 0;">
-    <img src="/projects/detector.jpg" ...>
-  </div>
+  
   </a>
-
-
-
-</a>
 
 </div>
   <footer style="text-align: center; padding: 1rem; font-family: system-ui, sans-serif; font-size: 11px; color: #416082;">
   &copy; Adelina Mazilu. All rights reserved.
-</footer>
+  </footer>
 </body>
 </html>
