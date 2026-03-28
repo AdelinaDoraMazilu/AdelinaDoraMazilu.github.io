@@ -237,7 +237,7 @@
     sections.forEach((sec, si) => {
       const section = document.createElement('div');
       section.className = 'stem-section'
-        + (si < sections.length - 1 ? ' constrained' : '')
+        + (si !== 0 ? ' constrained' : '')
         + (si === 0 ? ' top-section' : '');
 
       if (si > 0) {
