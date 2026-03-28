@@ -124,6 +124,77 @@
   /* Precise rotation and shift to center the thicker shape */
   transform: rotate(-45deg) translateY(-4px) translateX(1px);
 }
+@media (max-width: 768px) {
+  .stem-stack { display: none; }
+
+  .mobile-goals {
+    display: block;
+    padding: 1.5rem 1.5rem 4rem;
+  }
+
+  .mobile-goal-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1.5px solid #1a6fc4;
+    border-radius: 12px;
+    background: #0f1923;
+    box-shadow: 0 0 16px #1a6fc433;
+  }
+
+  .mobile-goal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-goal-title {
+    font-family: system-ui, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .mobile-goal-desc {
+    font-family: system-ui, sans-serif;
+    font-size: 0.85rem;
+    color: #8ab4d4;
+    line-height: 1.5;
+  }
+
+  .mobile-checkbox {
+    width: 28px;
+    height: 28px;
+    border: 3px solid #fff;
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.3);
+  }
+
+  .mobile-checkbox.checked {
+    background-color: #659fdf;
+    border-color: #659fdf;
+  }
+
+  .mobile-checkbox.checked::after {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 9px;
+    border-left: 4px solid #0b111b;
+    border-bottom: 4px solid #0b111b;
+    transform: rotate(-45deg) translateY(-3px);
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-goals { display: none; }
+}
   </style>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -144,6 +215,32 @@
       }
     });
   });
+  const mobileGoals = document.getElementById('mobileGoals');
+goals.forEach(g => {
+  const item = document.createElement('div');
+  item.className = 'mobile-goal-item';
+
+  const header = document.createElement('div');
+  header.className = 'mobile-goal-header';
+
+  const checkbox = document.createElement('div');
+  checkbox.className = 'mobile-checkbox' + (g.checked ? ' checked' : '');
+
+  const title = document.createElement('div');
+  title.className = 'mobile-goal-title';
+  title.textContent = g.title;
+
+  header.appendChild(checkbox);
+  header.appendChild(title);
+
+  const desc = document.createElement('div');
+  desc.className = 'mobile-goal-desc';
+  desc.textContent = g.desc;
+
+  item.appendChild(header);
+  item.appendChild(desc);
+  mobileGoals.appendChild(item);
+});
   </script>
 </head>
 <body>
@@ -167,6 +264,7 @@
   </div>
 
   <div class="stem-stack" id="stemStack"></div>
+  <div class="mobile-goals" id="mobileGoals"></div>
 
   <script>
     const goals = [
