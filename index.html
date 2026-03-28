@@ -165,6 +165,15 @@
   .social-bar {
     justify-content: space-around;
   }
+
+  .social-btn img {
+  width: 36px;
+  height: 36px;
+}
+
+.social-btn span {
+  font-size: 10px;
+}
 }
   </style>
   <script>
@@ -268,6 +277,22 @@
       </a>
   </div>
 </div>
+<script>
+  const flipWrap = document.querySelector('.flip-wrap');
+  const flipInner = flipWrap.querySelector('.flip-inner');
+  let isFlipped = false;
+  let isTouchDevice = false;
+
+  flipWrap.addEventListener('touchstart', () => {
+    isTouchDevice = true;
+  });
+
+  flipWrap.addEventListener('click', () => {
+    if (!isTouchDevice) return;
+    isFlipped = !isFlipped;
+    flipInner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+  });
+</script>
 <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 0.4rem; font-family: system-ui, sans-serif; font-size: 11px; color: #3a5068;">
   &copy; Adelina Mazilu. All rights reserved.
 </footer>
