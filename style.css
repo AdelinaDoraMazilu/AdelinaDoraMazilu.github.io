@@ -441,4 +441,13 @@ table.cv-lang-table td {
   .lang-level {display: none;}
   table.cv-lang-table th:first-child,
   table.cv-lang-table td:first-child { width: 70px;}
+  .cv-entry-logo a {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.cv-entry-logo a img {
+  width: 36px !important;
+  height: 36px !important;
+  display: block;
+}
 }
