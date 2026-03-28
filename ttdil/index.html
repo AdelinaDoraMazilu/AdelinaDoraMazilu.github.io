@@ -137,6 +137,15 @@
         border-bottom-width: 4px !important;
         transform: rotate(-45deg) translateY(-3px) translateX(1px) !important;
       }
+      .stem-section:last-child {
+        overflow: hidden;
+      }
+      .stem-section:last-child img.stem-img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: cover !important;
+        object-position: center !important;
+      }
     }
   </style>
 
@@ -252,7 +261,7 @@
 
       if (si > 0) {
         const isMobile = window.innerWidth <= 768;
-        section.style.marginTop = `-${isMobile ? 60 : sec.overlap}px`;
+        section.style.marginTop = `-${isMobile ? 100 : sec.overlap}px`;
       } 
 
       const img = document.createElement('img');
@@ -287,10 +296,10 @@
 
         if (f.side === 'right') {
           overlay.style.left = (screenW * (isMobile ? 0.01 : 0.11) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.22 : 0.21)) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.18 : 0.21)) + 'px';
         } else {
-          overlay.style.left = (screenW * (isMobile ? 0.77 : 0.68) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.22 : 0.21)) + 'px';
+          overlay.style.left = (screenW * (isMobile ? 0.58 : 0.68) - sectionLeft) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.18 : 0.21)) + 'px';
         }
 
         const header = document.createElement('div');
