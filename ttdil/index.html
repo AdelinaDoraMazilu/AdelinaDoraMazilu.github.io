@@ -191,10 +191,15 @@
     transform: rotate(-45deg) translateY(-3px);
   }
 }
+@media (max-width: 768px) {
+  .stem-stack { display: none; }
+  .mobile-goals { display: block !important; }
+}
 
 @media (min-width: 769px) {
-  .mobile-goals { display: none; }
+  .mobile-goals { display: none !important; }
 }
+
   </style>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
