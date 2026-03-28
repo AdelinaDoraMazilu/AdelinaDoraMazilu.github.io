@@ -137,15 +137,6 @@
         border-bottom-width: 4px !important;
         transform: rotate(-45deg) translateY(-3px) translateX(1px) !important;
       }
-      .stem-section:last-child {
-        overflow: hidden;
-      }
-      .stem-section:last-child img.stem-img {
-        width: 130% !important;
-        height: auto !important;
-        object-fit: cover !important;
-        object-position: center !important;
-      }
     }
   </style>
 
@@ -204,8 +195,6 @@
       { id: 6,  title: '#goal 6',  desc: 'a little bit of text about this', checked: false },
       { id: 7,  title: '#goal 7',  desc: 'a little bit of text about this', checked: true },
       { id: 8,  title: '#goal 8',  desc: 'a little bit of text about this', checked: false },
-      { id: 9,  title: '#goal 9',  desc: 'a little bit of text about this', checked: true },
-      { id: 10, title: '#goal 10', desc: 'a little bit of text about this', checked: false },
     ];
 
     const sections = [
@@ -239,14 +228,6 @@
         flowers: [
           { topPct: 15, leftPct: 85, side: 'right', goalIdx: 6 },
           { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 7 },
-        ]
-      },
-      {
-        img: '/ttdil/stem_bottom_full.png',
-        overlap: 190,
-        flowers: [
-          { topPct: 12.5, leftPct: 62.5, side: 'right', goalIdx: 8 },
-          { topPct: 56,   leftPct: 31,   side: 'left',  goalIdx: 9 },
         ]
       },
     ];
