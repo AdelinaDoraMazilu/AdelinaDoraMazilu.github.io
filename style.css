@@ -445,13 +445,16 @@ table.cv-lang-table td {
   .lang-level {display: none;}
   table.cv-lang-table th:first-child,
   table.cv-lang-table td:first-child { width: 70px;}
-  .cv-entry-logo a {
-  display: inline-block;
-  margin-bottom: 6px;
+ .cv-entry-logo a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px;
+  height: 40px;
 }
 .cv-entry-logo a img {
-  width: 36px !important;
-  height: 36px !important;
+  width: 40px !important;
+  height: 40px !important;
   display: block;
 }
 }
