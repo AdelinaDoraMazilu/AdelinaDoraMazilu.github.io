@@ -431,8 +431,14 @@ table.cv-lang-table td {
   .cv-name-block { padding: 1rem 1.5rem 1.5rem; }
   .cv-name { font-size: 1.8rem; }
   .cv-body { padding: 1.25rem; }
-  .cv-entry { grid-template-columns: 1fr; }
-  .cv-entry-logo { display: none; }
+  .cv-entry {grid-template-columns: 1fr;gap: 8px 0;}
+  .cv-entry-logo {display: block;}
   .cv-skills-grid { grid-template-columns: 1fr; }
   .cv-skills-col:first-child { border-right: none; border-bottom: 1px solid #ddd; }
+  table.cv-lang-table {font-size: 11px;}
+  table.cv-lang-table th,
+  table.cv-lang-table td {padding: 4px 4px;}
+  .lang-level {display: none;}
+  table.cv-lang-table th:first-child,
+  table.cv-lang-table td:first-child { width: 70px;}
 }
