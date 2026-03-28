@@ -251,8 +251,9 @@
         + (si === 0 ? ' top-section' : '');
 
       if (si > 0) {
-        section.style.marginTop = `-${sec.overlap}px`;
-      }
+        const isMobile = window.innerWidth <= 768;
+        section.style.marginTop = `-${isMobile ? 60 : sec.overlap}px`;
+      } 
 
       const img = document.createElement('img');
       img.className = 'stem-img';
@@ -285,11 +286,11 @@
         overlay.style.top = topPx + 'px';
 
         if (f.side === 'right') {
-          overlay.style.left = (screenW * (isMobile ? 0.02 : 0.11) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.20 : 0.21)) + 'px';
+          overlay.style.left = (screenW * (isMobile ? 0.01 : 0.11) - sectionLeft) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.22 : 0.21)) + 'px';
         } else {
-          overlay.style.left = (screenW * (isMobile ? 0.78 : 0.68) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.20 : 0.21)) + 'px';
+          overlay.style.left = (screenW * (isMobile ? 0.77 : 0.68) - sectionLeft) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.22 : 0.21)) + 'px';
         }
 
         const header = document.createElement('div');
