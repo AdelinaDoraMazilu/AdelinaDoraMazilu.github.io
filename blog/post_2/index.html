@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog post title — Adelina-Dora Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .post-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+      font-family: system-ui, sans-serif;
+    }
 
+    .post-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #5ab0f7;
+      font-size: 14px;
+      text-decoration: none;
+      margin-bottom: 2rem;
+    }
+
+    .post-back:hover { color: #00c6ff; }
+
+    .post-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.75rem;
+      line-height: 1.25;
+    }
+
+    .post-date {
+      font-size: 0.95rem;
+      color: #5ab0f7;
+      margin: 0 0 2rem;
+    }
+
+    .post-divider {
+      height: 2px;
+      background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
+      box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
+      border: none;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    .post-body p {
+      font-size: 1rem;
+      color: #c8d8e8;
+      line-height: 1.85;
+      margin: 0 0 1.4rem;
+    }
+
+    .post-body p:last-child { margin-bottom: 0; }
+  </style>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
+    const highlight = document.getElementById('navHighlight');
+    const ul = document.querySelector('.site-nav ul');
+    links.forEach(a => {
+      const path = new URL(a.href).pathname;
+      const here = location.pathname;
+      const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+      const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+      if (isHome || isMatch) {
+        a.classList.add('active');
+        const ulRect = ul.getBoundingClientRect();
+        const aRect = a.getBoundingClientRect();
+        highlight.style.left = (aRect.left - ulRect.left) + 'px';
+        highlight.style.width = aRect.width + 'px';
+      }
+    });
+  });
+  </script>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
+    <ul>
+      <div class="nav-highlight" id="navHighlight"></div>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/cv/">CV</a></li>
+      <li><a href="/research/">Research Interests</a></li>
+      <li><a href="/ttdil/">Things to do in life</a></li>
+      <li><a href="/news/">News</a></li>
+    </ul>
+  </nav>
+
+  <div class="post-wrap">
+
+    <a class="post-back" href="/blog/">← Back to Blog</a>
+
+    <h1 class="post-title">Blog post title for Nth post</h1>
+    <div class="post-date">Published: DD Month YYYY</div>
+    <hr class="post-divider">
+
+    <div class="post-body">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dapibus vel magna in sagittis. Fusce maximus molestie convallis. Praesent et mauris vel libero convallis euismod bibendum sed ipsum. Aliquam iaculis vulputate quam, nec vestibulum erat malesuada lacinia.</p>
+
+      <p>Curabitur accumsan blandit varius. In est mi, pellentesque sed enim id, porta commodo nisi. Pellentesque libero tortor, cursus a enim nec, varius dictum leo. Integer at risus nibh. Vivamus non molestie elit. Aenean finibus, orci at scelerisque interdum, risus elit hendrerit ex.</p>
+
+      <p>Vivamus auctor neque in sapien vehicula malesuada. Mauris id blandit tortor, sed convallis ante. Aliquam vehicula lacinia tincidunt. Vestibulum pulvinar in elit in efficitur. Curabitur in magna sed nulla porttitor bibendum.</p>
+
+      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+      <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+
+      <p>Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

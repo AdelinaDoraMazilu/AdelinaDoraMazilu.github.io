@@ -1,50 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blog — Adelina-Dora Mazilu</title>
   <link rel="stylesheet" href="/style.css">
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
-  const highlight = document.getElementById('navHighlight');
-  const ul = document.querySelector('.site-nav ul');
-
-  links.forEach(a => {
-    const path = new URL(a.href).pathname;
-    const here = location.pathname;
-    const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
-    const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
-    if (isHome || isMatch) {
-      a.classList.add('active');
-      const ulRect = ul.getBoundingClientRect();
-      const aRect = a.getBoundingClientRect();
-      highlight.style.left = (aRect.left - ulRect.left) + 'px';
-      highlight.style.width = aRect.width + 'px';
+  <style>
+    .blog-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 4rem;
     }
+
+    .blog-card {
+      display: block;
+      text-decoration: none;
+      background: #111c27;
+      border: 1.5px solid #1a6fc4;
+      box-shadow: 0 0 24px #1a6fc455, 0 0 60px #00c6ff22;
+      border-radius: 16px;
+      padding: 2rem 2.5rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .blog-card:hover {
+      box-shadow: 0 0 40px #1a6fc488, 0 0 80px #00c6ff44;
+      border-color: #00c6ff;
+    }
+
+    .blog-card-title {
+      font-family: system-ui, sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.5rem;
+      line-height: 1.25;
+    }
+
+    .blog-card-date {
+      font-family: system-ui, sans-serif;
+      font-size: 1rem;
+      color: #5ab0f7;
+      margin: 0 0 0.75rem;
+    }
+
+    .blog-card-summary {
+      font-family: system-ui, sans-serif;
+      font-size: 0.95rem;
+      color: #c8d8e8;
+      line-height: 1.7;
+      margin: 0;
+    }
+  </style>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
+    const highlight = document.getElementById('navHighlight');
+    const ul = document.querySelector('.site-nav ul');
+    links.forEach(a => {
+      const path = new URL(a.href).pathname;
+      const here = location.pathname;
+      const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+      const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+      if (isHome || isMatch) {
+        a.classList.add('active');
+        const ulRect = ul.getBoundingClientRect();
+        const aRect = a.getBoundingClientRect();
+        highlight.style.left = (aRect.left - ulRect.left) + 'px';
+        highlight.style.width = aRect.width + 'px';
+      }
+    });
   });
-});
-</script>
+  </script>
 </head>
 <body>
 
-  <!-- Snippet 1 goes here, at the top of <body> -->
-<nav class="site-nav">
-  <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
-  <ul>
-    <div class="nav-highlight" id="navHighlight"></div>
-    <li><a href="/index.html">Home</a></li>
-    <li><a href="/projects/">Projects</a></li>
-    <li><a href="/blog/">Blog</a></li>
-    <li><a href="/cv/">CV</a></li>
-    <li><a href="/research/">Research Interests</a></li>
-    <li><a href="/ttdil/">Things to do in life</a></li>
-    <li><a href="/news/">News</a></li>
-  </ul>
-</nav>
+  <nav class="site-nav">
+    <a class="nav-brand" href="/index.html">Adelina-Dora Mazilu</a>
+    <ul>
+      <div class="nav-highlight" id="navHighlight"></div>
+      <li><a href="/index.html">Home</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/cv/">CV</a></li>
+      <li><a href="/research/">Research Interests</a></li>
+      <li><a href="/ttdil/">Things to do in life</a></li>
+      <li><a href="/news/">News</a></li>
+    </ul>
+  </nav>
 
-  <!-- your page content below -->
+  <div class="blog-wrap">
+
+    <a class="blog-card" href="/blog/post_3/">
+      <div class="blog-card-title">Blog post title for 3rd post</div>
+      <div class="blog-card-date">Published: 3 May 2026</div>
+      <div class="blog-card-summary">This is a very short summary of the post, it should only take about 2 lines on the post pop up so I am going to write a bit about nothing just to fill up space like I just did now.</div>
+    </a>
+
+    <a class="blog-card" href="/blog/post_2/">
+      <div class="blog-card-title">Blog post title for 2nd post</div>
+      <div class="blog-card-date">Published: 30 March 2026</div>
+      <div class="blog-card-summary">This is a very short summary of the post, it should only take about 2 lines on the post pop up so I am going to write a bit about nothing just to fill up space like I just did now.</div>
+    </a>
+
+    <a class="blog-card" href="/blog/post_1/">
+      <div class="blog-card-title">Blog post title for 1<sup>st</sup> post</div>
+      <div class="blog-card-date">Published: 28 March 2026</div>
+      <div class="blog-card-summary">This is a very short summary of the post, it should only take about 2 lines on the post pop up so I am going to write a bit about nothing just to fill up space like I just did now.</div>
+    </a>
+
+  </div>
 
 </body>
 </html>
