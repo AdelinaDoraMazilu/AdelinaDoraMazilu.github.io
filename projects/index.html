@@ -5,23 +5,29 @@
 @media (max-width: 768px) {
   .project-card {
     flex-direction: column !important;
-    padding: 1rem !important;
+    margin: 1rem auto !important;
+    width: 85% !important;
   }
 
   .project-card h2 {
-    font-size: 1.8rem !important;
-    padding: 1.5rem !important;
+    font-size: 1.5rem !important;
+    padding: 1rem 1.5rem 1.5rem !important;
     max-width: 100% !important;
+    width: 100% !important;
   }
 
   .project-card-img {
     width: 100% !important;
-    height: 220px !important;
+    height: 200px !important;
     padding: 1rem 1rem 0 1rem !important;
     order: -1;
   }
+
   .project-card-img img {
     border-radius: 8px !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 }
 </style>
@@ -72,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 </nav>
 
   <!-- your page content below -->
-<div style="padding: 2rem 3rem;">
+<div style="padding: 2rem 1rem;">
 
   <a class="project-card" href="/projects/lhcb/" style="
     display: flex;
