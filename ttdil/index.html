@@ -220,31 +220,36 @@
       }
     });
   });
+
+
+document.addEventListener('DOMContentLoaded', () => {
   const mobileGoals = document.getElementById('mobileGoals');
-goals.forEach(g => {
-  const item = document.createElement('div');
-  item.className = 'mobile-goal-item';
+  if (!mobileGoals) return;
+  goals.forEach(g => {
+    const item = document.createElement('div');
+    item.className = 'mobile-goal-item';
 
-  const header = document.createElement('div');
-  header.className = 'mobile-goal-header';
+    const header = document.createElement('div');
+    header.className = 'mobile-goal-header';
 
-  const checkbox = document.createElement('div');
-  checkbox.className = 'mobile-checkbox' + (g.checked ? ' checked' : '');
+    const checkbox = document.createElement('div');
+    checkbox.className = 'mobile-checkbox' + (g.checked ? ' checked' : '');
 
-  const title = document.createElement('div');
-  title.className = 'mobile-goal-title';
-  title.textContent = g.title;
+    const title = document.createElement('div');
+    title.className = 'mobile-goal-title';
+    title.textContent = g.title;
 
-  header.appendChild(checkbox);
-  header.appendChild(title);
+    header.appendChild(checkbox);
+    header.appendChild(title);
 
-  const desc = document.createElement('div');
-  desc.className = 'mobile-goal-desc';
-  desc.textContent = g.desc;
+    const desc = document.createElement('div');
+    desc.className = 'mobile-goal-desc';
+    desc.textContent = g.desc;
 
-  item.appendChild(header);
-  item.appendChild(desc);
-  mobileGoals.appendChild(item);
+    item.appendChild(header);
+    item.appendChild(desc);
+    mobileGoals.appendChild(item);
+  });
 });
   </script>
 </head>
