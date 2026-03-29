@@ -60,21 +60,6 @@
       white-space: normal;
     }
 
-    .goal-header {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .goal-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 1px 6px #000a;
-      line-height: 1.3;
-    }
-
     .goal-desc {
       font-size: 1rem;
       color: #8ab4d4;
@@ -93,6 +78,7 @@
       align-items: center;
       justify-content: center;
       background: rgba(0,0,0,0.3);
+      align-self: flex-start;
     }
 
     .goal-checkbox.checked {
@@ -132,6 +118,7 @@
       .goal-checkbox {
         width: 22px !important;
         height: 22px !important;
+        align-self: flex-start !important;
       }
 
       .goal-checkbox.checked::after {
@@ -322,30 +309,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (f.side === 'right') {
           overlay.style.left = (screenW * (isMobile ? 0.05 : 0.11) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.18 : 0.21)) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.25 : 0.28)) + 'px';
         } else {
           overlay.style.left = (screenW * (isMobile ? 0.70 : 0.68) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.18 : 0.21)) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.25 : 0.28)) + 'px';
         }
-
-        const header = document.createElement('div');
-        header.className = 'goal-header';
 
         const checkbox = document.createElement('div');
         checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
-
-        const title = document.createElement('div');
-        title.className = 'goal-title';
-        title.textContent = goal.title;
-
-        header.appendChild(checkbox);
-        header.appendChild(title);
 
         const desc = document.createElement('div');
         desc.className = 'goal-desc';
         desc.textContent = goal.desc;
 
-        overlay.appendChild(header);
+        overlay.appendChild(checkbox);
         overlay.appendChild(desc);
         section.appendChild(overlay);
       });
