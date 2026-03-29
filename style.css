@@ -82,11 +82,14 @@ body {
 .nav-mobile-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 1rem 1.5rem;
+  justify-content: center;
+  position: relative;
+  padding: 1.2rem 1.5rem;
   border-bottom: 1px solid #ffffff22;
 }
 .nav-mobile-close {
+  position: absolute;
+  left: 1.5rem;
   width: 36px;
   height: 36px;
   border-radius: 50%;
@@ -96,7 +99,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+}
+.nav-mobile-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #5ab0f7;
+  text-shadow: 0 0 16px #1a6fc4aa, 0 0 32px #00c6ff55;
+  text-decoration: none;
+  text-align: center;
 }
 .nav-mobile-close::before,
 .nav-mobile-close::after {
@@ -120,22 +130,31 @@ body {
 .nav-mobile-links {
   display: flex;
   flex-direction: column;
+  padding: 1.5rem;
+  gap: 0.75rem;
   flex: 1;
 }
 .nav-mobile-links a {
   display: block;
-  padding: 1.1rem 1.5rem;
-  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
   text-decoration: none;
-  border-bottom: 1px solid #ffffff11;
+  background: #000;
+  border: 1.5px solid #1a6fc4;
+  box-shadow: 0 0 16px #1a6fc455, 0 0 40px #00c6ff22;
+  border-radius: 12px;
   text-align: center;
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
-.nav-mobile-links a:hover { background: #ffffff08; }
-.nav-mobile-links a.active { color: #5ab0f7; }
 
-
+.nav-mobile-links a:hover,
+.nav-mobile-links a.active {
+  box-shadow: 0 0 30px #1a6fc488, 0 0 60px #00c6ff44;
+  border-color: #00c6ff;
+  color: #5ab0f7;
+}
 /* ── CV PAGE ── */
 .cv-outer {
   max-width: 860px;
@@ -494,8 +513,19 @@ table.cv-lang-table td {
 }
 
 @media (max-width: 600px) {
-  .site-nav { padding: 0 1rem; overflow-x: auto; }
-  .site-nav .nav-brand { font-size: 13px; }
+.site-nav {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  .site-nav .nav-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 15px;
+    font-weight: 700;
+    color: #5ab0f7;
+    text-shadow: 0 0 16px #1a6fc4aa, 0 0 32px #00c6ff55;
+  }
   .site-nav a { font-size: 12px; padding: 7px 10px; }
   .site-nav ul { display: none; }
   .site-nav .nav-highlight { display: none; }
