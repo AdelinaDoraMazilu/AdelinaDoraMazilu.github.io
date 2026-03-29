@@ -58,6 +58,8 @@
       color: #fff;
       transform: translateY(-50%);
       white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .goal-desc {
@@ -402,10 +404,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (f.side === 'right') {
           overlay.style.left = (screenW * (isMobile ? 0.02 : 0.11) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.25 : 0.28)) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.15 : 0.18)) + 'px';
         } else {
           overlay.style.left = (screenW * (isMobile ? 0.75 : 0.73) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.25 : 0.28)) + 'px';
+          overlay.style.width = (screenW * (isMobile ? 0.15 : 0.18)) + 'px';
         }
 
         const checkbox = document.createElement('div');
