@@ -219,14 +219,42 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- MAIN PAGE SCRIPT — goes in body after the HTML -->
   <script>
     const goals = [
-      { id: 1,  title: '#goal 1',  desc: 'a little bit of text about this', checked: true },
-      { id: 2,  title: '#goal 2',  desc: 'a little bit of text about this', checked: false },
-      { id: 3,  title: '#goal 3',  desc: 'a little bit of text about this', checked: true },
-      { id: 4,  title: '#goal 4',  desc: 'a little bit of text about this', checked: false },
-      { id: 5,  title: '#goal 5',  desc: 'a little bit of text about this', checked: true },
-      { id: 6,  title: '#goal 6',  desc: 'a little bit of text about this', checked: false },
-      { id: 7,  title: '#goal 7',  desc: 'a little bit of text about this', checked: true },
-      { id: 8,  title: '#goal 8',  desc: 'a little bit of text about this', checked: false },
+      { id: 1,  title: 'Goal 1',  desc: 'Finish my Bachelor\'s degree by February 2027', checked: true },
+      { id: 2,  title: 'Goal 2',  desc: 'Work a job that I like before starting my Master\'s degree', checked: false },
+      { id: 3,  title: 'Goal 3',  desc: 'Continue to have a positive outlook on life', checked: true },
+      { id: 4,  title: 'Goal 4',  desc: 'Become a Teaching Assistant', checked: false },
+      { id: 5,  title: 'Goal 5',  desc: 'Get a PhD', checked: true },
+      { id: 6,  title: 'Goal 6',  desc: 'Get a piloting licence', checked: false },
+      { id: 7,  title: 'Goal 7',  desc: 'Fly a fighter jet at mach 1.5', checked: true },
+      { id: 8,  title: 'Goal 8',  desc: 'Make an ML/RL application in aviation project', checked: false },
+      { id: 9,  title: 'Goal 9',  desc: 'Work a fulfilling job on the long term', checked: true },
+      { id: 10, title: 'Goal 10', desc: 'Stay close with my family', checked: false },
+      { id: 11, title: 'Goal 11', desc: 'Keep and cherish the friendships I have', checked: true },
+      { id: 12, title: 'Goal 12', desc: 'Visit Kyoto', checked: false },
+      { id: 13, title: 'Goal 13', desc: 'Visit Barranquilla', checked: true },
+      { id: 14, title: 'Goal 14', desc: 'Visit Rio de Janeiro', checked: false },
+      { id: 15, title: 'Goal 15', desc: 'Take a tour around Iceland', checked: true },
+      { id: 16, title: 'Goal 16', desc: 'Hike in the Himalayas', checked: false },
+      { id: 17, title: 'Goal 17', desc: 'Hike in the Andes', checked: true },
+      { id: 18, title: 'Goal 18', desc: 'Conquer Kilimanjaro', checked: false },
+      { id: 19, title: 'Goal 19', desc: 'Conquer Mont Blanc', checked: true },
+      { id: 20, title: 'Goal 20', desc: 'Thru-hike the entire Carpathians', checked: false },
+      { id: 21, title: 'Goal 21', desc: 'Learn German to level C1', checked: true },
+      { id: 22, title: 'Goal 22', desc: 'Learn Spanish to level C1', checked: false },
+      { id: 23, title: 'Goal 23', desc: 'Live in Switzerland for at least a year', checked: true },
+      { id: 24, title: 'Goal 24', desc: 'Write the libretto for an opera', checked: false },
+      { id: 25, title: 'Goal 25', desc: 'Continue to be happily single or happily in a relationship or marriage, emphasis on happily', checked: true },
+      { id: 26, title: 'Goal 26', desc: 'Be very fit', checked: false },
+      { id: 27, title: 'Goal 27', desc: 'Finish an Ironman', checked: true },
+      { id: 28, title: 'Goal 28', desc: 'Finish a marathon', checked: false },
+      { id: 29, title: 'Goal 29', desc: 'Learn to cook more dishes from around the world', checked: true },
+      { id: 30, title: 'Goal 30', desc: 'Improve my Sushi making skills', checked: false },
+      { id: 31, title: 'Goal 31', desc: 'Be regarded as the best cook in my family after my grandma', checked: true },
+      { id: 32, title: 'Goal 32', desc: 'Write a book on woodworking for scouts', checked: false },
+      { id: 33, title: 'Goal 33', desc: 'Create the best \'catarg\' ACM has ever had', checked: true },
+      { id: 34, title: 'Goal 34', desc: 'Become a mentor for woodwork for scouts', checked: false },
+      { id: 35, title: 'Goal 35', desc: 'Develop my photography skills', checked: true },
+      { id: 36, title: 'Goal 36', desc: 'Get a full frame camera and super telephoto lens', checked: false },
     ];
 
     const sections = [
@@ -243,15 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
         overlap: 190,
         flowers: [
           { topPct: 15, leftPct: 85, side: 'right', goalIdx: 2 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 3 },
-        ]
-      },
-      {
-        img: '/ttdil/stem_part_full.png',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 4 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 5 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 3 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 4 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 5 },
         ]
       },
       {
@@ -259,10 +281,81 @@ document.addEventListener('DOMContentLoaded', () => {
         overlap: 190,
         flowers: [
           { topPct: 15, leftPct: 85, side: 'right', goalIdx: 6 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 7 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 7 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 8 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 9 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 10 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 11 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 12 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 13 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 14 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 15 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 16 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 17 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 18 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 19 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 20 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 21 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 22 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 23 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 24 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 25 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 26 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 27 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 28 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 29 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 30 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 31 },
+          { topPct: 55, leftPct: 85, side: 'right', goalIdx: 32 },
+          { topPct: 75, leftPct: 15, side: 'left',  goalIdx: 33 },
+        ]
+      },
+      {
+        img: '/ttdil/stem_part_full.png',
+        overlap: 190,
+        flowers: [
+          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 34 },
+          { topPct: 35, leftPct: 15, side: 'left',  goalIdx: 35 },
         ]
       },
     ];
+
 
     const stack = document.getElementById('stemStack');
 
