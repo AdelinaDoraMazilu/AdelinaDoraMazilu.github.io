@@ -77,12 +77,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #659fdf;
+      background: transparent;
       align-self: flex-start;
     }
 
     .goal-checkbox.checked {
-      /* Same color as unchecked now */
+      background-color: #659fdf;
+      border-color: #659fdf;
     }
 
     .goal-checkbox.checked::after {
@@ -310,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
           overlay.style.left = (screenW * (isMobile ? 0.02 : 0.11) - sectionLeft) + 'px';
           overlay.style.width = (screenW * (isMobile ? 0.25 : 0.28)) + 'px';
         } else {
-          overlay.style.left = (screenW * (isMobile ? 0.70 : 0.68) - sectionLeft) + 'px';
+          overlay.style.left = (screenW * (isMobile ? 0.75 : 0.73) - sectionLeft) + 'px';
           overlay.style.width = (screenW * (isMobile ? 0.25 : 0.28)) + 'px';
         }
 
