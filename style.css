@@ -172,6 +172,27 @@ body {
   border-radius: 12px;
   text-align: center;
   transition: box-shadow 0.2s, border-color 0.2s;
+
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.nav-mobile-menu.open .nav-mobile-links a {
+  animation: navItemFadeIn 300ms ease forwards;
+}
+
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(1) { animation-delay: 0.10s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(2) { animation-delay: 0.16s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(3) { animation-delay: 0.22s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(4) { animation-delay: 0.28s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(5) { animation-delay: 0.34s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(6) { animation-delay: 0.40s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(7) { animation-delay: 0.46s; }
+.nav-mobile-menu.open .nav-mobile-links a:nth-child(8) { animation-delay: 0.52s; }
+
+@keyframes navItemFadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .nav-mobile-links a:hover,
