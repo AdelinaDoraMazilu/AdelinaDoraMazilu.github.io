@@ -17,7 +17,7 @@ body {
 }
 
 .site-nav .nav-brand {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: #00d4ff;
   text-decoration: none;
@@ -77,8 +77,9 @@ body {
 
 /* ── MOBILE MENU ── */
 .nav-mobile-menu {
+  display: none;
   position: fixed;
-  top: -110%;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
@@ -86,17 +87,20 @@ body {
   z-index: 1000;
   flex-direction: column;
   font-family: system-ui, sans-serif;
-  opacity: 0;
-  transform: translateY(-15px);
-  pointer-events: none;
-  transition: top 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
 }
 
-.nav-mobile-menu.open {
-  top: 0;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+.nav-mobile-menu.open { display: flex; }
+
+.nav-mobile-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 60px;
+  padding: 0 1.5rem;
+  background: #0f1923;
+  box-shadow: 0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
+  flex-shrink: 0;
 }
 
 .nav-mobile-header {
@@ -137,7 +141,7 @@ body {
 .nav-mobile-close::after  { transform: translate(-50%, -50%) rotate(-45deg); }
 
 .nav-mobile-brand {
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 700;
   color: #00d4ff;
   text-shadow: 0 0 10px #00d4ffcc, 0 0 24px #00aaff99, 0 0 48px #0077ff55;
@@ -571,7 +575,7 @@ table.cv-lang-table td {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 700;
     color: #00d4ff;
     text-shadow: 0 0 10px #00d4ffcc, 0 0 24px #00aaff99, 0 0 48px #0077ff55;
@@ -583,26 +587,41 @@ table.cv-lang-table td {
   .site-nav .nav-highlight { display: none; }
 
   /* hamburger: just three plain lines, no box */
-  .nav-hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    padding: 4px;
-    background: none;
-    border: none;
-    outline: none;
-    flex-shrink: 0;
-    order: -1;
-  }
-  .nav-hamburger span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background: #fff;
-    border-radius: 2px;
-  }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+  background: none;
+  border: none;
+  outline: none;
+  flex-shrink: 0;
+  order: -1;
+}
 
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
   /* CV mobile */
   .cv-header { grid-template-columns: 1fr; }
   .cv-photo { padding: 1.5rem 1.5rem 0; }

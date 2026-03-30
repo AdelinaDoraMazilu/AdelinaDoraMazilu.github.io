@@ -170,8 +170,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.getElementById('navMobileMenu');
   const closeBtn = document.getElementById('navMobileClose');
 
-  if (hamburger) hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-  if (closeBtn) closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+if (hamburger) hamburger.addEventListener('click', () => {
+  mobileMenu.classList.add('open');
+  hamburger.classList.add('open');
+});
+if (closeBtn) closeBtn.addEventListener('click', () => {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+});
 });
 </script>
 </head>
