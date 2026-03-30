@@ -588,7 +588,7 @@ table.cv-lang-table td {
 
   /* hamburger: just three plain lines, no box */
 .nav-hamburger {
-  display: none;
+  display: flex;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
