@@ -472,8 +472,11 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
       img.loading = 'eager';
       section.appendChild(img);
 
-      img.addEventListener('load', () => placeGoals(section, img, sec));
-      if (img.complete) placeGoals(section, img, sec);
+      if (img.complete) {
+             placeGoals(section, img, sec);
+      } else {
+            img.addEventListener('load', () => placeGoals(section, img, sec));
+      }
 
       stack.appendChild(section);
     });
