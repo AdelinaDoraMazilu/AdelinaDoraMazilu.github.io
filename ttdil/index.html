@@ -515,6 +515,7 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
         overlay.appendChild(desc);
         section.appendChild(overlay);
       });
+      console.log('Section rendered, flowers:', sec.flowers.map(f => ({goalIdx: f.goalIdx, goal: goals[f.goalIdx]?.desc || 'NOT FOUND'})));
     }
 
     window.addEventListener('resize', () => {
