@@ -469,6 +469,7 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
       img.className = 'stem-img';
       img.src = sec.img;
       img.alt = '';
+      img.loading = 'eager';
       section.appendChild(img);
 
       img.addEventListener('load', () => placeGoals(section, img, sec));
