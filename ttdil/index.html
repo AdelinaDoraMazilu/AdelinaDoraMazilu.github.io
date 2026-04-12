@@ -461,11 +461,19 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
       img.loading = 'eager';
       section.appendChild(img);
 
-      if (img.complete) {
-             placeGoals(section, img, sec);
-      } else {
-            img.addEventListener('load', () => placeGoals(section, img, sec));
-      }
+function waitAndPlace(section, img, sec) {
+  if (img.offsetHeight > 0) {
+    placeGoals(section, img, sec);
+  } else {
+    requestAnimationFrame(() => waitAndPlace(section, img, sec));
+  }
+}
+
+if (img.complete) {
+  waitAndPlace(section, img, sec);
+} else {
+  img.addEventListener('load', () => waitAndPlace(section, img, sec));
+}
 
       stack.appendChild(section);
     });
