@@ -2,6 +2,19 @@
 <html>
   
   <style>
+.antinu {
+  position: relative;
+  display: inline-block;
+}
+
+.antinu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0.02rem;   /* adjust this value */
+  border-top: 1.5px solid currentColor;
+}
 @media (max-width: 768px) {
   .project-card {
     flex-direction: column !important;
@@ -161,7 +174,9 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
         font-weight: 600;
         line-height: 1.35;
         margin: 0;
-      ">Machine learning methods for improving tau decay detection at LHCb</h2>
+      ">Machine learning methods for improving &tau; &rarr; &pi;<sup>+</sup> &pi;<sup>-</sup> &pi;<sup>+</sup>
+       <span class="antinu">&nu;</span><sub>&tau;</sub> decay detection at LHCb
+      </h2>
     </div>
 
     <div class="project-card-img" style="flex-shrink:0; width:420px; height:280px; padding: 1.5rem 1.5rem 1.5rem 0;">
