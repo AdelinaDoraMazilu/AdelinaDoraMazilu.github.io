@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+.antinu {
+  position: relative;
+  display: inline-block;
+}
+
+.antinu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0.08em;   /* adjust this value */
+  border-top: 1.5px solid currentColor;
+}
+</style>
 <head>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta charset="UTF-8">
@@ -74,7 +89,7 @@
     <!-- title -->
     <h1 style="color: #fff; font-family: system-ui, sans-serif; font-size: 2.4rem; font-weight: 600; line-height: 1.25; margin: 0 0 1rem;">
     Machine learning methods for improving &tau; &rarr; &pi;<sup>+</sup> &pi;<sup>-</sup> &pi;<sup>+</sup>
-    <span style="text-decoration: overline;">&nu;</span><sub>&tau;</sub> decay detection at LHCb
+    <span class="antinu">&nu;</span><sub>&tau;</sub> decay detection at LHCb
     </h1>
 
     <!-- status badge -->
