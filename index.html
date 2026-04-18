@@ -274,15 +274,21 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
     </button>
 
 
-    <label class="theme-toggle" title="Toggle light/dark mode">
-      <span class="theme-toggle-icon">&#127761;</span>
-      <input type="checkbox" id="theme-toggle-cb">
-      <div class="theme-toggle-track" id="theme-track">
-      <div class="theme-toggle-thumb"></div>
-      </div>
-      <span class="theme-toggle-icon">&#127765;</span>
-    </label>
+<!-- desktop (inside .site-nav) -->
+<label class="theme-toggle" title="Toggle light/dark mode">
+  <input type="checkbox" id="theme-toggle-cb">
+  <div class="theme-toggle-track" id="theme-track">
+    <div class="theme-toggle-thumb"></div>
+  </div>
+</label>
 
+<!-- mobile (inside .nav-mobile-header) -->
+<label class="theme-toggle" title="Toggle light/dark mode">
+  <input type="checkbox" id="theme-toggle-cb-mobile">
+  <div class="theme-toggle-track" id="theme-track-mobile">
+    <div class="theme-toggle-thumb"></div>
+  </div>
+</label>
 
 
   </nav>
@@ -423,24 +429,20 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
 
 
   (function () {
-  const html  = document.documentElement;
-  const cb    = document.getElementById('theme-toggle-cb');
-  const track = document.getElementById('theme-track');
+  const html   = document.documentElement;
+  const cbs    = [document.getElementById('theme-toggle-cb'), document.getElementById('theme-toggle-cb-mobile')];
+  const tracks = [document.getElementById('theme-track'), document.getElementById('theme-track-mobile')];
 
-  // Restore saved preference
-  const saved = localStorage.getItem('theme');
-  if (saved === 'light') applyLight(true);
+  if (localStorage.getItem('theme') === 'light') applyLight(true);
 
-  cb.addEventListener('change', () => applyLight(cb.checked));
-  track.addEventListener('click', () => {
-    cb.checked = !cb.checked;
-    applyLight(cb.checked);
+  cbs.forEach(cb => {
+    if (cb) cb.addEventListener('change', () => applyLight(cb.checked));
   });
 
   function applyLight(isLight) {
     html.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    track.classList.toggle('checked', isLight);
-    cb.checked = isLight;
+    cbs.forEach(cb => { if (cb) cb.checked = isLight; });
+    tracks.forEach(track => { if (track) track.classList.toggle('checked', isLight); });
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
   }
 })();
