@@ -27,6 +27,34 @@
   --text:         #1a1a1a;
 }
 
+[data-theme="light"] .home-title {
+  color: #0a1520;
+}
+
+[data-theme="light"] .home-text {
+  color: #2a3a4a;
+}
+
+[data-theme="light"] .news-item-date {
+  color: #1a6fc4;
+}
+
+[data-theme="light"] .social-btn span {
+  color: #2a3a4a;
+}
+
+[data-theme="light"] .social-btn img {
+  filter: invert(1) sepia(1) saturate(2) hue-rotate(190deg) brightness(0.4);
+}
+
+[data-theme="light"] footer {
+  color: #5a7a9a !important;
+}
+
+[data-theme="light"] .nav-hamburger span {
+  background: #0a1520;
+}
+
 /* ── THEME TOGGLE SWITCH ── */
 .theme-toggle {
   margin-left: auto;
