@@ -272,6 +272,19 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
 <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+
+
+    <label class="theme-toggle" title="Toggle light/dark mode">
+      <span class="theme-toggle-icon">&#127761;</span>
+      <input type="checkbox" id="theme-toggle-cb">
+      <div class="theme-toggle-track" id="theme-track">
+      <div class="theme-toggle-thumb"></div>
+      </div>
+      <span class="theme-toggle-icon">&#127765;</span>
+    </label>
+
+
+
   </nav>
 
   <div class="nav-mobile-menu" id="navMobileMenu">
@@ -407,7 +420,34 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
     isFlipped = !isFlipped;
     flipInner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
   });
+
+
+  (function () {
+  const html  = document.documentElement;
+  const cb    = document.getElementById('theme-toggle-cb');
+  const track = document.getElementById('theme-track');
+
+  // Restore saved preference
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') applyLight(true);
+
+  cb.addEventListener('change', () => applyLight(cb.checked));
+  track.addEventListener('click', () => {
+    cb.checked = !cb.checked;
+    applyLight(cb.checked);
+  });
+
+  function applyLight(isLight) {
+    html.setAttribute('data-theme', isLight ? 'light' : 'dark');
+    track.classList.toggle('checked', isLight);
+    cb.checked = isLight;
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  }
+})();
+
+
 </script>
+
 <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 0.4rem; font-family: system-ui, sans-serif; font-size: 11px; color: #3a5068;">
   &copy; Adelina Mazilu. All rights reserved.
 </footer>

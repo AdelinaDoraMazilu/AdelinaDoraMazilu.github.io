@@ -1,19 +1,117 @@
+/* ── THEME VARIABLES ── */
+:root {
+  --bg:           #0a1520;
+  --nav-bg:       #0f1923;
+  --nav-shadow:   0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
+  --nav-border:   #ffffff22;
+  --nav-link:     #8a9bb0;
+  --nav-link-hover: #c8d8e8;
+  --nav-link-active: #fff;
+  --mobile-bg:    #0a1520;
+  --mobile-link-bg: #000;
+  --mobile-link-color: #fff;
+  --text:         #1a1a1a;
+}
+
+[data-theme="light"] {
+  --bg:           #f4f6f9;
+  --nav-bg:       #ffffff;
+  --nav-shadow:   0 4px 30px #00c6ff22, 0 1px 0 #1a6fc422;
+  --nav-border:   #00000015;
+  --nav-link:     #5a6a7a;
+  --nav-link-hover: #1a2a3a;
+  --nav-link-active: #0a1520;
+  --mobile-bg:    #f4f6f9;
+  --mobile-link-bg: #ffffff;
+  --mobile-link-color: #1a2a3a;
+  --text:         #1a1a1a;
+}
+
+/* ── THEME TOGGLE SWITCH ── */
+.theme-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.theme-toggle-icon {
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+  transition: opacity 0.2s;
+}
+
+.theme-toggle input[type="checkbox"] {
+  display: none;
+}
+
+.theme-toggle-track {
+  position: relative;
+  width: 42px;
+  height: 24px;
+  background: #1a6fc4;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s;
+  box-shadow: 0 0 10px #1a6fc455;
+  flex-shrink: 0;
+}
+
+.theme-toggle input:checked + .theme-toggle-track {
+  background: #00c6ff;
+  box-shadow: 0 0 10px #00c6ff55;
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), background 0.3s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.theme-toggle input:checked ~ .theme-toggle-track .theme-toggle-thumb,
+.theme-toggle-track:has(~ input:checked) .theme-toggle-thumb {
+  /* fallback handled by JS */
+}
+
+/* JS will add .checked class to track */
+.theme-toggle-track.checked .theme-toggle-thumb {
+  transform: translateX(18px);
+}
+
+
+
+
+
+
+
+
+
+
+
 body {
-  background: #0a1520;
-  color: #1a1a1a;
+  background: var(--bg);       /* was #0a1520 */
+  color: var(--text);       /* was #1a1a1a */
 }
 
 /* ── NAVBAR ── */
 .site-nav {
   font-family: system-ui, sans-serif;
-  background: #0f1923;
+  background: var(--nav-bg);  /* was #0f1923 */
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
   height: 60px;
   gap: 4px;
   position: relative;
-  box-shadow: 0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
+  box-shadow: var(--nav-shadow); /* was 0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444 */
 }
 
 .site-nav .nav-brand {
@@ -25,7 +123,7 @@ body {
   margin-right: 8px;
   white-space: nowrap;
   flex-shrink: 0;
-  border-right: 1px solid #ffffff22;
+  border-right: 1px solid var(--nav-border);  /* was #ffffff22 */
   letter-spacing: 0.01em;
 }
 
@@ -46,7 +144,7 @@ body {
   align-items: center;
   padding: 7px 14px;
   font-size: 13px;
-  color: #8a9bb0;
+  color: var(--nav-link);      /* was #8a9bb0 */
   text-decoration: none;
   white-space: nowrap;
   border-radius: 8px;
@@ -55,8 +153,8 @@ body {
   z-index: 2;
 }
 
-.site-nav a:hover { color: #c8d8e8; }
-.site-nav a.active { color: #fff; font-weight: 500; }
+.site-nav a:hover { color: var(--nav-link-hover); /* was #c8d8e8 */ }
+.site-nav a.active { color: var(--nav-link-active); /* was #fff */ }
 
 .site-nav .nav-highlight {
   position: absolute;
@@ -82,7 +180,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #0a1520;
+  background: var(--mobile-bg);  /* was #0a1520 */
   z-index: 1000;
   flex-direction: column;
   font-family: system-ui, sans-serif;
@@ -97,18 +195,10 @@ body {
   position: relative;
   height: 60px;
   padding: 0 1.5rem;
-  background: #0f1923;
-  box-shadow: 0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
+  background: var(--nav-bg);
+  box-shadow: var(--nav-shadow);
+  border-bottom: 1px solid var(--nav-border);
   flex-shrink: 0;
-}
-
-.nav-mobile-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding: 1.2rem 1.5rem;
-  border-bottom: 1px solid #ffffff22;
 }
 
 .nav-mobile-close {
@@ -166,9 +256,9 @@ body {
   padding: 1rem 1.5rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--mobile-link-color);     /* was #fff */
   text-decoration: none;
-  background: #000;
+  background: var(--mobile-link-bg);   /* was #000 */
   border: 1.5px solid #1a6fc4;
   box-shadow: 0 0 16px #1a6fc455, 0 0 40px #00c6ff22;
   border-radius: 12px;
