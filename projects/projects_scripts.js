@@ -16,3 +16,24 @@
       }
     });
   });
+
+
+      // ── THEME TOGGLE ──
+  (function () {
+      const html   = document.documentElement;
+      const cbs    = [document.getElementById('theme-toggle-cb'), document.getElementById('theme-toggle-cb-mobile')];
+      const tracks = [document.getElementById('theme-track'), document.getElementById('theme-track-mobile')];
+
+      if (localStorage.getItem('theme') === 'light') applyLight(true);
+
+      cbs.forEach(cb => {
+        if (cb) cb.addEventListener('change', () => applyLight(cb.checked));
+      });
+
+      function applyLight(isLight) {
+        html.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        cbs.forEach(cb     => { if (cb)    cb.checked = isLight; });
+        tracks.forEach(track => { if (track) track.classList.toggle('checked', isLight); });
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      }
+    })();
