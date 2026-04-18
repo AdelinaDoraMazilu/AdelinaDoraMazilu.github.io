@@ -7,6 +7,7 @@
   <title>Adelina Mazilu</title>
   <link rel="stylesheet" href="/style.css">
   <style>
+    /* ── HOME LAYOUT ── */
     .home-wrap {
       max-width: 48%;
       padding: 3rem 3rem 2rem;
@@ -35,12 +36,12 @@
     }
 
     .home-bottom {
-    position: fixed;
-    bottom: 0.2rem;
-    left: 0;
-    width: 48%;
-    padding: 0 3rem 2rem;
-  }
+      position: fixed;
+      bottom: 0.2rem;
+      left: 0;
+      width: 48%;
+      padding: 0 3rem 2rem;
+    }
 
     .home-text {
       font-family: system-ui, sans-serif;
@@ -57,12 +58,31 @@
       margin-bottom: 0;
     }
 
-   .social-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0 0;
-}
+    /* ── NEWS ── */
+    .news-item {
+      margin-bottom: 3rem;
+    }
+
+    .news-item-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 0.25rem;
+    }
+
+    .news-item-date {
+      font-size: 0.9rem;
+      color: #5ab0f7;
+      margin: 0 0 1.25rem;
+    }
+
+    /* ── SOCIAL BAR ── */
+    .social-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0 0;
+    }
 
     .social-btn {
       display: flex;
@@ -82,7 +102,6 @@
       height: 52px;
       object-fit: contain;
       display: block;
-    
     }
 
     .social-btn span {
@@ -91,7 +110,7 @@
       color: #8a9bb0;
     }
 
-    /* fixed flip card */
+    /* ── FLIP CARD ── */
     .flip-wrap {
       position: fixed;
       right: 4vw;
@@ -108,14 +127,15 @@
       height: 100%;
       position: relative;
       transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(.4,0,.2,1);
+      transition: transform 0.8s cubic-bezier(.4, 0, .2, 1);
     }
 
     .flip-wrap:hover .flip-inner {
       transform: rotateY(180deg);
     }
 
-    .flip-front, .flip-back {
+    .flip-front,
+    .flip-back {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -133,131 +153,122 @@
       box-shadow: 0 0 40px #dbdbdb55, 0 0 80px #a7a7a722;
     }
 
-    .flip-front img, .flip-back img {
+    .flip-front img,
+    .flip-back img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-        .news-item {
-      margin-bottom: 3rem;
-    }
-
-    .news-item-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fff;
-      margin: 0 0 0.25rem;
-    }
-
-    .news-item-date {
-      font-size: 0.9rem;
-      color: #5ab0f7;
-      margin: 0 0 1.25rem;
-    }
-
+    /* ── MOBILE ── */
     @media (max-width: 768px) {
-  .flip-wrap {
-    position: relative !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    height: 280px !important;
-    width: 280px !important;
-    margin: 1.5rem auto;
-    display: block;
-  }
+      .flip-wrap {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        height: 280px !important;
+        width: 280px !important;
+        margin: 1.5rem auto;
+        display: block;
+      }
 
-  .home-wrap {
-    max-width: 100%;
-    padding: 1.5rem 1.5rem 1rem;
-  }
+      .home-wrap {
+        max-width: 100%;
+        padding: 1.5rem 1.5rem 1rem;
+      }
 
-  .home-bottom {
-    position: relative !important;
-    bottom: auto !important;
-    width: 85% !important;
-    margin: 0 auto;
-    left: 0;
-    right: 0;
-    padding: 0 1.5rem 2rem;
-  }
+      .home-bottom {
+        position: relative !important;
+        bottom: auto !important;
+        width: 85% !important;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        padding: 0 1.5rem 2rem;
+      }
 
-  .social-bar {
-    justify-content: space-around;
-  }
+      .social-bar {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem 0.25rem;
+      }
 
-  .social-btn img {
-  width: 36px;
-  height: 36px;
-}
+      .social-btn {
+        width: 25%;
+      }
 
-.social-btn span {
-  font-size: 10px;
-}
+      .social-btn img {
+        width: 36px;
+        height: 36px;
+      }
 
-.social-btn {
-  width: 25%;
-}
-
-.social-bar {
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem 0.25rem;
-}
-}
-  </style>
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
-  const highlight = document.getElementById('navHighlight');
-  const ul = document.querySelector('.site-nav ul');
-
-  links.forEach(a => {
-    const path = new URL(a.href).pathname;
-    const here = location.pathname;
-    const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
-    const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
-    if (isHome || isMatch) {
-      a.classList.add('active');
-      if (highlight && ul) {
-        const ulRect = ul.getBoundingClientRect();
-        const aRect = a.getBoundingClientRect();
-        highlight.style.left = (aRect.left - ulRect.left) + 'px';
-        highlight.style.width = aRect.width + 'px';
+      .social-btn span {
+        font-size: 10px;
       }
     }
-  });
+  </style>
 
-  // also highlight active in mobile menu
-  const mobileLinks = document.querySelectorAll('.nav-mobile-links a');
-  mobileLinks.forEach(a => {
-    const path = new URL(a.href).pathname;
-    const here = location.pathname;
-    const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
-    const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
-    if (isHome || isMatch) a.classList.add('active');
-  });
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-  const hamburger = document.getElementById('navHamburger');
-  const mobileMenu = document.getElementById('navMobileMenu');
-  const closeBtn = document.getElementById('navMobileClose');
+      // ── NAV HIGHLIGHT ──
+      const links     = document.querySelectorAll('.site-nav a:not(.nav-brand)');
+      const highlight = document.getElementById('navHighlight');
+      const ul        = document.querySelector('.site-nav ul');
 
-if (hamburger) hamburger.addEventListener('click', () => {
-  mobileMenu.classList.add('open');
-  hamburger.classList.add('open');
-});
-if (closeBtn) closeBtn.addEventListener('click', () => {
-  mobileMenu.classList.remove('open');
-  hamburger.classList.remove('open');
-});
-});
-</script>
+      links.forEach(a => {
+        const path   = new URL(a.href).pathname;
+        const here   = location.pathname;
+        const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+        const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+
+        if (isHome || isMatch) {
+          a.classList.add('active');
+          if (highlight && ul) {
+            const ulRect = ul.getBoundingClientRect();
+            const aRect  = a.getBoundingClientRect();
+            highlight.style.left  = (aRect.left - ulRect.left) + 'px';
+            highlight.style.width = aRect.width + 'px';
+          }
+        }
+      });
+
+      // ── MOBILE NAV HIGHLIGHT ──
+      const mobileLinks = document.querySelectorAll('.nav-mobile-links a');
+
+      mobileLinks.forEach(a => {
+        const path   = new URL(a.href).pathname;
+        const here   = location.pathname;
+        const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
+        const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
+        if (isHome || isMatch) a.classList.add('active');
+      });
+
+      // ── HAMBURGER MENU ──
+      const hamburger  = document.getElementById('navHamburger');
+      const mobileMenu = document.getElementById('navMobileMenu');
+      const closeBtn   = document.getElementById('navMobileClose');
+
+      if (hamburger) hamburger.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+        hamburger.classList.add('open');
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
+
+    });
+  </script>
 </head>
+
 <body>
 
-<nav class="site-nav">
+  <!-- ── NAVBAR ── -->
+  <nav class="site-nav">
     <a class="nav-brand" href="/index.html">Adelina Mazilu</a>
     <ul>
       <div class="nav-highlight" id="navHighlight"></div>
@@ -267,49 +278,41 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
       <li><a href="/resources/">Resources</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/ttdil/">Things to do in life</a></li>
-
     </ul>
-<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
-
-
-<!-- desktop (inside .site-nav) -->
-<label class="theme-toggle" title="Toggle light/dark mode">
-  <input type="checkbox" id="theme-toggle-cb">
-  <div class="theme-toggle-track" id="theme-track">
-    <div class="theme-toggle-thumb"></div>
-  </div>
-</label>
-
-<!-- mobile (inside .nav-mobile-header) -->
-<label class="theme-toggle" title="Toggle light/dark mode">
-  <input type="checkbox" id="theme-toggle-cb-mobile">
-  <div class="theme-toggle-track" id="theme-track-mobile">
-    <div class="theme-toggle-thumb"></div>
-  </div>
-</label>
-
-
+    <label class="theme-toggle" title="Toggle light/dark mode">
+      <input type="checkbox" id="theme-toggle-cb">
+      <div class="theme-toggle-track" id="theme-track">
+        <div class="theme-toggle-thumb"></div>
+      </div>
+    </label>
   </nav>
 
+  <!-- ── MOBILE MENU ── -->
   <div class="nav-mobile-menu" id="navMobileMenu">
     <div class="nav-mobile-header">
       <button class="nav-mobile-close" id="navMobileClose"></button>
       <a class="nav-mobile-brand" href="/index.html">Adelina Mazilu</a>
+      <label class="theme-toggle" title="Toggle light/dark mode">
+        <input type="checkbox" id="theme-toggle-cb-mobile">
+        <div class="theme-toggle-track" id="theme-track-mobile">
+          <div class="theme-toggle-thumb"></div>
+        </div>
+      </label>
     </div>
     <div class="nav-mobile-links">
       <a href="/index.html">Home</a>
       <a href="/projects/">Projects</a>
       <a href="/cv/">CV</a>
       <a href="/resources/">Resources</a>
-      <a href="/blog/">Blog</a>    
+      <a href="/blog/">Blog</a>
       <a href="/ttdil/">Things to do in life</a>
-      
     </div>
   </div>
 
-  <!-- large fixed flip card on the right -->
+  <!-- ── FLIP CARD ── -->
   <div class="flip-wrap">
     <div class="flip-inner">
       <div class="flip-front">
@@ -321,71 +324,59 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
     </div>
   </div>
 
-  <!-- text and icons on the left -->
-   <div class="home-wrap">
-  <h1 class="home-title">About me</h1>
-  <hr class="home-divider">
-
-  <div class="home-text">
-     <p>I'm Adelina, I am currently an Artificial Intelligence bachelor's student at the University of 
-      Groningen. At the moment I am developing machine learning systems with applications in particle 
-      physics research. I like to expand on my skills in a project-based approach.</p>
-
-    <p>On top of my regular degree programe I am also part of the University honours collage, 
-        a programme focused on developing interdisciplinary teamwork between students and a drive to 
-        pursue their interests trough projects within their field of interest.</p>
-
-    <p>Outside academics I organize and lead mountain scout camps for youth. 
-        I am also an amateur photographer, I am particularly drawn to wildlife and astrophotography.</p>
-
-    <p>I like to keep an open and positive attitude about everything in life.</p>
-   
-  </div>
-</div>
-
+  <!-- ── ABOUT ── -->
   <div class="home-wrap">
-  <h1 class="home-title">Research Interests</h1>
-  <hr class="home-divider">
-
-  <div class="home-text">
-        
-    <p>My research interests are in the area of machine learning applications, especially in the development of
-      avionics, particle physics research and AI-enhanced medical systems. </p>
-
-    <p>Some specific topics I am interested in include:</p>
-    <ul>
-      <li>Adaptive control</li>
-      <li>Computer vision</li>
-      <li>Reinforcement learning</li>
-      <li>Natural Language Processing</li>
-      <li>Explainable AI and Uncertainty Quantification</li>
-    </ul>  
-
-    <p>I am passionate about developing AI applications which come as a support to humans 
-      and science advancements.</p>
-
-   
+    <h1 class="home-title">About me</h1>
+    <hr class="home-divider">
+    <div class="home-text">
+      <p>I'm Adelina, I am currently an Artificial Intelligence bachelor's student at the University of
+        Groningen. At the moment I am developing machine learning systems with applications in particle
+        physics research. I like to expand on my skills in a project-based approach.</p>
+      <p>On top of my regular degree programe I am also part of the University honours collage,
+        a programme focused on developing interdisciplinary teamwork between students and a drive to
+        pursue their interests trough projects within their field of interest.</p>
+      <p>Outside academics I organize and lead mountain scout camps for youth.
+        I am also an amateur photographer, I am particularly drawn to wildlife and astrophotography.</p>
+      <p>I like to keep an open and positive attitude about everything in life.</p>
     </div>
   </div>
 
+  <!-- ── RESEARCH INTERESTS ── -->
   <div class="home-wrap">
-  <h1 class="home-title">News</h1>
-  <hr class="home-divider">
-    
-  <div class="home-text">
-        
-        <p>
-            <span class="news-item-date">30 March 2026</span>
-             - I have made my own website!
-        </p>
+    <h1 class="home-title">Research Interests</h1>
+    <hr class="home-divider">
+    <div class="home-text">
+      <p>My research interests are in the area of machine learning applications, especially in the development of
+        avionics, particle physics research and AI-enhanced medical systems.</p>
+      <p>Some specific topics I am interested in include:</p>
+      <ul>
+        <li>Adaptive control</li>
+        <li>Computer vision</li>
+        <li>Reinforcement learning</li>
+        <li>Natural Language Processing</li>
+        <li>Explainable AI and Uncertainty Quantification</li>
+      </ul>
+      <p>I am passionate about developing AI applications which come as a support to humans
+        and science advancements.</p>
+    </div>
   </div>
-</div>
 
+  <!-- ── NEWS ── -->
+  <div class="home-wrap">
+    <h1 class="home-title">News</h1>
+    <hr class="home-divider">
+    <div class="home-text">
+      <p>
+        <span class="news-item-date">30 March 2026</span>
+        - I have made my own website!
+      </p>
+    </div>
+  </div>
 
-<div class="home-wrap">
-  <!--<hr class="home-divider bottom">-->
-  <div class="social-bar">
-  <a class="social-btn" href="https://github.com/AdelinaDoraMazilu" target="_blank">
+  <!-- ── SOCIAL BAR ── -->
+  <div class="home-wrap">
+    <div class="social-bar">
+      <a class="social-btn" href="https://github.com/AdelinaDoraMazilu" target="_blank">
         <img src="/homepage_images/gh.svg" alt="GitHub">
         <span>GitHub</span>
       </a>
@@ -409,49 +400,48 @@ if (closeBtn) closeBtn.addEventListener('click', () => {
         <img src="/homepage_images/mail.svg" alt="Email">
         <span>Contact</span>
       </a>
+    </div>
   </div>
-</div>
-<script>
-  const flipWrap = document.querySelector('.flip-wrap');
-  const flipInner = flipWrap.querySelector('.flip-inner');
-  let isFlipped = false;
-  let isTouchDevice = false;
 
-  flipWrap.addEventListener('touchstart', () => {
-    isTouchDevice = true;
-  });
+  <!-- ── FOOTER ── -->
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 0.4rem; font-family: system-ui, sans-serif; font-size: 11px; color: #3a5068;">
+    &copy; Adelina Mazilu. All rights reserved.
+  </footer>
 
-  flipWrap.addEventListener('click', () => {
-    if (!isTouchDevice) return;
-    isFlipped = !isFlipped;
-    flipInner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
-  });
+  <script>
+    // ── FLIP CARD (touch devices) ──
+    const flipWrap  = document.querySelector('.flip-wrap');
+    const flipInner = flipWrap.querySelector('.flip-inner');
+    let isFlipped    = false;
+    let isTouchDevice = false;
 
+    flipWrap.addEventListener('touchstart', () => { isTouchDevice = true; });
+    flipWrap.addEventListener('click', () => {
+      if (!isTouchDevice) return;
+      isFlipped = !isFlipped;
+      flipInner.style.transform = isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)';
+    });
 
-  (function () {
-  const html   = document.documentElement;
-  const cbs    = [document.getElementById('theme-toggle-cb'), document.getElementById('theme-toggle-cb-mobile')];
-  const tracks = [document.getElementById('theme-track'), document.getElementById('theme-track-mobile')];
+    // ── THEME TOGGLE ──
+    (function () {
+      const html   = document.documentElement;
+      const cbs    = [document.getElementById('theme-toggle-cb'), document.getElementById('theme-toggle-cb-mobile')];
+      const tracks = [document.getElementById('theme-track'), document.getElementById('theme-track-mobile')];
 
-  if (localStorage.getItem('theme') === 'light') applyLight(true);
+      if (localStorage.getItem('theme') === 'light') applyLight(true);
 
-  cbs.forEach(cb => {
-    if (cb) cb.addEventListener('change', () => applyLight(cb.checked));
-  });
+      cbs.forEach(cb => {
+        if (cb) cb.addEventListener('change', () => applyLight(cb.checked));
+      });
 
-  function applyLight(isLight) {
-    html.setAttribute('data-theme', isLight ? 'light' : 'dark');
-    cbs.forEach(cb => { if (cb) cb.checked = isLight; });
-    tracks.forEach(track => { if (track) track.classList.toggle('checked', isLight); });
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-  }
-})();
+      function applyLight(isLight) {
+        html.setAttribute('data-theme', isLight ? 'light' : 'dark');
+        cbs.forEach(cb     => { if (cb)    cb.checked = isLight; });
+        tracks.forEach(track => { if (track) track.classList.toggle('checked', isLight); });
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      }
+    })();
+  </script>
 
-
-</script>
-
-<footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 0.4rem; font-family: system-ui, sans-serif; font-size: 11px; color: #3a5068;">
-  &copy; Adelina Mazilu. All rights reserved.
-</footer>
 </body>
 </html>
