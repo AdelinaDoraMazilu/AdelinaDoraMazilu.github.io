@@ -48,11 +48,8 @@
         hamburger.classList.remove('open');
       });
 
-    });
-
-
       // ── THEME TOGGLE ──
-  (function () {
+      (function () {
       const html   = document.documentElement;
       const cbs    = [document.getElementById('theme-toggle-cb'), document.getElementById('theme-toggle-cb-mobile')];
       const tracks = [document.getElementById('theme-track'), document.getElementById('theme-track-mobile')];
@@ -70,4 +67,9 @@
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
       }
     })();
+
+
+    });
+
+
 
