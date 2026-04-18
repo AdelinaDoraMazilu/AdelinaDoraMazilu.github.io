@@ -6,111 +6,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Making this website - Adelina Mazilu</title>
   <link rel="stylesheet" href="/style.css">
-  <style>
-    .post-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 5rem;
-      font-family: system-ui, sans-serif;
-    }
+  <link rel="stylesheet" href="/blog/blog_style.css">
+  <script src="/scripts.js" defer></script>
 
-    .post-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #5ab0f7;
-      font-size: 14px;
-      text-decoration: none;
-      margin-bottom: 2rem;
-    }
-
-    .post-back:hover { color: #00c6ff; }
-
-    .post-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 0.75rem;
-      line-height: 1.25;
-    }
-
-    .post-date {
-      font-size: 0.95rem;
-      color: #5ab0f7;
-      margin: 0 0 2rem;
-    }
-
-    .post-divider {
-      height: 2px;
-      background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
-      box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
-      border: none;
-      border-radius: 2px;
-      margin-bottom: 2rem;
-    }
-
-    .post-body p {
-      font-size: 1rem;
-      color: #c8d8e8;
-      line-height: 1.85;
-      margin: 0 0 1.4rem;
-    }
-
-    .post-body p:last-child { margin-bottom: 0; }
-  </style>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const links = document.querySelectorAll('.site-nav a:not(.nav-brand)');
-    const highlight = document.getElementById('navHighlight');
-    const ul = document.querySelector('.site-nav ul');
-    links.forEach(a => {
-      const path = new URL(a.href).pathname;
-      const here = location.pathname;
-      const isHome = (here === '/' || here === '/index.html') && a.getAttribute('href') === '/index.html';
-      const isMatch = here.startsWith(path) && a.getAttribute('href') !== '/index.html';
-      if (isHome || isMatch) {
-        a.classList.add('active');
-        const ulRect = ul.getBoundingClientRect();
-        const aRect = a.getBoundingClientRect();
-        highlight.style.left = (aRect.left - ulRect.left) + 'px';
-        highlight.style.width = aRect.width + 'px';
-      }
-    });
-  });
-  </script>
 </head>
 <body>
 
-<nav class="site-nav">
+  <!-- ── NAVBAR ── -->
+  <nav class="site-nav">
     <a class="nav-brand" href="/index.html">Adelina Mazilu</a>
     <ul>
       <div class="nav-highlight" id="navHighlight"></div>
-      <li><a href="/index.html">Home</a></li>
+      <li><a href="/homepage/">Home</a></li>
       <li><a href="/projects/">Projects</a></li>
       <li><a href="/cv/">CV</a></li>
       <li><a href="/resources/">Resources</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/ttdil/">Things to do in life</a></li>
-
     </ul>
-<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+    <label class="theme-toggle" title="Toggle light/dark mode">
+      <input type="checkbox" id="theme-toggle-cb">
+      <div class="theme-toggle-track" id="theme-track">
+        <div class="theme-toggle-thumb"></div>
+      </div>
+    </label>
   </nav>
 
+  <!-- ── MOBILE MENU ── -->
   <div class="nav-mobile-menu" id="navMobileMenu">
     <div class="nav-mobile-header">
       <button class="nav-mobile-close" id="navMobileClose"></button>
       <a class="nav-mobile-brand" href="/index.html">Adelina Mazilu</a>
+      <label class="theme-toggle" title="Toggle light/dark mode">
+        <input type="checkbox" id="theme-toggle-cb-mobile">
+        <div class="theme-toggle-track" id="theme-track-mobile">
+          <div class="theme-toggle-thumb"></div>
+        </div>
+      </label>
     </div>
     <div class="nav-mobile-links">
       <a href="/index.html">Home</a>
       <a href="/projects/">Projects</a>
       <a href="/cv/">CV</a>
       <a href="/resources/">Resources</a>
-      <a href="/blog/">Blog</a>    
+      <a href="/blog/">Blog</a>
       <a href="/ttdil/">Things to do in life</a>
-      
     </div>
   </div>
 
