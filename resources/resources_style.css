@@ -41,3 +41,8 @@
     }
 
     .post-body p:last-child { margin-bottom: 0; }
+
+/* ── LIGHT MODE OVERRIDES ── */
+[data-theme="light"] .post-title {
+  color: #0a1520;
+}
