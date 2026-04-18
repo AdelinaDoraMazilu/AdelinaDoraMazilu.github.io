@@ -1,0 +1,52 @@
+.antinu {
+  position: relative;
+  display: inline-block;
+}
+
+.antinu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-top: 1.5px solid currentColor;
+  transform: translateY(0.42em); /* move line downward */
+}
+@media (max-width: 768px) {
+  .project-card {
+    flex-direction: column !important;
+    margin: 1rem auto !important;
+    width: 92% !important;
+    padding-bottom: 1rem !important;
+  }
+
+.project-card h2 {
+  font-size: 1.5rem !important;
+  padding: 0.1rem 0.1rem 0.1rem 0.1rem !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  line-height: 1.3 !important;
+  box-sizing: border-box !important;
+}
+
+.project-card-img {
+  width: fit-content !important;
+  height: 180px !important;
+  padding: 1rem 0 0 0 !important;
+  margin: 0 auto !important;
+  order: -1;
+  box-sizing: border-box !important;
+}
+
+.project-card-img img {
+    border-radius: 8px !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+  .project-card-text {
+  padding: 0.1rem 0.1rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+}
