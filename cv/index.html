@@ -13,39 +13,52 @@
 <body>
 
   <!-- ── Your navbar goes here ── -->
-<nav class="site-nav">
+<!-- ── NAVBAR ── -->
+  <nav class="site-nav">
     <a class="nav-brand" href="/index.html">Adelina Mazilu</a>
     <ul>
       <div class="nav-highlight" id="navHighlight"></div>
-      <li><a href="/index.html">Home</a></li>
+      <li><a href="/homepage/">Home</a></li>
       <li><a href="/projects/">Projects</a></li>
       <li><a href="/cv/">CV</a></li>
       <li><a href="/resources/">Resources</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/ttdil/">Things to do in life</a></li>
-
     </ul>
-<button class="nav-hamburger" id="navHamburger" aria-label="Menu">
+    <button class="nav-hamburger" id="navHamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
+    <label class="theme-toggle" title="Toggle light/dark mode">
+      <input type="checkbox" id="theme-toggle-cb">
+      <div class="theme-toggle-track" id="theme-track">
+        <div class="theme-toggle-thumb"></div>
+      </div>
+    </label>
   </nav>
 
+  <!-- ── MOBILE MENU ── -->
   <div class="nav-mobile-menu" id="navMobileMenu">
     <div class="nav-mobile-header">
       <button class="nav-mobile-close" id="navMobileClose"></button>
       <a class="nav-mobile-brand" href="/index.html">Adelina Mazilu</a>
+      <label class="theme-toggle" title="Toggle light/dark mode">
+        <input type="checkbox" id="theme-toggle-cb-mobile">
+        <div class="theme-toggle-track" id="theme-track-mobile">
+          <div class="theme-toggle-thumb"></div>
+        </div>
+      </label>
     </div>
     <div class="nav-mobile-links">
       <a href="/index.html">Home</a>
       <a href="/projects/">Projects</a>
       <a href="/cv/">CV</a>
       <a href="/resources/">Resources</a>
-      <a href="/blog/">Blog</a>    
+      <a href="/blog/">Blog</a>
       <a href="/ttdil/">Things to do in life</a>
-      
     </div>
   </div>
 
+  
   <div class="cv-outer">
     <div class="cv-card">
 
