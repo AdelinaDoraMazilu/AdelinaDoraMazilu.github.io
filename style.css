@@ -27,25 +27,6 @@
   --text:         #1a1a1a;
 }
 
-[data-theme="light"] .home-title {
-  color: #0a1520;
-}
-
-[data-theme="light"] .home-text {
-  color: #2a3a4a;
-}
-
-[data-theme="light"] .news-item-date {
-  color: #1a6fc4;
-}
-
-[data-theme="light"] .social-btn span {
-  color: #2a3a4a;
-}
-
-[data-theme="light"] .social-btn img {
-  filter: invert(1) sepia(1) saturate(2) hue-rotate(190deg) brightness(0.4);
-}
 
 [data-theme="light"] footer {
   color: #5a7a9a !important;
@@ -338,7 +319,6 @@ body {
     font-size: 24px;
     font-weight: 700;
     color: #00d4ff;
-    text-shadow: 0 0 10px #00d4ffcc, 0 0 24px #00aaff99, 0 0 48px #0077ff55;
     border-right: none;
     padding-right: 0;
     margin-right: 0;
