@@ -162,8 +162,8 @@ body {
   left: 0;
   width: 100%;
   height: calc(100% - 60px);
-  background: var(--mobile-bg);
-  z-index: 1000;
+  background: var(--bg);
+  z-index: 99;
   flex-direction: column;
   font-family: system-ui, sans-serif;
 }
@@ -233,6 +233,9 @@ body {
     justify-content: flex-start;
     gap: 1rem;
     padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .site-nav .nav-brand {
