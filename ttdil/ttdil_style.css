@@ -122,7 +122,10 @@
       }
     }
 
-[
-    data-theme="light"] .ttdil-intro {
+[data-theme="light"] .ttdil-intro {
       border-color: #0a121a;
+    }
+[data-theme="light"] .goal-checkbox.checked::after {
+      border-left: 6px solid #f4f6f9;
+      border-bottom: 6px solid #f4f6f9;
     }
