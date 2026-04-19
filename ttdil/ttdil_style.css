@@ -1,0 +1,124 @@
+    .ttdil-intro {
+      text-align: center;
+      padding: 3rem 2rem 0;
+      font-family: system-ui, sans-serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.4;
+    }
+
+    .stem-stack {
+      position: relative;
+      width: 100%;
+      margin: 5rem auto 0; /* add space between intro text and first image */
+    }
+
+    .stem-section.constrained {
+      width: 45%;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      right: 2.5%;
+    }
+
+    .stem-section {
+      position: relative;
+      width: 100%;
+    }
+
+    .stem-section.top-section {
+      width: 40%;
+      margin-left: auto;
+      margin-right: auto;
+      transform: translateX(-5.2%);
+    }
+    .stem-section img.stem-img {
+      width: 100%;
+      display: block;
+    }
+
+    .goal-overlay {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-family: system-ui, sans-serif;
+      color: #fff;
+      transform: translateY(-50%);
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .goal-desc {
+      font-size: 1rem;
+      color: #659fdf;
+      text-shadow: 0 1px 4px #000a;
+      line-height: 1.5;
+      padding-left: 2px;
+    }
+
+    .goal-checkbox {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #659fdf;
+      border-radius: 6px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      align-self: flex-start;
+    }
+
+    .goal-checkbox.checked {
+      background-color: #659fdf;
+      border-color: #659fdf;
+    }
+
+    .goal-checkbox.checked::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 12px;
+      border-left: 6px solid #0b111b;
+      border-bottom: 6px solid #0b111b;
+      transform: rotate(-45deg) translateY(-4px) translateX(1px);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .stem-section.constrained {
+        width: 80% !important;
+        right: 0 !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      .stem-section.top-section {
+        width: 75% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        transform: none !important;
+      }
+
+      .goal-title { font-size: 0.8rem !important; }
+      .goal-desc { font-size: 0.7rem !important; }
+
+      .goal-checkbox {
+        width: 22px !important;
+        height: 22px !important;
+        align-self: flex-start !important;
+      }
+
+      .goal-checkbox.checked::after {
+        width: 13px !important;
+        height: 8px !important;
+        border-left-width: 4px !important;
+        border-bottom-width: 4px !important;
+        transform: rotate(-45deg) translateY(-3px) translateX(1px) !important;
+      }
+    }
