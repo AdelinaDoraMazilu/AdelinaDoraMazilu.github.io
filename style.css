@@ -14,7 +14,7 @@
 }
 
 [data-theme="light"] {
-  --bg:           #f4f6f9;
+  --bg:           #dde8fb;
   --nav-bg:       #ffffff;
   --nav-shadow:   0 4px 30px #00c6ff22, 0 1px 0 #1a6fc422;
   --nav-border:   #00000015;
