@@ -56,7 +56,6 @@
     .goal-desc {
       font-size: 1rem;
       color: #659fdf;
-      text-shadow: 0 1px 4px #000a;
       line-height: 1.5;
       padding-left: 2px;
     }
@@ -121,4 +120,9 @@
         border-bottom-width: 4px !important;
         transform: rotate(-45deg) translateY(-3px) translateX(1px) !important;
       }
+    }
+
+[
+    data-theme="light"] .ttdil-intro {
+      border-color: #0a121a;
     }
