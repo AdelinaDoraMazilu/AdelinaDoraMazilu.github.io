@@ -75,6 +75,124 @@
   border-radius: 10px;
 }
 
+/* ── PROJECT DETAIL PAGE ── */
+.project-detail {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem 6rem;
+}
+
+.project-back-link {
+  color: #5ab0f7;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 2rem;
+}
+
+.project-detail-title {
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.project-status-badge {
+  display: inline-block;
+  background: #1a6fc422;
+  border: 1px solid #1a6fc4;
+  color: #5ab0f7;
+  font-family: system-ui, sans-serif;
+  font-size: 13px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 2.5rem;
+}
+
+.project-detail-text {
+  color: #c8d8e8;
+  font-family: system-ui, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0 0 2.5rem;
+}
+
+.project-detail-text a {
+  color: #5ab0f7;
+  text-decoration: underline;
+}
+
+.project-detail-divider {
+  border-top: 1px solid #1a6fc433;
+  margin-bottom: 3rem;
+}
+
+.project-detail-image-wrap {
+  margin-bottom: 3rem;
+}
+
+.project-detail-image-inner {
+  display: inline-block;
+  border-radius: 12px;
+  box-shadow: 0 0 30px #ffffff44, 0 0 70px #ffffff18;
+  overflow: hidden;
+  width: 100%;
+}
+
+.project-detail-image-inner img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+
+.project-detail-caption {
+  color: #e0eaf5;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  margin: 0.75rem 0 0.25rem;
+  font-weight: 500;
+}
+
+/* ── LIGHT MODE OVERRIDES ── */
+[data-theme="light"] .project-back-link {
+  color: #1a6fc4;
+}
+
+[data-theme="light"] .project-detail-title {
+  color: #0a1520;
+}
+
+[data-theme="light"] .project-status-badge {
+  background: #1a6fc411;
+  border-color: #1a6fc4;
+  color: #1a6fc4;
+}
+
+[data-theme="light"] .project-detail-text {
+  color: #2a3a4a;
+}
+
+[data-theme="light"] .project-detail-text a {
+  color: #1a6fc4;
+}
+
+[data-theme="light"] .project-detail-divider {
+  border-top-color: #1a6fc466;
+}
+
+[data-theme="light"] .project-detail-image-inner {
+  box-shadow: 0 0 30px #00000022, 0 4px 16px rgba(0,0,0,0.10);
+}
+
+[data-theme="light"] .project-detail-caption {
+  color: #2a3a4a;
+}
+
 /* ── LIGHT MODE OVERRIDES ── */
 [data-theme="light"] .project-card {
   background: #fff;

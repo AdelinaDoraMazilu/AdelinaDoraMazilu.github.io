@@ -11,64 +11,48 @@
 </head>
 <body>
 
-  <div style="max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem;">
+<div class="project-detail">
 
-    <!-- back link -->
-    <a href="/projects/" style="color: #5ab0f7; font-family: system-ui, sans-serif; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 2rem;">
-      ← Back to Projects
-    </a>
+  <a href="/projects/" class="project-back-link">← Back to Projects</a>
 
-    <!-- title -->
-    <h1 style="color: #fff; font-family: system-ui, sans-serif; font-size: 2.4rem; font-weight: 600; line-height: 1.25; margin: 0 0 1rem;">
-        Satellite Image Classification with Explainability and Uncertainty Estimation
-    </h1>
+  <h1 class="project-detail-title">
+    Satellite Image Classification with Explainability and Uncertainty Estimation
+  </h1>
 
-    <!-- status badge -->
-    <div style="display: inline-block; background: #1a6fc422; border: 1px solid #1a6fc4; color: #5ab0f7; font-family: system-ui, sans-serif; font-size: 13px; padding: 5px 14px; border-radius: 20px; margin-bottom: 2.5rem;">
-      April 2024 - June 2024
+  <div class="project-status-badge">April 2024 - June 2024</div>
+
+  <p class="project-detail-text">
+    This work was done in collaboration with
+    <a href="https://www.linkedin.com/in/simion-polivencu-18oct2004/" target="_blank">Simion Polivencu</a>,
+    <a href="https://www.linkedin.com/in/heleen-van-asselt-a18692354/" target="_blank">Heleen Van Asselt</a>
+    and <a href="https://www.linkedin.com/in/raha-torabihaghighi/" target="_blank">Raha Torabihaghighi</a><br>
+    Under the supervision of <a href="https://www.rug.nl/staff/ivo.de.jong/" target="_blank">Ivo Pascal de Jong</a><sup>1</sup><br>
+    <sup>1</sup>Department of Artificial Intelligence - Faculty of Science and Engineering - University of Groningen
+  </p>
+
+  <hr class="project-detail-divider">
+
+  <p class="project-detail-text">
+    This project, developed for the Applied Machine Learning course, focuses on classifying high-resolution
+    satellite images from the RESISC-45 dataset into 45 distinct categories...
+  </p>
+
+  <p class="project-detail-text">
+    The core of the project is an interactive web application that allows users to upload a satellite image
+    and receive a detailed analysis from two different models...
+  </p>
+
+  <div class="project-detail-image-wrap">
+    <div class="project-detail-image-inner">
+      <img src="/projects/satelite_image_classifier/Satelite_project_image_card.png" alt="Satellite classifier UI">
     </div>
-
-    <!-- intro -->
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-      This work was done in collaboration with <a href="https://www.linkedin.com/in/simion-polivencu-18oct2004/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Simion Polivencu</a>, 
-      <a href="https://www.linkedin.com/in/heleen-van-asselt-a18692354/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Heleen Van Asselt</a> 
-      and <a href="https://www.linkedin.com/in/raha-torabihaghighi/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Raha Torabihaghighi</a> <br>
-      Under the supervision of <a href="https://www.rug.nl/staff/ivo.de.jong/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Ivo Pascal de Jong</a><sup>1</sup><br>
-      <sup>1</sup>Department of Artificial Intelligence - Faculty of Science and Engineering - University of Groningen <br>
+    <p class="project-detail-caption">
+      User interface of the classifier and the results with explanations and uncertainty quantification.
     </p>
-
-    <!-- divider -->
-    <div style="border-top: 1px solid #1a6fc433; margin-bottom: 3rem;"></div>
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    This project, developed for the Applied Machine Learning course, focuses on classifying high-resolution 
-    satellite images from the RESISC-45 dataset into 45 distinct categories. Beyond simple classification, 
-    it integrates modern machine learning techniques to provide model explainability through saliency maps 
-    and to estimate prediction uncertainty using Monte Carlo (MC) Dropout.</p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    The core of the project is an interactive web application that allows users to upload a satellite image 
-    and receive a detailed analysis from two different models: a simple baseline CNN and a more sophisticated, 
-    fine-tuned ResNet-50.</p>
-
-
-
-    <div style="margin-bottom: 3rem;">
-      <div style="
-        display: inline-block;
-        border-radius: 12px;
-        box-shadow: 0 0 30px #ffffff44, 0 0 70px #ffffff18;
-        overflow: hidden;
-        width: 100%;
-      ">
-        <img src="/projects/satelite_image_classifier/Satelite_project_image_card.png" alt="PET/CT scans" style="width: 100%; display: block; border-radius: 12px;">
-      </div>
-      <p style="color: #e0eaf5; font-family: system-ui, sans-serif; font-size: 1rem; margin: 0.75rem 0 0.25rem; font-weight: 500;">
-        User interface of the classifier and the results with explinations and uncertinty quantification.
-      </p>
-
-    </div>
-  
   </div>
+
+</div>
+
 <footer style="text-align: center; padding: 1rem; font-family: system-ui, sans-serif; font-size: 11px; color: #416082;">
   &copy; Adelina Mazilu. All rights reserved.
 </footer>
