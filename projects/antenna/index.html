@@ -12,119 +12,119 @@
 
 <body>
 
-  <div style="max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem;">
+<div class="project-detail">
 
-    <!-- back link -->
-    <a href="/projects/" style="color: #5ab0f7; font-family: system-ui, sans-serif; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 2rem;">
-      ← Back to Projects
-    </a>
+  <a href="/projects/" class="project-back-link">← Back to Projects</a>
 
-    <!-- title -->
-    <h1 style="color: #fff; font-family: system-ui, sans-serif; font-size: 2.4rem; font-weight: 600; line-height: 1.25; margin: 0 0 1rem;">
-      E<b>A</b>rly predictio<b>N</b> of immuno<b>T</b>herapy induc<b>E</b>d toxicity 
-      on [18F]FDG-PET sca<b>N</b>s in ca<b>N</b>cer p<b>A</b>tients (ANTENNA)
-    </h1>
+  <h1 class="project-detail-title">
+    E<b>A</b>rly predictio<b>N</b> of immuno<b>T</b>herapy induc<b>E</b>d toxicity
+    on [18F]FDG-PET sca<b>N</b>s in ca<b>N</b>cer p<b>A</b>tients (ANTENNA)
+  </h1>
 
-    <!-- status badge -->
-    <div style="display: inline-block; background: #1a6fc422; border: 1px solid #1a6fc4; color: #5ab0f7; font-family: system-ui, sans-serif; font-size: 13px; padding: 5px 14px; border-radius: 20px; margin-bottom: 2.5rem;">
-      September 2025 - February 2026
+  <div class="project-status-badge">September 2025 - February 2026</div>
+
+  <p class="project-detail-text">
+    This work was done in collaboration with <a href="https://www.linkedin.com/in/simion-polivencu-18oct2004/" target="_blank">Simion Polivencu</a>,
+    <a href="https://www.linkedin.com/in/cristian-mihaiescu-133651346/" target="_blank">Cristian Mihaiescu</a>
+    and <a href="https://www.linkedin.com/in/kim-wattez-66b15a2b4/" target="_blank">Kim Wattez</a><br>
+    Under the supervision of <a href="https://www.umcg.nl/-/e-h-j-g-aarntze" target="_blank">Erik Aarntzen</a><sup>1</sup>,
+    <a href="https://dccartagena.github.io/" target="_blank">Juan-Diego Cardenas-Cartagena</a><sup>2</sup>
+    and <a href="https://www.rug.nl/staff/marleen.schippers/" target="_blank">Marleen Schippers</a><sup>2</sup><br>
+    With the support of <a href="https://www.umcg.nl/-/l-hijmering-kappelle" target="_blank">Lucie Hijmering-Kappelle</a><sup>1</sup>
+    and <a href="https://www.umcg.nl/-/f-bensch" target="_blank">Frederike Bensch</a><sup>1</sup><br>
+    <sup>1</sup>University Medical Center Groningen<br>
+    <sup>2</sup>Department of Artificial Intelligence - Faculty of Science and Engineering - University of Groningen
+  </p>
+
+  <hr class="project-detail-divider">
+
+  <p class="project-detail-text">
+    The scope of this project was the development of a machine learning system to predict the severity of
+    immunotherapy-related adverse events (toxicity) in patients with metastatic lung cancer using clinical data
+    and PET/CT scans. The research question investigates whether metabolic patterns observed in baseline
+    [18F]FDG-PET scans of organs can predict the severity of immune-related side effects following treatment.
+  </p>
+
+  <p class="project-detail-text">
+    The motivation for the project stems from the growing use of immunotherapy as a treatment for late stage lung cancer.
+    While immunotherapy can significantly improve patient survival compared to traditional chemotherapy, it can
+    also trigger immune-related adverse events (toxicity), which range from mild to life-threatening.
+    Currently, clinicians cannot reliably predict these side effects based on visual inspection of scans or
+    patient records alone. Therefore, an automated predictive system could support clinical decision-making
+    and improve patient outcomes.
+  </p>
+
+  <p class="project-detail-text">
+    The problem is a binary classification task, where the model predicts whether a patient will experience
+    mild or severe toxicity. The dataset consists of two main components: clinical data (including medical
+    history and blood tests) and PET/CT scan-derived features. Although the clinical dataset originally
+    contained over 500 features, only 16 were selected based on domain knowledge and prior research to
+    reduce dimensionality and improve model performance, given the very small dataset. From the imaging data,
+    features such as organ volume and metabolic activity (measured via Standardized Uptake Value, or SUV) were
+    extracted.
+  </p>
+
+  <p class="project-detail-text">
+    A major challenge in the project is the limited and imbalanced dataset. The final sample included a very
+    small number of patients, with a strong class imbalance between mild and severe cases. This constraint
+    influenced both model selection and evaluation strategy. The priority metrics used were recall (especially
+    for severe cases) and ROC-AUC, as these better reflect performance in imbalanced and clinically sensitive
+    contexts.
+  </p>
+
+  <p class="project-detail-text">
+    Several machine learning models were implemented and compared, including Logistic Regression, Support
+    Vector Machines (SVM), and XGBoost.
+  </p>
+
+  <p class="project-detail-text">
+    To ensure reliability for clinical use, the project incorporated uncertainty quantification techniques.
+    Metrics such as Expected Calibration Error (ECE) and Brier Score were used to assess how well model
+    confidence aligned with actual outcomes. Calibration methods and visual analyses were applied to
+    improve and interpret model predictions. Feature importance analysis further revealed consistent
+    biological signals, identifying liver enzymes (ALAT, ASAT) and spleen metabolic activity as key
+    predictors of toxicity.
+  </p>
+
+  <p class="project-detail-text">
+    The data preprocessing pipeline involved handling both imaging and tabular data. PET/CT scans required
+    reconstruction from DICOM files, segmentation, and extraction of quantitative features. Clinical data
+    required extensive cleaning due to missing values and inconsistencies. Care was taken to avoid data
+    leakage and ensure compliance with privacy regulations such as GDPR, as all patient data was anonymized.
+  </p>
+
+  <p class="project-detail-text">
+    Beyond model development, the report also outlines a deployment strategy. The proposed system includes
+    a user interface for clinicians, integration with existing infrastructure, and ongoing monitoring of
+    model performance.
+  </p>
+
+  <p class="project-detail-text">
+    Despite promising results, the project acknowledges several limitations. The small dataset size and class
+    imbalance restrict generalizability, and missing data may affect model robustness. Additionally,
+    achieving the target performance threshold of 70% accuracy remains challenging.
+  </p>
+
+  <p class="project-detail-text">
+    <b>The system is designed to provide interpretable predictions, including explanations of key
+    contributing factors, to support informed decision making of clinicians regarding the immunotherapy
+    treatment of their lung cancer patients.</b>
+  </p>
+
+  <div class="project-detail-image-wrap">
+    <div class="project-detail-image-inner">
+      <img src="/projects/antenna/petctscans.jpg" alt="PET/CT scans">
     </div>
-
-    <!-- intro -->
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-      This work was done in collaboration with <a href="https://www.linkedin.com/in/simion-polivencu-18oct2004/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Simion Polivencu</a>, 
-      <a href="https://www.linkedin.com/in/cristian-mihaiescu-133651346/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Cristian Mihaiescu</a> 
-      and <a href="https://www.linkedin.com/in/kim-wattez-66b15a2b4/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Kim Wattez</a> <br>
-      Under the supervision of <a href="https://www.umcg.nl/-/e-h-j-g-aarntze" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Erik Aarntzen</a><sup>1</sup>, <a href="https://dccartagena.github.io/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Juan-Diego Cardenas-Cartagena</a><sup>2</sup> and <a href="https://www.rug.nl/staff/marleen.schippers/" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Marleen Schippers</a><sup>2</sup> <br>
-      With the support of <a href="https://www.umcg.nl/-/l-hijmering-kappelle" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Lucie Hijmering-Kappelle</a><sup>1</sup> and <a href="https://www.umcg.nl/-/f-bensch" target="_blank" style="color: #5ab0f7; text-decoration: underline;">Frederike Bensch</a><sup>1</sup> <br>
-      <sup>1</sup>University Medical Center Groningen <br>
-      <sup>2</sup>Department of Artificial Intelligence - Faculty of Science and Engineering - University of Groningen <br>
+    <p class="project-detail-caption">
+      This is an <sup>18</sup>F-FDG PET/CT scan of a patient suffering from lung cancer.
     </p>
-
-    <!-- divider -->
-    <div style="border-top: 1px solid #1a6fc433; margin-bottom: 3rem;"></div>
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-      The scope of this project was the development of a machine learning system to predict the severity of 
-      immunotherapy-related adverse events (toxicity) in patients with metastatic lung cancer using clinical data 
-      and PET/CT scans. The research question investigates whether metabolic patterns observed in baseline 
-      [18F]FDG-PET scans of organs can predict the severity of immune-related side effects following treatment.</p>
-    
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    The motivation for the project stems from the growing use of immunotherapy as a treatment for late stage lung cancer. 
-    While immunotherapy can significantly improve patient survival compared to traditional chemotherapy, it can 
-    also trigger immune-related adverse events (toxicity), which range from mild to life-threatening. 
-    Currently, clinicians cannot reliably predict these side effects based on visual inspection of scans or 
-    patient records alone. Therefore, an automated predictive system could support clinical decision-making 
-    and improve patient outcomes. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-      The problem is a binary classification task, where the model predicts whether a patient will experience 
-      mild or severe toxicity. The dataset consists of two main components: clinical data (including medical 
-      history and blood tests) and PET/CT scan-derived features. Although the clinical dataset originally 
-      contained over 500 features, only 16 were selected based on domain knowledge and prior research to 
-      reduce dimensionality and improve model performance, given the very small dataset. From the imaging data, 
-      features such as organ volume and metabolic activity (measured via Standardized Uptake Value, or SUV) were 
-      extracted. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    A major challenge in the project is the limited and imbalanced dataset. The final sample included a very 
-    small number of patients, with a strong class imbalance between mild and severe cases. This constraint 
-    influenced both model selection and evaluation strategy. The priority metrics used were recall (especially 
-    for severe cases) and ROC-AUC, as these better reflect performance in imbalanced and clinically sensitive 
-    contexts. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    Several machine learning models were implemented and compared, including Logistic Regression, Support 
-    Vector Machines (SVM), and XGBoost. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    To ensure reliability for clinical use, the project incorporated uncertainty quantification techniques. 
-    Metrics such as Expected Calibration Error (ECE) and Brier Score were used to assess how well model 
-    confidence aligned with actual outcomes. Calibration methods and visual analyses were applied to 
-    improve and interpret model predictions. Feature importance analysis further revealed consistent 
-    biological signals, identifying liver enzymes (ALAT, ASAT) and spleen metabolic activity as key 
-    predictors of toxicity. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    The data preprocessing pipeline involved handling both imaging and tabular data. PET/CT scans required 
-    reconstruction from DICOM files, segmentation, and extraction of quantitative features. Clinical data 
-    required extensive cleaning due to missing values and inconsistencies. Care was taken to avoid data 
-    leakage and ensure compliance with privacy regulations such as GDPR, as all patient data was anonymized. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    Beyond model development, the report also outlines a deployment strategy. The proposed system includes 
-    a user interface for clinicians, integration with existing infrastructure, and ongoing monitoring of 
-    model performance. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-    Despite promising results, the project acknowledges several limitations. The small dataset size and class 
-    imbalance restrict generalizability, and missing data may affect model robustness. Additionally, 
-    achieving the target performance threshold of 70% accuracy remains challenging. </p>
-
-    <p style="color: #c8d8e8; font-family: system-ui, sans-serif; font-size: 1.1rem; line-height: 1.8; margin: 0 0 2.5rem;">
-     <b>The system is designed to provide interpretable predictions, including explanations of key 
-     contributing factors, to support informed decision making of clinicians regarding the immunotherapy 
-     treatment of their lung cancer patients.</b></p>
-
-    <div style="margin-bottom: 3rem;">
-      <div style="
-        display: inline-block;
-        border-radius: 12px;
-        box-shadow: 0 0 30px #ffffff44, 0 0 70px #ffffff18;
-        overflow: hidden;
-        width: 100%;
-      ">
-        <img src="/projects/antenna/petctscans.jpg" alt="PET/CT scans" style="width: 100%; display: block; border-radius: 12px;">
-      </div>
-      <p style="color: #e0eaf5; font-family: system-ui, sans-serif; font-size: 1rem; margin: 0.75rem 0 0.25rem; font-weight: 500;">
-        This is an <sup>18</sup>F-FDG PET/CT scan of a patient suffering from lung cancer.
-      </p>
-      <p style="color: #5a7a9a; font-family: system-ui, sans-serif; font-size: 0.8rem; margin: 0;">
-        Image taken from <a href="https://link.springer.com/article/10.1186/s12885-020-07080-0" target="_blank" style="color: #5ab0f7; text-decoration: none;">https://link.springer.com/article/10.1186/s12885-020-07080-0</a>
-      </p>
-    </div>
-  
+    <p class="project-detail-source">
+      Image taken from <a href="https://link.springer.com/article/10.1186/s12885-020-07080-0" target="_blank">https://link.springer.com/article/10.1186/s12885-020-07080-0</a>
+    </p>
   </div>
+
+</div>
+
 <footer style="text-align: center; padding: 1rem; font-family: system-ui, sans-serif; font-size: 11px; color: #416082;">
   &copy; Adelina Mazilu. All rights reserved.
 </footer>
