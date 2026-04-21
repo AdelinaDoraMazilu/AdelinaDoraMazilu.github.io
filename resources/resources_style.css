@@ -214,12 +214,16 @@
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 }
 
-/* offset rows 3+4 right to create brick/honeycomb pattern */
+/* offset rows 3+4 right to create brick/honeycomb pattern 
 .resource-card--hexagon:nth-child(4n+3),
 .resource-card--hexagon:nth-child(4n+4) {
   transform: translateX(25%);
+}*/
+.resource-card--hexagon:nth-child(3n) {
+  grid-column: 1 / span 2;
+  width: 50%;
+  justify-self: center;
 }
-
 .resource-card--hexagon:nth-child(4n+3):hover,
 .resource-card--hexagon:nth-child(4n+4):hover {
   transform: translateX(25%) scale(1.04);
