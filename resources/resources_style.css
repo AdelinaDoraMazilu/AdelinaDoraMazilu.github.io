@@ -132,7 +132,7 @@
 
 .resource-card--triangle {
   aspect-ratio: 1 / 0.866;
-  margin-bottom: -14%;   /* pull rows together so triangles tessellate */
+  margin-bottom: 10%;   /* pull rows together so triangles tessellate */
 }
 
 .resource-card--triangle .resource-card-inner {
