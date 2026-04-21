@@ -160,6 +160,7 @@
 
 .resource-card--square {
   aspect-ratio: 1;
+  margin-inline: 10%;
   margin-bottom: 5%;   /* close the vertical gap between nesting rows */
 }
 
