@@ -131,7 +131,8 @@
 }
 
 .resource-card--triangle {
-  aspect-ratio: 1 / 0.866;
+  aspect-ratio: 1.1547 / 1;   /* height = width * tan(60°) */
+  margin-inline: -15%;  /* pull triangles together so they tessellate horizontally */
   margin-bottom: 5%;   /* pull rows together so triangles tessellate */
 }
 
