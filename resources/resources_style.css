@@ -132,7 +132,7 @@
 
 .resource-card--triangle {
   aspect-ratio: 1 / 0.866;
-  margin-bottom: 10%;   /* pull rows together so triangles tessellate */
+  margin-bottom: 5%;   /* pull rows together so triangles tessellate */
 }
 
 .resource-card--triangle .resource-card-inner {
@@ -159,6 +159,7 @@
 
 .resource-card--square {
   aspect-ratio: 1;
+  margin-bottom: 5%;   /* close the vertical gap between nesting rows */
 }
 
 .resource-card--square .resource-card-inner {
@@ -178,7 +179,7 @@
 
 .resource-card--pentagon {
   aspect-ratio: 1 / 1.05;
-  margin-bottom: -8%;   /* close the vertical gap between nesting rows */
+  margin-bottom: 5%;   /* close the vertical gap between nesting rows */
 }
 
 .resource-card--pentagon .resource-card-inner {
@@ -204,7 +205,7 @@
 
 .resource-card--hexagon {
   aspect-ratio: 1 / 0.866;
-  margin-bottom: -6%;   /* close vertical gap between hex rows */
+  margin-bottom: 5%;   /* close vertical gap between hex rows */
 }
 
 .resource-card--hexagon .resource-card-inner {
