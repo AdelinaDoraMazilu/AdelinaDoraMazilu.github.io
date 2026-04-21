@@ -2,8 +2,8 @@
 .resources-page {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 60px); /* full height minus navbar */
-  overflow: hidden;           /* page itself does not scroll */
+  height: calc(100vh - 60px);
+  overflow: hidden;
 }
 
 .resources-header {
@@ -27,7 +27,6 @@
 .resources-columns {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0;
   flex: 1;
   overflow: hidden;
   border-top: 1px solid #1a6fc433;
@@ -47,9 +46,9 @@
 /* ── COLUMN TITLE (fixed at top) ── */
 .resources-col-title {
   flex-shrink: 0;
-  padding: 1rem 1rem 0.75rem;
+  padding: 0.75rem 1rem;
   font-family: system-ui, sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #fff;
   text-align: center;
@@ -66,57 +65,63 @@
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
   scrollbar-width: thin;
   scrollbar-color: #1a6fc4 transparent;
 }
 
-.resources-col-scroll::-webkit-scrollbar {
-  width: 4px;
-}
-
-.resources-col-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.resources-col-scroll::-webkit-scrollbar-thumb {
-  background: #1a6fc4;
-  border-radius: 2px;
-}
-
-/* ── GRID CONTAINERS ── */
-.resources-grid {
-  display: grid;
-  gap: 6px;
-  justify-items: center;
-}
+.resources-col-scroll::-webkit-scrollbar { width: 4px; }
+.resources-col-scroll::-webkit-scrollbar-track { background: transparent; }
+.resources-col-scroll::-webkit-scrollbar-thumb { background: #1a6fc4; border-radius: 2px; }
 
 /* ── BASE CARD ── */
 .resource-card {
   display: block;
   text-decoration: none;
-  transition: filter 0.2s, transform 0.2s;
   position: relative;
+  transition: transform 0.2s;
 }
 
 .resource-card:hover {
-  filter: brightness(1.15);
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
+/* Glow lives on the wrapper — not clipped */
+.resource-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 18px #1a6fc488, 0 0 40px #00c6ff33;
+  transition: box-shadow 0.2s;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.resource-card:hover::before {
+  box-shadow: 0 0 30px #1a6fc4cc, 0 0 60px #00c6ff66;
+}
+
+/* Inner shape is what gets clipped */
 .resource-card-inner {
+  position: relative;
   width: 100%;
   height: 100%;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 0.5rem;
+  z-index: 1;
+}
+
+[data-theme="light"] .resource-card-inner {
+  background: #fff;
 }
 
 .resource-card-inner span {
   font-family: system-ui, sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #fff;
   line-height: 1.4;
@@ -129,149 +134,112 @@
 }
 
 /* ══════════════════════════════════════
-   TRIANGLE CARDS
-   two pointing up + two pointing down
-   per row, tessellating
+   TRIANGLES
+   3 per row: up, down, up — tessellating
 ══════════════════════════════════════ */
 .resources-grid--triangles {
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
 }
 
 .resource-card--triangle {
   width: 100%;
   aspect-ratio: 1 / 0.866;
-  background: #000;
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
-  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
+  margin: -3px 0;
 }
 
-.resource-card--triangle-down {
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-}
-
-.resource-card--triangle:hover {
-  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
-}
-
-[data-theme="light"] .resource-card--triangle {
-  background: #fff;
-  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
-}
-
-[data-theme="light"] .resource-card--triangle:hover {
-  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
-}
-
-/* text placement inside triangles */
 .resource-card--triangle .resource-card-inner {
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   align-items: flex-end;
-  padding-bottom: 1rem;
+  padding-bottom: 18%;
 }
 
 .resource-card--triangle-down .resource-card-inner {
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
   align-items: flex-start;
-  padding-top: 0.75rem;
+  padding-top: 12%;
 }
 
 /* ══════════════════════════════════════
-   SQUARE CARDS
+   SQUARES — sharp 90° corners
 ══════════════════════════════════════ */
 .resources-grid--squares {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 6px;
+  padding: 4px;
 }
 
 .resource-card--square {
   width: 100%;
   aspect-ratio: 1;
-  background: #000;
-  border-radius: 10px;
+}
+
+.resource-card--square .resource-card-inner {
   border: 1.5px solid #1a6fc4;
-  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
-  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
+  border-radius: 0;
 }
 
-.resource-card--square:hover {
-  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
-  border-color: #00c6ff;
-}
-
-[data-theme="light"] .resource-card--square {
-  background: #fff;
-  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
-}
-
-[data-theme="light"] .resource-card--square:hover {
-  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+.resource-card--square::before {
+  border-radius: 0;
 }
 
 /* ══════════════════════════════════════
-   PENTAGON CARDS
-   clip-path: flat top, pointy bottom
+   PENTAGONS
+   2 per row — right one flipped 180°
+   so they nest snugly
 ══════════════════════════════════════ */
 .resources-grid--pentagons {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 4px;
+  padding: 4px;
 }
 
 .resource-card--pentagon {
   width: 100%;
   aspect-ratio: 1 / 1.05;
-  background: #000;
+}
+
+.resource-card--pentagon .resource-card-inner {
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
-  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
 }
 
-.resource-card--pentagon:hover {
-  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
-}
-
-[data-theme="light"] .resource-card--pentagon {
-  background: #fff;
-  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
-}
-
-[data-theme="light"] .resource-card--pentagon:hover {
-  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+/* right column (even cards) flipped 180° */
+.resource-card--pentagon:nth-child(2n) .resource-card-inner {
+  clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
 }
 
 /* ══════════════════════════════════════
-   HEXAGON CARDS
-   flat-top hexagons
+   HEXAGONS
+   2 per row, odd rows offset right
+   for honeycomb tessellation
 ══════════════════════════════════════ */
 .resources-grid--hexagons {
+  display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  gap: 4px;
+  padding: 4px;
 }
 
 .resource-card--hexagon {
   width: 100%;
   aspect-ratio: 1 / 0.866;
-  background: #000;
+}
+
+.resource-card--hexagon .resource-card-inner {
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
-  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
 }
 
-.resource-card--hexagon:hover {
-  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
-}
-
-[data-theme="light"] .resource-card--hexagon {
-  background: #fff;
-  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
-}
-
-[data-theme="light"] .resource-card--hexagon:hover {
-  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+/* pull rows 3+4 up to close the honeycomb gap */
+.resource-card--hexagon:nth-child(4n+3),
+.resource-card--hexagon:nth-child(4n+4) {
+  margin-top: -10%;
 }
 
 /* ══════════════════════════════════════
-   MOBILE — columns stack vertically,
-   each column is its own scrollable section
+   MOBILE
 ══════════════════════════════════════ */
 @media (max-width: 768px) {
   .resources-page {
@@ -303,10 +271,13 @@
     padding: 1.25rem 1rem 0.75rem;
   }
 
-  .resources-grid--triangles,
+  .resources-grid--triangles {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
   .resources-grid--squares,
   .resources-grid--pentagons,
   .resources-grid--hexagons {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
