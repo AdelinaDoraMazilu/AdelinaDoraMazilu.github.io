@@ -218,12 +218,12 @@
 .resource-card--hexagon:nth-child(4n+3),
 .resource-card--hexagon:nth-child(4n+4) {
   transform: translateX(25%);
-}*/
+}
 
 .resource-card--hexagon:nth-child(n):hover,
 .resource-card--hexagon:nth-child(n):hover {
   transform: translateX(25%) scale(1.04);
-}
+}*/
 .resource-card--hexagon:nth-child(3n) {
   grid-column: 1 / span 2;
   width: 50%;
