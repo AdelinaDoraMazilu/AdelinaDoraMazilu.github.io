@@ -1,48 +1,312 @@
-    .post-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 5rem;
-      font-family: system-ui, sans-serif;
-    }
+/* ── RESOURCES PAGE LAYOUT ── */
+.resources-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px); /* full height minus navbar */
+  overflow: hidden;           /* page itself does not scroll */
+}
 
-    .post-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 0.75rem;
-      line-height: 1.25;
-    }
+.resources-header {
+  flex-shrink: 0;
+  padding: 1.5rem 2rem 0.75rem;
+}
 
-    .post-divider {
-      height: 2px;
-      background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
-      box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
-      border: none;
-      border-radius: 2px;
-      margin-bottom: 2rem;
-    }
+.resources-title {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
 
-    .post-body p {
-      font-size: 1rem;
-      color: #c8d8e8;
-      line-height: 1.85;
-      margin: 0 0 1.4rem;
-    }
-
-    .post-body ul {
-      color: #c8d8e8;
-      line-height: 1.85;
-      margin: 0 0 1.4rem;
-      padding-left: 1.5rem;
-    }
-
-    .post-body li {
-      margin-bottom: 0.5rem;
-    }
-
-    .post-body p:last-child { margin-bottom: 0; }
-
-/* ── LIGHT MODE OVERRIDES ── */
-[data-theme="light"] .post-title {
+[data-theme="light"] .resources-title {
   color: #0a1520;
+}
+
+/* ── FOUR COLUMNS ── */
+.resources-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+  border-top: 1px solid #1a6fc433;
+}
+
+.resources-column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #1a6fc433;
+  overflow: hidden;
+}
+
+.resources-column:last-child {
+  border-right: none;
+}
+
+/* ── COLUMN TITLE (fixed at top) ── */
+.resources-col-title {
+  flex-shrink: 0;
+  padding: 1rem 1rem 0.75rem;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #1a6fc433;
+  line-height: 1.4;
+}
+
+[data-theme="light"] .resources-col-title {
+  color: #0a1520;
+}
+
+/* ── SCROLLABLE AREA ── */
+.resources-col-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: #1a6fc4 transparent;
+}
+
+.resources-col-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.resources-col-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.resources-col-scroll::-webkit-scrollbar-thumb {
+  background: #1a6fc4;
+  border-radius: 2px;
+}
+
+/* ── GRID CONTAINERS ── */
+.resources-grid {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+/* ── BASE CARD ── */
+.resource-card {
+  display: block;
+  text-decoration: none;
+  transition: filter 0.2s, transform 0.2s;
+  position: relative;
+}
+
+.resource-card:hover {
+  filter: brightness(1.15);
+  transform: scale(1.04);
+}
+
+.resource-card-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.resource-card-inner span {
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+}
+
+[data-theme="light"] .resource-card-inner span {
+  color: #0a1520;
+}
+
+/* ══════════════════════════════════════
+   TRIANGLE CARDS
+   two pointing up + two pointing down
+   per row, tessellating
+══════════════════════════════════════ */
+.resources-grid--triangles {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+}
+
+.resource-card--triangle {
+  width: 100%;
+  aspect-ratio: 1 / 0.866;
+  background: #000;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
+  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
+}
+
+.resource-card--triangle-down {
+  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+}
+
+.resource-card--triangle:hover {
+  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
+}
+
+[data-theme="light"] .resource-card--triangle {
+  background: #fff;
+  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .resource-card--triangle:hover {
+  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* text placement inside triangles */
+.resource-card--triangle .resource-card-inner {
+  align-items: flex-end;
+  padding-bottom: 1rem;
+}
+
+.resource-card--triangle-down .resource-card-inner {
+  align-items: flex-start;
+  padding-top: 0.75rem;
+}
+
+/* ══════════════════════════════════════
+   SQUARE CARDS
+══════════════════════════════════════ */
+.resources-grid--squares {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.resource-card--square {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #000;
+  border-radius: 10px;
+  border: 1.5px solid #1a6fc4;
+  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
+  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
+}
+
+.resource-card--square:hover {
+  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
+  border-color: #00c6ff;
+}
+
+[data-theme="light"] .resource-card--square {
+  background: #fff;
+  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .resource-card--square:hover {
+  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════
+   PENTAGON CARDS
+   clip-path: flat top, pointy bottom
+══════════════════════════════════════ */
+.resources-grid--pentagons {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.resource-card--pentagon {
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  background: #000;
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
+  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
+}
+
+.resource-card--pentagon:hover {
+  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
+}
+
+[data-theme="light"] .resource-card--pentagon {
+  background: #fff;
+  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .resource-card--pentagon:hover {
+  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════
+   HEXAGON CARDS
+   flat-top hexagons
+══════════════════════════════════════ */
+.resources-grid--hexagons {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.resource-card--hexagon {
+  width: 100%;
+  aspect-ratio: 1 / 0.866;
+  background: #000;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  box-shadow: 0 0 18px #1a6fc455, 0 0 40px #00c6ff18;
+  transition: box-shadow 0.2s, filter 0.2s, transform 0.2s;
+}
+
+.resource-card--hexagon:hover {
+  box-shadow: 0 0 32px #1a6fc488, 0 0 60px #00c6ff44;
+}
+
+[data-theme="light"] .resource-card--hexagon {
+  background: #fff;
+  box-shadow: 0 0 18px #1a6fc433, 0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .resource-card--hexagon:hover {
+  box-shadow: 0 0 32px #1a6fc466, 0 4px 16px rgba(0,0,0,0.12);
+}
+
+/* ══════════════════════════════════════
+   MOBILE — columns stack vertically,
+   each column is its own scrollable section
+══════════════════════════════════════ */
+@media (max-width: 768px) {
+  .resources-page {
+    height: auto;
+    overflow: auto;
+  }
+
+  .resources-columns {
+    grid-template-columns: 1fr;
+    overflow: visible;
+    border-top: none;
+  }
+
+  .resources-column {
+    border-right: none;
+    border-bottom: 1px solid #1a6fc433;
+    overflow: visible;
+    height: auto;
+  }
+
+  .resources-col-scroll {
+    overflow: visible;
+    height: auto;
+    max-height: none;
+  }
+
+  .resources-col-title {
+    font-size: 1rem;
+    padding: 1.25rem 1rem 0.75rem;
+  }
+
+  .resources-grid--triangles,
+  .resources-grid--squares,
+  .resources-grid--pentagons,
+  .resources-grid--hexagons {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
