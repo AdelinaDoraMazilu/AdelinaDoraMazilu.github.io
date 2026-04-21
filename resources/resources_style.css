@@ -132,14 +132,14 @@
 
 .resource-card--triangle {
   aspect-ratio: 1 / 0.8660254;   /* height = width * tan(60°) */
-  margin-inline: -15%;  /* pull triangles together so they tessellate horizontally */
+  margin-inline: -25%;  /* pull triangles together so they tessellate horizontally */
   margin-bottom: 5%;   /* pull rows together so triangles tessellate */
 }
 
 .resource-card--triangle .resource-card-inner {
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   align-items: flex-end;
-  padding-bottom: 16%;
+  padding-bottom: 10%;
 }
 
 .resource-card--triangle-down .resource-card-inner {
