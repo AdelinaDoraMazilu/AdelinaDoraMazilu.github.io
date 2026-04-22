@@ -172,8 +172,9 @@
 ══════════════════════════════════════ */
 .resources-grid--pentagons {
   display: grid;
-  grid-template-columns: repeat(2, 48%);
+  grid-template-columns: repeat(2, 46%);
   gap: 0;
+  margin-left: 1vw; /* shift pentagon grid to the right for better centering within column */
 }
 
 .resource-card--pentagon {
