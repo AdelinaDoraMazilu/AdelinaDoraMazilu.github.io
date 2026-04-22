@@ -203,7 +203,7 @@
 ══════════════════════════════════════ */
 .resources-grid--hexagons {
   display: grid;
-  grid-template-columns: repeat(2, 48%);
+  grid-template-columns: repeat(2, 50%);
   gap: 0;
   padding: 0 4px;
 }
