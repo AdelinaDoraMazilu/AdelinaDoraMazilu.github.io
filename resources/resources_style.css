@@ -222,7 +222,7 @@
   grid-column: 1 / span 2;
   width: 50%;
   justify-self: center;
-  margin-bottom: 0; /* add extra space after full-width hexes to prevent overlap */
+  margin-bottom: -15%;
 }
 /* ══════════════════════════════════════
    MOBILE
