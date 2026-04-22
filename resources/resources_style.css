@@ -127,7 +127,7 @@
 ══════════════════════════════════════ */
 .resources-grid--triangles {
   display: grid;
-  grid-template-columns: repeat(3, 27%);
+  grid-template-columns: repeat(3, 29%);
   gap: 0;
   padding-left: 1.75vw; 
 }
