@@ -208,6 +208,7 @@
 .resource-card--hexagon {
   aspect-ratio: 1 / 0.866;
   margin-bottom: 5%;   /* close vertical gap between hex rows */
+  transform: rotate(30deg);
 }
 
 .resource-card--hexagon .resource-card-inner {
