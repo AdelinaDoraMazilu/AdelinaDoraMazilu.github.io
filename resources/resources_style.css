@@ -256,11 +256,16 @@
   }
 
   .resources-grid--triangles {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 29%);
   }
 
-  .resources-grid--squares,
-  .resources-grid--pentagons,
+  .resources-grid--squares{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .resources-grid--pentagons{
+    grid-template-columns: repeat(2, 48%);
+  }
   .resources-grid--hexagons {
     grid-template-columns: repeat(2, 1fr);
   }
