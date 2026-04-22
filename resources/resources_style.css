@@ -68,6 +68,7 @@
   padding: 12px 8px;
   scrollbar-width: thin;
   scrollbar-color: #1a6fc4 transparent;
+  box-sizing: border-box;
 }
 
 .resources-col-scroll::-webkit-scrollbar { width: 4px; }
@@ -126,15 +127,18 @@
 ══════════════════════════════════════ */
 .resources-grid--triangles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* back to 1fr, not 30% */
-  gap: 0;
-  padding: 0 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .resource-card--triangle {
   aspect-ratio: 1 / 0.866;
   margin-bottom: 5%; 
-  margin-inline: -30%; /* remove the negative inline margin */
+  margin-inline: -10%; /* pull triangles together so they tessellate horizontally */
 }
 
 .resource-card--triangle .resource-card-inner {
@@ -162,7 +166,7 @@
 .resource-card--square {
   aspect-ratio: 1;
   margin-inline: 7.5%;
-  margin-bottom: 5%;   /* close the vertical gap between nesting rows */
+  margin-bottom: 5%;  
 }
 
 
