@@ -255,24 +255,24 @@
   .resources-col-title {
     font-size: 1rem;
     padding: 1.25rem 1rem 0.75rem;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
    }
   
 
   .resources-grid--triangles {
-    grid-template-columns: repeat(3, 29%);
+    grid-template-columns: repeat(3, 20%);
     gap: 0;
     padding-left: 2.5vw; 
   }
 
   .resources-grid--squares{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 30%);
   }
 
   .resources-grid--pentagons{
-    grid-template-columns: repeat(2, 48%);
+    grid-template-columns: repeat(2, 30%);
   }
   .resources-grid--hexagons {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 30%);
   }
 }
