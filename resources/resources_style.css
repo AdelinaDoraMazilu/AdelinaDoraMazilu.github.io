@@ -135,7 +135,7 @@
 .resource-card--triangle {
   aspect-ratio: 1 / 0.8660254;   /* height = width * tan(60°) */
   width: 100%;
-  height: calc(25vw / 3 * 0.866); /* exactly 1/3 of 1/4 screen width * sin60 */
+  height: calc(25vw / 2 * 0.866); /* exactly 1/3 of 1/4 screen width * sin60 */
   margin-bottom: calc(25vw / 3 * -0.14);
   /* margin-inline: -25%;  /* pull triangles together so they tessellate horizontally */
 }
