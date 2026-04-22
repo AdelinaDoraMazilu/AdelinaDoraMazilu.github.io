@@ -129,7 +129,7 @@
   display: grid;
   grid-template-columns: repeat(3, 25%);
   gap: 0;
-  padding-left: 1vw; 
+  padding-left: 2vw; 
 }
 
 .resource-card--triangle {
