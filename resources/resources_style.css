@@ -126,14 +126,15 @@
 ══════════════════════════════════════ */
 .resources-grid--triangles {
   display: grid;
-  grid-template-columns: repeat(3, 30%);
+  grid-template-columns: repeat(3, 1fr); /* back to 1fr, not 30% */
   gap: 0;
+  padding: 0 8px;
 }
 
 .resource-card--triangle {
-  aspect-ratio: 1 / 0.8660254;   /* height = width * tan(60°) */
-  margin-inline: -25%;  /* pull triangles together so they tessellate horizontally */
-  margin-bottom: 5%;   /* pull rows together so triangles tessellate */
+  aspect-ratio: 1 / 0.866;
+  margin-bottom: -14%; 
+  margin-inline: 0; /* remove the negative inline margin */
 }
 
 .resource-card--triangle .resource-card-inner {
