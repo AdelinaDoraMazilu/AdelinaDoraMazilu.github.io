@@ -227,6 +227,14 @@
   position: absolute;
   inset: 8px;  /* this controls the "margin" thickness */
   background: #000; /* the actual card color on top */
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+}
+
+.resource-card--pentagon:nth-child(2n) .resource-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 8px;  /* this controls the "margin" thickness */
+  background: #000; /* the actual card color on top */
   clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
 }
 
