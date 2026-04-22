@@ -174,12 +174,12 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0;
-  padding: 0 4px;
+  padding: 0 12px;
 }
 
 .resource-card--pentagon {
   aspect-ratio: 1 / 1.05;
-  margin-bottom: 5%;   /* close the vertical gap between nesting rows */
+  margin-bottom: 0;   /* close the vertical gap between nesting rows */
 }
 
 .resource-card--pentagon .resource-card-inner {
@@ -189,6 +189,10 @@
 /* right column flipped 180° */
 .resource-card--pentagon:nth-child(2n) .resource-card-inner {
   clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
+}
+
+.resource-card--pentagon:nth-child(2n) {
+  margin-top: 30%;
 }
 
 /* ══════════════════════════════════════
