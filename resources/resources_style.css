@@ -183,7 +183,7 @@
 .resource-card--pentagon {
   aspect-ratio: 1 / 1.05;
   margin-bottom: -45%;   /* close the vertical gap between nesting rows */
-  margin-inline: -10%; /* pull pentagons together so they tessellate horizontally */
+  margin-inline: 0; /* pull pentagons together so they tessellate horizontally */
 }
 
 .resource-card--pentagon .resource-card-inner {
