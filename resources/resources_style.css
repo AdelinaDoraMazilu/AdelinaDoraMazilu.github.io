@@ -160,7 +160,7 @@
   position: absolute;
   inset: 8px;  /* this controls the "margin" thickness */
   background: #000; /* the actual card color on top */
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
 .resource-card--triangle-down .resource-card-inner::after {
