@@ -140,12 +140,14 @@
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   align-items: flex-end;
   padding-bottom: 10%;
+  border: 1.5px solid #1a6fc466;
 }
 
 .resource-card--triangle-down .resource-card-inner {
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
   align-items: flex-start;
   padding-top: 10%;
+  border: 1.5px solid #1a6fc466;
 }
 
 /* ══════════════════════════════════════
@@ -186,11 +188,13 @@
 
 .resource-card--pentagon .resource-card-inner {
   clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  border: 1.5px solid #1a6fc466;
 }
 
 /* right column flipped 180° */
 .resource-card--pentagon:nth-child(2n) .resource-card-inner {
   clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
+  border: 1.5px solid #1a6fc466;
 }
 
 /* ══════════════════════════════════════
@@ -213,6 +217,7 @@
 
 .resource-card--hexagon .resource-card-inner {
   clip-path: polygon(50% 0%, 88% 25%, 88% 75%, 50% 100%, 12% 75%, 12% 25%);
+  border: 1.5px solid #1a6fc466;
 }
 
 /* offset rows 3+4 right to create brick/honeycomb pattern 
