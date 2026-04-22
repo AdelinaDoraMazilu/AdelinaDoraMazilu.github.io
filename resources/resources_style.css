@@ -127,18 +127,14 @@
 ══════════════════════════════════════ */
 .resources-grid--triangles {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4px;
-  padding: 8px;
-  width: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
+  grid-template-columns: repeat(3, 30%);
+  gap: 0;
 }
 
 .resource-card--triangle {
-  aspect-ratio: 1 / 0.866;
-  margin-bottom: 5%; 
-  margin-inline: -10%; /* pull triangles together so they tessellate horizontally */
+  aspect-ratio: 1 / 0.8660254;   /* height = width * tan(60°) */
+  margin-inline: -25%;  /* pull triangles together so they tessellate horizontally */
+  margin-bottom: 5%;   /* pull rows together so triangles tessellate */
 }
 
 .resource-card--triangle .resource-card-inner {
