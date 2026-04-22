@@ -213,7 +213,7 @@
 
 .resource-card--hexagon {
   aspect-ratio: 1 / 0.866;
-  margin-bottom: -25%;   /* close vertical gap between hex rows */
+  margin-bottom: 0;   /* close vertical gap between hex rows */
   margin-inline: -10%;  /* pull hexes together so they tessellate horizontally */
 }
 
