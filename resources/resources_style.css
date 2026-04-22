@@ -128,13 +128,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* back to 1fr, not 30% */
   gap: 0;
-  padding: 0 8px;
+  padding: 0 12px;
 }
 
 .resource-card--triangle {
   aspect-ratio: 1 / 0.866;
   margin-bottom: 5%; 
-  margin-inline: -15%; /* remove the negative inline margin */
+  margin-inline: -30%; /* remove the negative inline margin */
 }
 
 .resource-card--triangle .resource-card-inner {
