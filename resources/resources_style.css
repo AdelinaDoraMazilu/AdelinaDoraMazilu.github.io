@@ -211,7 +211,7 @@
 }
 
 .resource-card--hexagon .resource-card-inner {
-  clip-path: polygon(50% 0%, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
+  clip-path: polygon(50% 0%, 90% 25%, 90% 75%, 50% 100%, 10% 75%, 10% 25%);
 }
 
 /* offset rows 3+4 right to create brick/honeycomb pattern 
