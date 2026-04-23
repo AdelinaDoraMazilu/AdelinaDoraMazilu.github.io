@@ -187,6 +187,28 @@
   margin-bottom: 5%;  
 }
 
+/* this is new */
+
+.resource-card--square .resource-card-inner {
+  position: relative;
+  background: #1a6fc4; /* blue "border" layer */
+  border: none; /* remove the old border */
+}
+
+.resource-card--square .resource-card-inner::after {
+  content: '';
+  position: absolute;
+  inset: 8px; /* controls border thickness */
+  background: #000;
+}
+
+[data-theme="light"] .resource-card--square .resource-card-inner {
+  background: #1a6fc4;
+}
+
+[data-theme="light"] .resource-card--square .resource-card-inner::after {
+  background: #fff;
+}
 
 /* ══════════════════════════════════════
    PENTAGONS
