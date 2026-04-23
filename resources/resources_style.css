@@ -171,6 +171,21 @@
   clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
+[data-theme="light"] .resource-card--triangle .resource-card-inner {
+  background: #1a6fc4;
+}
+
+[data-theme="light"] .resource-card--triangle-down .resource-card-inner {
+  background: #1a6fc4;
+}
+
+[data-theme="light"] .resource-card--triangle .resource-card-inner::after {
+  background: #fff;
+}
+[data-theme="light"] .resource-card--triangle-down .resource-card-inner::after {
+  background: #fff;
+}
+
 /* ══════════════════════════════════════
    SQUARES — sharp 90° corners
 ══════════════════════════════════════ */
@@ -186,8 +201,6 @@
   margin-inline: 7.5%;
   margin-bottom: 5%;  
 }
-
-/* this is new */
 
 .resource-card--square .resource-card-inner {
   position: relative;
@@ -260,6 +273,21 @@
   clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
 }
 
+[data-theme="light"] .resource-card--pentagon .resource-card-inner {
+  background: #1a6fc4;
+}
+
+[data-theme="light"] .resource-card--pentagon:nth-child(2n) .resource-card-inner {
+  background: #1a6fc4;
+}
+
+[data-theme="light"] .resource-card--pentagon .resource-card-inner::after {
+  background: #fff;
+}
+[data-theme="light"] .resource-card--pentagon:nth-child(2n) .resource-card-inner::after {
+  background: #fff;
+}
+
 /* ══════════════════════════════════════
    HEXAGONS
    2 per row, offset every other row
@@ -298,6 +326,14 @@
   inset: 8px;  /* this controls the "margin" thickness */
   background: #000; /* the actual card color on top */
   clip-path: polygon(50% 0%, 88% 25%, 88% 75%, 50% 100%, 12% 75%, 12% 25%);
+}
+
+[data-theme="light"] .resource-card--hexagon .resource-card-inner {
+  background: #1a6fc4;
+}
+
+[data-theme="light"] .resource-card--hexagon .resource-card-inner::after {
+  background: #fff;
 }
 /* ══════════════════════════════════════
    MOBILE
