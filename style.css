@@ -7,6 +7,7 @@
   --nav-link:        #8a9bb0;
   --nav-link-hover:  #c8d8e8;
   --nav-link-active: #fff;
+  --nav-name-color:    #00aff9;
   --mobile-bg:       #0a1520;
   --mobile-link-bg:  #000;
   --mobile-link-color: #fff;
@@ -21,6 +22,7 @@
   --nav-link:        #5a6a7a;
   --nav-link-hover:  #1a2a3a;
   --nav-link-active: #0a1520;
+  --nav-name-color:    #5cb6ff;
   --mobile-bg:       #f4f6f9;
   --mobile-link-bg:  #ffffff;
   --mobile-link-color: #1a2a3a;
@@ -99,7 +101,7 @@ body {
 .site-nav .nav-brand {
   font-size: 24px;
   font-weight: 700;
-  color: #00d4ff;
+  color: var(--nav-name-color);
   text-decoration: none;
   padding-right: 16px;
   margin-right: 8px;
