@@ -1,34 +1,86 @@
 /* ── THEME VARIABLES ── */
 :root {
-  --bg:              #0a1520;
-  --nav-bg:          #0f1923;
-  --nav-shadow:      0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
-  --nav-border:      #ffffff22;
-  --nav-link:        #8a9bb0;
-  --nav-link-hover:  #c8d8e8;
-  --nav-link-active: #fff;
-  --nav-name-color:    #00aff9;
-  --mobile-bg:       #0a1520;
-  --mobile-link-bg:  #000;
-  --mobile-link-color: #fff;
-  --text:            #1a1a1a;
-  --footer-color:      #232c52;
+  /* backgrounds */
+  --bg:                    #0a1520;
+  --nav-bg:                #0f1923;
+  --mobile-bg:             #0a1520;
+  --mobile-link-bg:        #000;
+
+  /* nav */
+  --nav-shadow:            0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
+  --nav-border:            #ffffff22;
+  --nav-link:              #8a9bb0;
+  --nav-link-hover:        #c8d8e8;
+  --nav-link-active:       #fff;
+  --nav-name-color:        #00aff9;
+  --nav-brand-color-mobile: #00d4ff;
+
+  /* nav highlight */
+  --nav-highlight-bg:      linear-gradient(135deg, #1a6fc4 0%, #00c6ff 100%);
+  --nav-highlight-shadow:  0 0 16px #00c6ff88, 0 0 32px #1a6fc444;
+
+  /* mobile links */
+  --mobile-link-color:     #fff;
+  --mobile-link-border:    #1a6fc4;
+  --mobile-link-shadow:    0 0 16px #1a6fc455, 0 0 40px #00c6ff22;
+  --mobile-link-hover-shadow: 0 0 30px #1a6fc488, 0 0 60px #00c6ff44;
+  --mobile-link-hover-border: #00c6ff;
+  --mobile-link-hover-color:  #5ab0f7;
+
+  /* theme toggle */
+  --toggle-track-bg:       #1a3a5c;
+  --toggle-track-checked:  #397ABC;
+  --toggle-track-shadow:   0 0 8px #1a6fc455;
+  --toggle-thumb-bg:       #fff;
+
+  /* hamburger */
+  --hamburger-span-bg:     #fff;
+
+  /* text / footer */
+  --text:                  #1a1a1a;
+  --footer-color:          #232c52;
 }
 
 [data-theme="light"] {
-  --bg:              #397ABC;
-  --nav-bg:          #ffffff;
-  --nav-shadow:      0 4px 30px #00c6ff22, 0 1px 0 #1a6fc422;
-  --nav-border:      #00000015;
-  --nav-link:        #5a6a7a;
-  --nav-link-hover:  #1a2a3a;
-  --nav-link-active: #0a1520;
-  --nav-name-color:    #397ABC;
-  --mobile-bg:       #f4f6f9;
-  --mobile-link-bg:  #ffffff;
-  --mobile-link-color: #1a2a3a;
-  --text:            #1a1a1a;
-  --footer-color:      #96A0C6;
+  /* backgrounds */
+  --bg:                    #397ABC;
+  --nav-bg:                #ffffff;
+  --mobile-bg:             #f4f6f9;
+  --mobile-link-bg:        #ffffff;
+
+  /* nav */
+  --nav-shadow:            0 4px 30px #00c6ff22, 0 1px 0 #1a6fc422;
+  --nav-border:            #00000015;
+  --nav-link:              #5a6a7a;
+  --nav-link-hover:        #1a2a3a;
+  --nav-link-active:       #0a1520;
+  --nav-name-color:        #397ABC;
+  --nav-brand-color-mobile: #00d4ff;
+
+  /* nav highlight */
+  --nav-highlight-bg:      linear-gradient(180deg, #4ba2f9 0%, #397ABC 100%);
+  --nav-highlight-shadow:  6px 6px 3px lightblue;
+
+  /* mobile links */
+  --mobile-link-color:     #1a2a3a;
+  --mobile-link-border:    #1a6fc4;
+  --mobile-link-shadow:    0 0 16px #1a6fc455, 0 0 40px #00c6ff22;
+  --mobile-link-hover-shadow: 0 0 30px #1a6fc488, 0 0 60px #00c6ff44;
+  --mobile-link-hover-border: #00c6ff;
+  --mobile-link-hover-color:  #5ab0f7;
+
+  /* theme toggle */
+  --toggle-track-bg:       #1a3a5c;
+  --toggle-track-checked:  #397ABC;
+  --toggle-track-shadow:   0 0 8px #1a6fc455;
+  --toggle-thumb-bg:       #fff;
+
+  /* hamburger */
+  --hamburger-span-bg:     #0a1520;
+
+  /* text / footer */
+  --text:                  #1a1a1a;
+  --footer-color:          #96A0C6;
 }
 
 .footer {
@@ -41,10 +93,6 @@
   font-family: system-ui, sans-serif; 
   font-size: 11px;
   color: var(--footer-color);
-}
-
-[data-theme="light"] .nav-hamburger span {
-  background: #0a1520;
 }
 
 /* ── THEME TOGGLE SWITCH ── */
@@ -62,14 +110,14 @@
   position: relative;
   width: 44px;
   height: 24px;
-  background: #1a3a5c;
+  background: var(--toggle-track-bg);
   border-radius: 999px;
   transition: background 0.3s;
-  box-shadow: 0 0 8px #1a6fc455;
+  box-shadow: var(--toggle-track-shadow);
 }
 
 .theme-toggle-track.checked {
-  background: #397ABC;
+  background: var(--toggle-track-checked);
 }
 
 .theme-toggle-thumb {
@@ -78,7 +126,7 @@
   left: 3px;
   width: 18px;
   height: 18px;
-  background: #fff;
+  background: var(--toggle-thumb-bg);
   border-radius: 50%;
   transition: transform 0.3s cubic-bezier(.4, 0, .2, 1);
   box-shadow: 0 1px 4px rgba(0,0,0,0.3);
@@ -155,16 +203,11 @@ body {
   transform: translateY(-50%);
   height: 36px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #1a6fc4 0%, #00c6ff 100%);
-  box-shadow: 0 0 16px #00c6ff88, 0 0 32px #1a6fc444;
+  background: var(--nav-highlight-bg);
+  box-shadow: var(--nav-highlight-shadow);
   transition: left 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1);
   z-index: 1;
   pointer-events: none;
-}
-
-[data-theme="light"] .site-nav .nav-highlight {
-  background: linear-gradient(180deg, #4ba2f9 0%, #397ABC 100%);
-  box-shadow: 6px 6px 3px lightblue;
 }
 
 /* hamburger hidden on desktop */
@@ -178,7 +221,7 @@ body {
   left: 0;
   width: 100%;
   height: calc(100% - 60px);
-  background: var(--bg);
+  background: var(--mobile-bg);
   z-index: 99;
   flex-direction: column;
   font-family: system-ui, sans-serif;
@@ -202,8 +245,8 @@ body {
   color: var(--mobile-link-color);
   text-decoration: none;
   background: var(--mobile-link-bg);
-  border: 1.5px solid #1a6fc4;
-  box-shadow: 0 0 16px #1a6fc455, 0 0 40px #00c6ff22;
+  border: 1.5px solid var(--mobile-link-border);
+  box-shadow: var(--mobile-link-shadow);
   border-radius: 12px;
   text-align: center;
   transition: box-shadow 0.2s, border-color 0.2s;
@@ -231,9 +274,9 @@ body {
 
 .nav-mobile-links a:hover,
 .nav-mobile-links a.active {
-  box-shadow: 0 0 30px #1a6fc488, 0 0 60px #00c6ff44;
-  border-color: #00c6ff;
-  color: #5ab0f7;
+  box-shadow: var(--mobile-link-hover-shadow);
+  border-color: var(--mobile-link-hover-border);
+  color: var(--mobile-link-hover-color);
 }
 
 /* ── MOBILE ── */
@@ -260,7 +303,7 @@ body {
     transform: translateX(-50%);
     font-size: 24px;
     font-weight: 700;
-    color: #00d4ff;
+    color: var(--nav-brand-color-mobile);
     border-right: none;
     padding-right: 0;
     margin-right: 0;
@@ -286,7 +329,7 @@ body {
     display: block;
     width: 24px;
     height: 2px;
-    background: #fff;
+    background: var(--hamburger-span-bg);
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
     transform-origin: center;
