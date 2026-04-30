@@ -153,15 +153,15 @@
     }
 
 [data-theme="light"] .home-title {
-  color: #0a1520;
+  color: #ffffff;
 }
 
 [data-theme="light"] .home-text {
-  color: #2a3a4a;
+  color: #ffffff;
 }
 
 [data-theme="light"] .news-item-date {
-  color: #1a6fc4;
+  color: #00264b;
 }
 
 [data-theme="light"] .social-btn span {
