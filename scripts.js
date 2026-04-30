@@ -37,6 +37,14 @@ const navHTML = `
 document.body.insertAdjacentHTML('afterbegin', navHTML);
 
 
+// ── FOOTER INJECT ──
+const footerHTML = `
+  <footer class="footer">
+    &copy; Adelina Mazilu. All rights reserved.
+  </footer>
+`;
+document.body.insertAdjacentHTML('beforeend', footerHTML);
+
 document.addEventListener('DOMContentLoaded', () => {
 
   // ── NAV HIGHLIGHT ──

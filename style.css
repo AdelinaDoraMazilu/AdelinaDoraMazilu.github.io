@@ -12,6 +12,7 @@
   --mobile-link-bg:  #000;
   --mobile-link-color: #fff;
   --text:            #1a1a1a;
+  --footer-color:      #232c52;
 }
 
 [data-theme="light"] {
@@ -27,10 +28,19 @@
   --mobile-link-bg:  #ffffff;
   --mobile-link-color: #1a2a3a;
   --text:            #1a1a1a;
+  --footer-color:      #96A0C6;
 }
 
-[data-theme="light"] footer {
-  color: #96A0C6 !important;
+.footer {
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  width: 100%; 
+  text-align: center; 
+  padding: 0.4rem; 
+  font-family: system-ui, sans-serif; 
+  font-size: 11px;
+  color: var(--footer-color);
 }
 
 [data-theme="light"] .nav-hamburger span {
