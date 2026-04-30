@@ -3,7 +3,6 @@
   /* backgrounds */
   --bg:                    #0a1520;
   --nav-bg:                #0f1923;
-  --mobile-bg:             #0a1520;
   --mobile-link-bg:        #000;
 
   /* nav */
@@ -45,7 +44,6 @@
   /* backgrounds */
   --bg:                    #397ABC;
   --nav-bg:                #ffffff;
-  --mobile-bg:             #f4f6f9;
   --mobile-link-bg:        #ffffff;
 
   /* nav */
@@ -221,7 +219,7 @@ body {
   left: 0;
   width: 100%;
   height: calc(100% - 60px);
-  background: var(--mobile-bg);
+  background: var(--bg);
   z-index: 99;
   flex-direction: column;
   font-family: system-ui, sans-serif;
