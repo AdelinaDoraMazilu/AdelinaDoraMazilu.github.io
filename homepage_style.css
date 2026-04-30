@@ -21,6 +21,11 @@
       margin-bottom: 2rem;
     }
 
+    [data-theme="light"] .home-divider {
+      background: linear-gradient(to right, #96A0C6, #E6E3EC, #96A0C6);
+      box-shadow: 0 0 10px #397ABC88, 0 0 24px #4ba2f955;
+    }
+
     .home-divider.bottom {
       margin-top: 0.2rem;
       margin-bottom: 2.5rem;
@@ -160,7 +165,7 @@
 }
 
 [data-theme="light"] .social-btn span {
-  color: #9ab0c6;
+  color: #E6E3EC;
 }
 
     /* ── MOBILE ── */
