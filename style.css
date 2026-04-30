@@ -60,7 +60,6 @@
 
 .theme-toggle-track.checked {
   background: #397ABC;
-
 }
 
 .theme-toggle-thumb {
@@ -151,6 +150,11 @@ body {
   transition: left 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1);
   z-index: 1;
   pointer-events: none;
+}
+
+[data-theme="light"] .site-nav .nav-highlight {
+  background: linear-gradient(180deg, #397ABC 0%, #849db7 100%);
+  box-shadow: 0;
 }
 
 /* hamburger hidden on desktop */
