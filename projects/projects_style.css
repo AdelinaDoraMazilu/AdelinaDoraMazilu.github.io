@@ -1,3 +1,79 @@
+/* ── THEME VARIABLES ── */
+:root {
+  /* project card */
+  --card-bg:                  #000;
+  --card-border:              #1a6fc4;
+  --card-shadow:              0 0 24px #1a6fc455, 0 0 60px #00c6ff22;
+  --card-hover-shadow:        0 0 40px #1a6fc488, 0 0 80px #00c6ff44;
+  --card-hover-border:        #00c6ff;
+  --card-title-color:         #fff;
+
+  /* section title */
+  --section-title-color:      #fff;
+
+  /* project detail */
+  --back-link-color:          #5ab0f7;
+  --detail-title-color:       #fff;
+  --detail-text-color:        #c8d8e8;
+  --detail-link-color:        #5ab0f7;
+  --detail-divider-color:     #1a6fc433;
+  --detail-image-shadow:      0 0 30px #ffffff44, 0 0 70px #ffffff18;
+  --detail-caption-color:     #e0eaf5;
+  --detail-source-color:      #5a7a9a;
+
+  /* status badge */
+  --badge-bg:                 #1a6fc422;
+  --badge-border:             #1a6fc4;
+  --badge-color:              #5ab0f7;
+
+  /* link button */
+  --link-btn-bg:              #0f1923;
+  --link-btn-border:          #1a6fc4;
+  --link-btn-color:           #5ab0f7;
+  --link-btn-shadow:          0 0 12px #1a6fc433;
+  --link-btn-hover-shadow:    0 0 24px #1a6fc466;
+  --link-btn-divider:         #1a6fc433;
+
+  /* dark image shadow */
+  --detail-image-shadow-dark: 0 0 30px #00000088, 0 0 60px #1a6fc433;
+}
+
+[data-theme="light"] {
+  /* project card */
+  --card-bg:                  #fff;
+  --card-border:              #1a6fc4;
+  --card-shadow:              0 0 24px #1a6fc422, 0 2px 8px rgba(0,0,0,0.08);
+  --card-hover-shadow:        0 0 40px #1a6fc455, 0 4px 16px rgba(0,0,0,0.12);
+  --card-hover-border:        #00c6ff;
+  --card-title-color:         #0a1520;
+
+  /* section title */
+  --section-title-color:      #0a1520;
+
+  /* project detail */
+  --back-link-color:          #1a6fc4;
+  --detail-title-color:       #0a1520;
+  --detail-text-color:        #2a3a4a;
+  --detail-link-color:        #1a6fc4;
+  --detail-divider-color:     #1a6fc466;
+  --detail-image-shadow:      0 0 30px #00000022, 0 4px 16px rgba(0,0,0,0.10);
+  --detail-caption-color:     #2a3a4a;
+  --detail-source-color:      #4a6a8a;
+
+  /* status badge */
+  --badge-bg:                 #1a6fc411;
+  --badge-border:             #1a6fc4;
+  --badge-color:              #1a6fc4;
+
+  /* link button */
+  --link-btn-bg:              #f0f6ff;
+  --link-btn-border:          #1a6fc4;
+  --link-btn-color:           #1a6fc4;
+  --link-btn-shadow:          0 0 12px #1a6fc433;
+  --link-btn-hover-shadow:    0 0 24px #1a6fc466;
+  --link-btn-divider:         #1a6fc433;
+}
+
 /* ── EXISTING CODE (keep as is) ── */
 .antinu {
   position: relative;
@@ -15,11 +91,11 @@
 }
 
 .project-detail-image-inner--dark {
-  box-shadow: 0 0 30px #00000088, 0 0 60px #1a6fc433;
+  box-shadow: var(--detail-image-shadow-dark);
 }
 
 .project-detail-links {
-  border-top: 1px solid #1a6fc433;
+  border-top: 1px solid var(--link-btn-divider);
   padding-top: 2rem;
   display: flex;
   gap: 1rem;
@@ -30,35 +106,30 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: #0f1923;
-  border: 1.5px solid #1a6fc4;
-  color: #5ab0f7;
+  background: var(--link-btn-bg);
+  border: 1.5px solid var(--link-btn-border);
+  color: var(--link-btn-color);
   font-family: system-ui, sans-serif;
   font-size: 14px;
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
   transition: box-shadow 0.2s;
-  box-shadow: 0 0 12px #1a6fc433;
+  box-shadow: var(--link-btn-shadow);
 }
 
 .project-detail-link-btn:hover {
-  box-shadow: 0 0 24px #1a6fc466;
+  box-shadow: var(--link-btn-hover-shadow);
 }
 
-[data-theme="light"] .project-detail-link-btn {
-  background: #f0f6ff;
-  color: #1a6fc4;
-}
-
-/* ── PROJECT CARD BASE (dark mode default) ── */
+/* ── PROJECT CARD BASE ── */
 .project-card {
   display: flex;
   align-items: center;
-  background: #000;
+  background: var(--card-bg);
   border-radius: 16px;
-  border: 1.5px solid #1a6fc4;
-  box-shadow: 0 0 24px #1a6fc455, 0 0 60px #00c6ff22;
+  border: 1.5px solid var(--card-border);
+  box-shadow: var(--card-shadow);
   text-decoration: none;
   overflow: hidden;
   width: 100%;
@@ -66,12 +137,12 @@
 }
 
 .project-card:hover {
-  box-shadow: 0 0 40px #1a6fc488, 0 0 80px #00c6ff44;
-  border-color: #00c6ff;
+  box-shadow: var(--card-hover-shadow);
+  border-color: var(--card-hover-border);
 }
 
 .project-card h2 {
-  color: #fff;
+  color: var(--card-title-color);
   font-family: system-ui, sans-serif;
   font-size: 3.5rem;
   font-weight: 600;
@@ -85,7 +156,7 @@
 }
 
 .projects-section-title {
-  color: #fff;
+  color: var(--section-title-color);
   font-family: system-ui, sans-serif;
   font-size: 3rem;
   font-weight: 600;
@@ -120,7 +191,7 @@
 }
 
 .project-back-link {
-  color: #5ab0f7;
+  color: var(--back-link-color);
   font-family: system-ui, sans-serif;
   font-size: 14px;
   text-decoration: none;
@@ -131,7 +202,7 @@
 }
 
 .project-detail-title {
-  color: #fff;
+  color: var(--detail-title-color);
   font-family: system-ui, sans-serif;
   font-size: 2.4rem;
   font-weight: 600;
@@ -141,9 +212,9 @@
 
 .project-status-badge {
   display: inline-block;
-  background: #1a6fc422;
-  border: 1px solid #1a6fc4;
-  color: #5ab0f7;
+  background: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  color: var(--badge-color);
   font-family: system-ui, sans-serif;
   font-size: 13px;
   padding: 5px 14px;
@@ -152,7 +223,7 @@
 }
 
 .project-detail-text {
-  color: #c8d8e8;
+  color: var(--detail-text-color);
   font-family: system-ui, sans-serif;
   font-size: 1.1rem;
   line-height: 1.8;
@@ -160,12 +231,12 @@
 }
 
 .project-detail-text a {
-  color: #5ab0f7;
+  color: var(--detail-link-color);
   text-decoration: underline;
 }
 
 .project-detail-divider {
-  border-top: 1px solid #1a6fc433;
+  border-top: 1px solid var(--detail-divider-color);
   margin-bottom: 3rem;
 }
 
@@ -176,7 +247,7 @@
 .project-detail-image-inner {
   display: inline-block;
   border-radius: 12px;
-  box-shadow: 0 0 30px #ffffff44, 0 0 70px #ffffff18;
+  box-shadow: var(--detail-image-shadow);
   overflow: hidden;
   width: 100%;
 }
@@ -188,7 +259,7 @@
 }
 
 .project-detail-caption {
-  color: #e0eaf5;
+  color: var(--detail-caption-color);
   font-family: system-ui, sans-serif;
   font-size: 1rem;
   margin: 0.75rem 0 0.25rem;
@@ -196,69 +267,10 @@
 }
 
 .project-detail-source {
-  color: #5a7a9a;
+  color: var(--detail-source-color);
   font-family: system-ui, sans-serif;
   font-size: 0.8rem;
   margin: 0;
-}
-
-[data-theme="light"] .project-detail-source {
-  color: #4a6a8a;
-}
-
-/* ── LIGHT MODE OVERRIDES ── */
-[data-theme="light"] .project-back-link {
-  color: #1a6fc4;
-}
-
-[data-theme="light"] .project-detail-title {
-  color: #0a1520;
-}
-
-[data-theme="light"] .project-status-badge {
-  background: #1a6fc411;
-  border-color: #1a6fc4;
-  color: #1a6fc4;
-}
-
-[data-theme="light"] .project-detail-text {
-  color: #2a3a4a;
-}
-
-[data-theme="light"] .project-detail-text a {
-  color: #1a6fc4;
-}
-
-[data-theme="light"] .project-detail-divider {
-  border-top-color: #1a6fc466;
-}
-
-[data-theme="light"] .project-detail-image-inner {
-  box-shadow: 0 0 30px #00000022, 0 4px 16px rgba(0,0,0,0.10);
-}
-
-[data-theme="light"] .project-detail-caption {
-  color: #2a3a4a;
-}
-
-/* ── LIGHT MODE OVERRIDES ── */
-[data-theme="light"] .project-card {
-  background: #fff;
-  border-color: #1a6fc4;
-  box-shadow: 0 0 24px #1a6fc422, 0 2px 8px rgba(0,0,0,0.08);
-}
-
-[data-theme="light"] .project-card:hover {
-  box-shadow: 0 0 40px #1a6fc455, 0 4px 16px rgba(0,0,0,0.12);
-  border-color: #00c6ff;
-}
-
-[data-theme="light"] .project-card h2 {
-  color: #0a1520;
-}
-
-[data-theme="light"] .projects-section-title {
-  color: #0a1520;
 }
 
 /* ── MOBILE ── */
