@@ -30,7 +30,7 @@
 }
 
 [data-theme="light"] footer {
-  color: #5a7a9a !important;
+  color: #00172e !important;
 }
 
 [data-theme="light"] .nav-hamburger span {
@@ -60,7 +60,7 @@
 
 .theme-toggle-track.checked {
   background: #397ABC;
-  box-shadow: 0 0 8px #00c6ff55;
+
 }
 
 .theme-toggle-thumb {
