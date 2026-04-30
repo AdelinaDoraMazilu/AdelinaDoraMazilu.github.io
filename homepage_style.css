@@ -20,7 +20,7 @@
 [data-theme="light"] {
   /* home text */
   --home-title-color:        #ffffff;
-  --home-text-color:         #e0daee;
+  --home-text-color:         #000000;
 
   /* divider */
   --divider-bg:              linear-gradient(to right, #a693cd, #E6E3EC, #a693cd);
