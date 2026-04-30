@@ -154,7 +154,7 @@ body {
 
 [data-theme="light"] .site-nav .nav-highlight {
   background: linear-gradient(180deg, #4ba2f9 0%, #397ABC 100%);
-  box-shadow: 10px 10px 5px lightblue;
+  box-shadow: 6px 6px 3px lightblue;
 }
 
 /* hamburger hidden on desktop */
