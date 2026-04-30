@@ -135,13 +135,8 @@
       overflow: hidden;
     }
 
-    .flip-front {
-      /* box-shadow: 0 0 40px #ffffff33, 0 0 80px #ffffff18; */
-    }
-
     .flip-back {
       transform: rotateY(180deg);
-      /*box-shadow: 0 0 40px #dbdbdb55, 0 0 80px #a7a7a722; */
     }
 
     .flip-front img,
