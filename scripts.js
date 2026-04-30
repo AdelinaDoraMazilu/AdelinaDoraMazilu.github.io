@@ -98,7 +98,13 @@ document.addEventListener('DOMContentLoaded', () => {
       cbs.forEach(cb     => { if (cb)    cb.checked = isLight; });
       tracks.forEach(track => { if (track) track.classList.toggle('checked', isLight); });
       localStorage.setItem('theme', isLight ? 'light' : 'dark');
-    }
+
+      // Swap moon image based on theme
+      const moonImg = document.querySelector('.flip-back img');
+      if (moonImg) {
+        moonImg.src = isLight ? moonImg.dataset.srcLight : moonImg.dataset.srcDark;
+      }
+}
   })();
 
 });
