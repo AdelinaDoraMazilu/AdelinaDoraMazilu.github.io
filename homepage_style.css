@@ -22,7 +22,7 @@
     }
 
     [data-theme="light"] .home-divider {
-      background: linear-gradient(to right, #96A0C6, #E6E3EC, #96A0C6);
+      background: linear-gradient(to right, #a693cd, #E6E3EC, #a693cd);
       box-shadow: 0 0 10px #397ABC88, 0 0 24px #4ba2f955;
     }
 
@@ -157,11 +157,12 @@
 }
 
 [data-theme="light"] .home-text {
-  color: #ffffff;
+  color: #e0daee;
 }
 
 [data-theme="light"] .news-item-date {
-  color: #00264b;
+  color: #ab98d8;
+  font-weight: 600;
 }
 
 [data-theme="light"] .social-btn span {
