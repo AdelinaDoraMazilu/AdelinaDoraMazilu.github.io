@@ -82,6 +82,7 @@
       gap: 8px;
       text-decoration: none;
       transition: transform 0.2s ease;
+      color: #ffffff;
     }
 
     .social-btn:hover {
@@ -159,9 +160,6 @@
   color: #00264b;
 }
 
-[data-theme="light"] .social-btn span {
-  color: #2a3a4a;
-}
 
 [data-theme="light"] .social-btn img {
   filter: invert(1) sepia(1) saturate(2) hue-rotate(190deg) brightness(0.4);
