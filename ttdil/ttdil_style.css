@@ -31,7 +31,7 @@
 }
 
 [data-theme="light"] .ttdil-subintro {
-  color: #98ce69;
+  color: #ffffff;
 }
 
 
@@ -179,16 +179,16 @@
    ============================================================ */
 
 [data-theme="light"] .goal-desc {
-  color: #98ce69;
+  color: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox {
-  border: #98ce69;
+  border: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox.checked {
-  background-color: #98ce69;
-  border-color: #98ce69;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox.checked::after {
