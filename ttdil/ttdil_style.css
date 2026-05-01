@@ -20,7 +20,7 @@
   font-family: system-ui, sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #C637CD;
+  color: #3e7de2;
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.4;
@@ -31,7 +31,7 @@
 }
 
 [data-theme="light"] .ttdil-subintro {
-  color: #c0de70;
+  color: #98ce69;
 }
 
 
@@ -140,7 +140,7 @@
 
 .goal-desc {
   font-size: 1rem;
-  color: #C637CD;
+  color: #3e7de2;
   line-height: 1.5;
   padding-left: 2px;
 }
@@ -148,7 +148,7 @@
 .goal-checkbox {
   width: 32px;
   height: 32px;
-  border: 3px solid #C637CD;
+  border: 3px solid #3e7de2;
   border-radius: 6px;
   flex-shrink: 0;
   display: flex;
@@ -159,8 +159,8 @@
 }
 
 .goal-checkbox.checked {
-  background-color: #C637CD;
-  border-color: #C637CD;
+  background-color: #3e7de2;
+  border-color: #3e7de2;
 }
 
 .goal-checkbox.checked::after {
@@ -179,16 +179,16 @@
    ============================================================ */
 
 [data-theme="light"] .goal-desc {
-  color: #ffffff;
+  color: #98ce69;
 }
 
 [data-theme="light"] .goal-checkbox {
-  border: #ffffff;
+  border: #98ce69;
 }
 
 [data-theme="light"] .goal-checkbox.checked {
-  background-color: #ffffff;
-  border-color: #ffffff;
+  background-color: #98ce69;
+  border-color: #98ce69;
 }
 
 [data-theme="light"] .goal-checkbox.checked::after {
