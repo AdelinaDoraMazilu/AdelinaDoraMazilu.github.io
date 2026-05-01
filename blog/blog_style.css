@@ -1,4 +1,12 @@
-    .blog-wrap {
+  body {
+    background-image: url('/blog/night.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* image stays fixed as you scroll */
+    background-repeat: no-repeat;
+  }
+   
+   .blog-wrap {
       max-width: 900px;
       margin: 0 auto;
       padding: 2.5rem 2rem 4rem;
