@@ -1,35 +1,34 @@
 /* ── THEME VARIABLES ── */
 :root {
-  /* backgrounds */
-  --bg:                    #170717;
-  --nav-bg:                #1a0b1a;
+  --bg:                    #0a1520;
+  --nav-bg:                #0f1923;
   --mobile-link-bg:        #000;
 
   /* nav */
-  --nav-shadow:            0 4px 30px #ff00ee33, 0 1px 0 #c41abc44;
+  --nav-shadow:            0 4px 30px #00c6ff33, 0 1px 0 #1a6fc444;
   --nav-border:            #ffffff22;
-  --nav-link:              #af8ab0;
-  --nav-link-hover:        #e4c8e8;
+  --nav-link:              #8a9bb0;
+  --nav-link-hover:        #c8d8e8;
   --nav-link-active:       #fff;
-  --nav-name-color:        #C637CD;
-  --nav-brand-color-mobile: #C637CD;
+  --nav-name-color:        #00aff9;
+  --nav-brand-color-mobile: #00d4ff;
 
   /* nav highlight */
-  --nav-highlight-bg:      linear-gradient(135deg, #c41ac4 0%, #fb00ff 100%);
-  --nav-highlight-shadow:  0 0 16px #f700ff88, 0 0 32px #b61ac444;
+  --nav-highlight-bg:      linear-gradient(135deg, #1a6fc4 0%, #00c6ff 100%);
+  --nav-highlight-shadow:  0 0 16px #00c6ff88, 0 0 32px #1a6fc444;
 
   /* mobile links */
   --mobile-link-color:     #fff;
-  --mobile-link-border:    #b01ac4;
-  --mobile-link-shadow:    0 0 16px #ad1ac455, 0 0 40px #e600ff22;
-  --mobile-link-hover-shadow: 0 0 30px #b91ac488, 0 0 60px #d400ff44;
-  --mobile-link-hover-border: #ea00ff;
-  --mobile-link-hover-color:  #e55af7;
+  --mobile-link-border:    #1a6fc4;
+  --mobile-link-shadow:    0 0 16px #1a6fc455, 0 0 40px #00c6ff22;
+  --mobile-link-hover-shadow: 0 0 30px #1a6fc488, 0 0 60px #00c6ff44;
+  --mobile-link-hover-border: #00c6ff;
+  --mobile-link-hover-color:  #5ab0f7;
 
   /* theme toggle */
-  --toggle-track-bg:       #5b1a5c;
-  --toggle-track-checked:  #b839bc;
-  --toggle-track-shadow:   0 0 8px #b31ac455;
+  --toggle-track-bg:       #1a3a5c;
+  --toggle-track-checked:  #397ABC;
+  --toggle-track-shadow:   0 0 8px #1a6fc455;
   --toggle-thumb-bg:       #fff;
 
   /* hamburger */
@@ -37,7 +36,7 @@
 
   /* text / footer */
   --text:                  #1a1a1a;
-  --footer-color:          #7c4182;
+  --footer-color:          #416082;
 }
 
 [data-theme="light"] {
