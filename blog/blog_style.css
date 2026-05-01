@@ -1,12 +1,20 @@
+    /* dark mode — default */
     body {
       background-image: url('/blog/night.png') !important;
       background-size: cover !important;
       background-position: center !important;
       background-attachment: fixed !important;
       background-repeat: no-repeat !important;
-      background-color: transparent !important;
     }
-      
+
+    /* light mode */
+    [data-theme="light"] body {
+      background-image: url('/blog/day.png') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-attachment: fixed !important;
+      background-repeat: no-repeat !important;
+    }
    .blog-wrap {
       max-width: 900px;
       margin: 0 auto;
