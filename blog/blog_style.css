@@ -1,149 +1,341 @@
-    /* dark mode — default */
-    body {
-      background-image: url('/blog/night.png') !important;
-      background-size: cover !important;
-      background-position: center !important;
-      background-attachment: fixed !important;
-      background-repeat: no-repeat !important;
-    }
+/* ============================================================
+   BLOG STYLE — Dark: Firefly Cards | Light: Hot Air Balloon Cards
+   ============================================================ */
 
-    /* light mode */
-    [data-theme="light"] body {
-      background-image: url('/blog/day.png') !important;
-      background-size: cover !important;
-      background-position: center !important;
-      background-attachment: fixed !important;
-      background-repeat: no-repeat !important;
-    }
-   .blog-wrap {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 4rem;
-    }
+/* ------------------------------------------------------------------
+   BACKGROUNDS
+   ------------------------------------------------------------------ */
+body {
+  background-image: url('/blog/night.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
 
-    .blog-card {
-      display: block;
-      text-decoration: none;
-      background: #111c27;
-      border: 1.5px solid #1a6fc4;
-      box-shadow: 0 0 24px #1a6fc455, 0 0 60px #00c6ff22;
-      border-radius: 16px;
-      padding: 2rem 2.5rem;
-      margin-bottom: 1.5rem;
-      transition: box-shadow 0.2s, border-color 0.2s;
-    }
+[data-theme="light"] body {
+  background-image: url('/blog/day.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
 
-    .blog-card:hover {
-      box-shadow: 0 0 40px #1a6fc488, 0 0 80px #00c6ff44;
-      border-color: #00c6ff;
-    }
 
-    .blog-card-title {
-      font-family: system-ui, sans-serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 0.5rem;
-      line-height: 1.25;
-    }
+/* ------------------------------------------------------------------
+   BLOG WRAP
+   ------------------------------------------------------------------ */
+.blog-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem;
+}
 
-    /*.blog-card-date {
-      font-family: system-ui, sans-serif;
-      font-size: 1rem;
-      color: #5ab0f7;
-      margin: 0 0 0.75rem;
-    }*/
 
-    .blog-post-summary {
-      font-family: system-ui, sans-serif;
-      font-size: 0.95rem;
-      color: #c8d8e8;
-      line-height: 1.7;
-      margin: 0;
-    }
+/* ==================================================================
+   DARK MODE — FIREFLY CARDS
+   ==================================================================
+   Each card is a row: [firefly image] + [text content].
+   The firefly image swaps on hover via blog_script.js.
+   ================================================================== */
 
-  .post-wrap {
-      max-width: 760px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 5rem;
-      font-family: system-ui, sans-serif;
-    }
+/* --- FIREFLY LAYOUT PARAMETERS --- */
+:root {
+  --firefly-img-width: 120px;          /* Width of the firefly PNG */
+  --firefly-img-height: 120px;         /* Height of the firefly PNG */
+  --firefly-gap: 2rem;                 /* Gap between firefly image and text */
+  --firefly-card-margin-bottom: 2.5rem;/* Vertical space between firefly cards */
+  --firefly-card-padding: 0.5rem 0;    /* Padding around the entire card row */
+  --firefly-img-margin-top: 0.25rem;   /* Fine-tune vertical alignment of firefly vs text */
+  --firefly-transition-duration: 0.3s; /* Speed of the glow fade on hover */
+}
 
-    .post-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #5ab0f7;
-      font-size: 14px;
-      text-decoration: none;
-      margin-bottom: 2rem;
-    }
+/* The card itself: a flex row, no background box */
+.blog-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--firefly-gap);
+  text-decoration: none;
+  margin-bottom: var(--firefly-card-margin-bottom);
+  padding: var(--firefly-card-padding);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  transition: none;
+  cursor: pointer;
+}
 
-    .post-back:hover { color: #00c6ff; }
+/* Firefly image wrapper */
+.blog-card .firefly-img-wrap {
+  flex-shrink: 0;
+  margin-top: var(--firefly-img-margin-top);
+  position: relative;
+  width: var(--firefly-img-width);
+  height: var(--firefly-img-height);
+}
 
-    .post-title {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #fff;
-      margin: 0 0 0.75rem;
-      line-height: 1.25;
-    }
+.blog-card .firefly-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: filter var(--firefly-transition-duration) ease,
+              opacity var(--firefly-transition-duration) ease;
+}
 
-    .post-date {
-      font-size: 0.95rem;
-      color: #5ab0f7;
-      margin: 0 0 2rem;
-    }
+/* Text content area next to firefly */
+.blog-card .blog-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-    .post-divider {
-      height: 2px;
-      background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
-      box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
-      border: none;
-      border-radius: 2px;
-      margin-bottom: 2rem;
-    }
+.blog-card-title {
+  font-family: system-ui, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+  transition: color var(--firefly-transition-duration) ease,
+              text-shadow var(--firefly-transition-duration) ease;
+}
 
-    .post-body p {
-      font-size: 1rem;
-      color: #c8d8e8;
-      line-height: 1.85;
-      margin: 0 0 1.4rem;
-    }
+.blog-post-summary {
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: #c8d8e8;
+  line-height: 1.7;
+  margin: 0;
+}
 
-    .post-body p:last-child { margin-bottom: 0; }
+/* Hover: title glows like the firefly lit up */
+.blog-card:hover .blog-card-title {
+  color: #fffbe6;
+  text-shadow: 0 0 12px #ffe066cc, 0 0 28px #ffcc0088;
+}
 
+
+/* ==================================================================
+   LIGHT MODE — HOT AIR BALLOON CARDS
+   ==================================================================
+   Each card shows the title + summary overlaid on a balloon PNG.
+   The balloon PNG is the card's visual container.
+
+   TWEAKING GUIDE — all key parameters are in :root below.
+   ================================================================== */
+
+/* --- BALLOON LAYOUT PARAMETERS ---
+   Change these to adjust every balloon card at once.
+   Per-color overrides can be done in the individual .balloon-* blocks below. */
+[data-theme="light"] {
+  /* --- SIZE --- */
+  --balloon-width: 320px;              /* Total card width */
+  --balloon-height: 400px;             /* Total card height (taller = more balloon visible) */
+
+  /* --- BALLOON IMAGE POSITION & SCALE --- */
+  --balloon-img-scale: 1;              /* Scale the balloon PNG (1 = natural fit to card) */
+  --balloon-img-top: 0px;              /* Move balloon PNG up(-) or down(+) within card */
+  --balloon-img-left: 0px;             /* Move balloon PNG left(-) or right(+) */
+
+  /* --- TEXT OVERLAY POSITION --- */
+  /* The text box sits inside the balloon envelope (the round part).
+     Adjust these so text lands in the coloured envelope area of your PNG. */
+  --balloon-text-top: 18%;             /* Distance from top of card to text box */
+  --balloon-text-left: 50%;            /* Horizontal center anchor (keep at 50% for centered text) */
+  --balloon-text-width: 72%;           /* Text box width as % of card — narrower avoids balloon edges */
+  --balloon-text-max-height: 52%;      /* Max height of text box before it clips */
+
+  /* --- TEXT STYLE --- */
+  --balloon-title-size: 1.1rem;        /* Font size of the post title on balloon */
+  --balloon-title-weight: 800;         /* Font weight of the title */
+  --balloon-summary-size: 0.72rem;     /* Font size of the summary text */
+  --balloon-title-color: #fff;         /* Title text color (default; override per balloon color) */
+  --balloon-summary-color: rgba(255,255,255,0.85); /* Summary text color */
+  --balloon-text-shadow: 0 1px 4px rgba(0,0,0,0.45); /* Shadow behind text for legibility */
+
+  /* --- CARD SPACING --- */
+  --balloon-card-margin: 1.5rem;       /* Horizontal gap between balloon cards */
+  --balloon-card-bottom-margin: 2rem;  /* Vertical space below each card when wrapped */
+
+  /* --- HOVER EFFECT --- */
+  --balloon-hover-lift: -10px;         /* How many px the balloon "floats up" on hover */
+  --balloon-hover-scale: 1.04;         /* Slight scale-up on hover */
+  --balloon-hover-duration: 0.35s;     /* Speed of hover animation */
+
+  /* --- LAYOUT: cards are displayed in a centered row that wraps --- */
+  --balloon-wrap-gap: var(--balloon-card-margin);
+}
+
+/* Light mode overrides the blog-wrap to use flex/wrapping row for balloons */
+[data-theme="light"] .blog-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--balloon-wrap-gap) var(--balloon-card-margin);
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Light mode card: reset dark-mode styles, become a balloon card */
 [data-theme="light"] .blog-card {
-  background: #fff;
-  border-color: #1a6fc4;
-  box-shadow: 0 0 24px #1a6fc422, 0 2px 8px rgba(0,0,0,0.08);
+  display: block;
+  position: relative;
+  width: var(--balloon-width);
+  height: var(--balloon-height);
+  margin-bottom: var(--balloon-card-bottom-margin);
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--balloon-hover-duration) cubic-bezier(.34,1.56,.64,1),
+              filter var(--balloon-hover-duration) ease;
+  overflow: visible;
+  flex-shrink: 0;
 }
 
 [data-theme="light"] .blog-card:hover {
-  box-shadow: 0 0 40px #1a6fc455, 0 4px 16px rgba(0,0,0,0.12);
-  border-color: #00c6ff;
+  transform: translateY(var(--balloon-hover-lift)) scale(var(--balloon-hover-scale));
+  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.22));
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Hide the firefly image wrapper in light mode */
+[data-theme="light"] .blog-card .firefly-img-wrap {
+  display: none;
+}
+
+/* Balloon background image — fills the card */
+[data-theme="light"] .blog-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--balloon-png);  /* set per balloon color class */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  transform: scale(var(--balloon-img-scale))
+             translate(var(--balloon-img-left), var(--balloon-img-top));
+  transform-origin: top center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Text overlay */
+[data-theme="light"] .blog-card .blog-card-content {
+  position: absolute;
+  top: var(--balloon-text-top);
+  left: var(--balloon-text-left);
+  transform: translateX(-50%);
+  width: var(--balloon-text-width);
+  max-height: var(--balloon-text-max-height);
+  overflow: hidden;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
 }
 
 [data-theme="light"] .blog-card-title {
-  color: #0a1520;
+  font-family: system-ui, sans-serif;
+  font-size: var(--balloon-title-size);
+  font-weight: var(--balloon-title-weight);
+  color: var(--balloon-title-color);
+  text-shadow: var(--balloon-text-shadow);
+  margin: 0;
+  line-height: 1.25;
+  text-shadow: none; /* reset dark-mode glow */
 }
 
-[data-theme="light"] .blog-card-date {
-  color: #1a6fc4;
+[data-theme="light"] .blog-post-summary {
+  font-family: system-ui, sans-serif;
+  font-size: var(--balloon-summary-size);
+  color: var(--balloon-summary-color);
+  line-height: 1.55;
+  margin: 0;
+  text-shadow: var(--balloon-text-shadow);
 }
 
-[data-theme="light"] .blog-card-summary {
-  color: #333;
+
+/* ------------------------------------------------------------------
+   BALLOON COLOR CLASSES
+   Add class="blog-card balloon-red" (etc.) to your <a> in index.html.
+   Each sets the PNG path and optionally overrides text color for contrast.
+   ------------------------------------------------------------------ */
+
+/* Usage in HTML: <a class="blog-card balloon-black" href="..."> */
+[data-theme="light"] .balloon-black  { --balloon-png: url('/blog/balloons/black_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-blue   { --balloon-png: url('/blog/balloons/blue_balloon.png');   --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-green  { --balloon-png: url('/blog/balloons/green_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.9);  }
+[data-theme="light"] .balloon-orange { --balloon-png: url('/blog/balloons/orange_balloon.png'); --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-pink   { --balloon-png: url('/blog/balloons/pink_balloon.png');   --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-purple { --balloon-png: url('/blog/balloons/purple_balloon.png'); --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-red    { --balloon-png: url('/blog/balloons/red_balloon.png');    --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-white  { --balloon-png: url('/blog/balloons/white_balloon.png');  --balloon-title-color: #222; --balloon-summary-color: rgba(0,0,0,0.7);         }
+[data-theme="light"] .balloon-yellow { --balloon-png: url('/blog/balloons/yellow_balloon.png'); --balloon-title-color: #222; --balloon-summary-color: rgba(0,0,0,0.65);        }
+
+
+/* ==================================================================
+   POST PAGE STYLES (unchanged from original)
+   ================================================================== */
+.post-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+  font-family: system-ui, sans-serif;
 }
 
-[data-theme="light"] .post-title {
-  color: #0a1520;
+.post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #5ab0f7;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 2rem;
 }
 
-[data-theme="light"] .post-date {
-  color: #1a6fc4;
+.post-back:hover { color: #00c6ff; }
+
+.post-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  line-height: 1.25;
 }
 
-[data-theme="light"] .post-body p {
-  color: #333;
+.post-date {
+  font-size: 0.95rem;
+  color: #5ab0f7;
+  margin: 0 0 2rem;
 }
+
+.post-divider {
+  height: 2px;
+  background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
+  box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
+  border: none;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
+.post-body p {
+  font-size: 1rem;
+  color: #c8d8e8;
+  line-height: 1.85;
+  margin: 0 0 1.4rem;
+}
+
+.post-body p:last-child { margin-bottom: 0; }
+
+[data-theme="light"] .post-title  { color: #0a1520; }
+[data-theme="light"] .post-date   { color: #1a6fc4; }
+[data-theme="light"] .post-body p { color: #333; }
