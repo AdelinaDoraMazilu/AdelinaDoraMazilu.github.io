@@ -23,7 +23,7 @@ body {
 
 
 /* ------------------------------------------------------------------
-   BLOG WRAP
+   BLOG WRAP (dark mode default)
    ------------------------------------------------------------------ */
 .blog-wrap {
   max-width: 900px;
@@ -41,13 +41,13 @@ body {
 
 /* --- FIREFLY LAYOUT PARAMETERS --- */
 :root {
-  --firefly-img-width: 120px;          /* Width of the firefly PNG */
-  --firefly-img-height: 120px;         /* Height of the firefly PNG */
-  --firefly-gap: 2rem;                 /* Gap between firefly image and text */
-  --firefly-card-margin-bottom: 2.5rem;/* Vertical space between firefly cards */
-  --firefly-card-padding: 0.5rem 0;    /* Padding around the entire card row */
-  --firefly-img-margin-top: 0.25rem;   /* Fine-tune vertical alignment of firefly vs text */
-  --firefly-transition-duration: 0.3s; /* Speed of the glow fade on hover */
+  --firefly-img-width: 120px;           /* Width of the firefly PNG */
+  --firefly-img-height: 120px;          /* Height of the firefly PNG */
+  --firefly-gap: 2rem;                  /* Gap between firefly image and text */
+  --firefly-card-margin-bottom: 2.5rem; /* Vertical space between firefly cards */
+  --firefly-card-padding: 0.5rem 0;     /* Padding around the entire card row */
+  --firefly-img-margin-top: 0.25rem;    /* Fine-tune vertical alignment of firefly vs text */
+  --firefly-transition-duration: 0.3s;  /* Speed of the glow fade on hover */
 }
 
 /* The card itself: a flex row, no background box */
@@ -121,70 +121,79 @@ body {
 /* ==================================================================
    LIGHT MODE — HOT AIR BALLOON CARDS
    ==================================================================
-   Each card shows the title + summary overlaid on a balloon PNG.
-   The balloon PNG is the card's visual container.
 
-   TWEAKING GUIDE — all key parameters are in :root below.
+   DESKTOP LAYOUT:
+   Balloons alternate left / right of the screen center, stacked
+   vertically. The first card (odd) sits to the left, the second
+   (even) to the right, and so on.
+
+   TWEAKING PARAMETERS — change the variables below.
    ================================================================== */
 
-/* --- BALLOON LAYOUT PARAMETERS ---
-   Change these to adjust every balloon card at once.
-   Per-color overrides can be done in the individual .balloon-* blocks below. */
 [data-theme="light"] {
-  /* --- SIZE --- */
-  --balloon-width: 320px;              /* Total card width */
-  --balloon-height: 400px;             /* Total card height (taller = more balloon visible) */
 
-  /* --- BALLOON IMAGE POSITION & SCALE --- */
-  --balloon-img-scale: 1;              /* Scale the balloon PNG (1 = natural fit to card) */
-  --balloon-img-top: 0px;              /* Move balloon PNG up(-) or down(+) within card */
-  --balloon-img-left: 0px;             /* Move balloon PNG left(-) or right(+) */
+  /* --- BALLOON SIZE ---
+     These control the clickable card area AND how large the PNG renders. */
+  --balloon-width: 260px;               /* Card width in px */
+  --balloon-height: 340px;              /* Card height in px */
 
-  /* --- TEXT OVERLAY POSITION --- */
-  /* The text box sits inside the balloon envelope (the round part).
-     Adjust these so text lands in the coloured envelope area of your PNG. */
-  --balloon-text-top: 18%;             /* Distance from top of card to text box */
-  --balloon-text-left: 50%;            /* Horizontal center anchor (keep at 50% for centered text) */
-  --balloon-text-width: 72%;           /* Text box width as % of card — narrower avoids balloon edges */
-  --balloon-text-max-height: 52%;      /* Max height of text box before it clips */
+  /* --- BALLOON IMAGE SCALE & NUDGE ---
+     Use these to fine-tune the PNG inside its card box after sizing. */
+  --balloon-img-scale: 1;               /* 1 = fills card; >1 crops edges; <1 adds whitespace */
+  --balloon-img-top: 0px;               /* Shift PNG up (negative) or down (positive) */
+  --balloon-img-left: 0px;              /* Shift PNG left (negative) or right (positive) */
+
+  /* --- TEXT POSITION INSIDE THE BALLOON ---
+     The text is absolutely positioned relative to the card box.
+     Adjust these until the title sits inside the coloured envelope. */
+  --balloon-text-top: 18%;              /* % from top of card — move down if envelope starts lower */
+  --balloon-text-left: 50%;             /* Keep at 50% for centred text inside the balloon */
+  --balloon-text-width: 72%;            /* Width of the text box as % of card */
+  --balloon-text-max-height: 52%;       /* Clips text if title is very long */
 
   /* --- TEXT STYLE --- */
-  --balloon-title-size: 1.1rem;        /* Font size of the post title on balloon */
-  --balloon-title-weight: 800;         /* Font weight of the title */
-  --balloon-summary-size: 0.72rem;     /* Font size of the summary text */
-  --balloon-title-color: #fff;         /* Title text color (default; override per balloon color) */
-  --balloon-summary-color: rgba(255,255,255,0.85); /* Summary text color */
-  --balloon-text-shadow: 0 1px 4px rgba(0,0,0,0.45); /* Shadow behind text for legibility */
+  --balloon-title-size: 1rem;           /* Font size of the post title */
+  --balloon-title-weight: 800;          /* Font weight of the title */
+  --balloon-title-color: #fff;          /* Default title color; overridden per balloon color below */
 
-  /* --- CARD SPACING --- */
-  --balloon-card-margin: 1.5rem;       /* Horizontal gap between balloon cards */
-  --balloon-card-bottom-margin: 2rem;  /* Vertical space below each card when wrapped */
+  /* --- DESKTOP ALTERNATING LAYOUT ---
+     Cards are positioned relative to the horizontal center of .blog-wrap.
+     --balloon-offset: how far each balloon sits from that center line.
+     --balloon-row-height: vertical distance between successive balloon tops.
+     Increase --balloon-row-height if balloons overlap too much vertically. */
+  --balloon-offset: 160px;              /* px — distance from centre to card's own centre */
+  --balloon-row-height: 300px;          /* px — vertical step between consecutive balloons */
+  --balloon-first-top: 2rem;            /* top padding before the first balloon */
 
   /* --- HOVER EFFECT --- */
-  --balloon-hover-lift: -10px;         /* How many px the balloon "floats up" on hover */
-  --balloon-hover-scale: 1.04;         /* Slight scale-up on hover */
-  --balloon-hover-duration: 0.35s;     /* Speed of hover animation */
-
-  /* --- LAYOUT: cards are displayed in a centered row that wraps --- */
-  --balloon-wrap-gap: var(--balloon-card-margin);
+  --balloon-hover-lift: -12px;          /* px — how high the balloon floats on hover */
+  --balloon-hover-duration: 0.35s;      /* transition speed */
 }
 
-/* Light mode overrides the blog-wrap to use flex/wrapping row for balloons */
+/* ------------------------------------------------------------------
+   LIGHT MODE BLOG-WRAP
+   On desktop: tall enough to contain all absolutely-positioned balloons.
+   The JS in blog_script.js sets --blog-wrap-height dynamically,
+   or you can set a fixed min-height here as a fallback.
+   ------------------------------------------------------------------ */
 [data-theme="light"] .blog-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--balloon-wrap-gap) var(--balloon-card-margin);
-  justify-content: center;
-  align-items: flex-start;
+  position: relative;          /* anchor for absolute balloon cards */
+  display: block;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 4rem;
+  /* min-height is set dynamically by blog_script.js;
+     fallback below covers 2 cards — adjust if you add more */
+  min-height: calc(var(--balloon-first-top) + 2 * var(--balloon-row-height) + var(--balloon-height));
 }
 
-/* Light mode card: reset dark-mode styles, become a balloon card */
+/* ------------------------------------------------------------------
+   LIGHT MODE CARD — base reset + absolute positioning
+   ------------------------------------------------------------------ */
 [data-theme="light"] .blog-card {
-  display: block;
-  position: relative;
+  position: absolute;          /* placed by nth-child rules below */
   width: var(--balloon-width);
   height: var(--balloon-height);
-  margin-bottom: var(--balloon-card-bottom-margin);
   padding: 0;
   background: transparent;
   border: none;
@@ -192,30 +201,106 @@ body {
   border-radius: 0;
   text-decoration: none;
   cursor: pointer;
-  transition: transform var(--balloon-hover-duration) cubic-bezier(.34,1.56,.64,1),
-              filter var(--balloon-hover-duration) ease;
+  transition: transform var(--balloon-hover-duration) cubic-bezier(.34, 1.56, .64, 1);
   overflow: visible;
-  flex-shrink: 0;
+  /* horizontally: left=50% then shift by offset ± half card width */
+  left: calc(50% - var(--balloon-offset) - var(--balloon-width) / 2);
 }
 
+/* Hover: just float up, no shadow */
 [data-theme="light"] .blog-card:hover {
-  transform: translateY(var(--balloon-hover-lift)) scale(var(--balloon-hover-scale));
-  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.22));
+  transform: translateY(var(--balloon-hover-lift));
+  filter: none;
   box-shadow: none;
-  border-color: transparent;
 }
 
-/* Hide the firefly image wrapper in light mode */
+/* --- ALTERNATING LEFT / RIGHT ---
+   Odd cards sit left-of-centre, even cards right-of-centre.
+   top is staggered by --balloon-row-height per card. */
+
+/* Card 1 — left */
+[data-theme="light"] .blog-card:nth-child(1) {
+  top: calc(var(--balloon-first-top) + 0 * var(--balloon-row-height));
+  left: calc(50% - var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 2 — right */
+[data-theme="light"] .blog-card:nth-child(2) {
+  top: calc(var(--balloon-first-top) + 1 * var(--balloon-row-height));
+  left: calc(50% + var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 3 — left */
+[data-theme="light"] .blog-card:nth-child(3) {
+  top: calc(var(--balloon-first-top) + 2 * var(--balloon-row-height));
+  left: calc(50% - var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 4 — right */
+[data-theme="light"] .blog-card:nth-child(4) {
+  top: calc(var(--balloon-first-top) + 3 * var(--balloon-row-height));
+  left: calc(50% + var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 5 — left */
+[data-theme="light"] .blog-card:nth-child(5) {
+  top: calc(var(--balloon-first-top) + 4 * var(--balloon-row-height));
+  left: calc(50% - var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 6 — right */
+[data-theme="light"] .blog-card:nth-child(6) {
+  top: calc(var(--balloon-first-top) + 5 * var(--balloon-row-height));
+  left: calc(50% + var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 7 — left */
+[data-theme="light"] .blog-card:nth-child(7) {
+  top: calc(var(--balloon-first-top) + 6 * var(--balloon-row-height));
+  left: calc(50% - var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 8 — right */
+[data-theme="light"] .blog-card:nth-child(8) {
+  top: calc(var(--balloon-first-top) + 7 * var(--balloon-row-height));
+  left: calc(50% + var(--balloon-offset) - var(--balloon-width) / 2);
+}
+/* Card 9 — left */
+[data-theme="light"] .blog-card:nth-child(9) {
+  top: calc(var(--balloon-first-top) + 8 * var(--balloon-row-height));
+  left: calc(50% - var(--balloon-offset) - var(--balloon-width) / 2);
+}
+
+/* ------------------------------------------------------------------
+   MOBILE — stack balloons centred, no alternating offset
+   ------------------------------------------------------------------ */
+@media (max-width: 600px) {
+  [data-theme="light"] .blog-wrap {
+    min-height: unset;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 2rem;
+  }
+
+  [data-theme="light"] .blog-card,
+  [data-theme="light"] .blog-card:nth-child(n) {
+    position: static;
+    left: unset;
+    top: unset;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Hide firefly wrapper in light mode
+   ------------------------------------------------------------------ */
 [data-theme="light"] .blog-card .firefly-img-wrap {
   display: none;
 }
 
-/* Balloon background image — fills the card */
+/* ------------------------------------------------------------------
+   Balloon background PNG
+   ------------------------------------------------------------------ */
 [data-theme="light"] .blog-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: var(--balloon-png);  /* set per balloon color class */
+  background-image: var(--balloon-png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center top;
@@ -226,7 +311,9 @@ body {
   z-index: 0;
 }
 
-/* Text overlay */
+/* ------------------------------------------------------------------
+   Text overlay — positioned inside the balloon envelope
+   ------------------------------------------------------------------ */
 [data-theme="light"] .blog-card .blog-card-content {
   position: absolute;
   top: var(--balloon-text-top);
@@ -240,7 +327,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.3rem;
 }
 
 [data-theme="light"] .blog-card-title {
@@ -248,29 +334,26 @@ body {
   font-size: var(--balloon-title-size);
   font-weight: var(--balloon-title-weight);
   color: var(--balloon-title-color);
-  text-shadow: var(--balloon-text-shadow);
+  text-shadow: none;               /* no glow, no shadow */
   margin: 0;
   line-height: 1.25;
-  text-shadow: none; /* reset dark-mode glow */
 }
 
 [data-theme="light"] .blog-post-summary {
   font-family: system-ui, sans-serif;
-  font-size: var(--balloon-summary-size);
-  color: var(--balloon-summary-color);
+  font-size: 0.72rem;
+  color: var(--balloon-summary-color, rgba(255,255,255,0.85));
   line-height: 1.55;
   margin: 0;
-  text-shadow: var(--balloon-text-shadow);
+  text-shadow: none;
 }
 
 
 /* ------------------------------------------------------------------
    BALLOON COLOR CLASSES
-   Add class="blog-card balloon-red" (etc.) to your <a> in index.html.
-   Each sets the PNG path and optionally overrides text color for contrast.
+   Usage in index.html: <a class="blog-card balloon-red" href="...">
+   Each sets the PNG and optionally overrides title/summary color.
    ------------------------------------------------------------------ */
-
-/* Usage in HTML: <a class="blog-card balloon-black" href="..."> */
 [data-theme="light"] .balloon-black  { --balloon-png: url('/blog/balloons/black_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
 [data-theme="light"] .balloon-blue   { --balloon-png: url('/blog/balloons/blue_balloon.png');   --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
 [data-theme="light"] .balloon-green  { --balloon-png: url('/blog/balloons/green_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.9);  }
@@ -283,7 +366,7 @@ body {
 
 
 /* ==================================================================
-   POST PAGE STYLES (unchanged from original)
+   POST PAGE STYLES
    ================================================================== */
 .post-wrap {
   max-width: 760px;
