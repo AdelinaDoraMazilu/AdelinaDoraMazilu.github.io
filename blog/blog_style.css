@@ -47,14 +47,14 @@
       line-height: 1.25;
     }
 
-    .blog-card-date {
+    /*.blog-card-date {
       font-family: system-ui, sans-serif;
       font-size: 1rem;
       color: #5ab0f7;
       margin: 0 0 0.75rem;
-    }
+    }*/
 
-    .blog-card-summary {
+    .blog-post-summary {
       font-family: system-ui, sans-serif;
       font-size: 0.95rem;
       color: #c8d8e8;
