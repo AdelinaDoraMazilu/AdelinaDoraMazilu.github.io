@@ -14,16 +14,18 @@
   <div class="ttdil-intro">
     This is a list of goals I would like to achieve or things I would like to do during my lifetime
     <p class="ttdil-subintro">
-    Some big, some small, some personal, 
-    some professional, some seem a bit far fetchhed but they are all meaningful to me. <br>
-    I will keep some continuos goals over here as well to keep in mind some goals I want to keep living by. 
+      Some big, some small, some personal,
+      some professional, some seem a bit far fetched but they are all meaningful to me. <br>
+      I will keep some continuous goals over here as well to keep in mind some goals I want to keep living by.
     </p>
   </div>
 
   <div class="stem-stack" id="stemStack"></div>
 
-  <!-- MAIN PAGE SCRIPT — goes in body after the HTML -->
   <script>
+    /* ================================================================
+       GOALS DATA
+       ================================================================ */
     const goals = [
       { id: 0,  title: 'Goal 1',  desc: 'Finish my Bachelor\'s degree by February 2027', checked: false },
       { id: 1,  title: 'Goal 2',  desc: 'Work a job that I like before starting my Master\'s degree', checked: false },
@@ -68,273 +70,386 @@
       { id: 40, title: 'Goal 41', desc: 'Learn to play 5 folk songs on the guitar', checked: false },
       { id: 41, title: 'Goal 42', desc: 'Learn to play 5 classical songs on the violin', checked: false },
       { id: 42, title: 'Goal 43', desc: 'Do a 2000km bike trip around Europe', checked: false },
-
     ];
 
+
+    /* ================================================================
+       THEME CONFIG
+       Each theme defines paths and all the tuning parameters for the
+       top image and each repeating stem section.
+
+       HOW IT WORKS:
+         - topImg      : path to the flower-top / cap image
+         - stemImg     : path to the repeating stem image
+         - flowerImg   : path to the orchid blossom image overlaid on the stem
+
+         TOP SECTION PARAMETERS (topSection):
+           widthPct          : width of the top image as % of viewport width
+           translateX        : horizontal shift in %, negative = left
+           marginBottomPx    : extra space between top image and first stem segment
+
+         STEM SECTION PARAMETERS (stemSection):
+           widthPct          : width of each stem segment as % of viewport
+           rightOffsetPct    : horizontal shift of the stem column; positive = shift left
+           overlapPx         : how many px the next segment overlaps the previous one
+                               (negative margin-top). Increase to close gaps, decrease to
+                               add gaps.
+           stemRotationDeg   : rotation applied to the stem img so it looks straight.
+                               Negative = counter-clockwise (use e.g. -30 if the raw
+                               image is tilted clockwise).
+
+         FLOWER OVERLAY PARAMETERS (flowers array — two entries per stem):
+           topPct            : vertical position of the flower centre as % of stem height.
+                               0 = top of image, 100 = bottom.
+           leftPct           : horizontal position as % of stem width.
+                               0 = left edge, 100 = right edge.
+           widthPct          : width of the flower image as % of stem section width.
+           rotationDeg       : rotation of the flower image. Use to tilt it naturally
+                               against the stem. Negative = counter-clockwise.
+           goalSide          : 'left' | 'right'  — which side of the viewport the goal
+                               text box appears on. Swap if goals end up on the wrong side.
+
+         GOAL TEXT PARAMETERS (goalLayout):
+           leftSideViewportPct   : left edge of goal box when goalSide === 'left',
+                                   as % of viewport width.
+           rightSideViewportPct  : left edge of goal box when goalSide === 'right',
+                                   as % of viewport width.
+           boxWidthViewportPct   : width of each goal text box as % of viewport width.
+           mobileLeftPct         : overrides leftSideViewportPct on mobile (<= 768 px)
+           mobileRightPct        : overrides rightSideViewportPct on mobile
+           mobileBoxWidthPct     : overrides boxWidthViewportPct on mobile
+       ================================================================ */
+
+    const THEME_CONFIG = {
+
+      /* ---- DARK MODE ------------------------------------------ */
+      dark: {
+        topImg:    '/blog/purple_top.png',
+        stemImg:   '/blog/orchid_stem.png',
+        flowerImg: '/blog/purple_orchid.png',
+
+        topSection: {
+          widthPct:        40,    /* TUNE: top image width % of viewport */
+          translateX:      -5.2,  /* TUNE: horizontal shift % (neg = left) */
+          marginBottomPx:  0,     /* TUNE: gap between top and first stem */
+        },
+
+        stemSection: {
+          widthPct:        45,    /* TUNE: stem column width % of viewport */
+          rightOffsetPct:  2.5,   /* TUNE: column shifts left by this % */
+          overlapPx:       190,   /* TUNE: px overlap between stem segments */
+          stemRotationDeg: -30,   /* TUNE: rotate stem image so it looks vertical;
+                                           negative = counter-clockwise */
+        },
+
+        /* Two flowers per stem section.
+           flowers[0] = the flower on the RIGHT branch of the stem image
+           flowers[1] = the flower on the LEFT  branch of the stem image
+           (swap topPct / leftPct if your image has them the other way around) */
+        flowers: [
+          {
+            topPct:      25,   /* TUNE: vertical pos % of stem img height */
+            leftPct:     72,   /* TUNE: horizontal pos % of stem img width */
+            widthPct:    38,   /* TUNE: flower width % of stem section width */
+            rotationDeg: 15,   /* TUNE: flower tilt; pos = clockwise */
+            goalSide:    'right', /* TUNE: which side goal text appears */
+          },
+          {
+            topPct:      65,
+            leftPct:     22,
+            widthPct:    38,
+            rotationDeg: -15,
+            goalSide:    'left',
+          },
+        ],
+
+        goalLayout: {
+          /* Desktop goal text box positions as % of viewport width */
+          leftSideViewportPct:   11,   /* TUNE: left edge of 'left' goal box */
+          rightSideViewportPct:  73,   /* TUNE: left edge of 'right' goal box */
+          boxWidthViewportPct:   14,   /* TUNE: width of each goal text box */
+          /* Mobile overrides */
+          mobileLeftPct:         8,
+          mobileRightPct:        70,
+          mobileBoxWidthPct:     18,
+        },
+      },
+
+      /* ---- LIGHT MODE ----------------------------------------- */
+      light: {
+        topImg:    '/blog/white_top.png',
+        stemImg:   '/blog/orchid_stem.png',
+        flowerImg: '/blog/white_orchid.png',
+
+        topSection: {
+          widthPct:        40,    /* TUNE: top image width % of viewport */
+          translateX:      -5.2,  /* TUNE: horizontal shift % (neg = left) */
+          marginBottomPx:  0,     /* TUNE: gap between top and first stem */
+        },
+
+        stemSection: {
+          widthPct:        45,    /* TUNE: stem column width % of viewport */
+          rightOffsetPct:  2.5,   /* TUNE: column shifts left by this % */
+          overlapPx:       190,   /* TUNE: px overlap between stem segments */
+          stemRotationDeg: -30,   /* TUNE: rotate stem image so it looks vertical */
+        },
+
+        flowers: [
+          {
+            topPct:      25,   /* TUNE: vertical pos % of stem img height */
+            leftPct:     72,   /* TUNE: horizontal pos % of stem img width */
+            widthPct:    38,   /* TUNE: flower width % of stem section width */
+            rotationDeg: 15,   /* TUNE: flower tilt */
+            goalSide:    'right',
+          },
+          {
+            topPct:      65,
+            leftPct:     22,
+            widthPct:    38,
+            rotationDeg: -15,
+            goalSide:    'left',
+          },
+        ],
+
+        goalLayout: {
+          leftSideViewportPct:   11,
+          rightSideViewportPct:  73,
+          boxWidthViewportPct:   14,
+          mobileLeftPct:         8,
+          mobileRightPct:        70,
+          mobileBoxWidthPct:     18,
+        },
+      },
+    };
+
+
+    /* ================================================================
+       GOAL PAIRS
+       Each entry in the sections array pairs two goalIdx values with the
+       two flower positions defined in THEME_CONFIG.[theme].flowers.
+       goalIdx matches the index in the goals[] array above.
+       null = no goal for that flower (e.g. the decorative top section).
+       ================================================================ */
     const sections = [
-      {
-        img: '/ttdil/top.svg',
-        overlap: 0,
-        flowers: [
-          { topPct: 53, leftPct: 85, side: 'right', goalIdx: null },
-          { topPct: 75, leftPct: 14, side: 'left',  goalIdx: 0 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 1 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 2 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 3 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 4 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 5 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 6 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 7 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 8 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 9 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 10 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 11 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 12 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 13 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 14 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 15 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 16 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 17 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 18 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 19 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 20 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 21 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 22 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 23 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 24 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 25 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 26 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 27 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 28 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 29 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 30 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 31 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 32 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 33 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 34 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 35 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 36 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 37 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 38 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-          { topPct: 15, leftPct: 85, side: 'right', goalIdx: 39 },
-          { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 40 },
-        ]
-      },
-      {
-        img: '/ttdil/part.svg',
-        overlap: 190,
-        flowers: [
-            { topPct: 15, leftPct: 85, side: 'right', goalIdx: 41 },
-            { topPct: 58, leftPct: 15, side: 'left',  goalIdx: 42 },
-        ]
-      },
+      { goalIdxA: null, goalIdxB: 0  },  // top section: only right flower has a goal
+      { goalIdxA: 1,    goalIdxB: 2  },
+      { goalIdxA: 3,    goalIdxB: 4  },
+      { goalIdxA: 5,    goalIdxB: 6  },
+      { goalIdxA: 7,    goalIdxB: 8  },
+      { goalIdxA: 9,    goalIdxB: 10 },
+      { goalIdxA: 11,   goalIdxB: 12 },
+      { goalIdxA: 13,   goalIdxB: 14 },
+      { goalIdxA: 15,   goalIdxB: 16 },
+      { goalIdxA: 17,   goalIdxB: 18 },
+      { goalIdxA: 19,   goalIdxB: 20 },
+      { goalIdxA: 21,   goalIdxB: 22 },
+      { goalIdxA: 23,   goalIdxB: 24 },
+      { goalIdxA: 25,   goalIdxB: 26 },
+      { goalIdxA: 27,   goalIdxB: 28 },
+      { goalIdxA: 29,   goalIdxB: 30 },
+      { goalIdxA: 31,   goalIdxB: 32 },
+      { goalIdxA: 33,   goalIdxB: 34 },
+      { goalIdxA: 35,   goalIdxB: 36 },
+      { goalIdxA: 37,   goalIdxB: 38 },
+      { goalIdxA: 39,   goalIdxB: 40 },
+      { goalIdxA: 41,   goalIdxB: 42 },
     ];
 
 
-    const stack = document.getElementById('stemStack');
-
-    sections.forEach((sec, si) => {
-      const section = document.createElement('div');
-      section.className = 'stem-section'
-        + (si !== 0 ? ' constrained' : '')
-        + (si === 0 ? ' top-section' : '');
-
-      if (si > 0) {
-        const isMobile = window.innerWidth <= 768;
-        section.style.marginTop = `-${isMobile ? 80 : sec.overlap}px`;
-      } 
-
-      const img = document.createElement('img');
-      img.className = 'stem-img';
-      img.src = sec.img;
-      img.alt = '';
-      img.loading = 'eager';
-      section.appendChild(img);
-
-function waitAndPlace(section, img, sec) {
-  if (img.offsetHeight > 0) {
-    placeGoals(section, img, sec);
-  } else {
-    requestAnimationFrame(() => waitAndPlace(section, img, sec));
-  }
-}
-
-if (img.complete) {
-  waitAndPlace(section, img, sec);
-} else {
-  img.addEventListener('load', () => waitAndPlace(section, img, sec));
-}
-
-      stack.appendChild(section);
-    });
-
-    function placeGoals(section, img, sec) {
-      section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
-
-      const imgH = img.offsetHeight;
-      const screenW = window.innerWidth;
-      const isMobile = screenW <= 768;
-      const sectionLeft = section.getBoundingClientRect().left;
-
-      sec.flowers.forEach(f => {
-        const goal = goals[f.goalIdx];
-        if (!goal) return;
-
-        const overlay = document.createElement('div');
-        overlay.className = 'goal-overlay';
-
-        const topPx = (f.topPct / 100) * imgH;
-        overlay.style.top = topPx + 'px';
-
-        if (f.side === 'right') {
-          overlay.style.left = (screenW * (isMobile ? 0.08 : 0.11) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.18 : 0.14)) + 'px';
-        } else {
-          overlay.style.left = (screenW * (isMobile ? 0.70 : 0.73) - sectionLeft) + 'px';
-          overlay.style.width = (screenW * (isMobile ? 0.18 : 0.14)) + 'px';
-        }
-
-        const checkbox = document.createElement('div');
-        checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
-
-        const desc = document.createElement('div');
-        desc.className = 'goal-desc';
-        desc.textContent = goal.desc;
-
-        overlay.appendChild(checkbox);
-        overlay.appendChild(desc);
-        section.appendChild(overlay);
-      });
-      console.log('Section rendered, flowers:', sec.flowers.map(f => ({goalIdx: f.goalIdx, goal: goals[f.goalIdx]?.desc || 'NOT FOUND'})));
+    /* ================================================================
+       THEME DETECTION
+       Reads the data-theme attribute from <html>. Your existing
+       scripts.js presumably toggles this; we just read it here.
+       Falls back to 'dark' if the attribute is missing.
+       ================================================================ */
+    function getCurrentTheme() {
+      return document.documentElement.getAttribute('data-theme') === 'light'
+        ? 'light'
+        : 'dark';
     }
 
-    window.addEventListener('resize', () => {
-      document.querySelectorAll('.stem-section').forEach((section, si) => {
-        const img = section.querySelector('img');
-        const sec = sections[si];
-        if (img && img.complete) placeGoals(section, img, sec);
+
+    /* ================================================================
+       BUILD / REBUILD THE STACK
+       Called once on load and again whenever the theme changes.
+       ================================================================ */
+    function buildStack() {
+      const stack = document.getElementById('stemStack');
+      stack.innerHTML = ''; // clear before rebuild
+
+      const theme  = getCurrentTheme();
+      const config = THEME_CONFIG[theme];
+      const isMobile = window.innerWidth <= 768;
+
+      sections.forEach((sec, si) => {
+        const isTop = si === 0;
+
+        /* --- create section wrapper -------------------------------- */
+        const section = document.createElement('div');
+        section.className = 'stem-section' + (isTop ? ' top-section' : ' constrained');
+
+        /* Apply width and position from config */
+        if (isTop) {
+          section.style.width     = config.topSection.widthPct + '%';
+          section.style.transform = `translateX(${config.topSection.translateX}%)`;
+          if (config.topSection.marginBottomPx) {
+            section.style.marginBottom = config.topSection.marginBottomPx + 'px';
+          }
+        } else {
+          section.style.width     = config.stemSection.widthPct + '%';
+          section.style.right     = config.stemSection.rightOffsetPct + '%';
+
+          /* Overlap: negative margin-top pulls this section up over the previous one */
+          const overlap = isMobile ? 80 : config.stemSection.overlapPx;
+          section.style.marginTop = `-${overlap}px`;
+        }
+
+        /* --- stem image -------------------------------------------- */
+        const img = document.createElement('img');
+        img.className = 'stem-img';
+        /* Top section uses topImg, all others use stemImg */
+        img.src     = isTop ? config.topImg : config.stemImg;
+        img.alt     = '';
+        img.loading = 'eager';
+
+        /* Rotate the stem image if configured.
+           Only applies to stem sections (not the top image). */
+        if (!isTop && config.stemSection.stemRotationDeg !== 0) {
+          img.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
+          img.style.transformOrigin = 'center center';
+        }
+
+        section.appendChild(img);
+
+        /* --- orchid flower overlays -------------------------------- */
+        /* Only stem sections (not the top) get flower overlays.
+           The top image already has the blossom baked in. */
+        if (!isTop) {
+          config.flowers.forEach(flowerCfg => {
+            const flowerEl = document.createElement('img');
+            flowerEl.className = 'orchid-flower';
+            flowerEl.src       = config.flowerImg;
+            flowerEl.alt       = '';
+            flowerEl.loading   = 'eager';
+
+            /* Width as % of the section */
+            flowerEl.style.width = flowerCfg.widthPct + '%';
+
+            /* Position is resolved after the section has rendered height.
+               We attach a callback via the image load / rAF chain. */
+            flowerEl.dataset.topPct  = flowerCfg.topPct;
+            flowerEl.dataset.leftPct = flowerCfg.leftPct;
+            flowerEl.dataset.rot     = flowerCfg.rotationDeg;
+
+            section.appendChild(flowerEl);
+          });
+        }
+
+        /* --- goal text overlays ------------------------------------ */
+        function placeGoalsAndFlowers() {
+          const imgH       = img.offsetHeight;
+          const imgW       = img.offsetWidth;
+          const screenW    = window.innerWidth;
+          const isMob      = screenW <= 768;
+          const gl         = config.goalLayout;
+          const sectionLeft = section.getBoundingClientRect().left;
+
+          /* Position flower images */
+          section.querySelectorAll('.orchid-flower').forEach((flEl, fi) => {
+            const tPct   = parseFloat(flEl.dataset.topPct);
+            const lPct   = parseFloat(flEl.dataset.leftPct);
+            const rot    = parseFloat(flEl.dataset.rot);
+            const flW    = flEl.offsetWidth;
+            const flH    = flEl.offsetHeight;
+
+            /* top/left position the flower's top-left corner;
+               we shift back by half its size so the anchor is its centre */
+            flEl.style.top       = ((tPct / 100) * imgH - flH / 2) + 'px';
+            flEl.style.left      = ((lPct / 100) * imgW - flW / 2) + 'px';
+            flEl.style.transform = `rotate(${rot}deg)`;
+          });
+
+          /* Pair of goals for this section */
+          const goalPairs = [
+            { idx: sec.goalIdxA, flowerCfg: config.flowers[0] },
+            { idx: sec.goalIdxB, flowerCfg: config.flowers[1] },
+          ];
+
+          /* Remove any previously placed goal overlays */
+          section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
+
+          goalPairs.forEach(({ idx, flowerCfg }) => {
+            if (idx === null || idx === undefined) return;
+            const goal = goals[idx];
+            if (!goal) return;
+
+            const overlay = document.createElement('div');
+            overlay.className = 'goal-overlay';
+
+            /* Vertical position: match the flower's vertical centre */
+            const topPx = (flowerCfg.topPct / 100) * imgH;
+            overlay.style.top = topPx + 'px';
+
+            /* Horizontal position: left vs right side of viewport */
+            const side = flowerCfg.goalSide;
+            if (side === 'left') {
+              const leftVP = isMob ? gl.mobileLeftPct : gl.leftSideViewportPct;
+              const boxW   = isMob ? gl.mobileBoxWidthPct : gl.boxWidthViewportPct;
+              overlay.style.left  = (screenW * (leftVP / 100) - sectionLeft) + 'px';
+              overlay.style.width = (screenW * (boxW   / 100)) + 'px';
+            } else {
+              const leftVP = isMob ? gl.mobileRightPct : gl.rightSideViewportPct;
+              const boxW   = isMob ? gl.mobileBoxWidthPct : gl.boxWidthViewportPct;
+              overlay.style.left  = (screenW * (leftVP / 100) - sectionLeft) + 'px';
+              overlay.style.width = (screenW * (boxW   / 100)) + 'px';
+            }
+
+            const checkbox = document.createElement('div');
+            checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
+
+            const desc = document.createElement('div');
+            desc.className  = 'goal-desc';
+            desc.textContent = goal.desc;
+
+            overlay.appendChild(checkbox);
+            overlay.appendChild(desc);
+            section.appendChild(overlay);
+          });
+        }
+
+        /* Wait for the stem image to have rendered height before positioning */
+        function waitAndPlace() {
+          if (img.offsetHeight > 0) {
+            placeGoalsAndFlowers();
+          } else {
+            requestAnimationFrame(waitAndPlace);
+          }
+        }
+
+        if (img.complete) {
+          waitAndPlace();
+        } else {
+          img.addEventListener('load', waitAndPlace);
+        }
+
+        stack.appendChild(section);
+      });
+    }
+
+    /* Initial build */
+    buildStack();
+
+    /* Re-layout on resize */
+    window.addEventListener('resize', buildStack);
+
+    /* Re-build when theme toggles (listens for attribute changes on <html>) */
+    const themeObserver = new MutationObserver((mutations) => {
+      mutations.forEach(m => {
+        if (m.attributeName === 'data-theme') buildStack();
       });
     });
+    themeObserver.observe(document.documentElement, { attributes: true });
+
   </script>
 </body>
 </html>
