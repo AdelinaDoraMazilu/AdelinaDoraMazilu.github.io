@@ -146,7 +146,7 @@ body {
   /* --- TEXT POSITION INSIDE THE BALLOON ---
      The text is absolutely positioned relative to the card box.
      Adjust these until the title sits inside the coloured envelope. */
-  --balloon-text-top: 45%;              /* % from top of card — move down if envelope starts lower */
+  --balloon-text-top: 30%;              /* increase to get text more lower on the balloon */
   --balloon-text-left: 50%;             /* Keep at 50% for centred text inside the balloon */
   --balloon-text-width: 60%;            /* Width of the text box as % of card */
   --balloon-text-max-height: 40%;       /* Clips text if title is very long */
@@ -358,7 +358,7 @@ body {
 [data-theme="light"] .balloon-blue   { --balloon-png: url('/blog/balloons/blue_balloon.png');   --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
 [data-theme="light"] .balloon-green  { --balloon-png: url('/blog/balloons/green_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.9);  }
 [data-theme="light"] .balloon-orange { --balloon-png: url('/blog/balloons/orange_balloon.png'); --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-pink   { --balloon-png: url('/blog/balloons/pink_balloon.png');   --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
+[data-theme="light"] .balloon-pink   { --balloon-png: url('/blog/balloons/pink_balloon.png');   --balloon-title-color: #000000; --balloon-summary-color: rgba(255,255,255,0.85); }
 [data-theme="light"] .balloon-purple { --balloon-png: url('/blog/balloons/purple_balloon.png'); --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
 [data-theme="light"] .balloon-red    { --balloon-png: url('/blog/balloons/red_balloon.png');    --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
 [data-theme="light"] .balloon-white  { --balloon-png: url('/blog/balloons/white_balloon.png');  --balloon-title-color: #000000; --balloon-summary-color: rgba(0,0,0,0.7);         }
