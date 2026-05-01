@@ -44,9 +44,9 @@ body {
   --firefly-img-width: 120px;           /* Width of the firefly PNG */
   --firefly-img-height: 120px;          /* Height of the firefly PNG */
   --firefly-gap: 2rem;                  /* Gap between firefly image and text */
-  --firefly-card-margin-bottom: 4rem; /* Vertical space between firefly cards */
-  --firefly-card-padding: 0.5rem 0.5rem;     /* Padding around the entire card row */
-  --firefly-img-margin-top: 0;    /* Fine-tune vertical alignment of firefly vs text */
+  --firefly-card-margin-bottom: 2.5rem; /* Vertical space between firefly cards */
+  --firefly-card-padding: 0.5rem 0;     /* Padding around the entire card row */
+  --firefly-img-margin-top: 0.25rem;    /* Fine-tune vertical alignment of firefly vs text */
   --firefly-transition-duration: 0.3s;  /* Speed of the glow fade on hover */
 }
 
@@ -146,13 +146,13 @@ body {
   /* --- TEXT POSITION INSIDE THE BALLOON ---
      The text is absolutely positioned relative to the card box.
      Adjust these until the title sits inside the coloured envelope. */
-  --balloon-text-top: 30%;              /* increase to get text more lower on the balloon */
+  --balloon-text-top: 30%;              /* % from top of card — move down if envelope starts lower */
   --balloon-text-left: 50%;             /* Keep at 50% for centred text inside the balloon */
   --balloon-text-width: 60%;            /* Width of the text box as % of card */
   --balloon-text-max-height: 40%;       /* Clips text if title is very long */
 
   /* --- TEXT STYLE --- */
-  --balloon-title-size: 1rem;           /* Font size of the post title */
+  --balloon-title-size: 1.5rem;           /* Font size of the post title */
   --balloon-title-weight: 700;          /* Font weight of the title */
   --balloon-title-color: #fff;          /* Default title color; overridden per balloon color below */
 
@@ -334,17 +334,22 @@ body {
   font-size: var(--balloon-title-size);
   font-weight: var(--balloon-title-weight);
   color: var(--balloon-title-color);
-  text-shadow: none;               /* no glow, no shadow */
+  text-shadow: var(--balloon-title-glow); /* contrasting glow for legibility; set per color class */
   margin: 0;
   line-height: 1.25;
 }
 
+/* Kill the dark-mode yellow hover glow in light mode */
+[data-theme="light"] .blog-card:hover .blog-card-title {
+  color: var(--balloon-title-color);
+  text-shadow: var(--balloon-title-glow);
+}
+
 [data-theme="light"] .blog-post-summary {
   font-family: system-ui, sans-serif;
-  font-size: 0.72rem;
-  color: var(--balloon-summary-color, rgba(255,255,255,0.85));
-  line-height: 1.55;
-  margin: 0;
+  font-size: 1.2 rem;
+  color: #000000;
+  margin-bottom: 1.4rem;
   text-shadow: none;
 }
 
@@ -354,15 +359,18 @@ body {
    Usage in index.html: <a class="blog-card balloon-red" href="...">
    Each sets the PNG and optionally overrides title/summary color.
    ------------------------------------------------------------------ */
-[data-theme="light"] .balloon-black  { --balloon-png: url('/blog/balloons/black_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-blue   { --balloon-png: url('/blog/balloons/blue_balloon.png');   --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-green  { --balloon-png: url('/blog/balloons/green_balloon.png');  --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.9);  }
-[data-theme="light"] .balloon-orange { --balloon-png: url('/blog/balloons/orange_balloon.png'); --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-pink   { --balloon-png: url('/blog/balloons/pink_balloon.png');   --balloon-title-color: #000000; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-purple { --balloon-png: url('/blog/balloons/purple_balloon.png'); --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-red    { --balloon-png: url('/blog/balloons/red_balloon.png');    --balloon-title-color: #fff; --balloon-summary-color: rgba(255,255,255,0.85); }
-[data-theme="light"] .balloon-white  { --balloon-png: url('/blog/balloons/white_balloon.png');  --balloon-title-color: #000000; --balloon-summary-color: rgba(0,0,0,0.7);         }
-[data-theme="light"] .balloon-yellow { --balloon-png: url('/blog/balloons/yellow_balloon.png'); --balloon-title-color: #000000; --balloon-summary-color: rgba(0,0,0,0.65);        }
+/* Dark balloons → white title → black glow outlines the text */
+/* Light balloons → dark title → white glow outlines the text  */
+/* Adjust the spread (last value) or opacity to taste          */
+[data-theme="light"] .balloon-black  { --balloon-png: url('/blog/balloons/black_balloon.png');  --balloon-title-color: #ffffff; --balloon-title-glow: 0 0 6px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.7); }
+[data-theme="light"] .balloon-blue   { --balloon-png: url('/blog/balloons/blue_balloon.png');   --balloon-title-color: #ffffff; --balloon-title-glow: 0 0 6px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.7); }
+[data-theme="light"] .balloon-green  { --balloon-png: url('/blog/balloons/green_balloon.png');  --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
+[data-theme="light"] .balloon-orange { --balloon-png: url('/blog/balloons/orange_balloon.png'); --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
+[data-theme="light"] .balloon-pink   { --balloon-png: url('/blog/balloons/pink_balloon.png');   --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
+[data-theme="light"] .balloon-purple { --balloon-png: url('/blog/balloons/purple_balloon.png'); --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
+[data-theme="light"] .balloon-red    { --balloon-png: url('/blog/balloons/red_balloon.png');    --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
+[data-theme="light"] .balloon-white  { --balloon-png: url('/blog/balloons/white_balloon.png');  --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
+[data-theme="light"] .balloon-yellow { --balloon-png: url('/blog/balloons/yellow_balloon.png'); --balloon-title-color: #000000; --balloon-title-glow: 0 0 6px rgba(255,255,255,0.95), 0 0 12px rgba(255,255,255,0.95); }
 
 
 /* ==================================================================
