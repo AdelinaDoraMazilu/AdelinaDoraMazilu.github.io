@@ -131,7 +131,7 @@
   flex-direction: column;
   gap: 6px;
   font-family: system-ui, sans-serif;
-  color: #fff;
+  color: #ffffff;
   transform: translateY(-50%);
   white-space: normal;
   word-wrap: break-word;
@@ -140,7 +140,7 @@
 
 .goal-desc {
   font-size: 1rem;
-  color: #659fdf;
+  color: #C637CD;
   line-height: 1.5;
   padding-left: 2px;
 }
@@ -148,7 +148,7 @@
 .goal-checkbox {
   width: 32px;
   height: 32px;
-  border: 3px solid #659fdf;
+  border: 3px solid #C637CD;
   border-radius: 6px;
   flex-shrink: 0;
   display: flex;
@@ -159,8 +159,8 @@
 }
 
 .goal-checkbox.checked {
-  background-color: #659fdf;
-  border-color: #659fdf;
+  background-color: #C637CD;
+  border-color: #C637CD;
 }
 
 .goal-checkbox.checked::after {
