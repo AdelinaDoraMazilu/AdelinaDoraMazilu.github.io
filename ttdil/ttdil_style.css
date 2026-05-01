@@ -183,11 +183,12 @@
 }
 
 [data-theme="light"] .goal-checkbox {
-  color: #ffffff;
+  border: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox.checked {
-  color: #ffffff;
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox.checked::after {
