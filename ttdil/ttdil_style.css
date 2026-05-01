@@ -20,7 +20,7 @@
   font-family: system-ui, sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #3e7de2;
+  color: #6894dc;
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.4;
@@ -140,7 +140,7 @@
 
 .goal-desc {
   font-size: 1rem;
-  color: #3e7de2;
+  color: #6894dc;
   line-height: 1.5;
   padding-left: 2px;
 }
@@ -148,7 +148,7 @@
 .goal-checkbox {
   width: 32px;
   height: 32px;
-  border: 3px solid #3e7de2;
+  border: 3px solid #6894dc;
   border-radius: 6px;
   flex-shrink: 0;
   display: flex;
@@ -159,8 +159,8 @@
 }
 
 .goal-checkbox.checked {
-  background-color: #3e7de2;
-  border-color: #3e7de2;
+  background-color: #6894dc;
+  border-color: #6894dc;
 }
 
 .goal-checkbox.checked::after {
