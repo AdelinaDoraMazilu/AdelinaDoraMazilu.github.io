@@ -12,7 +12,7 @@
   /* --- Stem column --- */
   --stem-width:             45%;   /* width of each repeating stem segment */
   --stem-right-offset:      2.5%;  /* shifts stem column left */
-  --stem-overlap:           -10;   /* px: how much each section overlaps the previous.
+  --stem-overlap:           -15;   /* px: how much each section overlaps the previous.
                                        Positive = closer together, negative = further apart */
   --stem-rotation:          -18;   /* degrees: rotates the stem image; neg = counter-clockwise */
   --stem-img-top-offset:    10;    /* % of image height: pulls stem image up to hide PNG padding */
