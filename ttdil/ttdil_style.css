@@ -59,7 +59,7 @@
   margin-right: auto;
 
   /* HORIZONTAL OFFSET: shifts the top image left/right to align with the stem */
-  transform: translateX(-5.2%); /* TUNE: negative = shift left, positive = shift right */
+  transform: translateX(1%); /* TUNE: negative = shift left, positive = shift right */
 
   position: relative;
 }
