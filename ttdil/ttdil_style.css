@@ -67,7 +67,7 @@
 }
 
 .orchid-flower {
-  position: relative;
+  position: absolute;
   pointer-events: none;
   z-index: 2 !important;
   width: 38%;                  /* TUNE: flower size relative to stem */
