@@ -23,9 +23,6 @@
   <div class="stem-stack" id="stemStack"></div>
 
   <script>
-    /* ================================================================
-       GOALS DATA
-       ================================================================ */
     const goals = [
       { id: 0,  title: 'Goal 1',  desc: 'Finish my Bachelor\'s degree by February 2027', checked: false },
       { id: 1,  title: 'Goal 2',  desc: 'Work a job that I like before starting my Master\'s degree', checked: false },
@@ -73,47 +70,6 @@
     ];
 
 
-    /* ================================================================
-       THEME CONFIG
-
-       TOP SECTION PARAMETERS (topSection):
-         widthPct          : width of the top image as % of viewport width
-         translateX        : horizontal shift in %, negative = left
-         marginBottomPx    : extra space between top image and first stem segment
-
-       STEM SECTION PARAMETERS (stemSection):
-         widthPct          : width of each stem segment as % of viewport
-         rightOffsetPct    : horizontal shift of the stem column; positive = shift left
-         overlapPx         : px the next segment overlaps the previous (negative margin-top).
-                             Increase to close gaps, decrease to add gaps.
-         stemRotationDeg   : rotation applied to orchid_stem.png so it looks straight.
-                             Negative = counter-clockwise.
-         imgTopOffsetPct   : pulls the stem IMAGE upward inside the section as a % of
-                             the image's own height. Use this when the PNG has lots of
-                             empty/background padding at the top — it closes the visible
-                             gap between stem segments without affecting section layout.
-                             0 = no offset. 30 = image shifts up by 30% of its height.
-
-       FLOWER PARAMETERS — flowerRight and flowerLeft are fully independent:
-         img               : path to the flower image for this side
-         topPct            : vertical centre of the flower as % of stem image height.
-                             0 = top, 100 = bottom. Can be negative to go above the image.
-         leftPct           : horizontal centre as % of stem image width.
-                             0 = left edge, 100 = right edge.
-         widthPct          : flower image width as % of stem section width
-         rotationDeg       : flower tilt. Positive = clockwise, negative = counter-clockwise.
-         goalSide          : 'left' | 'right' — which side of the viewport the goal text
-                             box appears on. Swap if text ends up on the wrong side.
-
-       GOAL TEXT PARAMETERS (goalLayout):
-         leftSideViewportPct   : left edge of goal box when goalSide === 'left', % of viewport
-         rightSideViewportPct  : left edge of goal box when goalSide === 'right', % of viewport
-         boxWidthViewportPct   : width of each goal text box as % of viewport width
-         mobileLeftPct         : overrides leftSideViewportPct on mobile (<= 768px)
-         mobileRightPct        : overrides rightSideViewportPct on mobile
-         mobileBoxWidthPct     : overrides boxWidthViewportPct on mobile
-       ================================================================ */
-
     const THEME_CONFIG = {
 
       /* ---- DARK MODE ------------------------------------------ */
@@ -130,15 +86,11 @@
         stemSection: {
           widthPct:        45,   /* TUNE: stem column width % of viewport */
           rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
-          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments —
-                                         moves sections closer/further as a whole */
+          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments */
           stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical; neg = counter-clockwise */
-          imgTopOffsetPct: 10,   /* TUNE: pulls the stem image up by this % of its own height,
-                                         closing visible gaps caused by empty PNG padding at the top.
-                                         Increase if there is still a gap; 0 to disable. */
+          imgTopOffsetPct: 10,   /* TUNE: pulls the stem image up by this % of its own height. */
         },
 
-        /* RIGHT flower — sits on the right branch of orchid_stem.png */
         flowerRight: {
           img:         '/ttdil/blue_orchid.png',
           topPct:      25,   /* TUNE: vertical centre % of stem height (neg = above image top) */
@@ -148,7 +100,6 @@
           goalSide:    'right', /* TUNE: 'left' or 'right' — which side goal text appears */
         },
 
-        /* LEFT flower — sits on the left branch of orchid_stem.png */
         flowerLeft: {
           img:         '/ttdil/blue_orchid.png',
           topPct:      65,   /* TUNE: vertical centre % of stem height */
@@ -187,7 +138,6 @@
           imgTopOffsetPct: 30,   /* TUNE: pulls the stem image up by this % of its own height */
         },
 
-        /* RIGHT flower */
         flowerRight: {
           img:         '/ttdil/white_orchid.png',
           topPct:      25,   /* TUNE: vertical centre % of stem height */
@@ -197,7 +147,6 @@
           goalSide:    'right',
         },
 
-        /* LEFT flower */
         flowerLeft: {
           img:         '/ttdil/white_orchid.png',
           topPct:      65,   /* TUNE: vertical centre % of stem height */
@@ -218,12 +167,6 @@
       },
     };
 
-
-    /* ================================================================
-       GOAL PAIRS
-       goalIdxA → flowerRight,  goalIdxB → flowerLeft
-       null = no goal rendered for that flower position.
-       ================================================================ */
     const sections = [
       { goalIdxA: null, goalIdxB: null },  // top section — decorative only
       { goalIdxA: 0,    goalIdxB: 1    },
@@ -299,12 +242,6 @@
         img.alt       = '';
         img.loading   = 'eager';
 
-        /* Pull the image upward inside the section to close gaps caused by
-          empty PNG padding at the top. This is independent of overlapPx —
-          overlapPx moves the section box, imgTopOffsetPct shifts the image
-          within the box. Both can be tuned separately.
-          We apply it as a negative margin-top after the image loads so we
-          know its rendered height. */
         if (!isTop && config.stemSection.imgTopOffsetPct) {
           function applyImgOffset() {
             if (img.offsetHeight > 0) {
@@ -322,9 +259,7 @@
         }
 
         if (!isTop && config.stemSection.stemRotationDeg !== 0) {
-          /* Wrap the img in a rotated div so the img itself stays untransformed.
-            This preserves correct offsetHeight/offsetWidth for flower positioning
-            and keeps z-index layering working for flower overlays. */
+
           const rotWrapper       = document.createElement('div');
           rotWrapper.className   = 'rot-wrapper';
           rotWrapper.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
@@ -335,7 +270,7 @@
         } else {
           section.appendChild(img);
         }
-        /* --- orchid flower images — right and left independently -- */
+
         if (!isTop) {
           [
             { cfg: config.flowerRight, cls: 'orchid-flower_right' },
@@ -343,7 +278,7 @@
           ].forEach(({ cfg, cls }) => {
             const flEl     = document.createElement('img');
             flEl.className = cls;
-            flEl.src       = cfg.img;       /* each side uses its own image path */
+            flEl.src       = cfg.img;       
             flEl.alt       = '';
             flEl.loading   = 'eager';
             flEl.style.width = cfg.widthPct + '%';
@@ -356,7 +291,6 @@
           });
         }
 
-        /* --- place flowers + goals once stem image has height ----- */
         function placeGoalsAndFlowers() {
           const imgH        = img.offsetHeight;
           const imgW        = img.offsetWidth;
@@ -365,7 +299,6 @@
           const gl          = config.goalLayout;
           const sectionLeft = section.getBoundingClientRect().left;
 
-          /* Position each flower image independently */
           section.querySelectorAll('.orchid-flower_right, .orchid-flower_left')
             .forEach(flEl => {
               const tPct = parseFloat(flEl.dataset.topPct);
@@ -379,7 +312,6 @@
               flEl.style.transform = `rotate(${rot}deg)`;
             });
 
-          /* Goal pairs: A → flowerRight config, B → flowerLeft config */
           section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
 
           [
@@ -425,7 +357,6 @@
           }
         }
 
-        /* Use naturalHeight check so cached-but-broken images don't hang */
         if (img.complete && img.naturalHeight > 0) {
           waitAndPlace();
         } else {
