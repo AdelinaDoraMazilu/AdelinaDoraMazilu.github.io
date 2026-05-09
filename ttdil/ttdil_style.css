@@ -97,6 +97,11 @@
   /* transform-origin: center center; */
 }
 
+.stem-section .rot-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
 
 /* ============================================================
    ORCHID FLOWER OVERLAYS
@@ -119,7 +124,11 @@
   transform-origin: center center;
   z-index: 2;
 }
-
+.orchid-flower_right,
+.orchid-flower_left {
+  z-index: 2;
+  position: absolute;
+}
 
 /* ============================================================
    GOAL OVERLAY — the checkbox + text bubble next to each flower
