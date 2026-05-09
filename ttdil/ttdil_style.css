@@ -92,7 +92,7 @@
 .stem-section img.stem-img {
   width: 100%;
   display: block;
-
+  z-index: 1;
   /* ROTATION: orchid_stem.png may need a slight rotation to appear straight.
      Positive = clockwise, negative = counter-clockwise.
      Also set transform-origin so the image rotates around its centre. */
@@ -120,6 +120,7 @@
      Positive = clockwise. */
   /* Individual per-flower rotation is applied via inline style in JS. */
   transform-origin: center center;
+  z-index: 2;
 }
 
 
