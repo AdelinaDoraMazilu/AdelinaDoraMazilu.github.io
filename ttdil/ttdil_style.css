@@ -1,79 +1,4 @@
-/* ============================================================
-   TUNING VARIABLES — edit these to adjust the layout.
-   The JS reads these at runtime; nothing positional lives in index.html.
-   ============================================================ */
-:root {
-  /* --- Top image --- */
-  --top-width:              45%;   /* width of the top flower image */
-  --top-right-offset:       3.8%;  /* shifts top image left */
-  --top-translate-x:        0;     /* horizontal shift of top image; 0 = none */
-  --top-margin-bottom:      0px;   /* gap below top image */
 
-  /* --- Stem column --- */
-  --stem-width:             45%;   /* width of each repeating stem segment */
-  --stem-right-offset:      2.5%;  /* shifts stem column left */
-  --stem-overlap:           -30;   /* px: how much stems overlap. + = closer together, - = further apart */
-  --stem-rotation:          -18;   /* degrees: rotates the stem image; neg = counter-clockwise */
-  --stem-img-top-offset:    10;    /* % of image height: pulls stem image up to hide PNG padding */
-
-  /* --- Right flower --- */
-  --flower-right-top:       25;    /* % of stem height: vertical centre of right flower */
-  --flower-right-left:      85;    /* % of stem width:  horizontal centre of right flower */
-  --flower-right-width:     50%;   /* width of right flower as % of stem section */
-  --flower-right-rotation:  0;     /* degrees: tilt of right flower */
-  --flower-right-goal-side: right; /* which side goal text appears: left or right */
-
-  /* --- Left flower --- */
-  --flower-left-top:        65;    /* % of stem height: vertical centre of left flower */
-  --flower-left-left:       10;    /* % of stem width:  horizontal centre of left flower */
-  --flower-left-width:      50%;   /* width of left flower as % of stem section */
-  --flower-left-rotation:   0;     /* degrees: tilt of left flower */
-  --flower-left-goal-side:  left;  /* which side goal text appears: left or right */
-
-  /* --- Goal text boxes (desktop) --- */
-  --goal-left-vp:           11;    /* % of viewport: left edge of 'left' side goal box */
-  --goal-right-vp:          73;    /* % of viewport: left edge of 'right' side goal box */
-  --goal-box-width:         14vw;  /* width of each goal text box */
-  --goal-font-size:         1rem;
-
-  /* --- Checkbox --- */
-  --checkbox-size:          32px;
-  --checkbox-color:         #659fdf;
-  --checkbox-tick:          #0b111b;
-}
-
-/* Light mode overrides */
-[data-theme="light"] {
-  --top-width:              40%;
-  --top-right-offset:       0%;
-  --top-translate-x:        -5.2;
-  --top-margin-bottom:      0px;
-
-  --stem-overlap:           40;
-  --stem-img-top-offset:    30;
-
-  --flower-right-top:       25;
-  --flower-right-left:      72;
-  --flower-right-width:     50%;
-  --flower-right-rotation:  0;
-
-  --flower-left-top:        65;
-  --flower-left-left:       22;
-  --flower-left-width:      50%;
-  --flower-left-rotation:   0;
-
-  --goal-left-vp:           11;
-  --goal-right-vp:          73;
-  --goal-box-width:         14vw;
-
-  --checkbox-color:         #ffffff;
-  --checkbox-tick:          var(--bg, #ffffff);
-}
-
-
-/* ============================================================
-   INTRO TEXT
-   ============================================================ */
 .ttdil-intro {
   text-align: center;
   padding: 3rem 2rem 0;
@@ -104,9 +29,6 @@
 }
 
 
-/* ============================================================
-   STEM STACK
-   ============================================================ */
 .stem-stack {
   position: relative;
   width: 100%;
@@ -114,34 +36,21 @@
 }
 
 
-/* ============================================================
-   TOP SECTION
-   ============================================================ */
 .stem-section.top-section {
-  width: var(--top-width);
   margin-left: auto;
   margin-right: auto;
-  right: var(--top-right-offset);
   position: relative;
-  margin-bottom: var(--top-margin-bottom);
 }
 
-
-/* ============================================================
-   REPEATING STEM SECTIONS
-   ============================================================ */
 .stem-section {
   position: relative;
-  width: 100%;
 }
 
 .stem-section.constrained {
-  width: var(--stem-width);
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  right: var(--stem-right-offset);
-  overflow: visible;
+  overflow: visible; /* lets flowers and goals extend outside the image box */
 }
 
 .stem-section img.stem-img {
@@ -157,30 +66,14 @@
   width: 100%;
 }
 
-
-/* ============================================================
-   ORCHID FLOWER OVERLAYS
-   ============================================================ */
-.orchid-flower_right {
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-  width: var(--flower-right-width);
-  transform-origin: center center;
-}
-
+.orchid-flower_right,
 .orchid-flower_left {
   position: absolute;
   pointer-events: none;
   z-index: 2;
-  width: var(--flower-left-width);
   transform-origin: center center;
 }
 
-
-/* ============================================================
-   GOAL OVERLAYS
-   ============================================================ */
 .goal-overlay {
   position: absolute;
   z-index: 3;
@@ -188,25 +81,27 @@
   flex-direction: column;
   gap: 6px;
   font-family: system-ui, sans-serif;
-  color: #fff;
   transform: translateY(-50%);
   white-space: normal;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  width: var(--goal-box-width);
 }
 
 .goal-desc {
-  font-size: var(--goal-font-size);
-  color: var(--checkbox-color);
+  font-size: 1rem;       /* TUNE: goal text size */
   line-height: 1.5;
   padding-left: 2px;
+  color: #659fdf;        /* TUNE: goal text colour (dark mode) */
+}
+
+[data-theme="light"] .goal-desc {
+  color: #ffffff;
 }
 
 .goal-checkbox {
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
-  border: 3px solid var(--checkbox-color);
+  width: 32px;           /* TUNE: checkbox size */
+  height: 32px;
+  border: 3px solid #659fdf; /* TUNE: checkbox border colour (dark mode) */
   border-radius: 6px;
   flex-shrink: 0;
   display: flex;
@@ -216,45 +111,49 @@
   align-self: flex-start;
 }
 
+[data-theme="light"] .goal-checkbox {
+  border-color: #ffffff;
+}
+
 .goal-checkbox.checked {
-  background-color: var(--checkbox-color);
-  border-color: var(--checkbox-color);
+  background-color: #659fdf; /* TUNE: checked fill colour (dark mode) */
+  border-color: #659fdf;
+}
+
+[data-theme="light"] .goal-checkbox.checked {
+  background-color: #ffffff;
+  border-color: #ffffff;
 }
 
 .goal-checkbox.checked::after {
   content: '';
   display: block;
-  width: calc(var(--checkbox-size) * 0.625);
-  height: calc(var(--checkbox-size) * 0.375);
-  border-left: 6px solid var(--checkbox-tick);
-  border-bottom: 6px solid var(--checkbox-tick);
+  width: 20px;
+  height: 12px;
+  border-left: 6px solid #0b111b; /* TUNE: tick colour (dark mode) */
+  border-bottom: 6px solid #0b111b;
   transform: rotate(-45deg) translateY(-4px) translateX(1px);
 }
 
+[data-theme="light"] .goal-checkbox.checked::after {
+  border-left-color: var(--bg, #ffffff);
+  border-bottom-color: var(--bg, #ffffff);
+}
 
-/* ============================================================
-   MOBILE
-   ============================================================ */
+
 @media (max-width: 768px) {
-  :root {
-    --top-width:              75%;
-    --top-right-offset:       0%;
-    --top-translate-x:        0;
-    --stem-width:             80%;
-    --stem-right-offset:      0%;
-    --stem-overlap:           80;
-    --flower-right-width:     50%;
-    --flower-left-width:      50%;
-    --goal-box-width:         18vw;
-    --goal-font-size:         0.7rem;
-    --checkbox-size:          22px;
+  .goal-desc {
+    font-size: 0.7rem;
   }
 
-  .stem-section.top-section {
-    transform: none !important;
+  .goal-checkbox {
+    width: 22px;
+    height: 22px;
   }
 
   .goal-checkbox.checked::after {
+    width: 13px;
+    height: 8px;
     border-left-width: 4px;
     border-bottom-width: 4px;
     transform: rotate(-45deg) translateY(-3px) translateX(1px);
