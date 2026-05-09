@@ -60,7 +60,7 @@
 
   /* HORIZONTAL OFFSET: shifts the top image left/right to align with the stem */
   transform: translateX(-500%); /* TUNE: negative = shift left, positive = shift right */
-
+  left: 5%;                   /* TUNE: fine-tune horizontal position of top image */
   position: relative;
 }
 
