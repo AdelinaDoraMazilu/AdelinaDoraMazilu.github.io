@@ -82,11 +82,11 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  overflow: visible;           /* allows flowers and goals outside the image bounds to show */
 
   /* HORIZONTAL OFFSET: fine-tunes left/right alignment of every stem segment.
      Useful when the orchid image has asymmetric padding. */
   right: 2.5%;                 /* TUNE: shifts entire stem column left (+) / right (-) */
-  overflow: visible;           /* allows stem segments to overlap if needed */
 }
 
 .stem-section img.stem-img {

@@ -88,6 +88,11 @@
                              Increase to close gaps, decrease to add gaps.
          stemRotationDeg   : rotation applied to orchid_stem.png so it looks straight.
                              Negative = counter-clockwise.
+         imgTopOffsetPct   : pulls the stem IMAGE upward inside the section as a % of
+                             the image's own height. Use this when the PNG has lots of
+                             empty/background padding at the top — it closes the visible
+                             gap between stem segments without affecting section layout.
+                             0 = no offset. 30 = image shifts up by 30% of its height.
 
        FLOWER PARAMETERS — flowerRight and flowerLeft are fully independent:
          img               : path to the flower image for this side
@@ -125,8 +130,12 @@
         stemSection: {
           widthPct:        45,   /* TUNE: stem column width % of viewport */
           rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
-          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments */
+          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments —
+                                         moves sections closer/further as a whole */
           stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical; neg = counter-clockwise */
+          imgTopOffsetPct: 30,   /* TUNE: pulls the stem image up by this % of its own height,
+                                         closing visible gaps caused by empty PNG padding at the top.
+                                         Increase if there is still a gap; 0 to disable. */
         },
 
         /* RIGHT flower — sits on the right branch of orchid_stem.png */
@@ -173,8 +182,9 @@
         stemSection: {
           widthPct:        45,   /* TUNE: stem column width % of viewport */
           rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
-          overlapPx:       90,   /* TUNE: px overlap between consecutive stem segments */
+          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments */
           stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical */
+          imgTopOffsetPct: 30,   /* TUNE: pulls the stem image up by this % of its own height */
         },
 
         /* RIGHT flower */
@@ -292,6 +302,28 @@
         if (!isTop && config.stemSection.stemRotationDeg !== 0) {
           img.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
           img.style.transformOrigin = 'center center';
+        }
+
+        /* Pull the image upward inside the section to close gaps caused by
+           empty PNG padding at the top. This is independent of overlapPx —
+           overlapPx moves the section box, imgTopOffsetPct shifts the image
+           within the box. Both can be tuned separately.
+           We apply it as a negative margin-top after the image loads so we
+           know its rendered height. */
+        if (!isTop && config.stemSection.imgTopOffsetPct) {
+          function applyImgOffset() {
+            if (img.offsetHeight > 0) {
+              const offset = (config.stemSection.imgTopOffsetPct / 100) * img.offsetHeight;
+              img.style.marginTop = `-${offset}px`;
+            } else {
+              requestAnimationFrame(applyImgOffset);
+            }
+          }
+          if (img.complete && img.naturalHeight > 0) {
+            applyImgOffset();
+          } else {
+            img.addEventListener('load', applyImgOffset);
+          }
         }
 
         section.appendChild(img);
