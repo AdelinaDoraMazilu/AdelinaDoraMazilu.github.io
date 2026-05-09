@@ -75,154 +75,135 @@
 
     /* ================================================================
        THEME CONFIG
-       Each theme defines paths and all the tuning parameters for the
-       top image and each repeating stem section.
 
-       HOW IT WORKS:
-         - topImg      : path to the flower-top / cap image
-         - stemImg     : path to the repeating stem image
-         - flowerImg   : path to the orchid blossom image overlaid on the stem
+       TOP SECTION PARAMETERS (topSection):
+         widthPct          : width of the top image as % of viewport width
+         translateX        : horizontal shift in %, negative = left
+         marginBottomPx    : extra space between top image and first stem segment
 
-         TOP SECTION PARAMETERS (topSection):
-           widthPct          : width of the top image as % of viewport width
-           translateX        : horizontal shift in %, negative = left
-           marginBottomPx    : extra space between top image and first stem segment
+       STEM SECTION PARAMETERS (stemSection):
+         widthPct          : width of each stem segment as % of viewport
+         rightOffsetPct    : horizontal shift of the stem column; positive = shift left
+         overlapPx         : px the next segment overlaps the previous (negative margin-top).
+                             Increase to close gaps, decrease to add gaps.
+         stemRotationDeg   : rotation applied to orchid_stem.png so it looks straight.
+                             Negative = counter-clockwise.
 
-         STEM SECTION PARAMETERS (stemSection):
-           widthPct          : width of each stem segment as % of viewport
-           rightOffsetPct    : horizontal shift of the stem column; positive = shift left
-           overlapPx         : how many px the next segment overlaps the previous one
-                               (negative margin-top). Increase to close gaps, decrease to
-                               add gaps.
-           stemRotationDeg   : rotation applied to the stem img so it looks straight.
-                               Negative = counter-clockwise (use e.g. -30 if the raw
-                               image is tilted clockwise).
+       FLOWER PARAMETERS — flowerRight and flowerLeft are fully independent:
+         img               : path to the flower image for this side
+         topPct            : vertical centre of the flower as % of stem image height.
+                             0 = top, 100 = bottom. Can be negative to go above the image.
+         leftPct           : horizontal centre as % of stem image width.
+                             0 = left edge, 100 = right edge.
+         widthPct          : flower image width as % of stem section width
+         rotationDeg       : flower tilt. Positive = clockwise, negative = counter-clockwise.
+         goalSide          : 'left' | 'right' — which side of the viewport the goal text
+                             box appears on. Swap if text ends up on the wrong side.
 
-         FLOWER OVERLAY PARAMETERS (flowers array — two entries per stem):
-           topPct            : vertical position of the flower centre as % of stem height.
-                               0 = top of image, 100 = bottom.
-           leftPct           : horizontal position as % of stem width.
-                               0 = left edge, 100 = right edge.
-           widthPct          : width of the flower image as % of stem section width.
-           rotationDeg       : rotation of the flower image. Use to tilt it naturally
-                               against the stem. Negative = counter-clockwise.
-           goalSide          : 'left' | 'right'  — which side of the viewport the goal
-                               text box appears on. Swap if goals end up on the wrong side.
-
-         GOAL TEXT PARAMETERS (goalLayout):
-           leftSideViewportPct   : left edge of goal box when goalSide === 'left',
-                                   as % of viewport width.
-           rightSideViewportPct  : left edge of goal box when goalSide === 'right',
-                                   as % of viewport width.
-           boxWidthViewportPct   : width of each goal text box as % of viewport width.
-           mobileLeftPct         : overrides leftSideViewportPct on mobile (<= 768 px)
-           mobileRightPct        : overrides rightSideViewportPct on mobile
-           mobileBoxWidthPct     : overrides boxWidthViewportPct on mobile
+       GOAL TEXT PARAMETERS (goalLayout):
+         leftSideViewportPct   : left edge of goal box when goalSide === 'left', % of viewport
+         rightSideViewportPct  : left edge of goal box when goalSide === 'right', % of viewport
+         boxWidthViewportPct   : width of each goal text box as % of viewport width
+         mobileLeftPct         : overrides leftSideViewportPct on mobile (<= 768px)
+         mobileRightPct        : overrides rightSideViewportPct on mobile
+         mobileBoxWidthPct     : overrides boxWidthViewportPct on mobile
        ================================================================ */
 
     const THEME_CONFIG = {
 
       /* ---- DARK MODE ------------------------------------------ */
       dark: {
-        topImg:    '/ttdil/blue_top.png',
-        stemImg:   '/ttdil/orchid_stem.png',
-        flowerImg_right: '/ttdil/blue_orchid.png',
-        flowerImg_left: '/ttdil/blue_orchid.png',
+        topImg:  '/ttdil/blue_top.png',
+        stemImg: '/ttdil/orchid_stem.png',
 
         topSection: {
-          widthPct:        40,    /* TUNE: top image width % of viewport */
-          translateX:      -5.2,  /* TUNE: horizontal shift % (neg = left) */
-          marginBottomPx:  0,     /* TUNE: gap between top and first stem */
+          widthPct:       40,    /* TUNE: top image width % of viewport */
+          translateX:     -5.2,  /* TUNE: horizontal shift % (neg = left) */
+          marginBottomPx: 0,     /* TUNE: gap between top image and first stem */
         },
 
         stemSection: {
-          widthPct:        45,    /* TUNE: stem column width % of viewport */
-          rightOffsetPct:  2.5,   /* TUNE: column shifts left by this % */
-          overlapPx:       40,   /* TUNE: px overlap between stem segments */
-          stemRotationDeg: -18,   /* TUNE: rotate stem image so it looks vertical;
-                                           negative = counter-clockwise */
+          widthPct:        45,   /* TUNE: stem column width % of viewport */
+          rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
+          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments */
+          stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical; neg = counter-clockwise */
         },
 
-        /* Two flowers per stem section.
-           flowers[0] = the flower on the RIGHT branch of the stem image
-           flowers[1] = the flower on the LEFT  branch of the stem image
-           (swap topPct / leftPct if your image has them the other way around) */
-        flowerImg_right: 
-          {
-            topPct:      -47,   /* TUNE: vertical pos % of stem img height */
-            leftPct:     85,   /* TUNE: horizontal pos % of stem img width */
-            widthPct:    50,   /* TUNE: flower width % of stem section width */
-            rotationDeg: 0,   /* TUNE: flower tilt; pos = clockwise */
-            goalSide:    'right', /* TUNE: which side goal text appears */
-          },
+        /* RIGHT flower — sits on the right branch of orchid_stem.png */
+        flowerRight: {
+          img:         '/ttdil/blue_orchid.png',
+          topPct:      -47,  /* TUNE: vertical centre % of stem height (neg = above image top) */
+          leftPct:     85,   /* TUNE: horizontal centre % of stem width */
+          widthPct:    50,   /* TUNE: flower width % of stem section width */
+          rotationDeg: 0,    /* TUNE: flower tilt; pos = clockwise */
+          goalSide:    'right', /* TUNE: 'left' or 'right' — which side goal text appears */
+        },
 
-          flowerImg_left:
-          {
-            topPct:      65,
-            leftPct:     10,
-            widthPct:    50,
-            rotationDeg: 0,
-            goalSide:    'left',
-          },
-        
+        /* LEFT flower — sits on the left branch of orchid_stem.png */
+        flowerLeft: {
+          img:         '/ttdil/blue_orchid.png',
+          topPct:      65,   /* TUNE: vertical centre % of stem height */
+          leftPct:     10,   /* TUNE: horizontal centre % of stem width */
+          widthPct:    50,   /* TUNE: flower width % of stem section width */
+          rotationDeg: 0,    /* TUNE: flower tilt */
+          goalSide:    'left',
+        },
 
         goalLayout: {
-          /* Desktop goal text box positions as % of viewport width */
-          leftSideViewportPct:   11,   /* TUNE: left edge of 'left' goal box */
-          rightSideViewportPct:  73,   /* TUNE: left edge of 'right' goal box */
-          boxWidthViewportPct:   14,   /* TUNE: width of each goal text box */
-          /* Mobile overrides */
-          mobileLeftPct:         8,
-          mobileRightPct:        70,
-          mobileBoxWidthPct:     18,
+          leftSideViewportPct:  11,  /* TUNE: left edge of 'left' goal box, % of viewport */
+          rightSideViewportPct: 73,  /* TUNE: left edge of 'right' goal box, % of viewport */
+          boxWidthViewportPct:  14,  /* TUNE: width of each goal text box, % of viewport */
+          mobileLeftPct:        8,
+          mobileRightPct:       70,
+          mobileBoxWidthPct:    18,
         },
       },
 
       /* ---- LIGHT MODE ----------------------------------------- */
       light: {
-        topImg:    '/ttdil/white_top.png',
-        stemImg:   '/ttdil/orchid_stem.png',
-        flowerImg_right: '/ttdil/white_orchid.png',
-        flowerImg_left: '/ttdil/white_orchid.png',
+        topImg:  '/ttdil/white_top.png',
+        stemImg: '/ttdil/orchid_stem.png',
 
         topSection: {
-          widthPct:        40,    /* TUNE: top image width % of viewport */
-          translateX:      -5.2,  /* TUNE: horizontal shift % (neg = left) */
-          marginBottomPx:  0,     /* TUNE: gap between top and first stem */
+          widthPct:       40,    /* TUNE: top image width % of viewport */
+          translateX:     -5.2,  /* TUNE: horizontal shift % (neg = left) */
+          marginBottomPx: 0,     /* TUNE: gap between top image and first stem */
         },
 
         stemSection: {
-          widthPct:        45,    /* TUNE: stem column width % of viewport */
-          rightOffsetPct:  2.5,   /* TUNE: column shifts left by this % */
-          overlapPx:       40,   /* TUNE: px overlap between stem segments */
-          stemRotationDeg: -18,   /* TUNE: rotate stem image so it looks vertical */
+          widthPct:        45,   /* TUNE: stem column width % of viewport */
+          rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
+          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments */
+          stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical */
         },
 
-        flowerImg_right:
-          {
-            topPct:      25,   /* TUNE: vertical pos % of stem img height */
-            leftPct:     72,   /* TUNE: horizontal pos % of stem img width */
-            widthPct:    50,   /* TUNE: flower width % of stem section width */
-            rotationDeg: 0,   /* TUNE: flower tilt */
-            goalSide:    'right',
-          },
-          flowerImg_left:
-          {
-            topPct:      65,
-            leftPct:     22,
-            widthPct:    50,
-            rotationDeg: 0,
-            goalSide:    'left',
-          },
-        
+        /* RIGHT flower */
+        flowerRight: {
+          img:         '/ttdil/white_orchid.png',
+          topPct:      25,   /* TUNE: vertical centre % of stem height */
+          leftPct:     72,   /* TUNE: horizontal centre % of stem width */
+          widthPct:    50,   /* TUNE: flower width % of stem section width */
+          rotationDeg: 0,    /* TUNE: flower tilt */
+          goalSide:    'right',
+        },
+
+        /* LEFT flower */
+        flowerLeft: {
+          img:         '/ttdil/white_orchid.png',
+          topPct:      65,   /* TUNE: vertical centre % of stem height */
+          leftPct:     22,   /* TUNE: horizontal centre % of stem width */
+          widthPct:    50,   /* TUNE: flower width % of stem section width */
+          rotationDeg: 0,    /* TUNE: flower tilt */
+          goalSide:    'left',
+        },
 
         goalLayout: {
-          leftSideViewportPct:   11,
-          rightSideViewportPct:  73,
-          boxWidthViewportPct:   14,
-          mobileLeftPct:         8,
-          mobileRightPct:        70,
-          mobileBoxWidthPct:     18,
+          leftSideViewportPct:  11,
+          rightSideViewportPct: 73,
+          boxWidthViewportPct:  14,
+          mobileLeftPct:        8,
+          mobileRightPct:       70,
+          mobileBoxWidthPct:    18,
         },
       },
     };
@@ -230,43 +211,38 @@
 
     /* ================================================================
        GOAL PAIRS
-       Each entry in the sections array pairs two goalIdx values with the
-       two flower positions defined in THEME_CONFIG.[theme].flowers.
-       goalIdx matches the index in the goals[] array above.
-       null = no goal for that flower (e.g. the decorative top section).
+       goalIdxA → flowerRight,  goalIdxB → flowerLeft
+       null = no goal rendered for that flower position.
        ================================================================ */
     const sections = [
-      { goalIdxA: null, goalIdxB: null},  // top section: only right flower has a goal
-      { goalIdxA: 0,    goalIdxB: 1  },
-      { goalIdxA: 2,    goalIdxB: 3  },
-      { goalIdxA: 4,    goalIdxB: 5  },
-      { goalIdxA: 6,    goalIdxB: 7  },
-      { goalIdxA: 8,    goalIdxB: 9  },
-      { goalIdxA: 10,   goalIdxB: 11 },
-      { goalIdxA: 12,   goalIdxB: 13 },
-      { goalIdxA: 14,   goalIdxB: 15 },
-      { goalIdxA: 16,   goalIdxB: 17 },
-      { goalIdxA: 18,   goalIdxB: 19 },
-      { goalIdxA: 20,   goalIdxB: 21 },
-      { goalIdxA: 22,   goalIdxB: 23 },
-      { goalIdxA: 24,   goalIdxB: 25 },
-      { goalIdxA: 26,   goalIdxB: 27 },
-      { goalIdxA: 28,   goalIdxB: 29 },
-      { goalIdxA: 30,   goalIdxB: 31 },
-      { goalIdxA: 32,   goalIdxB: 33 },
-      { goalIdxA: 34,   goalIdxB: 35 },
-      { goalIdxA: 36,   goalIdxB: 37 },
-      { goalIdxA: 38,   goalIdxB: 39 },
-      { goalIdxA: 40,   goalIdxB: 41 },
-      { goalIdxA: 42,   goalIdxB: null}, // last section: only left flower has a goal
+      { goalIdxA: null, goalIdxB: null },  // top section — decorative only
+      { goalIdxA: 0,    goalIdxB: 1    },
+      { goalIdxA: 2,    goalIdxB: 3    },
+      { goalIdxA: 4,    goalIdxB: 5    },
+      { goalIdxA: 6,    goalIdxB: 7    },
+      { goalIdxA: 8,    goalIdxB: 9    },
+      { goalIdxA: 10,   goalIdxB: 11   },
+      { goalIdxA: 12,   goalIdxB: 13   },
+      { goalIdxA: 14,   goalIdxB: 15   },
+      { goalIdxA: 16,   goalIdxB: 17   },
+      { goalIdxA: 18,   goalIdxB: 19   },
+      { goalIdxA: 20,   goalIdxB: 21   },
+      { goalIdxA: 22,   goalIdxB: 23   },
+      { goalIdxA: 24,   goalIdxB: 25   },
+      { goalIdxA: 26,   goalIdxB: 27   },
+      { goalIdxA: 28,   goalIdxB: 29   },
+      { goalIdxA: 30,   goalIdxB: 31   },
+      { goalIdxA: 32,   goalIdxB: 33   },
+      { goalIdxA: 34,   goalIdxB: 35   },
+      { goalIdxA: 36,   goalIdxB: 37   },
+      { goalIdxA: 38,   goalIdxB: 39   },
+      { goalIdxA: 40,   goalIdxB: 41   },
+      { goalIdxA: 42,   goalIdxB: null },  // last section — only right flower has a goal
     ];
 
 
     /* ================================================================
        THEME DETECTION
-       Reads the data-theme attribute from <html>. Your existing
-       scripts.js presumably toggles this; we just read it here.
-       Falls back to 'dark' if the attribute is missing.
        ================================================================ */
     function getCurrentTheme() {
       return document.documentElement.getAttribute('data-theme') === 'light'
@@ -277,24 +253,22 @@
 
     /* ================================================================
        BUILD / REBUILD THE STACK
-       Called once on load and again whenever the theme changes.
        ================================================================ */
     function buildStack() {
-      const stack = document.getElementById('stemStack');
-      stack.innerHTML = ''; // clear before rebuild
+      const stack    = document.getElementById('stemStack');
+      stack.innerHTML = '';
 
-      const theme  = getCurrentTheme();
-      const config = THEME_CONFIG[theme];
+      const theme    = getCurrentTheme();
+      const config   = THEME_CONFIG[theme];
       const isMobile = window.innerWidth <= 768;
 
       sections.forEach((sec, si) => {
         const isTop = si === 0;
 
-        /* --- create section wrapper -------------------------------- */
-        const section = document.createElement('div');
+        /* --- section wrapper -------------------------------------- */
+        const section     = document.createElement('div');
         section.className = 'stem-section' + (isTop ? ' top-section' : ' constrained');
 
-        /* Apply width and position from config */
         if (isTop) {
           section.style.width     = config.topSection.widthPct + '%';
           section.style.transform = `translateX(${config.topSection.translateX}%)`;
@@ -304,22 +278,17 @@
         } else {
           section.style.width     = config.stemSection.widthPct + '%';
           section.style.right     = config.stemSection.rightOffsetPct + '%';
-
-          /* Overlap: negative margin-top pulls this section up over the previous one */
-          const overlap = isMobile ? 80 : config.stemSection.overlapPx;
+          const overlap           = isMobile ? 80 : config.stemSection.overlapPx;
           section.style.marginTop = `-${overlap}px`;
         }
 
-        /* --- stem image -------------------------------------------- */
-        const img = document.createElement('img');
+        /* --- stem / top image ------------------------------------- */
+        const img     = document.createElement('img');
         img.className = 'stem-img';
-        /* Top section uses topImg, all others use stemImg */
-        img.src     = isTop ? config.topImg : config.stemImg;
-        img.alt     = '';
-        img.loading = 'eager';
+        img.src       = isTop ? config.topImg : config.stemImg;
+        img.alt       = '';
+        img.loading   = 'eager';
 
-        /* Rotate the stem image if configured.
-           Only applies to stem sections (not the top image). */
         if (!isTop && config.stemSection.stemRotationDeg !== 0) {
           img.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
           img.style.transformOrigin = 'center center';
@@ -327,94 +296,80 @@
 
         section.appendChild(img);
 
-        /* --- orchid flower overlays -------------------------------- */
-        /* Only stem sections (not the top) get flower overlays.
-           The top image already has the blossom baked in. */
+        /* --- orchid flower images — right and left independently -- */
         if (!isTop) {
-          config.flowers.forEach(flowerCfg => {
-            const flowerEl = document.createElement('img');
-            flowerEl.className = 'orchid-flower';
-            flowerEl.src       = config.flowerImg;
-            flowerEl.alt       = '';
-            flowerEl.loading   = 'eager';
+          [
+            { cfg: config.flowerRight, cls: 'orchid-flower_right' },
+            { cfg: config.flowerLeft,  cls: 'orchid-flower_left'  },
+          ].forEach(({ cfg, cls }) => {
+            const flEl     = document.createElement('img');
+            flEl.className = cls;
+            flEl.src       = cfg.img;       /* each side uses its own image path */
+            flEl.alt       = '';
+            flEl.loading   = 'eager';
+            flEl.style.width = cfg.widthPct + '%';
 
-            /* Width as % of the section */
-            flowerEl.style.width = flowerCfg.widthPct + '%';
+            flEl.dataset.topPct  = cfg.topPct;
+            flEl.dataset.leftPct = cfg.leftPct;
+            flEl.dataset.rot     = cfg.rotationDeg;
 
-            /* Position is resolved after the section has rendered height.
-               We attach a callback via the image load / rAF chain. */
-            flowerEl.dataset.topPct  = flowerCfg.topPct;
-            flowerEl.dataset.leftPct = flowerCfg.leftPct;
-            flowerEl.dataset.rot     = flowerCfg.rotationDeg;
-
-            section.appendChild(flowerEl);
+            section.appendChild(flEl);
           });
         }
 
-        /* --- goal text overlays ------------------------------------ */
+        /* --- place flowers + goals once stem image has height ----- */
         function placeGoalsAndFlowers() {
-          const imgH       = img.offsetHeight;
-          const imgW       = img.offsetWidth;
-          const screenW    = window.innerWidth;
-          const isMob      = screenW <= 768;
-          const gl         = config.goalLayout;
+          const imgH        = img.offsetHeight;
+          const imgW        = img.offsetWidth;
+          const screenW     = window.innerWidth;
+          const isMob       = screenW <= 768;
+          const gl          = config.goalLayout;
           const sectionLeft = section.getBoundingClientRect().left;
 
-          /* Position flower images */
-          section.querySelectorAll('.orchid-flower').forEach((flEl, fi) => {
-            const tPct   = parseFloat(flEl.dataset.topPct);
-            const lPct   = parseFloat(flEl.dataset.leftPct);
-            const rot    = parseFloat(flEl.dataset.rot);
-            const flW    = flEl.offsetWidth;
-            const flH    = flEl.offsetHeight;
+          /* Position each flower image independently */
+          section.querySelectorAll('.orchid-flower_right, .orchid-flower_left')
+            .forEach(flEl => {
+              const tPct = parseFloat(flEl.dataset.topPct);
+              const lPct = parseFloat(flEl.dataset.leftPct);
+              const rot  = parseFloat(flEl.dataset.rot);
+              const flW  = flEl.offsetWidth;
+              const flH  = flEl.offsetHeight;
 
-            /* top/left position the flower's top-left corner;
-               we shift back by half its size so the anchor is its centre */
-            flEl.style.top       = ((tPct / 100) * imgH - flH / 2) + 'px';
-            flEl.style.left      = ((lPct / 100) * imgW - flW / 2) + 'px';
-            flEl.style.transform = `rotate(${rot}deg)`;
-          });
+              flEl.style.top       = ((tPct / 100) * imgH - flH / 2) + 'px';
+              flEl.style.left      = ((lPct / 100) * imgW - flW / 2) + 'px';
+              flEl.style.transform = `rotate(${rot}deg)`;
+            });
 
-          /* Pair of goals for this section */
-          const goalPairs = [
-            { idx: sec.goalIdxA, flowerCfg: config.flowers[0] },
-            { idx: sec.goalIdxB, flowerCfg: config.flowers[1] },
-          ];
-
-          /* Remove any previously placed goal overlays */
+          /* Goal pairs: A → flowerRight config, B → flowerLeft config */
           section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
 
-          goalPairs.forEach(({ idx, flowerCfg }) => {
+          [
+            { idx: sec.goalIdxA, flowerCfg: config.flowerRight },
+            { idx: sec.goalIdxB, flowerCfg: config.flowerLeft  },
+          ].forEach(({ idx, flowerCfg }) => {
             if (idx === null || idx === undefined) return;
             const goal = goals[idx];
             if (!goal) return;
 
-            const overlay = document.createElement('div');
+            const overlay     = document.createElement('div');
             overlay.className = 'goal-overlay';
 
-            /* Vertical position: match the flower's vertical centre */
-            const topPx = (flowerCfg.topPct / 100) * imgH;
-            overlay.style.top = topPx + 'px';
+            overlay.style.top = ((flowerCfg.topPct / 100) * imgH) + 'px';
 
-            /* Horizontal position: left vs right side of viewport */
-            const side = flowerCfg.goalSide;
-            if (side === 'left') {
-              const leftVP = isMob ? gl.mobileLeftPct : gl.leftSideViewportPct;
-              const boxW   = isMob ? gl.mobileBoxWidthPct : gl.boxWidthViewportPct;
-              overlay.style.left  = (screenW * (leftVP / 100) - sectionLeft) + 'px';
-              overlay.style.width = (screenW * (boxW   / 100)) + 'px';
-            } else {
-              const leftVP = isMob ? gl.mobileRightPct : gl.rightSideViewportPct;
-              const boxW   = isMob ? gl.mobileBoxWidthPct : gl.boxWidthViewportPct;
-              overlay.style.left  = (screenW * (leftVP / 100) - sectionLeft) + 'px';
-              overlay.style.width = (screenW * (boxW   / 100)) + 'px';
-            }
+            const side   = flowerCfg.goalSide;
+            const leftVP = side === 'left'
+              ? (isMob ? gl.mobileLeftPct  : gl.leftSideViewportPct)
+              : (isMob ? gl.mobileRightPct : gl.rightSideViewportPct);
+            const boxW   = isMob ? gl.mobileBoxWidthPct : gl.boxWidthViewportPct;
 
-            const checkbox = document.createElement('div');
+            overlay.style.left  = (screenW * (leftVP / 100) - sectionLeft) + 'px';
+            overlay.style.width = (screenW * (boxW   / 100)) + 'px';
+
+            const checkbox     = document.createElement('div');
             checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
 
-            const desc = document.createElement('div');
-            desc.className  = 'goal-desc';
+            const desc       = document.createElement('div');
+            desc.className   = 'goal-desc';
             desc.textContent = goal.desc;
 
             overlay.appendChild(checkbox);
@@ -423,7 +378,6 @@
           });
         }
 
-        /* Wait for the stem image to have rendered height before positioning */
         function waitAndPlace() {
           if (img.offsetHeight > 0) {
             placeGoalsAndFlowers();
@@ -432,24 +386,23 @@
           }
         }
 
-        if (img.complete) {
+        /* Use naturalHeight check so cached-but-broken images don't hang */
+        if (img.complete && img.naturalHeight > 0) {
           waitAndPlace();
         } else {
           img.addEventListener('load', waitAndPlace);
+          img.addEventListener('error', () => console.warn('Failed to load image:', img.src));
         }
 
         stack.appendChild(section);
       });
     }
 
-    /* Initial build */
     buildStack();
 
-    /* Re-layout on resize */
     window.addEventListener('resize', buildStack);
 
-    /* Re-build when theme toggles (listens for attribute changes on <html>) */
-    const themeObserver = new MutationObserver((mutations) => {
+    const themeObserver = new MutationObserver(mutations => {
       mutations.forEach(m => {
         if (m.attributeName === 'data-theme') buildStack();
       });

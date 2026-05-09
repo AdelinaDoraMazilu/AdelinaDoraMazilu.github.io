@@ -20,9 +20,10 @@
   font-family: system-ui, sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #6894dc;
+  color: #659fdf;
   max-width: 800px;
   margin: 0 auto;
+  margin-top: 1rem;
   line-height: 1.4;
 }
 
@@ -31,7 +32,7 @@
 }
 
 [data-theme="light"] .ttdil-subintro {
-  color: #ffffff;
+  color: #919191;
 }
 
 
@@ -106,7 +107,7 @@
    positions.
    ============================================================ */
 
-.orchid-flower_left {
+.orchid-flower {
   position: absolute;
   pointer-events: none;
 
@@ -120,19 +121,6 @@
   transform-origin: center center;
 }
 
-.orchid-flower_right {
-  position: absolute;
-  pointer-events: none;
-
-  /* SIZE: width of each orchid flower image as a percentage of its
-     parent stem section's width. */
-  width: 38%;                  /* TUNE: flower size relative to stem */
-
-  /* ROTATION: rotate each flower so it looks natural against the stem.
-     Positive = clockwise. */
-  /* Individual per-flower rotation is applied via inline style in JS. */
-  transform-origin: center center;
-}
 
 /* ============================================================
    GOAL OVERLAY — the checkbox + text bubble next to each flower
@@ -144,7 +132,7 @@
   flex-direction: column;
   gap: 6px;
   font-family: system-ui, sans-serif;
-  color: #ffffff;
+  color: #fff;
   transform: translateY(-50%);
   white-space: normal;
   word-wrap: break-word;
@@ -153,7 +141,7 @@
 
 .goal-desc {
   font-size: 1rem;
-  color: #6894dc;
+  color: #659fdf;
   line-height: 1.5;
   padding-left: 2px;
 }
@@ -161,7 +149,7 @@
 .goal-checkbox {
   width: 32px;
   height: 32px;
-  border: 3px solid #6894dc;
+  border: 3px solid #659fdf;
   border-radius: 6px;
   flex-shrink: 0;
   display: flex;
@@ -172,8 +160,8 @@
 }
 
 .goal-checkbox.checked {
-  background-color: #6894dc;
-  border-color: #6894dc;
+  background-color: #659fdf;
+  border-color: #659fdf;
 }
 
 .goal-checkbox.checked::after {
@@ -196,12 +184,11 @@
 }
 
 [data-theme="light"] .goal-checkbox {
-  border: #ffffff;
+  color: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox.checked {
-  background-color: #ffffff;
-  border-color: #ffffff;
+  color: #ffffff;
 }
 
 [data-theme="light"] .goal-checkbox.checked::after {
@@ -229,7 +216,7 @@
     transform: none !important;
   }
 
-  .orchid-flower_left, .orchid-flower_right {
+  .orchid-flower {
     width: 50% !important;    /* TUNE mobile: flower overlay size */
   }
 
