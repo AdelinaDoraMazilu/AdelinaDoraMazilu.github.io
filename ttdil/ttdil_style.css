@@ -106,7 +106,7 @@
    positions.
    ============================================================ */
 
-.orchid-flower {
+.orchid-flower_left {
   position: absolute;
   pointer-events: none;
 
@@ -120,6 +120,19 @@
   transform-origin: center center;
 }
 
+.orchid-flower_right {
+  position: absolute;
+  pointer-events: none;
+
+  /* SIZE: width of each orchid flower image as a percentage of its
+     parent stem section's width. */
+  width: 38%;                  /* TUNE: flower size relative to stem */
+
+  /* ROTATION: rotate each flower so it looks natural against the stem.
+     Positive = clockwise. */
+  /* Individual per-flower rotation is applied via inline style in JS. */
+  transform-origin: center center;
+}
 
 /* ============================================================
    GOAL OVERLAY — the checkbox + text bubble next to each flower
@@ -216,7 +229,7 @@
     transform: none !important;
   }
 
-  .orchid-flower {
+  .orchid-flower_left, .orchid-flower_right {
     width: 50% !important;    /* TUNE mobile: flower overlay size */
   }
 

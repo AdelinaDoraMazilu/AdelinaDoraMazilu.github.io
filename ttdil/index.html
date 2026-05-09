@@ -32,7 +32,7 @@
       { id: 2,  title: 'Goal 3',  desc: 'Continue to have a positive outlook on life', checked: true },
       { id: 3,  title: 'Goal 4',  desc: 'Become a Teaching Assistant', checked: false },
       { id: 4,  title: 'Goal 5',  desc: 'Get a PhD', checked: false },
-      { id: 5,  title: 'Goal 6',  desc: 'Get a piloting licence and fly at Mach 1.5', checked: false },
+      { id: 5,  title: 'Goal 6',  desc: 'Get a piloting licence', checked: false },
       { id: 6,  title: 'Goal 7',  desc: 'Make 10 vintage inspired pieces of clothing for myself', checked: false },
       { id: 7,  title: 'Goal 8',  desc: 'Recreate the 1902 Morin Blossier riding jacket', checked: false },
       { id: 8,  title: 'Goal 9',  desc: 'Make an ML/RL application in aviation project', checked: false },
@@ -126,7 +126,8 @@
       dark: {
         topImg:    '/ttdil/blue_top.png',
         stemImg:   '/ttdil/orchid_stem.png',
-        flowerImg: '/ttdil/blue_orchid.png',
+        flowerImg_right: '/ttdil/blue_orchid.png',
+        flowerImg_left: '/ttdil/blue_orchid.png',
 
         topSection: {
           widthPct:        40,    /* TUNE: top image width % of viewport */
@@ -146,7 +147,7 @@
            flowers[0] = the flower on the RIGHT branch of the stem image
            flowers[1] = the flower on the LEFT  branch of the stem image
            (swap topPct / leftPct if your image has them the other way around) */
-        flowers: [
+        flowerImg_right: 
           {
             topPct:      -47,   /* TUNE: vertical pos % of stem img height */
             leftPct:     85,   /* TUNE: horizontal pos % of stem img width */
@@ -154,6 +155,8 @@
             rotationDeg: 0,   /* TUNE: flower tilt; pos = clockwise */
             goalSide:    'right', /* TUNE: which side goal text appears */
           },
+
+          flowerImg_left:
           {
             topPct:      65,
             leftPct:     10,
@@ -161,7 +164,7 @@
             rotationDeg: 0,
             goalSide:    'left',
           },
-        ],
+        
 
         goalLayout: {
           /* Desktop goal text box positions as % of viewport width */
@@ -179,7 +182,8 @@
       light: {
         topImg:    '/ttdil/white_top.png',
         stemImg:   '/ttdil/orchid_stem.png',
-        flowerImg: '/ttdil/white_orchid.png',
+        flowerImg_right: '/ttdil/white_orchid.png',
+        flowerImg_left: '/ttdil/white_orchid.png',
 
         topSection: {
           widthPct:        40,    /* TUNE: top image width % of viewport */
@@ -194,7 +198,7 @@
           stemRotationDeg: -18,   /* TUNE: rotate stem image so it looks vertical */
         },
 
-        flowers: [
+        flowerImg_right:
           {
             topPct:      25,   /* TUNE: vertical pos % of stem img height */
             leftPct:     72,   /* TUNE: horizontal pos % of stem img width */
@@ -202,6 +206,7 @@
             rotationDeg: 0,   /* TUNE: flower tilt */
             goalSide:    'right',
           },
+          flowerImg_left:
           {
             topPct:      65,
             leftPct:     22,
@@ -209,7 +214,7 @@
             rotationDeg: 0,
             goalSide:    'left',
           },
-        ],
+        
 
         goalLayout: {
           leftSideViewportPct:   11,
@@ -231,28 +236,29 @@
        null = no goal for that flower (e.g. the decorative top section).
        ================================================================ */
     const sections = [
-      { goalIdxA: null, goalIdxB: 0  },  // top section: only right flower has a goal
-      { goalIdxA: 1,    goalIdxB: 2  },
-      { goalIdxA: 3,    goalIdxB: 4  },
-      { goalIdxA: 5,    goalIdxB: 6  },
-      { goalIdxA: 7,    goalIdxB: 8  },
-      { goalIdxA: 9,    goalIdxB: 10 },
-      { goalIdxA: 11,   goalIdxB: 12 },
-      { goalIdxA: 13,   goalIdxB: 14 },
-      { goalIdxA: 15,   goalIdxB: 16 },
-      { goalIdxA: 17,   goalIdxB: 18 },
-      { goalIdxA: 19,   goalIdxB: 20 },
-      { goalIdxA: 21,   goalIdxB: 22 },
-      { goalIdxA: 23,   goalIdxB: 24 },
-      { goalIdxA: 25,   goalIdxB: 26 },
-      { goalIdxA: 27,   goalIdxB: 28 },
-      { goalIdxA: 29,   goalIdxB: 30 },
-      { goalIdxA: 31,   goalIdxB: 32 },
-      { goalIdxA: 33,   goalIdxB: 34 },
-      { goalIdxA: 35,   goalIdxB: 36 },
-      { goalIdxA: 37,   goalIdxB: 38 },
-      { goalIdxA: 39,   goalIdxB: 40 },
-      { goalIdxA: 41,   goalIdxB: 42 },
+      { goalIdxA: null, goalIdxB: null},  // top section: only right flower has a goal
+      { goalIdxA: 0,    goalIdxB: 1  },
+      { goalIdxA: 2,    goalIdxB: 3  },
+      { goalIdxA: 4,    goalIdxB: 5  },
+      { goalIdxA: 6,    goalIdxB: 7  },
+      { goalIdxA: 8,    goalIdxB: 9  },
+      { goalIdxA: 10,   goalIdxB: 11 },
+      { goalIdxA: 12,   goalIdxB: 13 },
+      { goalIdxA: 14,   goalIdxB: 15 },
+      { goalIdxA: 16,   goalIdxB: 17 },
+      { goalIdxA: 18,   goalIdxB: 19 },
+      { goalIdxA: 20,   goalIdxB: 21 },
+      { goalIdxA: 22,   goalIdxB: 23 },
+      { goalIdxA: 24,   goalIdxB: 25 },
+      { goalIdxA: 26,   goalIdxB: 27 },
+      { goalIdxA: 28,   goalIdxB: 29 },
+      { goalIdxA: 30,   goalIdxB: 31 },
+      { goalIdxA: 32,   goalIdxB: 33 },
+      { goalIdxA: 34,   goalIdxB: 35 },
+      { goalIdxA: 36,   goalIdxB: 37 },
+      { goalIdxA: 38,   goalIdxB: 39 },
+      { goalIdxA: 40,   goalIdxB: 41 },
+      { goalIdxA: 42,   goalIdxB: null}, // last section: only left flower has a goal
     ];
 
 
