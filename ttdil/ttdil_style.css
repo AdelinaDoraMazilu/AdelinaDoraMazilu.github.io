@@ -106,7 +106,7 @@
    ============================================================ */
 
 .orchid-flower {
-  position: absolute;
+  position: relative;
   pointer-events: none;
 
   /* SIZE: width of each orchid flower image as a percentage of its
