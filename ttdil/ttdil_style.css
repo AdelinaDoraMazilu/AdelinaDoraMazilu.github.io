@@ -74,6 +74,14 @@
   transform-origin: center center;
 }
 
+.orchid-flower_right,
+.orchid-flower_left {
+  position: absolute;   /* THIS is why topPct does nothing — was 'relative' */
+  pointer-events: none;
+  z-index: 2;
+  transform-origin: center center;
+}
+
 .goal-overlay {
   position: absolute;
   display: flex;
