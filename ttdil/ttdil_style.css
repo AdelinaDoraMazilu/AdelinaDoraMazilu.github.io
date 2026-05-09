@@ -57,19 +57,21 @@
   margin-right: auto;
   position: relative;
   overflow: visible;           /* allows flowers and goals outside the image bounds to show */
+  z-index: 1 !important;
 }
 
 .stem-section img.stem-img {
   width: 100%;
   display: block;
+  z-index: 1 !important;
 }
 
 .orchid-flower {
   position: relative;
   pointer-events: none;
+  z-index: 2 !important;
   width: 38%;                  /* TUNE: flower size relative to stem */
   transform-origin: center center;
-  z-index: 2 !important;
 }
 
 .goal-overlay {
