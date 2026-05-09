@@ -97,10 +97,6 @@
   /* transform-origin: center center; */
 }
 
-.stem-section .rot-wrapper {
-  position: relative;
-  z-index: 1;
-}
 
 
 /* ============================================================
@@ -123,11 +119,6 @@
   /* Individual per-flower rotation is applied via inline style in JS. */
   transform-origin: center center;
   z-index: 2;
-}
-.orchid-flower_right,
-.orchid-flower_left {
-  z-index: 2;
-  position: absolute;
 }
 
 /* ============================================================
