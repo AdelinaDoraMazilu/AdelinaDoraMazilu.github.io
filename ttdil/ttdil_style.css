@@ -54,13 +54,9 @@
 .stem-section.top-section {
   /* WIDTH: how wide the top image is relative to the viewport */
   width: 40%;                  /* TUNE: increase to make top image bigger */
-
   margin-left: auto;
   margin-right: auto;
-
-  /* HORIZONTAL OFFSET: shifts the top image left/right to align with the stem */
-  transform: translateX(-500%); /* TUNE: negative = shift left, positive = shift right */
-  left: 5%;                   /* TUNE: fine-tune horizontal position of top image */
+  right: 5%;                   /* TUNE: fine-tune horizontal position of top image */
   position: relative;
 }
 
