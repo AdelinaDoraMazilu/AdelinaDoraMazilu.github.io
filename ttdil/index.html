@@ -298,17 +298,12 @@
         img.alt       = '';
         img.loading   = 'eager';
 
-        if (!isTop && config.stemSection.stemRotationDeg !== 0) {
-          img.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
-          img.style.transformOrigin = 'center center';
-        }
-
         /* Pull the image upward inside the section to close gaps caused by
-           empty PNG padding at the top. This is independent of overlapPx —
-           overlapPx moves the section box, imgTopOffsetPct shifts the image
-           within the box. Both can be tuned separately.
-           We apply it as a negative margin-top after the image loads so we
-           know its rendered height. */
+          empty PNG padding at the top. This is independent of overlapPx —
+          overlapPx moves the section box, imgTopOffsetPct shifts the image
+          within the box. Both can be tuned separately.
+          We apply it as a negative margin-top after the image loads so we
+          know its rendered height. */
         if (!isTop && config.stemSection.imgTopOffsetPct) {
           function applyImgOffset() {
             if (img.offsetHeight > 0) {
@@ -325,8 +320,20 @@
           }
         }
 
-        section.appendChild(img);
-
+        if (!isTop && config.stemSection.stemRotationDeg !== 0) {
+          /* Wrap the img in a rotated div so the img itself stays untransformed.
+            This preserves correct offsetHeight/offsetWidth for flower positioning
+            and keeps z-index layering working for flower overlays. */
+          const rotWrapper       = document.createElement('div');
+          rotWrapper.className   = 'rot-wrapper';
+          rotWrapper.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
+          rotWrapper.style.transformOrigin = 'center center';
+          rotWrapper.style.width           = '100%';
+          rotWrapper.appendChild(img);
+          section.appendChild(rotWrapper);
+        } else {
+          section.appendChild(img);
+        }
         /* --- orchid flower images — right and left independently -- */
         if (!isTop) {
           [
