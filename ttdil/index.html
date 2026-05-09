@@ -23,152 +23,80 @@
   <div class="stem-stack" id="stemStack"></div>
 
   <script>
+    /* ================================================================
+       GOALS DATA — the only data that belongs in JS
+       ================================================================ */
     const goals = [
-      { id: 0,  title: 'Goal 1',  desc: 'Finish my Bachelor\'s degree by February 2027', checked: false },
-      { id: 1,  title: 'Goal 2',  desc: 'Work a job that I like before starting my Master\'s degree', checked: false },
-      { id: 2,  title: 'Goal 3',  desc: 'Continue to have a positive outlook on life', checked: true },
-      { id: 3,  title: 'Goal 4',  desc: 'Become a Teaching Assistant', checked: false },
-      { id: 4,  title: 'Goal 5',  desc: 'Get a PhD', checked: false },
-      { id: 5,  title: 'Goal 6',  desc: 'Get a piloting licence', checked: false },
-      { id: 6,  title: 'Goal 7',  desc: 'Make 10 vintage inspired pieces of clothing for myself', checked: false },
-      { id: 7,  title: 'Goal 8',  desc: 'Recreate the 1902 Morin Blossier riding jacket', checked: false },
-      { id: 8,  title: 'Goal 9',  desc: 'Make an ML/RL application in aviation project', checked: false },
-      { id: 9,  title: 'Goal 10', desc: 'Stay close with my family', checked: true },
-      { id: 10, title: 'Goal 11', desc: 'Keep and cherish the friendships I have', checked: true },
-      { id: 11, title: 'Goal 12', desc: 'Visit Kyoto', checked: false },
-      { id: 12, title: 'Goal 13', desc: 'Visit Barranquilla', checked: false },
-      { id: 13, title: 'Goal 14', desc: 'Visit Rio de Janeiro', checked: false },
-      { id: 14, title: 'Goal 15', desc: 'Take a tour around Iceland', checked: false },
-      { id: 15, title: 'Goal 16', desc: 'Hike in the Himalayas', checked: false },
-      { id: 16, title: 'Goal 17', desc: 'Hike in the Andes', checked: false },
-      { id: 17, title: 'Goal 18', desc: 'Conquer Kilimanjaro', checked: false },
-      { id: 18, title: 'Goal 19', desc: 'Conquer Mont Blanc', checked: false },
-      { id: 19, title: 'Goal 20', desc: 'Thru-hike the entire Carpathians', checked: false },
-      { id: 20, title: 'Goal 21', desc: 'Learn German to level C1', checked: false },
-      { id: 21, title: 'Goal 22', desc: 'Learn Spanish to level C1', checked: false },
-      { id: 22, title: 'Goal 23', desc: 'Live in Switzerland for at least a year', checked: false },
-      { id: 23, title: 'Goal 24', desc: 'Write the libretto for an opera', checked: false },
-      { id: 24, title: 'Goal 25', desc: 'Continue to be happily single or be in happy relationship or marriage', checked: true },
-      { id: 25, title: 'Goal 26', desc: 'Do a planche push up', checked: false },
-      { id: 26, title: 'Goal 27', desc: 'Finish an Ironman', checked: false },
-      { id: 27, title: 'Goal 28', desc: 'Finish a semi-marathon', checked: false },
-      { id: 28, title: 'Goal 29', desc: 'Complete the Tour de France femme', checked: false },
-      { id: 29, title: 'Goal 30', desc: 'Learn to cook 15 dishes from Japan', checked: false },
-      { id: 30, title: 'Goal 31', desc: 'Learn to cook 10 dishes from China', checked: false },
-      { id: 31, title: 'Goal 32', desc: 'Learn to cook 5 dishes from India', checked: false },
-      { id: 32, title: 'Goal 33', desc: 'Learn to cook 5 dishes from the Middle East', checked: false },
-      { id: 33, title: 'Goal 34', desc: 'Learn to cook 5 dishes from South America', checked: false },
-      { id: 34, title: 'Goal 35', desc: 'Improve my Sushi making skills', checked: true },
-      { id: 35, title: 'Goal 36', desc: 'Be regarded as the best cook in my family after my grandma', checked: true },
-      { id: 36, title: 'Goal 37', desc: 'Write a book on woodworking for scouts', checked: false },
-      { id: 37, title: 'Goal 38', desc: 'Become a mentor for woodwork for scouts', checked: false },
-      { id: 38, title: 'Goal 39', desc: 'Develop my photography skills', checked: true },
-      { id: 39, title: 'Goal 40', desc: 'Get a full frame camera and super telephoto lens', checked: false },
-      { id: 40, title: 'Goal 41', desc: 'Learn to play 5 folk songs on the guitar', checked: false },
-      { id: 41, title: 'Goal 42', desc: 'Learn to play 5 classical songs on the violin', checked: false },
-      { id: 42, title: 'Goal 43', desc: 'Do a 2000km bike trip around Europe', checked: false },
+      { id: 0,  desc: 'Finish my Bachelor\'s degree by February 2027', checked: false },
+      { id: 1,  desc: 'Work a job that I like before starting my Master\'s degree', checked: false },
+      { id: 2,  desc: 'Continue to have a positive outlook on life', checked: true },
+      { id: 3,  desc: 'Become a Teaching Assistant', checked: false },
+      { id: 4,  desc: 'Get a PhD', checked: false },
+      { id: 5,  desc: 'Get a piloting licence', checked: false },
+      { id: 6,  desc: 'Make 10 vintage inspired pieces of clothing for myself', checked: false },
+      { id: 7,  desc: 'Recreate the 1902 Morin Blossier riding jacket', checked: false },
+      { id: 8,  desc: 'Make an ML/RL application in aviation project', checked: false },
+      { id: 9,  desc: 'Stay close with my family', checked: true },
+      { id: 10, desc: 'Keep and cherish the friendships I have', checked: true },
+      { id: 11, desc: 'Visit Kyoto', checked: false },
+      { id: 12, desc: 'Visit Barranquilla', checked: false },
+      { id: 13, desc: 'Visit Rio de Janeiro', checked: false },
+      { id: 14, desc: 'Take a tour around Iceland', checked: false },
+      { id: 15, desc: 'Hike in the Himalayas', checked: false },
+      { id: 16, desc: 'Hike in the Andes', checked: false },
+      { id: 17, desc: 'Conquer Kilimanjaro', checked: false },
+      { id: 18, desc: 'Conquer Mont Blanc', checked: false },
+      { id: 19, desc: 'Thru-hike the entire Carpathians', checked: false },
+      { id: 20, desc: 'Learn German to level C1', checked: false },
+      { id: 21, desc: 'Learn Spanish to level C1', checked: false },
+      { id: 22, desc: 'Live in Switzerland for at least a year', checked: false },
+      { id: 23, desc: 'Write the libretto for an opera', checked: false },
+      { id: 24, desc: 'Continue to be happily single or be in happy relationship or marriage', checked: true },
+      { id: 25, desc: 'Do a planche push up', checked: false },
+      { id: 26, desc: 'Finish an Ironman', checked: false },
+      { id: 27, desc: 'Finish a semi-marathon', checked: false },
+      { id: 28, desc: 'Complete the Tour de France femme', checked: false },
+      { id: 29, desc: 'Learn to cook 15 dishes from Japan', checked: false },
+      { id: 30, desc: 'Learn to cook 10 dishes from China', checked: false },
+      { id: 31, desc: 'Learn to cook 5 dishes from India', checked: false },
+      { id: 32, desc: 'Learn to cook 5 dishes from the Middle East', checked: false },
+      { id: 33, desc: 'Learn to cook 5 dishes from South America', checked: false },
+      { id: 34, desc: 'Improve my Sushi making skills', checked: true },
+      { id: 35, desc: 'Be regarded as the best cook in my family after my grandma', checked: true },
+      { id: 36, desc: 'Write a book on woodworking for scouts', checked: false },
+      { id: 37, desc: 'Become a mentor for woodwork for scouts', checked: false },
+      { id: 38, desc: 'Develop my photography skills', checked: true },
+      { id: 39, desc: 'Get a full frame camera and super telephoto lens', checked: false },
+      { id: 40, desc: 'Learn to play 5 folk songs on the guitar', checked: false },
+      { id: 41, desc: 'Learn to play 5 classical songs on the violin', checked: false },
+      { id: 42, desc: 'Do a 2000km bike trip around Europe', checked: false },
     ];
 
-
-    const THEME_CONFIG = {
-
-      /* ---- DARK MODE ------------------------------------------ */
+    /* ================================================================
+       IMAGE PATHS — theme-specific, not positional
+       ================================================================ */
+    const THEME_IMAGES = {
       dark: {
-        topImg:  '/ttdil/blue_top.png',
-        stemImg: '/ttdil/orchid_stem.png',
-
-        topSection: {
-          widthPct:       45,    /* TUNE: top image width % of viewport */
-          marginBottomPx: 0,     /* TUNE: gap between top image and first stem */
-
-        },
-
-        stemSection: {
-          widthPct:        45,   /* TUNE: stem column width % of viewport */
-          rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
-          overlapPx:       -10,   /* TUNE: px overlap between consecutive stem segments */
-          stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical; neg = counter-clockwise */
-          imgTopOffsetPct: 10,   /* TUNE: pulls the stem image up by this % of its own height. */
-        },
-
-        flowerRight: {
-          img:         '/ttdil/blue_orchid.png',
-          topPct:      25,   /* TUNE: vertical centre % of stem height (neg = above image top) */
-          leftPct:     85,   /* TUNE: horizontal centre % of stem width */
-          widthPct:    50,   /* TUNE: flower width % of stem section width */
-          rotationDeg: 0,    /* TUNE: flower tilt; pos = clockwise */
-          goalSide:    'right', /* TUNE: 'left' or 'right' — which side goal text appears */
-        },
-
-        flowerLeft: {
-          img:         '/ttdil/blue_orchid.png',
-          topPct:      65,   /* TUNE: vertical centre % of stem height */
-          leftPct:     10,   /* TUNE: horizontal centre % of stem width */
-          widthPct:    50,   /* TUNE: flower width % of stem section width */
-          rotationDeg: 0,    /* TUNE: flower tilt */
-          goalSide:    'left',
-        },
-
-        goalLayout: {
-          leftSideViewportPct:  11,  /* TUNE: left edge of 'left' goal box, % of viewport */
-          rightSideViewportPct: 73,  /* TUNE: left edge of 'right' goal box, % of viewport */
-          boxWidthViewportPct:  14,  /* TUNE: width of each goal text box, % of viewport */
-          mobileLeftPct:        8,
-          mobileRightPct:       70,
-          mobileBoxWidthPct:    18,
-        },
+        topImg:        '/ttdil/blue_top.png',
+        stemImg:       '/ttdil/orchid_stem.png',
+        flowerRightImg:'/ttdil/blue_orchid.png',
+        flowerLeftImg: '/ttdil/blue_orchid.png',
       },
-
-      /* ---- LIGHT MODE ----------------------------------------- */
       light: {
-        topImg:  '/ttdil/white_top.png',
-        stemImg: '/ttdil/orchid_stem.png',
-
-        topSection: {
-          widthPct:       40,    /* TUNE: top image width % of viewport */
-          translateX:     -5.2,  /* TUNE: horizontal shift % (neg = left) */
-          marginBottomPx: 0,     /* TUNE: gap between top image and first stem */
-        },
-
-        stemSection: {
-          widthPct:        45,   /* TUNE: stem column width % of viewport */
-          rightOffsetPct:  2.5,  /* TUNE: column shifts left by this % */
-          overlapPx:       40,   /* TUNE: px overlap between consecutive stem segments */
-          stemRotationDeg: -18,  /* TUNE: rotate stem so it looks vertical */
-          imgTopOffsetPct: 30,   /* TUNE: pulls the stem image up by this % of its own height */
-        },
-
-        flowerRight: {
-          img:         '/ttdil/white_orchid.png',
-          topPct:      25,   /* TUNE: vertical centre % of stem height */
-          leftPct:     72,   /* TUNE: horizontal centre % of stem width */
-          widthPct:    50,   /* TUNE: flower width % of stem section width */
-          rotationDeg: 0,    /* TUNE: flower tilt */
-          goalSide:    'right',
-        },
-
-        flowerLeft: {
-          img:         '/ttdil/white_orchid.png',
-          topPct:      65,   /* TUNE: vertical centre % of stem height */
-          leftPct:     22,   /* TUNE: horizontal centre % of stem width */
-          widthPct:    50,   /* TUNE: flower width % of stem section width */
-          rotationDeg: 0,    /* TUNE: flower tilt */
-          goalSide:    'left',
-        },
-
-        goalLayout: {
-          leftSideViewportPct:  11,
-          rightSideViewportPct: 73,
-          boxWidthViewportPct:  14,
-          mobileLeftPct:        8,
-          mobileRightPct:       70,
-          mobileBoxWidthPct:    18,
-        },
+        topImg:        '/ttdil/white_top.png',
+        stemImg:       '/ttdil/orchid_stem.png',
+        flowerRightImg:'/ttdil/white_orchid.png',
+        flowerLeftImg: '/ttdil/white_orchid.png',
       },
     };
 
+    /* ================================================================
+       GOAL PAIRS — which goal index goes on which flower per section.
+       goalIdxA = right flower, goalIdxB = left flower.
+       null = no goal for that position.
+       ================================================================ */
     const sections = [
-      { goalIdxA: null, goalIdxB: null },  // top section — decorative only
+      { goalIdxA: null, goalIdxB: null },
       { goalIdxA: 0,    goalIdxB: 1    },
       { goalIdxA: 2,    goalIdxB: 3    },
       { goalIdxA: 4,    goalIdxB: 5    },
@@ -190,63 +118,91 @@
       { goalIdxA: 36,   goalIdxB: 37   },
       { goalIdxA: 38,   goalIdxB: 39   },
       { goalIdxA: 40,   goalIdxB: 41   },
-      { goalIdxA: 42,   goalIdxB: null },  // last section — only right flower has a goal
+      { goalIdxA: 42,   goalIdxB: null },
     ];
 
-
     /* ================================================================
-       THEME DETECTION
+       HELPER — read a numeric CSS variable from :root
        ================================================================ */
-    function getCurrentTheme() {
-      return document.documentElement.getAttribute('data-theme') === 'light'
-        ? 'light'
-        : 'dark';
+    function cssVar(name) {
+      return parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+      );
     }
 
+    function getCurrentTheme() {
+      return document.documentElement.getAttribute('data-theme') === 'light'
+        ? 'light' : 'dark';
+    }
 
     /* ================================================================
        BUILD / REBUILD THE STACK
+       All positioning values are read from CSS variables via cssVar().
        ================================================================ */
     function buildStack() {
       const stack    = document.getElementById('stemStack');
       stack.innerHTML = '';
 
-      const theme    = getCurrentTheme();
-      const config   = THEME_CONFIG[theme];
-      const isMobile = window.innerWidth <= 768;
+      const theme  = getCurrentTheme();
+      const images = THEME_IMAGES[theme];
+      const isMob  = window.innerWidth <= 768;
+
+      /* Read all tunables from CSS at build time */
+      const stemOverlap      = cssVar('--stem-overlap');
+      const stemRotation     = cssVar('--stem-rotation');
+      const imgTopOffsetPct  = cssVar('--stem-img-top-offset');
+      const translateX       = cssVar('--top-translate-x');
+
+      const flowerRightTop   = cssVar('--flower-right-top');
+      const flowerRightLeft  = cssVar('--flower-right-left');
+      const flowerRightRot   = cssVar('--flower-right-rotation');
+
+      const flowerLeftTop    = cssVar('--flower-left-top');
+      const flowerLeftLeft   = cssVar('--flower-left-left');
+      const flowerLeftRot    = cssVar('--flower-left-rotation');
+
+      const goalLeftVP       = cssVar('--goal-left-vp');
+      const goalRightVP      = cssVar('--goal-right-vp');
+      /* goal-box-width is a vw value handled by CSS directly, no need to read it */
+
+      /* flower goalSide: read as a string (not numeric, so use getPropertyValue directly) */
+      const cs = getComputedStyle(document.documentElement);
+      const flowerRightGoalSide = cs.getPropertyValue('--flower-right-goal-side').trim();
+      const flowerLeftGoalSide  = cs.getPropertyValue('--flower-left-goal-side').trim();
 
       sections.forEach((sec, si) => {
         const isTop = si === 0;
 
-        /* --- section wrapper -------------------------------------- */
+        /* --- section wrapper --- */
         const section     = document.createElement('div');
         section.className = 'stem-section' + (isTop ? ' top-section' : ' constrained');
 
         if (isTop) {
-          section.style.width     = config.topSection.widthPct + '%';
-          section.style.transform = `translateX(${config.topSection.translateX}%)`;
-          if (config.topSection.marginBottomPx) {
-            section.style.marginBottom = config.topSection.marginBottomPx + 'px';
+          /* Width and right-offset come from CSS variables via the stylesheet.
+             Only translateX needs to be applied as an inline style since
+             CSS custom properties can't drive transform directly here. */
+          if (translateX !== 0) {
+            section.style.transform = `translateX(${translateX}%)`;
           }
         } else {
-          section.style.width     = config.stemSection.widthPct + '%';
-          section.style.right     = config.stemSection.rightOffsetPct + '%';
-          const overlap           = isMobile ? 80 : config.stemSection.overlapPx;
+          const overlap = isMob ? cssVar('--stem-overlap') : stemOverlap;
           section.style.marginTop = `-${overlap}px`;
         }
 
-        /* --- stem / top image ------------------------------------- */
+        /* --- stem / top image --- */
         const img     = document.createElement('img');
         img.className = 'stem-img';
-        img.src       = isTop ? config.topImg : config.stemImg;
+        img.src       = isTop ? images.topImg : images.stemImg;
         img.alt       = '';
         img.loading   = 'eager';
 
-        if (!isTop && config.stemSection.imgTopOffsetPct) {
+        /* imgTopOffsetPct: pull stem image up to hide PNG top padding */
+        if (!isTop && imgTopOffsetPct) {
           function applyImgOffset() {
             if (img.offsetHeight > 0) {
-              const offset = (config.stemSection.imgTopOffsetPct / 100) * img.offsetHeight;
-              img.style.marginTop = `-${offset}px`;
+              const offset = (imgTopOffsetPct / 100) * img.offsetHeight;
+              const target = section.querySelector('.rot-wrapper') || img;
+              target.style.marginTop = `-${offset}px`;
             } else {
               requestAnimationFrame(applyImgOffset);
             }
@@ -258,11 +214,12 @@
           }
         }
 
-        if (!isTop && config.stemSection.stemRotationDeg !== 0) {
-
-          const rotWrapper       = document.createElement('div');
-          rotWrapper.className   = 'rot-wrapper';
-          rotWrapper.style.transform       = `rotate(${config.stemSection.stemRotationDeg}deg)`;
+        /* Wrap img in a rotated div so the img stays untransformed,
+           keeping offsetHeight reliable and z-index working. */
+        if (!isTop && stemRotation !== 0) {
+          const rotWrapper         = document.createElement('div');
+          rotWrapper.className     = 'rot-wrapper';
+          rotWrapper.style.transform       = `rotate(${stemRotation}deg)`;
           rotWrapper.style.transformOrigin = 'center center';
           rotWrapper.style.width           = '100%';
           rotWrapper.appendChild(img);
@@ -271,34 +228,48 @@
           section.appendChild(img);
         }
 
+        /* --- flower overlays --- */
         if (!isTop) {
           [
-            { cfg: config.flowerRight, cls: 'orchid-flower_right' },
-            { cfg: config.flowerLeft,  cls: 'orchid-flower_left'  },
-          ].forEach(({ cfg, cls }) => {
-            const flEl     = document.createElement('img');
-            flEl.className = cls;
-            flEl.src       = cfg.img;       
-            flEl.alt       = '';
-            flEl.loading   = 'eager';
-            flEl.style.width = cfg.widthPct + '%';
+            {
+              cls:     'orchid-flower_right',
+              src:     images.flowerRightImg,
+              topPct:  flowerRightTop,
+              leftPct: flowerRightLeft,
+              rot:     flowerRightRot,
+            },
+            {
+              cls:     'orchid-flower_left',
+              src:     images.flowerLeftImg,
+              topPct:  flowerLeftTop,
+              leftPct: flowerLeftLeft,
+              rot:     flowerLeftRot,
+            },
+          ].forEach(fl => {
+            const flEl       = document.createElement('img');
+            flEl.className   = fl.cls;
+            flEl.src         = fl.src;
+            flEl.alt         = '';
+            flEl.loading     = 'eager';
+            /* width comes from CSS variable via the stylesheet class */
 
-            flEl.dataset.topPct  = cfg.topPct;
-            flEl.dataset.leftPct = cfg.leftPct;
-            flEl.dataset.rot     = cfg.rotationDeg;
+            flEl.dataset.topPct  = fl.topPct;
+            flEl.dataset.leftPct = fl.leftPct;
+            flEl.dataset.rot     = fl.rot;
 
             section.appendChild(flEl);
+            flEl.addEventListener('load', placeGoalsAndFlowers);
           });
         }
 
+        /* --- placement function --- */
         function placeGoalsAndFlowers() {
           const imgH        = img.offsetHeight;
           const imgW        = img.offsetWidth;
           const screenW     = window.innerWidth;
-          const isMob       = screenW <= 768;
-          const gl          = config.goalLayout;
           const sectionLeft = section.getBoundingClientRect().left;
 
+          /* Position each flower */
           section.querySelectorAll('.orchid-flower_right, .orchid-flower_left')
             .forEach(flEl => {
               const tPct = parseFloat(flEl.dataset.topPct);
@@ -312,29 +283,24 @@
               flEl.style.transform = `rotate(${rot}deg)`;
             });
 
+          /* Goal overlays */
           section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
 
           [
-            { idx: sec.goalIdxA, flowerCfg: config.flowerRight },
-            { idx: sec.goalIdxB, flowerCfg: config.flowerLeft  },
-          ].forEach(({ idx, flowerCfg }) => {
+            { idx: sec.goalIdxA, topPct: flowerRightTop, goalSide: flowerRightGoalSide },
+            { idx: sec.goalIdxB, topPct: flowerLeftTop,  goalSide: flowerLeftGoalSide  },
+          ].forEach(({ idx, topPct, goalSide }) => {
             if (idx === null || idx === undefined) return;
             const goal = goals[idx];
             if (!goal) return;
 
             const overlay     = document.createElement('div');
             overlay.className = 'goal-overlay';
+            overlay.style.top = ((topPct / 100) * imgH) + 'px';
 
-            overlay.style.top = ((flowerCfg.topPct / 100) * imgH) + 'px';
-
-            const side   = flowerCfg.goalSide;
-            const leftVP = side === 'left'
-              ? (isMob ? gl.mobileLeftPct  : gl.leftSideViewportPct)
-              : (isMob ? gl.mobileRightPct : gl.rightSideViewportPct);
-            const boxW   = isMob ? gl.mobileBoxWidthPct : gl.boxWidthViewportPct;
-
-            overlay.style.left  = (screenW * (leftVP / 100) - sectionLeft) + 'px';
-            overlay.style.width = (screenW * (boxW   / 100)) + 'px';
+            const leftVP = goalSide === 'left' ? goalLeftVP : goalRightVP;
+            overlay.style.left = (screenW * (leftVP / 100) - sectionLeft) + 'px';
+            /* width comes from --goal-box-width CSS variable via the class */
 
             const checkbox     = document.createElement('div');
             checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
@@ -361,7 +327,7 @@
           waitAndPlace();
         } else {
           img.addEventListener('load', waitAndPlace);
-          img.addEventListener('error', () => console.warn('Failed to load image:', img.src));
+          img.addEventListener('error', () => console.warn('Failed to load:', img.src));
         }
 
         stack.appendChild(section);
@@ -369,7 +335,6 @@
     }
 
     buildStack();
-
     window.addEventListener('resize', buildStack);
 
     const themeObserver = new MutationObserver(mutations => {
@@ -378,7 +343,6 @@
       });
     });
     themeObserver.observe(document.documentElement, { attributes: true });
-
   </script>
 </body>
 </html>
