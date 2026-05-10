@@ -69,74 +69,81 @@
       { id: 42, desc: 'Do a 2000km bike trip around Europe', checked: false },
     ];
 
+    const THEME_IMAGES = {
+      dark:  { topImg: '/ttdil/blue_top.png',   partImg: '/ttdil/blue_part.png'  },
+      light: { topImg: '/ttdil/white_top.png',  partImg: '/ttdil/white_part.png' },
+    };
+
+    /* ================================================================
+       TUNE_CONFIG
+       The only parameters that need tuning now that flowers and stems
+       are combined in a single image.
+
+       topSection:
+         widthPct        — top image width as % of viewport
+         rightOffsetPct  — shifts top image left; positive = further left
+         translateXPct   — extra horizontal nudge via transform; 0 = none
+         overlapWithPartPx — how many px the first part image overlaps
+                             the bottom of the top image.
+                             Positive = part slides up under the top image.
+                             Negative = gap between top image and first part.
+
+       partSection:
+         widthPct        — each part image width as % of viewport
+         rightOffsetPct  — shifts the part column left; positive = further left
+         overlapPx       — how many px each part image overlaps the previous one.
+                           Positive = parts closer together (more overlap).
+                           Negative = parts further apart (gap between them).
+
+       goalLayout:
+         Two goals per part image: goalA sits beside the RIGHT flower,
+         goalB sits beside the LEFT flower.
+         rightFlowerTopPct  — vertical position of right flower as % of part image height
+         leftFlowerTopPct   — vertical position of left flower as % of part image height
+         leftViewportPct    — left edge of left-side goal boxes, % of viewport width
+         rightViewportPct   — left edge of right-side goal boxes, % of viewport width
+         boxWidthPct        — width of each goal text box, % of viewport width
+       ================================================================ */
     const TUNE_CONFIG = {
       dark: {
         desktop: {
           topSection: {
-            widthPct:       45,   /* TUNE */
-            rightOffsetPct: 3.8,  /* TUNE */
-            translateXPct:  0,    /* TUNE */
-            marginBottomPx: 0,    /* TUNE */
+            widthPct:           45,   /* TUNE */
+            rightOffsetPct:     3.8,  /* TUNE */
+            translateXPct:      0,    /* TUNE */
+            overlapWithPartPx:  40,   /* TUNE: how much first part overlaps the top image */
           },
-          stemSection: {
-            widthPct:        45,  /* TUNE */
-            rightOffsetPct:  2.5, /* TUNE */
-            overlapPx:       -10, /* TUNE: smaller = closer, bigger = further apart */
-            stemRotationDeg: -18, /* TUNE */
-            imgTopOffsetPct: 12,  /* TUNE - bigger = further up */
-          },
-          flowerRight: {
-            topPct:      -10,      /* TUNE  lower = higher up, bigger = lower */
-            leftPct:     85,      /* TUNE */
-            widthPct:    50,      /* TUNE */
-            rotationDeg: 0,       /* TUNE */
-            goalSide:    'right', /* TUNE */
-          },
-          flowerLeft: {
-            topPct:      45,      /* TUNE  lower = higher up, bigger = lower */
-            leftPct:     10,      /* TUNE */
-            widthPct:    50,      /* TUNE */
-            rotationDeg: 0,       /* TUNE */
-            goalSide:    'left',  /* TUNE */
+          partSection: {
+            widthPct:       45,  /* TUNE */
+            rightOffsetPct: 2.5, /* TUNE */
+            overlapPx:      150, /* TUNE: overlap between consecutive part images */
           },
           goalLayout: {
-            leftViewportPct:  11, /* TUNE */
-            rightViewportPct: 73, /* TUNE */
-            boxWidthPct:      14, /* TUNE */
+            rightFlowerTopPct: 28,  /* TUNE: vertical % where right flower sits in the part image */
+            leftFlowerTopPct:  72,  /* TUNE: vertical % where left flower sits in the part image */
+            leftViewportPct:   5,   /* TUNE: left edge of left goal boxes, % of viewport */
+            rightViewportPct:  73,  /* TUNE: left edge of right goal boxes, % of viewport */
+            boxWidthPct:       18,  /* TUNE: width of goal text boxes, % of viewport */
           },
         },
         mobile: {
           topSection: {
-            widthPct:       75,
+            widthPct:           75,
+            rightOffsetPct:     0,
+            translateXPct:      0,
+            overlapWithPartPx:  30,
+          },
+          partSection: {
+            widthPct:       80,
             rightOffsetPct: 0,
-            translateXPct:  0,
-            marginBottomPx: 0,
-          },
-          stemSection: {
-            widthPct:        80,
-            rightOffsetPct:  0,
-            overlapPx:       80,
-            stemRotationDeg: -18,
-            imgTopOffsetPct: 10,
-          },
-          flowerRight: {
-            topPct:      25,
-            leftPct:     85,
-            widthPct:    50,
-            rotationDeg: 0,
-            goalSide:    'right',
-          },
-          flowerLeft: {
-            topPct:      65,
-            leftPct:     10,
-            widthPct:    50,
-            rotationDeg: 0,
-            goalSide:    'left',
+            overlapPx:      100,
           },
           goalLayout: {
-            leftViewportPct:  8,
-            rightViewportPct: 70,
-            boxWidthPct:      18,
+            rightFlowerTopPct: 28,
+            leftFlowerTopPct:  72,
+            leftViewportPct:   2,
+            rightViewportPct:  70,
+            boxWidthPct:       24,
           },
         },
       },
@@ -144,92 +151,54 @@
       light: {
         desktop: {
           topSection: {
-            widthPct:       40,   /* TUNE */
-            rightOffsetPct: 0,    /* TUNE */
-            translateXPct:  -5.2, /* TUNE */
-            marginBottomPx: 0,    /* TUNE */
+            widthPct:           40,   /* TUNE */
+            rightOffsetPct:     0,    /* TUNE */
+            translateXPct:      -5.2, /* TUNE */
+            overlapWithPartPx:  40,   /* TUNE */
           },
-          stemSection: {
-            widthPct:        45,  /* TUNE */
-            rightOffsetPct:  2.5, /* TUNE */
-            overlapPx:       40,  /* TUNE */
-            stemRotationDeg: -18, /* TUNE */
-            imgTopOffsetPct: 30,  /* TUNE */
-          },
-          flowerRight: {
-            topPct:      25,      /* TUNE */
-            leftPct:     72,      /* TUNE */
-            widthPct:    50,      /* TUNE */
-            rotationDeg: 0,       /* TUNE */
-            goalSide:    'right',
-          },
-          flowerLeft: {
-            topPct:      65,      /* TUNE */
-            leftPct:     22,      /* TUNE */
-            widthPct:    50,      /* TUNE */
-            rotationDeg: 0,       /* TUNE */
-            goalSide:    'left',
+          partSection: {
+            widthPct:       45,  /* TUNE */
+            rightOffsetPct: 2.5, /* TUNE */
+            overlapPx:      150, /* TUNE */
           },
           goalLayout: {
-            leftViewportPct:  11, /* TUNE */
-            rightViewportPct: 73, /* TUNE */
-            boxWidthPct:      14, /* TUNE */
+            rightFlowerTopPct: 28,  /* TUNE */
+            leftFlowerTopPct:  72,  /* TUNE */
+            leftViewportPct:   5,   /* TUNE */
+            rightViewportPct:  73,  /* TUNE */
+            boxWidthPct:       18,  /* TUNE */
           },
         },
         mobile: {
           topSection: {
-            widthPct:       75,
+            widthPct:           75,
+            rightOffsetPct:     0,
+            translateXPct:      0,
+            overlapWithPartPx:  30,
+          },
+          partSection: {
+            widthPct:       80,
             rightOffsetPct: 0,
-            translateXPct:  0,
-            marginBottomPx: 0,
-          },
-          stemSection: {
-            widthPct:        80,
-            rightOffsetPct:  0,
-            overlapPx:       80,
-            stemRotationDeg: -18,
-            imgTopOffsetPct: 30,
-          },
-          flowerRight: {
-            topPct:      25,
-            leftPct:     72,
-            widthPct:    50,
-            rotationDeg: 0,
-            goalSide:    'right',
-          },
-          flowerLeft: {
-            topPct:      65,
-            leftPct:     22,
-            widthPct:    50,
-            rotationDeg: 0,
-            goalSide:    'left',
+            overlapPx:      100,
           },
           goalLayout: {
-            leftViewportPct:  8,
-            rightViewportPct: 70,
-            boxWidthPct:      18,
+            rightFlowerTopPct: 28,
+            leftFlowerTopPct:  72,
+            leftViewportPct:   2,
+            rightViewportPct:  70,
+            boxWidthPct:       24,
           },
         },
       },
     };
 
-    const THEME_IMAGES = {
-      dark: {
-        topImg:         '/ttdil/blue_top.png',
-        stemImg:        '/ttdil/orchid_stem.png',
-        flowerRightImg: '/ttdil/blue_orchid.png',
-        flowerLeftImg:  '/ttdil/blue_orchid.png',
-      },
-      light: {
-        topImg:         '/ttdil/white_top.png',
-        stemImg:        '/ttdil/orchid_stem.png',
-        flowerRightImg: '/ttdil/white_orchid.png',
-        flowerLeftImg:  '/ttdil/white_orchid.png',
-      },
-    };
-
+    /* ================================================================
+       GOAL PAIRS
+       goalIdxA = right flower, goalIdxB = left flower.
+       null = no goal for that position.
+       ================================================================ */
     const sections = [
-      { goalIdxA: null, goalIdxB: null },
+      { goalIdxA: null, goalIdxB: null },  // top image — decorative only
       { goalIdxA: 0,    goalIdxB: 1    },
       { goalIdxA: 2,    goalIdxB: 3    },
       { goalIdxA: 4,    goalIdxB: 5    },
@@ -269,14 +238,10 @@
       const theme  = getCurrentTheme();
       const images = THEME_IMAGES[theme];
       const isMob  = window.innerWidth <= 768;
-
-      /* Pick the right config block — desktop or mobile */
-      const cfg = TUNE_CONFIG[theme][isMob ? 'mobile' : 'desktop'];
-      const top  = cfg.topSection;
-      const stem = cfg.stemSection;
-      const fR   = cfg.flowerRight;
-      const fL   = cfg.flowerLeft;
-      const gl   = cfg.goalLayout;
+      const cfg    = TUNE_CONFIG[theme][isMob ? 'mobile' : 'desktop'];
+      const top    = cfg.topSection;
+      const part   = cfg.partSection;
+      const gl     = cfg.goalLayout;
 
       sections.forEach((sec, si) => {
         const isTop = si === 0;
@@ -286,145 +251,82 @@
         section.className = 'stem-section' + (isTop ? ' top-section' : ' constrained');
 
         if (isTop) {
-          section.style.width      = top.widthPct + '%';
-          section.style.right      = top.rightOffsetPct + '%';
-          section.style.marginBottom = top.marginBottomPx + 'px';
+          section.style.width        = top.widthPct + '%';
+          section.style.right        = top.rightOffsetPct + '%';
           if (top.translateXPct !== 0) {
-            section.style.transform = `translateX(${top.translateXPct}%)`;
+            section.style.transform  = `translateX(${top.translateXPct}%)`;
           }
+          /* overlapWithPartPx is applied as marginBottom so the first part
+             slides up under the top image by that many px */
+          section.style.marginBottom = `-${top.overlapWithPartPx}px`;
         } else {
-          section.style.width     = stem.widthPct + '%';
-          section.style.right     = stem.rightOffsetPct + '%';
-          /* overlapPx: positive = sections closer (negative margin-top),
-                        negative = sections further apart (positive margin-top) */
-          section.style.marginTop = `${-stem.overlapPx}px`;
+          section.style.width     = part.widthPct + '%';
+          section.style.right     = part.rightOffsetPct + '%';
+          /* overlapPx: positive = parts closer (negative marginTop),
+                        negative = parts further apart (positive marginTop) */
+          section.style.marginTop = `${-part.overlapPx}px`;
         }
 
-        /* --- stem / top image --- */
+        /* --- image --- */
         const img     = document.createElement('img');
         img.className = 'stem-img';
-        img.src       = isTop ? images.topImg : images.stemImg;
+        img.src       = isTop ? images.topImg : images.partImg;
         img.alt       = '';
         img.loading   = 'eager';
+        section.appendChild(img);
 
-        /* Pull stem image up to close gaps from PNG top padding */
-        if (!isTop && stem.imgTopOffsetPct) {
-          function applyImgOffset() {
+        /* --- goal overlays (only on part sections, not the top) --- */
+        if (!isTop) {
+          function placeGoals() {
+            const imgH        = img.offsetHeight;
+            const screenW     = window.innerWidth;
+            const sectionLeft = section.getBoundingClientRect().left;
+
+            section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
+
+            [
+              { idx: sec.goalIdxA, topPct: gl.rightFlowerTopPct, side: 'right' },
+              { idx: sec.goalIdxB, topPct: gl.leftFlowerTopPct,  side: 'left'  },
+            ].forEach(({ idx, topPct, side }) => {
+              if (idx === null || idx === undefined) return;
+              const goal = goals[idx];
+              if (!goal) return;
+
+              const overlay     = document.createElement('div');
+              overlay.className = 'goal-overlay';
+              overlay.style.top   = ((topPct / 100) * imgH) + 'px';
+              overlay.style.width = (screenW * (gl.boxWidthPct / 100)) + 'px';
+
+              const vpPct = side === 'left' ? gl.leftViewportPct : gl.rightViewportPct;
+              overlay.style.left = (screenW * (vpPct / 100) - sectionLeft) + 'px';
+
+              const checkbox     = document.createElement('div');
+              checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
+
+              const desc       = document.createElement('div');
+              desc.className   = 'goal-desc';
+              desc.textContent = goal.desc;
+
+              overlay.appendChild(checkbox);
+              overlay.appendChild(desc);
+              section.appendChild(overlay);
+            });
+          }
+
+          function waitAndPlace() {
             if (img.offsetHeight > 0) {
-              const offset = (stem.imgTopOffsetPct / 100) * img.offsetHeight;
-              const target = section.querySelector('.rot-wrapper') || img;
-              target.style.marginTop = `-${offset}px`;
+              placeGoals();
             } else {
-              requestAnimationFrame(applyImgOffset);
+              requestAnimationFrame(waitAndPlace);
             }
           }
+
           if (img.complete && img.naturalHeight > 0) {
-            applyImgOffset();
+            waitAndPlace();
           } else {
-            img.addEventListener('load', applyImgOffset);
+            img.addEventListener('load', waitAndPlace);
+            img.addEventListener('error', () => console.warn('Failed to load:', img.src));
           }
-        }
-
-        /* Wrap img in a rotated div — keeps img dimensions reliable
-           and z-index working for flower overlays */
-        if (!isTop && stem.stemRotationDeg !== 0) {
-          const rotWrapper         = document.createElement('div');
-          rotWrapper.className     = 'rot-wrapper';
-          rotWrapper.style.transform       = `rotate(${stem.stemRotationDeg}deg)`;
-          rotWrapper.style.transformOrigin = 'center center';
-          rotWrapper.style.width           = '100%';
-          rotWrapper.appendChild(img);
-          section.appendChild(rotWrapper);
-        } else {
-          section.appendChild(img);
-        }
-
-        /* --- flower overlays --- */
-        if (!isTop) {
-          [
-            { cls: 'orchid-flower_right', src: images.flowerRightImg, f: fR },
-            { cls: 'orchid-flower_left',  src: images.flowerLeftImg,  f: fL },
-          ].forEach(({ cls, src, f }) => {
-            const flEl         = document.createElement('img');
-            flEl.className     = cls;
-            flEl.src           = src;
-            flEl.alt           = '';
-            flEl.loading       = 'eager';
-            flEl.style.width   = f.widthPct + '%';
-            flEl.dataset.topPct  = f.topPct;
-            flEl.dataset.leftPct = f.leftPct;
-            flEl.dataset.rot     = f.rotationDeg;
-
-            section.appendChild(flEl);
-            flEl.addEventListener('load', placeGoalsAndFlowers);
-          });
-        }
-
-        /* --- placement: positions flowers and goal text --- */
-        function placeGoalsAndFlowers() {
-          const imgH        = img.offsetHeight;
-          const imgW        = img.offsetWidth;
-          const screenW     = window.innerWidth;
-          const sectionLeft = section.getBoundingClientRect().left;
-
-          /* Position each flower image */
-          section.querySelectorAll('.orchid-flower_right, .orchid-flower_left')
-            .forEach(flEl => {
-              const tPct = parseFloat(flEl.dataset.topPct);
-              const lPct = parseFloat(flEl.dataset.leftPct);
-              const rot  = parseFloat(flEl.dataset.rot);
-              const flW  = flEl.offsetWidth;
-              const flH  = flEl.offsetHeight;
-              flEl.style.top       = ((tPct / 100) * imgH - flH / 2) + 'px';
-              flEl.style.left      = ((lPct / 100) * imgW - flW / 2) + 'px';
-              flEl.style.transform = `rotate(${rot}deg)`;
-            });
-
-          /* Goal text overlays */
-          section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
-
-          [
-            { idx: sec.goalIdxA, f: fR },
-            { idx: sec.goalIdxB, f: fL },
-          ].forEach(({ idx, f }) => {
-            if (idx === null || idx === undefined) return;
-            const goal = goals[idx];
-            if (!goal) return;
-
-            const overlay     = document.createElement('div');
-            overlay.className = 'goal-overlay';
-            overlay.style.top   = ((f.topPct / 100) * imgH) + 'px';
-            overlay.style.width = (screenW * (gl.boxWidthPct / 100)) + 'px';
-
-            const vpPct = f.goalSide === 'left' ? gl.leftViewportPct : gl.rightViewportPct;
-            overlay.style.left = (screenW * (vpPct / 100) - sectionLeft) + 'px';
-
-            const checkbox     = document.createElement('div');
-            checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
-
-            const desc       = document.createElement('div');
-            desc.className   = 'goal-desc';
-            desc.textContent = goal.desc;
-
-            overlay.appendChild(checkbox);
-            overlay.appendChild(desc);
-            section.appendChild(overlay);
-          });
-        }
-
-        function waitAndPlace() {
-          if (img.offsetHeight > 0) {
-            placeGoalsAndFlowers();
-          } else {
-            requestAnimationFrame(waitAndPlace);
-          }
-        }
-
-        if (img.complete && img.naturalHeight > 0) {
-          waitAndPlace();
-        } else {
-          img.addEventListener('load', waitAndPlace);
-          img.addEventListener('error', () => console.warn('Failed to load:', img.src));
         }
 
         stack.appendChild(section);

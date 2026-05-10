@@ -1,4 +1,15 @@
+/* ============================================================
+   THINGS TO DO IN LIFE — STYLE
+   Flowers and stems are now combined in a single image per
+   section (blue_part.png / white_part.png). No flower overlays.
+   All positional tuning lives in TUNE_CONFIG in index.html.
+   Visual styling (colours, fonts) lives here.
+   ============================================================ */
 
+
+/* ============================================================
+   INTRO TEXT
+   ============================================================ */
 .ttdil-intro {
   text-align: center;
   padding: 3rem 2rem 0;
@@ -29,6 +40,9 @@
 }
 
 
+/* ============================================================
+   STEM STACK
+   ============================================================ */
 .stem-stack {
   position: relative;
   width: 100%;
@@ -36,12 +50,21 @@
 }
 
 
+/* ============================================================
+   TOP SECTION — the flower-top / cap image
+   width, right, marginBottom set via inline style by JS
+   ============================================================ */
 .stem-section.top-section {
   margin-left: auto;
   margin-right: auto;
   position: relative;
 }
 
+
+/* ============================================================
+   REPEATING PART SECTIONS
+   width, right, marginTop set via inline style by JS
+   ============================================================ */
 .stem-section {
   position: relative;
 }
@@ -50,33 +73,22 @@
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  overflow: visible; /* lets flowers and goals extend outside the image box */
+  overflow: visible; /* goal text may extend outside image bounds */
 }
 
 .stem-section img.stem-img {
   width: 100%;
   display: block;
-  position: relative;
-  z-index: 1;
 }
 
-.stem-section .rot-wrapper {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-}
 
-.orchid-flower_right,
-.orchid-flower_left {
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-  transform-origin: center center;
-}
-
+/* ============================================================
+   GOAL OVERLAYS
+   top, left, width set via inline style by JS
+   ============================================================ */
 .goal-overlay {
   position: absolute;
-  z-index: 3;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -101,7 +113,7 @@
 .goal-checkbox {
   width: 32px;           /* TUNE: checkbox size */
   height: 32px;
-  border: 3px solid #659fdf; /* TUNE: checkbox border colour (dark mode) */
+  border: 3px solid #659fdf; /* TUNE: border colour (dark mode) */
   border-radius: 6px;
   flex-shrink: 0;
   display: flex;
@@ -116,7 +128,7 @@
 }
 
 .goal-checkbox.checked {
-  background-color: #659fdf; /* TUNE: checked fill colour (dark mode) */
+  background-color: #659fdf;
   border-color: #659fdf;
 }
 
@@ -130,7 +142,7 @@
   display: block;
   width: 20px;
   height: 12px;
-  border-left: 6px solid #0b111b; /* TUNE: tick colour (dark mode) */
+  border-left: 6px solid #0b111b;
   border-bottom: 6px solid #0b111b;
   transform: rotate(-45deg) translateY(-4px) translateX(1px);
 }
@@ -141,6 +153,9 @@
 }
 
 
+/* ============================================================
+   MOBILE
+   ============================================================ */
 @media (max-width: 768px) {
   .goal-desc {
     font-size: 0.7rem;
