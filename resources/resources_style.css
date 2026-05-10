@@ -172,11 +172,11 @@
 }
 
 [data-theme="light"] .resource-card--triangle .resource-card-inner {
-  background: #1a6fc4;
+  background: #003d7a;
 }
 
 [data-theme="light"] .resource-card--triangle-down .resource-card-inner {
-  background: #1a6fc4;
+  background: #003d7a;
 }
 
 [data-theme="light"] .resource-card--triangle .resource-card-inner::after {
@@ -216,7 +216,7 @@
 }
 
 [data-theme="light"] .resource-card--square .resource-card-inner {
-  background: #1a6fc4;
+  background: #003d7a;
 }
 
 [data-theme="light"] .resource-card--square .resource-card-inner::after {
@@ -274,11 +274,11 @@
 }
 
 [data-theme="light"] .resource-card--pentagon .resource-card-inner {
-  background: #1a6fc4;
+  background: #003d7a;
 }
 
 [data-theme="light"] .resource-card--pentagon:nth-child(2n) .resource-card-inner {
-  background: #1a6fc4;
+  background: #003d7a;
 }
 
 [data-theme="light"] .resource-card--pentagon .resource-card-inner::after {
@@ -329,7 +329,7 @@
 }
 
 [data-theme="light"] .resource-card--hexagon .resource-card-inner {
-  background: #1a6fc4;
+  background: #003d7a;
 }
 
 [data-theme="light"] .resource-card--hexagon .resource-card-inner::after {
