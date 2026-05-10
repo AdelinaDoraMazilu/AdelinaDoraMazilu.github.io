@@ -116,6 +116,7 @@
           partSection: {
             widthPct:       57,  /* TUNE */
             rightOffsetPct: 2, /* TUNE */
+            stemRotationDeg: 2, /* TUNE: small rotation applied to part images */
             overlapPx:      410, /* TUNE: overlap between consecutive part images */
           },
           goalLayout: {
@@ -136,6 +137,7 @@
           partSection: {
             widthPct:       80,
             rightOffsetPct: 0,
+            stemRotationDeg: 0.5, /* TUNE: small rotation applied to part images */
             overlapPx:      100,
           },
           goalLayout: {
@@ -159,6 +161,7 @@
           partSection: {
             widthPct:       45,  /* TUNE */
             rightOffsetPct: 2.5, /* TUNE */
+            stemRotationDeg: 0.5, /* TUNE: small rotation applied to part images */
             overlapPx:      150, /* TUNE */
           },
           goalLayout: {
@@ -179,6 +182,7 @@
           partSection: {
             widthPct:       80,
             rightOffsetPct: 0,
+            stemRotationDeg: 0.5, /* TUNE: small rotation applied to part images */
             overlapPx:      100,
           },
           goalLayout: {
@@ -273,6 +277,9 @@
         img.src       = isTop ? images.topImg : images.partImg;
         img.alt       = '';
         img.loading   = 'eager';
+        if (!isTop && part.stemRotationDeg !== 0) {
+          img.style.transform = `rotate(${part.stemRotationDeg}deg)`;
+        }
         section.appendChild(img);
 
         /* --- goal overlays (only on part sections, not the top) --- */
