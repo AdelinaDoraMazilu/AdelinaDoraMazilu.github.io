@@ -51,24 +51,24 @@
   --section-title-color:      #0a1520;
 
   /* project detail */
-  --back-link-color:          #1a6fc4;
+  --back-link-color:          #ffffff;
   --detail-title-color:       #0a1520;
-  --detail-text-color:        #2a3a4a;
-  --detail-link-color:        #1a6fc4;
+  --detail-text-color:        #121920;
+  --detail-link-color:        #001668;
   --detail-divider-color:     #1a6fc466;
   --detail-image-shadow:      0 0 30px #00000022, 0 4px 16px rgba(0,0,0,0.10);
-  --detail-caption-color:     #2a3a4a;
-  --detail-source-color:      #4a6a8a;
+  --detail-caption-color:     #010101;
+  --detail-source-color:      #1f2a34;
 
   /* status badge */
   --badge-bg:                 #1a6fc411;
-  --badge-border:             #1a6fc4;
-  --badge-color:              #1a6fc4;
+  --badge-border:             #ffffff;
+  --badge-color:              #ffffff;
 
   /* link button */
   --link-btn-bg:              #f0f6ff;
-  --link-btn-border:          #1a6fc4;
-  --link-btn-color:           #1a6fc4;
+  --link-btn-border:          #ffffff;
+  --link-btn-color:           #ffffff;
   --link-btn-shadow:          0 0 12px #1a6fc433;
   --link-btn-hover-shadow:    0 0 24px #1a6fc466;
   --link-btn-divider:         #1a6fc433;
