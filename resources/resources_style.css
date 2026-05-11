@@ -385,6 +385,15 @@ body {
   background: rgba(255, 255, 255, 0.80);
 }
 
+.post-divider {
+  height: 2px;
+  background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
+  box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
+  border: none;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
 /* ── POST TEXT ── */
 .post-content-overlay h1,
 .post-content-overlay h2,

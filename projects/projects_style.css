@@ -74,6 +74,15 @@
   --link-btn-divider:         #1a6fc433;
 }
 
+.post-divider {
+  height: 2px;
+  background: linear-gradient(to right, #1a6fc4, #00c6ff, #1a6fc4);
+  box-shadow: 0 0 10px #00c6ff88, 0 0 24px #1a6fc455;
+  border: none;
+  border-radius: 2px;
+  margin-bottom: 2rem;
+}
+
 /* ── EXISTING CODE (keep as is) ── */
 .antinu {
   position: relative;
