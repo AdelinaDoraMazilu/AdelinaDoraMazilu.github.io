@@ -51,7 +51,7 @@
   --section-title-color:      #0a1520;
 
   /* project detail */
-  --back-link-color:          #ffffff;
+  --back-link-color:          #008cff;
   --detail-title-color:       #0a1520;
   --detail-text-color:        #121920;
   --detail-link-color:        #001668;
@@ -61,13 +61,13 @@
   --detail-source-color:      #1f2a34;
 
   /* status badge */
-  --badge-bg:                 #1a6fc411;
-  --badge-border:             #ffffff;
-  --badge-color:              #ffffff;
+  --badge-bg:                 #1a6fc422;
+  --badge-border:             #1a6fc4;
+  --badge-color:              #5ab0f7;
 
   /* link button */
   --link-btn-bg:              #f0f6ff;
-  --link-btn-border:          #ffffff;
+  --link-btn-border:          #397ABC;
   --link-btn-color:           #397ABC;
   --link-btn-shadow:          0 0 12px #1a6fc433;
   --link-btn-hover-shadow:    0 0 24px #1a6fc466;
