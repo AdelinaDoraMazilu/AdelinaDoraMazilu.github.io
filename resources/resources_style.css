@@ -352,6 +352,62 @@ body {
 [data-theme="light"] .resource-card--hexagon .resource-card-inner::after {
   background: #fff;
 }
+
+/* ── POST / ARTICLE CONTENT OVERLAY ── */
+.post-content-overlay {
+  background: rgba(0, 0, 0, 0.80);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+
+  /* Fade into background on all edges */
+  -webkit-mask-image: radial-gradient(
+    ellipse 90% 90% at center,
+    black 55%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 90% 90% at center,
+    black 55%,
+    transparent 100%
+  );
+
+  padding: 3rem 4rem;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .post-content-overlay {
+  background: rgba(255, 255, 255, 0.80);
+}
+
+/* ── POST TEXT ── */
+.post-content-overlay h1,
+.post-content-overlay h2,
+.post-content-overlay h3 {
+  color: #fff;
+  font-family: system-ui, sans-serif;
+}
+
+[data-theme="light"] .post-content-overlay h1,
+[data-theme="light"] .post-content-overlay h2,
+[data-theme="light"] .post-content-overlay h3 {
+  color: #0a1520;
+}
+
+.post-content-overlay p,
+.post-content-overlay li {
+  color: rgba(255, 255, 255, 0.90);
+  font-family: system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+[data-theme="light"] .post-content-overlay p,
+[data-theme="light"] .post-content-overlay li {
+  color: rgba(10, 21, 32, 0.90);
+}
+
 /* ══════════════════════════════════════
    MOBILE
 ══════════════════════════════════════ */
