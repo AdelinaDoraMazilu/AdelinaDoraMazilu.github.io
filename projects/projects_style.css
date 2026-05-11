@@ -61,9 +61,9 @@
   --detail-source-color:      #1f2a34;
 
   /* status badge */
-  --badge-bg:                 #1a6fc422;
+  --badge-bg:                 #ffffff;
   --badge-border:             #1a6fc4;
-  --badge-color:              #5ab0f7;
+  --badge-color:              #1a6fc4;
 
   /* link button */
   --link-btn-bg:              #f0f6ff;
