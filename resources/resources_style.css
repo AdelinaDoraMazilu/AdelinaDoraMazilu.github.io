@@ -1,5 +1,5 @@
 body {
-  background-image: url('/resources/resources_bg_dark.png') !important;
+  background-image: url('/resources/resources_bg_dark.avif') !important;
   background-size: cover !important;
   background-position: center !important;
   background-attachment: fixed !important;
@@ -7,7 +7,7 @@ body {
 }
 
 [data-theme="light"] body {
-  background-image: url('/resources/resources_bg_light.png') !important;
+  background-image: url('/resources/resources_bg_light.avif') !important;
   background-size: cover !important;
   background-position: center !important;
   background-attachment: fixed !important;
