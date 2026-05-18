@@ -135,7 +135,7 @@ body {
   /* --- BALLOON SIZE ---
      These control the clickable card area AND how large the PNG renders. */
   --balloon-width: 260px;               /* Card width in px */
-  --balloon-height: 340px;              /* Card height in px */
+  --balloon-height: 300px;              /* Card height in px */
 
   /* --- BALLOON IMAGE SCALE & NUDGE ---
      Use these to fine-tune the PNG inside its card box after sizing. */
@@ -162,7 +162,7 @@ body {
      --balloon-row-height: vertical distance between successive balloon tops.
      Increase --balloon-row-height if balloons overlap too much vertically. */
   --balloon-offset: 160px;              /* px — distance from centre to card's own centre */
-  --balloon-row-height: 300px;          /* px — vertical step between consecutive balloons */
+  --balloon-row-height: 320px;          /* px — vertical step between consecutive balloons */
   --balloon-first-top: 2rem;            /* top padding before the first balloon */
 
   /* --- HOVER EFFECT --- */
