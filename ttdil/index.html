@@ -74,36 +74,6 @@
       light: { topImg: '/ttdil/white_top.png',  partImg: '/ttdil/white_part.png' },
     };
 
-    /* ================================================================
-       TUNE_CONFIG
-       The only parameters that need tuning now that flowers and stems
-       are combined in a single image.
-
-       topSection:
-         widthPct        — top image width as % of viewport
-         rightOffsetPct  — shifts top image left; positive = further left
-         translateXPct   — extra horizontal nudge via transform; 0 = none
-         overlapWithPartPx — how many px the first part image overlaps
-                             the bottom of the top image.
-                             Positive = part slides up under the top image.
-                             Negative = gap between top image and first part.
-
-       partSection:
-         widthPct        — each part image width as % of viewport
-         rightOffsetPct  — shifts the part column left; positive = further left
-         overlapPx       — how many px each part image overlaps the previous one.
-                           Positive = parts closer together (more overlap).
-                           Negative = parts further apart (gap between them).
-
-       goalLayout:
-         Two goals per part image: goalA sits beside the RIGHT flower,
-         goalB sits beside the LEFT flower.
-         rightFlowerTopPct  — vertical position of right flower as % of part image height
-         leftFlowerTopPct   — vertical position of left flower as % of part image height
-         leftViewportPct    — left edge of left-side goal boxes, % of viewport width
-         rightViewportPct   — left edge of right-side goal boxes, % of viewport width
-         boxWidthPct        — width of each goal text box, % of viewport width
-       ================================================================ */
     const TUNE_CONFIG = {
       dark: {
         desktop: {
@@ -186,8 +156,8 @@
             overlapPx:          135,   /* DONT'T CHANGE */
           },
           goalLayout: {
-            rightFlowerTopPct: 50,
-            leftFlowerTopPct:  90,
+            rightFlowerTopPct: 50,     /* DONT'T CHANGE */
+            leftFlowerTopPct:  90,     /* DONT'T CHANGE */
             leftViewportPct:   10,     /* DONT'T CHANGE */
             rightViewportPct:  70,     /* DONT'T CHANGE */
             boxWidthPct:       24,     /* DONT'T CHANGE */
