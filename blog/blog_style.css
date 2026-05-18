@@ -267,7 +267,7 @@ body {
 /* ------------------------------------------------------------------
    MOBILE — stack balloons centred, no alternating offset
    ------------------------------------------------------------------ */
-@media (max-width: 480px) {
+@media (max-width: 410px) {
   [data-theme="light"] .blog-wrap {
     min-height: unset;
     position: static;
