@@ -280,7 +280,7 @@
             top = flower centre + vOffsetPx (no translateY centering)
         */
         const labelLeftPx = flower.side === 'right'
-          ? imgRightPx - (renderW * cfg.labelInsetPctRight / 100) - boxW
+          ? imgRightPx - (renderW * cfg.labelInsetPctRight / 100) //- boxW
           : imgLeftPx  + (renderW * cfg.labelInsetPctLeft  / 100);
 
         const overlay           = document.createElement('div');
