@@ -95,7 +95,7 @@
       { side: 'right', pct:  0.45, decorative: true  },  // bud tip
       { side: 'right', pct:  2.61, decorative: true  },  // top right cluster
       { side: 'left',  pct:  2.77, decorative: true  },  // top left cluster
-      { side: 'right', pct:  5.22, decorative: false },  // second right — top decor ends here
+      { side: 'right', pct:  5.22, decorative: false  },  // second right — top decor ends here
       { side: 'left',  pct:  7.80, decorative: false },  //  0 → goal 0
       { side: 'right', pct:  9.12, decorative: false },  //  1 → goal 1
       { side: 'left',  pct: 11.70, decorative: false },  //  2 → goal 2
@@ -151,25 +151,28 @@
        Values between them are linearly interpolated so every viewport
        width gets correct proportions with no hard breakpoint.
 
-       orchidWidthPct  – PNG width as % of viewport width
-       labelGapPct     – gap between orchid edge and nearest label edge,
-                         as % of viewport width
-       goalBoxWidthPct – goal label box width as % of viewport width
-
-       Label positions are computed at runtime from the orchid's actual
-       rendered left/right edges plus this gap — so they stay anchored
-       to the orchid regardless of viewport width or centering.
+       orchidWidthPct    – PNG width as % of viewport width
+       labelInsetPct     – how far INWARD from the orchid edge the label
+                           starts, as % of orchid width. Positive = label
+                           overlaps the orchid edge slightly, pulling it
+                           toward the stem. Tune this to taste.
+       goalBoxWidthPct   – goal label box width as % of orchid width
+       verticalOffsetPct – how far BELOW the flower centre the label top
+                           sits, as % of image height. Pushes labels into
+                           the gap between flower pairs.
        ================================================================ */
     const ANCHORS = {
       406: {
-        orchidWidthPct:  80,
-        labelGapPct:      1,
-        goalBoxWidthPct: 18,
+        orchidWidthPct:    80,
+        labelInsetPct:     30,   // pull 30% of orchid width inward from edge
+        goalBoxWidthPct:   38,   // box = 38% of orchid width
+        verticalOffsetPct: 1.0,  // drop label 1% of image height below flower
       },
       1707: {
-        orchidWidthPct:  57,
-        labelGapPct:      1,
-        goalBoxWidthPct: 18,
+        orchidWidthPct:    57,
+        labelInsetPct:     28,
+        goalBoxWidthPct:   35,
+        verticalOffsetPct: 1.0,
       },
     };
 
@@ -221,11 +224,15 @@
       const imgLeftPx  = (screenW - renderW) / 2;
       const imgRightPx = imgLeftPx + renderW;   // = (screenW + renderW) / 2
 
-      /* Gap between orchid edge and label box (in px) */
-      const gapPx = screenW * (cfg.labelGapPct / 100);
+      /* How far inward from the orchid edge the label starts (in px).
+         Positive = label overlaps the orchid edge, moving toward centre. */
+      const insetPx = renderW * (cfg.labelInsetPct / 100);
 
-      /* Label box width (in px) */
-      const boxW  = screenW * (cfg.goalBoxWidthPct / 100);
+      /* Label box width as a fraction of the orchid rendered width */
+      const boxW = renderW * (cfg.goalBoxWidthPct / 100);
+
+      /* Vertical drop below flower centre (in px) */
+      const vOffsetPx = (cfg.verticalOffsetPct / 100) * renderH;
 
       /* Rebuild container */
       stack.innerHTML      = '';
@@ -260,24 +267,26 @@
         const topPx = (flower.pct / 100) * renderH;
 
         /*
-          Horizontal placement:
-          - Right-side flowers: label sits just outside the orchid's RIGHT edge.
-            labelLeftPx = imgRightPx + gapPx
-          - Left-side flowers: label sits just outside the orchid's LEFT edge,
-            ending at imgLeftPx - gapPx, so its left edge is that minus boxW.
-            labelLeftPx = imgLeftPx - gapPx - boxW
+          Horizontal placement — inset from the orchid's outer edge:
+          - Right-side flowers: label left edge = orchid right edge - inset
+            (pulls label leftward/inward from the far right edge)
+          - Left-side flowers:  label right edge = orchid left edge + inset
+            so label left = orchid left + inset - boxW
+            (pulls label rightward/inward from the far left edge)
+
+          Vertical placement — drop below flower centre into the gap:
+            top = flower centre + vOffsetPx (no translateY centering)
         */
         const labelLeftPx = flower.side === 'right'
-          ? imgRightPx + gapPx
-          : imgLeftPx  - gapPx - boxW;
+          ? imgRightPx - insetPx - boxW
+          : imgLeftPx  + insetPx;
 
         const overlay           = document.createElement('div');
         overlay.className       = 'goal-overlay';
         overlay.style.position  = 'absolute';
-        overlay.style.top       = topPx + 'px';
+        overlay.style.top       = (topPx + vOffsetPx) + 'px';
         overlay.style.left      = labelLeftPx + 'px';
         overlay.style.width     = boxW + 'px';
-        overlay.style.transform = 'translateY(-50%)';  // centre vertically on flower
 
         const checkbox       = document.createElement('div');
         checkbox.className   = 'goal-checkbox' + (goal.checked ? ' checked' : '');
