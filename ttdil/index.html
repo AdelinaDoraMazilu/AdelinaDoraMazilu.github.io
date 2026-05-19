@@ -164,6 +164,7 @@
     const ANCHORS = {
       406: {                      // mobile (406px viewport)
         orchidWidthPct:    80,
+        orchidShiftPct:    3,   // ← shift orchid left by 3% of viewport width
         labelInsetPctRight: 35,   // right-side flowers  // ← DECREASE to move labels further from center
         labelInsetPctLeft:  25,   // left-side flowers // ← DECREASE to move labels further from center
         goalBoxWidthPct:   38,
@@ -171,6 +172,7 @@
       },
       1707: {                     // desktop (1707px viewport)
         orchidWidthPct:    57,
+        orchidShiftPct:    3,   // ← shift orchid left by 3% of viewport width
         labelInsetPctRight: 35,   // right-side flowers  // ← DECREASE to move labels further from center
         labelInsetPctLeft:  5,   // left-side flowers // ← DECREASE to move labels further from center
         goalBoxWidthPct:   35,
@@ -223,7 +225,7 @@
       const renderH = renderW * (ORCHID_NATURAL_H / ORCHID_NATURAL_W);
 
       /* Center the orchid horizontally */
-      const imgLeftPx  = (screenW - renderW) / 2;
+      const imgLeftPx  = (screenW - renderW) / 2 - screenW * (cfg.orchidShiftPct / 100);
       const imgRightPx = imgLeftPx + renderW;   // = (screenW + renderW) / 2
 
       /* How far inward from the orchid edge the label starts (in px).
