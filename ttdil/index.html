@@ -20,7 +20,7 @@
     </p>
   </div>
 
-  <div class="stem-stack" id="stemStack"></div>
+  <div class="stem-stack" id="stemStack" style="position: relative;"></div>
 
   <script>
     const goals = [
@@ -74,62 +74,39 @@
       light: { topImg: '/ttdil/white_top.png',  partImg: '/ttdil/white_part.png' },
     };
 
-    // Replace TUNE_CONFIG with this interpolation approach
+    /* ================================================================
+       TWO ANCHOR CONFIGS — one for 406px, one for 1707px.
+       All values between these widths are smoothly interpolated,
+       so every intermediate viewport gets a mathematically correct
+       in-between value. No hard breakpoint at 768px any more.
+       ================================================================ */
     const TUNE_ANCHORS = {
       dark: {
-        406: {  // your known-good mobile values
-          topSection:  { widthPct: 75, rightOffsetPct: 2.5, translateXPct: 0, overlapWithPartPx: 25 },
-          partSection: { widthPct: 80, rightOffsetPct: 0, stemRotationDeg: -0.5, overlapPx: 135 },
+        406: {
+          topSection:  { widthPct: 75,  rightOffsetPct: 2.5, translateXPct: 0, overlapWithPartPx: 25 },
+          partSection: { widthPct: 80,  rightOffsetPct: 0,   stemRotationDeg: -0.5, overlapPx: 135 },
           goalLayout:  { rightFlowerTopPct: 50, leftFlowerTopPct: 90, leftViewportPct: 10, rightViewportPct: 70, boxWidthPct: 24 },
         },
-        1707: {  // your known-good desktop values
-          topSection:  { widthPct: 55, rightOffsetPct: 4.2, translateXPct: 0, overlapWithPartPx: 80 },
-          partSection: { widthPct: 57, rightOffsetPct: 2.5, stemRotationDeg: -0.5, overlapPx: 410 },
+        1707: {
+          topSection:  { widthPct: 55,  rightOffsetPct: 4.2, translateXPct: 0, overlapWithPartPx: 80 },
+          partSection: { widthPct: 57,  rightOffsetPct: 2.5, stemRotationDeg: -0.5, overlapPx: 410 },
           goalLayout:  { rightFlowerTopPct: 28, leftFlowerTopPct: 72, leftViewportPct: 5, rightViewportPct: 73, boxWidthPct: 18 },
         },
       },
       light: {
         406: {
-          topSection:  { widthPct: 80, rightOffsetPct: 1.1, translateXPct: 0, overlapWithPartPx: 32 },
-          partSection: { widthPct: 80, rightOffsetPct: 0, stemRotationDeg: -0.5, overlapPx: 135 },
+          topSection:  { widthPct: 80,  rightOffsetPct: 1.1, translateXPct: 0, overlapWithPartPx: 32 },
+          partSection: { widthPct: 80,  rightOffsetPct: 0,   stemRotationDeg: -0.5, overlapPx: 135 },
           goalLayout:  { rightFlowerTopPct: 50, leftFlowerTopPct: 90, leftViewportPct: 10, rightViewportPct: 70, boxWidthPct: 24 },
         },
         1707: {
-          topSection:  { widthPct: 60, rightOffsetPct: 3.4, translateXPct: 0, overlapWithPartPx: 95 },
-          partSection: { widthPct: 57, rightOffsetPct: 2.5, stemRotationDeg: -0.5, overlapPx: 410 },
+          topSection:  { widthPct: 60,  rightOffsetPct: 3.4, translateXPct: 0, overlapWithPartPx: 95 },
+          partSection: { widthPct: 57,  rightOffsetPct: 2.5, stemRotationDeg: -0.5, overlapPx: 410 },
           goalLayout:  { rightFlowerTopPct: 28, leftFlowerTopPct: 72, leftViewportPct: 5, rightViewportPct: 73, boxWidthPct: 18 },
         },
       },
     };
 
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function getInterpolatedConfig(theme) {
-      const w = window.innerWidth;
-      const anchors = TUNE_ANCHORS[theme];
-      const keys = Object.keys(anchors).map(Number).sort((a, b) => a - b);
-      const minW = keys[0], maxW = keys[keys.length - 1];
-
-      // Clamp t between 0 and 1
-      const t = Math.max(0, Math.min(1, (w - minW) / (maxW - minW)));
-
-      const lo = anchors[minW];
-      const hi = anchors[maxW];
-
-      function lerpObj(a, b) {
-        const result = {};
-        for (const key of Object.keys(a)) {
-          result[key] = lerp(a[key], b[key], t);
-        }
-        return result;
-      }
-
-      return {
-        topSection:  lerpObj(lo.topSection,  hi.topSection),
-        partSection: lerpObj(lo.partSection, hi.partSection),
-        goalLayout:  lerpObj(lo.goalLayout,  hi.goalLayout),
-      };
-    }
     /* ================================================================
        GOAL PAIRS
        goalIdxA = right flower, goalIdxB = left flower.
@@ -167,62 +144,141 @@
     }
 
     /* ================================================================
+       LINEAR INTERPOLATION HELPERS
+       ================================================================ */
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function lerpObj(a, b, t) {
+      const result = {};
+      for (const key of Object.keys(a)) {
+        result[key] = lerp(a[key], b[key], t);
+      }
+      return result;
+    }
+
+    function getInterpolatedConfig(theme) {
+      const w       = window.innerWidth;
+      const anchors = TUNE_ANCHORS[theme];
+      const keys    = Object.keys(anchors).map(Number).sort((a, b) => a - b);
+      const minW    = keys[0];
+      const maxW    = keys[keys.length - 1];
+
+      // Clamp t to [0, 1] so values never extrapolate beyond the anchors
+      const t = Math.max(0, Math.min(1, (w - minW) / (maxW - minW)));
+
+      const lo = anchors[minW];
+      const hi = anchors[maxW];
+
+      return {
+        topSection:  lerpObj(lo.topSection,  hi.topSection,  t),
+        partSection: lerpObj(lo.partSection, hi.partSection, t),
+        goalLayout:  lerpObj(lo.goalLayout,  hi.goalLayout,  t),
+      };
+    }
+
+    /* ================================================================
        BUILD / REBUILD THE STACK
+       Uses absolute positioning so every segment's Y is computed
+       independently from naturalHeight × scale — errors never
+       accumulate across segments.
        ================================================================ */
     function buildStack() {
       const stack  = document.getElementById('stemStack');
-      stack.innerHTML = '';
-
       const theme  = getCurrentTheme();
       const images = THEME_IMAGES[theme];
-      const cfg = getInterpolatedConfig(theme);
-      const top    = cfg.topSection;
-      const part   = cfg.partSection;
-      const gl     = cfg.goalLayout;
 
-      sections.forEach((sec, si) => {
-        const isTop = si === 0;
+      // 1. Pre-load all unique image sources before touching the DOM
+      const topImgEl  = new Image();
+      const partImgEl = new Image();
+      topImgEl.src    = images.topImg;
+      partImgEl.src   = images.partImg;
 
-        /* --- section wrapper --- */
-        const section     = document.createElement('div');
-        section.className = 'stem-section' + (isTop ? ' top-section' : ' constrained');
+      let pending = 0;
+      function markReady() {
+        pending--;
+        if (pending === 0) placeAll();
+      }
 
-        if (isTop) {
-          section.style.width        = top.widthPct + '%';
-          section.style.right        = top.rightOffsetPct + '%';
-          if (top.translateXPct !== 0) {
-            section.style.transform  = `translateX(${top.translateXPct}%)`;
+      if (!topImgEl.complete  || topImgEl.naturalWidth  === 0) { pending++; topImgEl.onload  = markReady; topImgEl.onerror  = markReady; } else { /* already cached */ }
+      if (!partImgEl.complete || partImgEl.naturalWidth === 0) { pending++; partImgEl.onload = markReady; partImgEl.onerror = markReady; } else { /* already cached */ }
+
+      // If both were already cached, kick off immediately
+      if (pending === 0) placeAll();
+
+      function placeAll() {
+        stack.innerHTML = '';
+        stack.style.position = 'relative';
+
+        const cfg      = getInterpolatedConfig(theme);
+        const screenW  = window.innerWidth;
+
+        // Rendered pixel widths for top and part images
+        const topRenderW  = screenW * (cfg.topSection.widthPct  / 100);
+        const partRenderW = screenW * (cfg.partSection.widthPct / 100);
+
+        // Scale factors (rendered width / natural width)
+        const topScale  = topImgEl.naturalWidth  > 0 ? topRenderW  / topImgEl.naturalWidth  : 1;
+        const partScale = partImgEl.naturalWidth > 0 ? partRenderW / partImgEl.naturalWidth : 1;
+
+        // Rendered heights derived from natural dimensions × scale
+        const topRenderH  = topImgEl.naturalHeight  * topScale;
+        const partRenderH = partImgEl.naturalHeight * partScale;
+
+        // 2. Compute absolute Y position for every section
+        //    cursor starts at 0 and advances by (renderH - overlap) per section
+        const yPositions = [];
+        let cursor = 0;
+
+        sections.forEach((sec, si) => {
+          yPositions.push(cursor);
+          if (si === 0) {
+            cursor += topRenderH - cfg.topSection.overlapWithPartPx;
+          } else {
+            cursor += partRenderH - cfg.partSection.overlapPx;
           }
-          /* overlapWithPartPx is applied as marginBottom so the first part
-             slides up under the top image by that many px */
-          section.style.marginBottom = `${top.overlapWithPartPx}px`;
-        } else {
-          section.style.width     = part.widthPct + '%';
-          section.style.right     = part.rightOffsetPct + '%';
-          /* overlapPx: positive = parts closer (negative marginTop),
-                        negative = parts further apart (positive marginTop) */
-          section.style.marginTop = `${-part.overlapPx}px`;
-        }
+        });
 
-        /* --- image --- */
-        const img     = document.createElement('img');
-        img.className = 'stem-img';
-        img.src       = isTop ? images.topImg : images.partImg;
-        img.alt       = '';
-        img.loading   = 'eager';
-        if (!isTop && part.stemRotationDeg !== 0) {
-          img.style.transform = `rotate(${part.stemRotationDeg}deg)`;
-        }
-        section.appendChild(img);
+        // Total container height = Y of last section + its rendered height
+        const totalH = cursor + partRenderH;
+        stack.style.height = totalH + 'px';
 
-        /* --- goal overlays (only on part sections, not the top) --- */
-        if (!isTop) {
-          function placeGoals() {
-            const imgH        = img.offsetHeight;
-            const screenW     = window.innerWidth;
-            const sectionLeft = section.getBoundingClientRect().left;
+        // 3. Place each section at its computed absolute Y
+        sections.forEach((sec, si) => {
+          const isTop      = si === 0;
+          const renderW    = isTop ? topRenderW  : partRenderW;
+          const rightPct   = isTop ? cfg.topSection.rightOffsetPct : cfg.partSection.rightOffsetPct;
 
-            section.querySelectorAll('.goal-overlay').forEach(el => el.remove());
+          const section         = document.createElement('div');
+          section.className     = 'stem-section' + (isTop ? ' top-section' : ' constrained');
+          section.style.position = 'absolute';
+          section.style.top      = yPositions[si] + 'px';
+          section.style.right    = rightPct + '%';
+          section.style.width    = renderW + 'px';
+          // Remove any margin/transform that the old flow layout used
+          section.style.margin   = '0';
+
+          const img         = document.createElement('img');
+          img.className     = 'stem-img';
+          img.src           = isTop ? images.topImg : images.partImg;
+          img.alt           = '';
+          img.loading       = 'eager';
+          img.style.width   = '100%';
+          img.style.display = 'block'; // prevents inline-image gap at bottom
+
+          if (!isTop && cfg.partSection.stemRotationDeg !== 0) {
+            img.style.transform = `rotate(${cfg.partSection.stemRotationDeg}deg)`;
+          }
+          section.appendChild(img);
+
+          // 4. Goal overlays — identical logic to before, but heights are
+          //    now exact (naturalHeight × scale) rather than offsetHeight
+          if (!isTop) {
+            const gl          = cfg.goalLayout;
+            const imgH        = partRenderH;
+            // Left edge of this section in viewport coordinates
+            const sectionLeftPx = screenW - (screenW * rightPct / 100) - renderW;
 
             [
               { idx: sec.goalIdxA, topPct: gl.rightFlowerTopPct, side: 'right' },
@@ -232,20 +288,20 @@
               const goal = goals[idx];
               if (!goal) return;
 
-              const overlay     = document.createElement('div');
-              overlay.className = 'goal-overlay';
+              const overlay       = document.createElement('div');
+              overlay.className   = 'goal-overlay';
               overlay.style.top   = ((topPct / 100) * imgH) + 'px';
               overlay.style.width = (screenW * (gl.boxWidthPct / 100)) + 'px';
 
-              const vpPct = side === 'left' ? gl.leftViewportPct : gl.rightViewportPct;
-              overlay.style.left = (screenW * (vpPct / 100) - sectionLeft) + 'px';
+              const vpPct         = side === 'left' ? gl.leftViewportPct : gl.rightViewportPct;
+              overlay.style.left  = (screenW * (vpPct / 100) - sectionLeftPx) + 'px';
 
-              const checkbox     = document.createElement('div');
-              checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
+              const checkbox      = document.createElement('div');
+              checkbox.className  = 'goal-checkbox' + (goal.checked ? ' checked' : '');
 
-              const desc       = document.createElement('div');
-              desc.className   = 'goal-desc';
-              desc.textContent = goal.desc;
+              const desc          = document.createElement('div');
+              desc.className      = 'goal-desc';
+              desc.textContent    = goal.desc;
 
               overlay.appendChild(checkbox);
               overlay.appendChild(desc);
@@ -253,24 +309,9 @@
             });
           }
 
-          function waitAndPlace() {
-            if (img.offsetHeight > 0) {
-              placeGoals();
-            } else {
-              requestAnimationFrame(waitAndPlace);
-            }
-          }
-
-          if (img.complete && img.naturalHeight > 0) {
-            waitAndPlace();
-          } else {
-            img.addEventListener('load', waitAndPlace);
-            img.addEventListener('error', () => console.warn('Failed to load:', img.src));
-          }
-        }
-
-        stack.appendChild(section);
-      });
+          stack.appendChild(section);
+        });
+      }
     }
 
     buildStack();
