@@ -1,26 +1,3 @@
-<!--
-██████╗  ██████╗     ███╗   ██╗ ██████╗ ████████╗
-██╔══██╗██╔═══██╗    ████╗  ██║██╔═══██╗╚══██╔══╝
-██║  ██║██║   ██║    ██╔██╗ ██║██║   ██║   ██║   
-██║  ██║██║   ██║    ██║╚██╗██║██║   ██║   ██║   
-██████╔╝╚██████╔╝    ██║ ╚████║╚██████╔╝   ██║   
-╚═════╝  ╚═════╝     ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   
-
-████████╗ ██████╗ ██╗   ██╗ ██████╗██╗  ██╗
-╚══██╔══╝██╔═══██╗██║   ██║██╔════╝██║  ██║
-   ██║   ██║   ██║██║   ██║██║     ███████║
-   ██║   ██║   ██║██║   ██║██║     ██╔══██║
-   ██║   ╚██████╔╝╚██████╔╝╚██████╗██║  ██║
-   ╚═╝    ╚═════╝  ╚═════╝  ╚═════╝╚═╝  ╚═╝
-
-████████╗██╗  ██╗██╗███████╗     ██████╗ ██████╗ ██████╗ ███████╗
-╚══██╔══╝██║  ██║██║██╔════╝    ██╔════╝██╔═══██╗██╔══██╗██╔════╝
-   ██║   ███████║██║███████╗    ██║     ██║   ██║██║  ██║█████╗  
-   ██║   ██╔══██║██║╚════██║    ██║     ██║   ██║██║  ██║██╔══╝  
-   ██║   ██║  ██║██║███████║    ╚██████╗╚██████╔╝██████╔╝███████╗
-   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝
--->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,98 +74,62 @@
       light: { topImg: '/ttdil/white_top.png',  partImg: '/ttdil/white_part.png' },
     };
 
-    const TUNE_CONFIG = {
+    // Replace TUNE_CONFIG with this interpolation approach
+    const TUNE_ANCHORS = {
       dark: {
-        desktop: {
-          topSection: {
-            widthPct:           55,  /* DONT'T CHANGE */
-            rightOffsetPct:    4.2,  /* DONT'T CHANGE */
-            translateXPct:       0,  /* DONT'T CHANGE */
-            overlapWithPartPx:  80,  /* DONT'T CHANGE */
-          },
-          partSection: {
-            widthPct:           57,  /* DONT'T CHANGE */
-            rightOffsetPct:    2.5,  /* DONT'T CHANGE */
-            stemRotationDeg:  -0.5,  /* DONT'T CHANGE */
-            overlapPx:         410,  /* DONT'T CHANGE */
-          },
-          goalLayout: {
-            rightFlowerTopPct:  28,  /* DONT'T CHANGE */
-            leftFlowerTopPct:   72,  /* DONT'T CHANGE */
-            leftViewportPct:     5,  /* DONT'T CHANGE */
-            rightViewportPct:   73,  /* DONT'T CHANGE */
-            boxWidthPct:        18,  /* DONT'T CHANGE */
-          },
+        406: {  // your known-good mobile values
+          topSection:  { widthPct: 75, rightOffsetPct: 2.5, translateXPct: 0, overlapWithPartPx: 25 },
+          partSection: { widthPct: 80, rightOffsetPct: 0, stemRotationDeg: -0.5, overlapPx: 135 },
+          goalLayout:  { rightFlowerTopPct: 50, leftFlowerTopPct: 90, leftViewportPct: 10, rightViewportPct: 70, boxWidthPct: 24 },
         },
-        mobile: {
-          topSection: {
-            widthPct:           75,  /* DONT'T CHANGE */
-            rightOffsetPct:    2.5,  /* DONT'T CHANGE */
-            translateXPct:       0,  /* DONT'T CHANGE */
-            overlapWithPartPx:  25,  /* DONT'T CHANGE */
-          },
-          partSection: {
-            widthPct:           80,   /* DONT'T CHANGE */
-            rightOffsetPct:      0,   /* DONT'T CHANGE */
-            stemRotationDeg:  -0.5,   /* DONT'T CHANGE */
-            overlapPx:         135,   /* DONT'T CHANGE */
-          },
-          goalLayout: {
-            rightFlowerTopPct:  50,   /* DONT'T CHANGE */
-            leftFlowerTopPct:   90,   /* DONT'T CHANGE */
-            leftViewportPct:    10,   /* DONT'T CHANGE */
-            rightViewportPct:   70,   /* DONT'T CHANGE */
-            boxWidthPct:        24,   /* DONT'T CHANGE */
-          },
+        1707: {  // your known-good desktop values
+          topSection:  { widthPct: 55, rightOffsetPct: 4.2, translateXPct: 0, overlapWithPartPx: 80 },
+          partSection: { widthPct: 57, rightOffsetPct: 2.5, stemRotationDeg: -0.5, overlapPx: 410 },
+          goalLayout:  { rightFlowerTopPct: 28, leftFlowerTopPct: 72, leftViewportPct: 5, rightViewportPct: 73, boxWidthPct: 18 },
         },
       },
-
       light: {
-        desktop: {
-          topSection: {
-            widthPct:            60,  /* DONT'T CHANGE */
-            rightOffsetPct:     3.4,  /* DONT'T CHANGE */
-            translateXPct:        0,  /* DONT'T CHANGE */
-            overlapWithPartPx:   95,  /* DONT'T CHANGE */
-          },
-          partSection: {
-            widthPct:            57,   /* DONT'T CHANGE */
-            rightOffsetPct:     2.5,   /* DONT'T CHANGE */
-            stemRotationDeg:   -0.5,   /* DONT'T CHANGE */
-            overlapPx:          410,   /* DONT'T CHANGE */
-          },
-          goalLayout: {
-            rightFlowerTopPct:   28,   /* DONT'T CHANGE */
-            leftFlowerTopPct:    72,   /* DONT'T CHANGE */
-            leftViewportPct:      5,   /* DONT'T CHANGE */
-            rightViewportPct:    73,   /* DONT'T CHANGE */
-            boxWidthPct:         18,   /* DONT'T CHANGE */
-          },
+        406: {
+          topSection:  { widthPct: 80, rightOffsetPct: 1.1, translateXPct: 0, overlapWithPartPx: 32 },
+          partSection: { widthPct: 80, rightOffsetPct: 0, stemRotationDeg: -0.5, overlapPx: 135 },
+          goalLayout:  { rightFlowerTopPct: 50, leftFlowerTopPct: 90, leftViewportPct: 10, rightViewportPct: 70, boxWidthPct: 24 },
         },
-        mobile: {
-          topSection: {
-            widthPct:            80,   /* DONT'T CHANGE */
-            rightOffsetPct:     1.1,   /* DONT'T CHANGE */
-            translateXPct:        0,   /* DONT'T CHANGE */
-            overlapWithPartPx:   32,   /* DONT'T CHANGE */
-          },
-          partSection: {
-            widthPct:            80,   /* DONT'T CHANGE */
-            rightOffsetPct:       0,   /* DONT'T CHANGE */
-            stemRotationDeg:   -0.5,   /* DONT'T CHANGE */
-            overlapPx:          135,   /* DONT'T CHANGE */
-          },
-          goalLayout: {
-            rightFlowerTopPct: 50,     /* DONT'T CHANGE */
-            leftFlowerTopPct:  90,     /* DONT'T CHANGE */
-            leftViewportPct:   10,     /* DONT'T CHANGE */
-            rightViewportPct:  70,     /* DONT'T CHANGE */
-            boxWidthPct:       24,     /* DONT'T CHANGE */
-          },
+        1707: {
+          topSection:  { widthPct: 60, rightOffsetPct: 3.4, translateXPct: 0, overlapWithPartPx: 95 },
+          partSection: { widthPct: 57, rightOffsetPct: 2.5, stemRotationDeg: -0.5, overlapPx: 410 },
+          goalLayout:  { rightFlowerTopPct: 28, leftFlowerTopPct: 72, leftViewportPct: 5, rightViewportPct: 73, boxWidthPct: 18 },
         },
       },
     };
 
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function getInterpolatedConfig(theme) {
+      const w = window.innerWidth;
+      const anchors = TUNE_ANCHORS[theme];
+      const keys = Object.keys(anchors).map(Number).sort((a, b) => a - b);
+      const minW = keys[0], maxW = keys[keys.length - 1];
+
+      // Clamp t between 0 and 1
+      const t = Math.max(0, Math.min(1, (w - minW) / (maxW - minW)));
+
+      const lo = anchors[minW];
+      const hi = anchors[maxW];
+
+      function lerpObj(a, b) {
+        const result = {};
+        for (const key of Object.keys(a)) {
+          result[key] = lerp(a[key], b[key], t);
+        }
+        return result;
+      }
+
+      return {
+        topSection:  lerpObj(lo.topSection,  hi.topSection),
+        partSection: lerpObj(lo.partSection, hi.partSection),
+        goalLayout:  lerpObj(lo.goalLayout,  hi.goalLayout),
+      };
+    }
     /* ================================================================
        GOAL PAIRS
        goalIdxA = right flower, goalIdxB = left flower.
@@ -234,8 +175,7 @@
 
       const theme  = getCurrentTheme();
       const images = THEME_IMAGES[theme];
-      const isMob  = window.innerWidth <= 768;
-      const cfg    = TUNE_CONFIG[theme][isMob ? 'mobile' : 'desktop'];
+      const cfg = getInterpolatedConfig(theme);
       const top    = cfg.topSection;
       const part   = cfg.partSection;
       const gl     = cfg.goalLayout;
