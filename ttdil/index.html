@@ -77,100 +77,99 @@
        Detected by pixel-brightness analysis of full_white_orchid.png
        (natural size: 500 × 8000 px).
 
-       pct = vertical centre of that flower as a percentage of the
-             total image height. This scales automatically with the
-             rendered height, so the label always sits next to the
-             correct flower regardless of viewport width.
+       pct  = vertical centre of that flower as % of image height.
+               Scales automatically with any rendered width.
+       side = which side of the stem the flower is on:
+                'right' → flower right of stem → label to the right
+                'left'  → flower left  of stem → label to the left
+       decorative = true means no goal label is shown for this flower.
 
-       side = which side of the stem the flower sits on:
-         'right' → flower is to the RIGHT of the stem
-         'left'  → flower is to the LEFT  of the stem
-       Labels are placed on the outer (non-stem) side of each flower.
+       The first 4 flowers form the branching top of the orchid and
+       are intentionally left decorative. Goal 0 starts at flower 4
+       (the 5th flower, first regular paired position).
 
-       Flowers with no corresponding goal entry are decorative only.
-       To add a new goal: append to `goals` — the next flower in this
-       list will automatically receive the new label.
+       To add more goals later: append to `goals`. The next non-
+       decorative flower in this list will automatically receive it.
        ================================================================ */
     const flowers = [
-      { side: 'right', pct:  0.45 },  //  0 → goal 0
-      { side: 'right', pct:  2.61 },  //  1 → goal 1
-      { side: 'left',  pct:  2.77 },  //  2 → goal 2
-      { side: 'right', pct:  5.22 },  //  3 → goal 3
-      { side: 'left',  pct:  7.80 },  //  4 → goal 4
-      { side: 'right', pct:  9.12 },  //  5 → goal 5
-      { side: 'left',  pct: 11.70 },  //  6 → goal 6
-      { side: 'right', pct: 13.03 },  //  7 → goal 7
-      { side: 'left',  pct: 15.60 },  //  8 → goal 8
-      { side: 'right', pct: 16.93 },  //  9 → goal 9
-      { side: 'left',  pct: 19.50 },  // 10 → goal 10
-      { side: 'right', pct: 20.79 },  // 11 → goal 11
-      { side: 'left',  pct: 23.36 },  // 12 → goal 12
-      { side: 'right', pct: 24.69 },  // 13 → goal 13
-      { side: 'left',  pct: 27.26 },  // 14 → goal 14
-      { side: 'right', pct: 28.59 },  // 15 → goal 15
-      { side: 'left',  pct: 31.16 },  // 16 → goal 16
-      { side: 'right', pct: 32.49 },  // 17 → goal 17
-      { side: 'left',  pct: 35.06 },  // 18 → goal 18
-      { side: 'right', pct: 36.35 },  // 19 → goal 19
-      { side: 'left',  pct: 38.92 },  // 20 → goal 20
-      { side: 'right', pct: 40.25 },  // 21 → goal 21
-      { side: 'left',  pct: 42.83 },  // 22 → goal 22
-      { side: 'right', pct: 44.15 },  // 23 → goal 23
-      { side: 'left',  pct: 46.73 },  // 24 → goal 24
-      { side: 'right', pct: 48.04 },  // 25 → goal 25
-      { side: 'left',  pct: 50.62 },  // 26 → goal 26
-      { side: 'right', pct: 51.91 },  // 27 → goal 27
-      { side: 'left',  pct: 54.49 },  // 28 → goal 28
-      { side: 'right', pct: 55.81 },  // 29 → goal 29
-      { side: 'left',  pct: 58.39 },  // 30 → goal 30
-      { side: 'right', pct: 59.71 },  // 31 → goal 31
-      { side: 'left',  pct: 62.29 },  // 32 → goal 32
-      { side: 'right', pct: 63.60 },  // 33 → goal 33
-      { side: 'left',  pct: 66.19 },  // 34 → goal 34
-      { side: 'right', pct: 67.47 },  // 35 → goal 35
-      { side: 'left',  pct: 70.05 },  // 36 → goal 36
-      { side: 'right', pct: 71.36 },  // 37 → goal 37
-      { side: 'left',  pct: 73.95 },  // 38 → goal 38
-      { side: 'right', pct: 75.26 },  // 39 → goal 39
-      { side: 'left',  pct: 77.85 },  // 40 → goal 40
-      { side: 'right', pct: 79.16 },  // 41 → goal 41
-      { side: 'left',  pct: 81.74 },  // 42 → goal 42
-      { side: 'right', pct: 83.04 },  // 43 → decorative
-      { side: 'left',  pct: 85.61 },  // 44 → decorative
-      { side: 'right', pct: 86.94 },  // 45 → decorative
-      { side: 'left',  pct: 89.51 },  // 46 → decorative
-      { side: 'right', pct: 90.84 },  // 47 → decorative
-      { side: 'left',  pct: 93.41 },  // 48 → decorative
-      { side: 'right', pct: 94.73 },  // 49 → decorative
-      { side: 'left',  pct: 97.31 },  // 50 → decorative
+      { side: 'right', pct:  0.45, decorative: true  },  // bud tip
+      { side: 'right', pct:  2.61, decorative: true  },  // top right cluster
+      { side: 'left',  pct:  2.77, decorative: true  },  // top left cluster
+      { side: 'right', pct:  5.22, decorative: true  },  // second right — top decor ends here
+      { side: 'left',  pct:  7.80, decorative: false },  //  0 → goal 0
+      { side: 'right', pct:  9.12, decorative: false },  //  1 → goal 1
+      { side: 'left',  pct: 11.70, decorative: false },  //  2 → goal 2
+      { side: 'right', pct: 13.03, decorative: false },  //  3 → goal 3
+      { side: 'left',  pct: 15.60, decorative: false },  //  4 → goal 4
+      { side: 'right', pct: 16.93, decorative: false },  //  5 → goal 5
+      { side: 'left',  pct: 19.50, decorative: false },  //  6 → goal 6
+      { side: 'right', pct: 20.79, decorative: false },  //  7 → goal 7
+      { side: 'left',  pct: 23.36, decorative: false },  //  8 → goal 8
+      { side: 'right', pct: 24.69, decorative: false },  //  9 → goal 9
+      { side: 'left',  pct: 27.26, decorative: false },  // 10 → goal 10
+      { side: 'right', pct: 28.59, decorative: false },  // 11 → goal 11
+      { side: 'left',  pct: 31.16, decorative: false },  // 12 → goal 12
+      { side: 'right', pct: 32.49, decorative: false },  // 13 → goal 13
+      { side: 'left',  pct: 35.06, decorative: false },  // 14 → goal 14
+      { side: 'right', pct: 36.35, decorative: false },  // 15 → goal 15
+      { side: 'left',  pct: 38.92, decorative: false },  // 16 → goal 16
+      { side: 'right', pct: 40.25, decorative: false },  // 17 → goal 17
+      { side: 'left',  pct: 42.83, decorative: false },  // 18 → goal 18
+      { side: 'right', pct: 44.15, decorative: false },  // 19 → goal 19
+      { side: 'left',  pct: 46.73, decorative: false },  // 20 → goal 20
+      { side: 'right', pct: 48.04, decorative: false },  // 21 → goal 21
+      { side: 'left',  pct: 50.62, decorative: false },  // 22 → goal 22
+      { side: 'right', pct: 51.91, decorative: false },  // 23 → goal 23
+      { side: 'left',  pct: 54.49, decorative: false },  // 24 → goal 24
+      { side: 'right', pct: 55.81, decorative: false },  // 25 → goal 25
+      { side: 'left',  pct: 58.39, decorative: false },  // 26 → goal 26
+      { side: 'right', pct: 59.71, decorative: false },  // 27 → goal 27
+      { side: 'left',  pct: 62.29, decorative: false },  // 28 → goal 28
+      { side: 'right', pct: 63.60, decorative: false },  // 29 → goal 29
+      { side: 'left',  pct: 66.19, decorative: false },  // 30 → goal 30
+      { side: 'right', pct: 67.47, decorative: false },  // 31 → goal 31
+      { side: 'left',  pct: 70.05, decorative: false },  // 32 → goal 32
+      { side: 'right', pct: 71.36, decorative: false },  // 33 → goal 33
+      { side: 'left',  pct: 73.95, decorative: false },  // 34 → goal 34
+      { side: 'right', pct: 75.26, decorative: false },  // 35 → goal 35
+      { side: 'left',  pct: 77.85, decorative: false },  // 36 → goal 36
+      { side: 'right', pct: 79.16, decorative: false },  // 37 → goal 37
+      { side: 'left',  pct: 81.74, decorative: false },  // 38 → goal 38
+      { side: 'right', pct: 83.04, decorative: false },  // 39 → goal 39
+      { side: 'left',  pct: 85.61, decorative: false },  // 40 → goal 40
+      { side: 'right', pct: 86.94, decorative: false },  // 41 → goal 41
+      { side: 'left',  pct: 89.51, decorative: false },  // 42 → goal 42
+      { side: 'right', pct: 90.84, decorative: true  },  // decorative
+      { side: 'left',  pct: 93.41, decorative: true  },  // decorative
+      { side: 'right', pct: 94.73, decorative: true  },  // decorative
+      { side: 'left',  pct: 97.31, decorative: true  },  // decorative
     ];
 
     /* ================================================================
        LAYOUT CONFIG
        Two anchor viewports (406 px mobile, 1707 px desktop).
-       Every value between them is linearly interpolated, so the layout
-       is correct at every viewport width with no hard breakpoint.
+       Values between them are linearly interpolated so every viewport
+       width gets correct proportions with no hard breakpoint.
 
-       orchidWidthPct    – PNG width as % of viewport width
-       orchidRightPct    – PNG right edge distance from viewport right, as %
-       goalBoxWidthPct   – goal label box width as % of viewport width
-       rightLabelLeftPct – left edge of right-flower labels as % of viewport
-       leftLabelLeftPct  – left edge of left-flower  labels as % of viewport
+       orchidWidthPct  – PNG width as % of viewport width
+       labelGapPct     – gap between orchid edge and nearest label edge,
+                         as % of viewport width
+       goalBoxWidthPct – goal label box width as % of viewport width
+
+       Label positions are computed at runtime from the orchid's actual
+       rendered left/right edges plus this gap — so they stay anchored
+       to the orchid regardless of viewport width or centering.
        ================================================================ */
     const ANCHORS = {
       406: {
-        orchidWidthPct:    80,
-        orchidRightPct:     0,
-        goalBoxWidthPct:   24,
-        rightLabelLeftPct: 70,
-        leftLabelLeftPct:  10,
+        orchidWidthPct:  80,
+        labelGapPct:      1,
+        goalBoxWidthPct: 18,
       },
       1707: {
-        orchidWidthPct:    57,
-        orchidRightPct:   2.5,
-        goalBoxWidthPct:   18,
-        rightLabelLeftPct: 73,
-        leftLabelLeftPct:   5,
+        orchidWidthPct:  57,
+        labelGapPct:      1,
+        goalBoxWidthPct: 18,
       },
     };
 
@@ -208,8 +207,7 @@
       const stack   = document.getElementById('stemStack');
       const theme   = getCurrentTheme();
 
-      /* Swap to the dark-theme orchid here when you have one.
-         For now both themes use the same file. */
+      /* Swap src here when a dark-theme version exists */
       const imgSrc  = '/ttdil/full_white_orchid.png';
 
       const cfg     = getConfig();
@@ -219,18 +217,22 @@
       const renderW = screenW * (cfg.orchidWidthPct / 100);
       const renderH = renderW * (ORCHID_NATURAL_H / ORCHID_NATURAL_W);
 
-      /* Right offset in px */
-      const rightPx = screenW * (cfg.orchidRightPct / 100);
+      /* Center the orchid horizontally */
+      const imgLeftPx  = (screenW - renderW) / 2;
+      const imgRightPx = imgLeftPx + renderW;   // = (screenW + renderW) / 2
 
-      /* Left edge of the PNG in viewport coordinates */
-      const imgLeftPx = screenW - rightPx - renderW;
+      /* Gap between orchid edge and label box (in px) */
+      const gapPx = screenW * (cfg.labelGapPct / 100);
+
+      /* Label box width (in px) */
+      const boxW  = screenW * (cfg.goalBoxWidthPct / 100);
 
       /* Rebuild container */
       stack.innerHTML      = '';
       stack.style.position = 'relative';
       stack.style.height   = renderH + 'px';
 
-      /* ── Orchid image ─────────────────────────────────────────── */
+      /* ── Orchid image — centered ──────────────────────────────── */
       const orchid          = document.createElement('img');
       orchid.src            = imgSrc;
       orchid.alt            = '';
@@ -238,29 +240,36 @@
       orchid.className      = 'stem-img';
       orchid.style.position = 'absolute';
       orchid.style.top      = '0';
-      orchid.style.right    = rightPx + 'px';
+      orchid.style.left     = imgLeftPx + 'px';
       orchid.style.width    = renderW + 'px';
       orchid.style.height   = 'auto';
       orchid.style.display  = 'block';
       stack.appendChild(orchid);
 
       /* ── Goal overlays ────────────────────────────────────────── */
-      flowers.forEach((flower, fi) => {
-        const goal = goals[fi];   // undefined once we run past the goals array
-        if (!goal) return;        // decorative flower — no label
+      let goalIndex = 0;  // counts only non-decorative flowers
+
+      flowers.forEach((flower) => {
+        /* Skip decorative flowers entirely */
+        if (flower.decorative) return;
+
+        const goal = goals[goalIndex++];
+        if (!goal) return;   // ran out of goals — flower is implicitly decorative
 
         /* Vertical centre of this flower in rendered px */
         const topPx = (flower.pct / 100) * renderH;
 
-        /* Horizontal position: expressed as 'left' relative to the
-           stack container (which starts at the left edge of the viewport
-           because stem-stack is full-width).                            */
-        const labelLeftPct = flower.side === 'right'
-          ? cfg.rightLabelLeftPct
-          : cfg.leftLabelLeftPct;
-        const labelLeftPx  = screenW * (labelLeftPct / 100);
-
-        const boxW = screenW * (cfg.goalBoxWidthPct / 100);
+        /*
+          Horizontal placement:
+          - Right-side flowers: label sits just outside the orchid's RIGHT edge.
+            labelLeftPx = imgRightPx + gapPx
+          - Left-side flowers: label sits just outside the orchid's LEFT edge,
+            ending at imgLeftPx - gapPx, so its left edge is that minus boxW.
+            labelLeftPx = imgLeftPx - gapPx - boxW
+        */
+        const labelLeftPx = flower.side === 'right'
+          ? imgRightPx + gapPx
+          : imgLeftPx  - gapPx - boxW;
 
         const overlay           = document.createElement('div');
         overlay.className       = 'goal-overlay';
