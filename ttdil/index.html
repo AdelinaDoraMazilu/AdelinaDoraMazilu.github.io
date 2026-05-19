@@ -162,17 +162,17 @@
                            the gap between flower pairs.
        ================================================================ */
     const ANCHORS = {
-      406: {
+      406: {                      // mobile (406px viewport)
         orchidWidthPct:    80,
-        labelInsetPct:     30,   // pull 30% of orchid width inward from edge
-        goalBoxWidthPct:   38,   // box = 38% of orchid width
-        verticalOffsetPct: 1.0,  // drop label 1% of image height below flower
+        labelInsetPct:     20,    // ← DECREASE to move labels further from center
+        goalBoxWidthPct:   38,
+        verticalOffsetPct: 3.0,   // ← INCREASE to move labels further down
       },
-      1707: {
+      1707: {                     // desktop (1707px viewport)
         orchidWidthPct:    57,
-        labelInsetPct:     28,
+        labelInsetPct:     20,    // ← DECREASE to move labels further from center
         goalBoxWidthPct:   35,
-        verticalOffsetPct: 1.0,
+        verticalOffsetPct: 3.0,   // ← INCREASE to move labels further down
       },
     };
 
