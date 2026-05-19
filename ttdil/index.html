@@ -215,7 +215,9 @@
       const theme   = getCurrentTheme();
 
       /* Swap src here when a dark-theme version exists */
-      const imgSrc  = '/ttdil/full_white_orchid.png';
+      const imgSrc = theme === 'light'
+        ? '/ttdil/full_white_orchid.png'
+        : '/ttdil/full_blue_orchid.png';
 
       const cfg     = getConfig();
       const screenW = window.innerWidth;
