@@ -164,13 +164,15 @@
     const ANCHORS = {
       406: {                      // mobile (406px viewport)
         orchidWidthPct:    80,
-        labelInsetPct:     20,    // ← DECREASE to move labels further from center
+        labelInsetPctRight: 25,   // right-side flowers  // ← DECREASE to move labels further from center
+        labelInsetPctLeft:  25,   // left-side flowers // ← DECREASE to move labels further from center
         goalBoxWidthPct:   38,
         verticalOffsetPct: 3.0,   // ← INCREASE to move labels further down
       },
       1707: {                     // desktop (1707px viewport)
         orchidWidthPct:    57,
-        labelInsetPct:     20,    // ← DECREASE to move labels further from center
+        labelInsetPctRight: 25,   // right-side flowers  // ← DECREASE to move labels further from center
+        labelInsetPctLeft:  25,   // left-side flowers // ← DECREASE to move labels further from center
         goalBoxWidthPct:   35,
         verticalOffsetPct: 3.0,   // ← INCREASE to move labels further down
       },
@@ -278,8 +280,8 @@
             top = flower centre + vOffsetPx (no translateY centering)
         */
         const labelLeftPx = flower.side === 'right'
-          ? imgRightPx - insetPx - boxW
-          : imgLeftPx  + insetPx;
+          ? imgRightPx - (renderW * cfg.labelInsetPctRight / 100) - boxW
+          : imgLeftPx  + (renderW * cfg.labelInsetPctLeft  / 100);
 
         const overlay           = document.createElement('div');
         overlay.className       = 'goal-overlay';
