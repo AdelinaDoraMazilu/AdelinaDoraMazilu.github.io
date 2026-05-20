@@ -169,6 +169,7 @@
         labelInsetPctLeft:  25,   // left-side flowers // ← DECREASE to move labels further from center
         goalBoxWidthPct:   15,
         verticalOffsetPct: 2.0,   // ← INCREASE to move labels further down
+        fontSize:          11,   // px — mobile font size
       },
       1707: {                     // desktop (1707px viewport)
         orchidWidthPct:    57,
@@ -177,6 +178,7 @@
         labelInsetPctLeft:  1,   // left-side flowers // ← DECREASE to move labels further from center
         goalBoxWidthPct:   25,
         verticalOffsetPct: 2.0,   // ← INCREASE to move labels further down
+        fontSize:          15,   // px — desktop font size
       },
     };
 
@@ -218,6 +220,7 @@
       const imgSrc = theme === 'light'
         ? '/ttdil/full_white_orchid.png'
         : '/ttdil/full_blue_orchid.png';
+
 
       const cfg     = getConfig();
       const screenW = window.innerWidth;
@@ -292,7 +295,8 @@
         overlay.style.position  = 'absolute';
         overlay.style.top       = (topPx + vOffsetPx) + 'px';
         overlay.style.left      = labelLeftPx + 'px';
-        overlay.style.width     = boxW + 'px';
+        overlay.style.width     = boxW + 'px';   
+        overlay.style.fontSize  = cfg.fontSize + 'px';
 
         const checkbox       = document.createElement('div');
         checkbox.className   = 'goal-checkbox' + (goal.checked ? ' checked' : '');
