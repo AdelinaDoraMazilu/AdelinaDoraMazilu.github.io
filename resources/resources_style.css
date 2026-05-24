@@ -478,7 +478,7 @@ body {
     grid-template-columns: repeat(3, 29%);
     gap: 0;
     overflow: hidden;
-    padding-left: 0;
+    padding-left: 10vw;
   }
  
   /* ── Squares ── */
