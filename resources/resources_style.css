@@ -493,11 +493,12 @@ body {
     grid-template-columns: repeat(2, 40%);
     margin-left: 2vw;
     overflow: hidden;
-    padding-bottom: 20vw;
+    margin-left: 2.5vw;
+    margin-bottom: 20vw; 
   }
  
   .resource-card--pentagon {
-    margin-bottom: 10vw;     /* reduced from -45% — still nestles but doesn't bleed into next section */
+    margin-bottom: 50vw;     /* reduced from -45% — still nestles but doesn't bleed into next section */
   }
  
   /* last pentagon row shouldn't drag the section bottom up */
