@@ -420,11 +420,12 @@ body {
   color: rgba(10, 21, 32, 0.90);
 }
 
+
 /* ══════════════════════════════════════
-   MOBILE
+   MOBILE 
 ══════════════════════════════════════ */
 @media (max-width: 600px) {
- 
+
   /* prevent any child from blowing past the viewport width */
   .resources-page,
   .resources-columns,
@@ -437,32 +438,32 @@ body {
     max-width: 100vw;
     box-sizing: border-box;
   }
- 
+
   .resources-page {
     height: auto;
     overflow-x: hidden;   /* kills the horizontal scroll at the root */
     overflow-y: auto;
   }
- 
+
   .resources-columns {
     grid-template-columns: 1fr;
     overflow: visible;
     border-top: none;
   }
- 
+
   .resources-column {
     border-right: none;
     border-bottom: 1px solid #1a6fc433;
     overflow: visible;
     height: auto;
   }
- 
+
   .resources-col-scroll {
     overflow: visible;
     height: auto;
     max-height: none;
   }
- 
+
   /* ── Fix 1: title text readable and never overflows ── */
   .resources-col-title {
     font-size: 0.85rem;       /* was 0.7rem — bumped up for legibility */
@@ -472,43 +473,39 @@ body {
     word-break: break-word;
     max-width: 100%;
   }
- 
+
   /* ── Triangles ── */
   .resources-grid--triangles {
     grid-template-columns: repeat(3, 29%);
     gap: 0;
+    padding-left: 2.5vw;
     overflow: hidden;
-    padding-left: 10vw;
-    margin-left: 10vw;
   }
- 
+
   /* ── Squares ── */
   .resources-grid--squares {
     grid-template-columns: repeat(2, 40%);
     overflow: hidden;
-    padding-left: 10vw;
   }
- 
+
   /* ── Fix 2: pentagons — remove the huge negative margin that causes overlap ── */
   .resources-grid--pentagons {
     grid-template-columns: repeat(2, 40%);
     margin-left: 2vw;
     overflow: hidden;
-    margin-left: 2.5vw;
-    margin-bottom: 20vw; 
   }
- 
+
   .resource-card--pentagon {
-    margin-bottom: 50vw;     /* reduced from -45% — still nestles but doesn't bleed into next section */
+    margin-bottom: -20%;     /* reduced from -45% — still nestles but doesn't bleed into next section */
   }
- 
+
   /* last pentagon row shouldn't drag the section bottom up */
   .resources-grid--pentagons::after {
     content: '';
     display: block;
     height: 30%;             /* compensates for the remaining negative margin on the last row */
   }
- 
+
   /* ── Hexagons ── */
   .resources-grid--hexagons {
     grid-template-columns: repeat(2, 40%);
