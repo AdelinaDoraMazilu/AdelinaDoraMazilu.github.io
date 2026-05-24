@@ -24,7 +24,7 @@
 
   <script>
     /* ================================================================
-       GOALS  (id 0–42)
+       GOALS  (id 0–45)
        ================================================================ */
     const goals = [
       { id: 0,  desc: "Finish my Bachelor's degree by February 2027",               checked: false },
@@ -32,7 +32,7 @@
       { id: 2,  desc: "Continue to have a positive outlook on life",                 checked: true  },
       { id: 3,  desc: "Become a Teaching Assistant",                                 checked: false },
       { id: 4,  desc: "Get a PhD",                                                   checked: false },
-      { id: 5,  desc: "Get a piloting licence",                                      checked: false },
+      { id: 5,  desc: "Lecture at a university",                                     checked: false },
       { id: 6,  desc: "Make 10 vintage inspired pieces of clothing for myself",      checked: false },
       { id: 7,  desc: "Recreate the 1902 Morin Blossier riding jacket",              checked: false },
       { id: 8,  desc: "Make an ML/RL application in aviation project",               checked: false },
@@ -67,118 +67,160 @@
       { id: 37, desc: "Become a mentor for woodwork for scouts",                     checked: false },
       { id: 38, desc: "Develop my photography skills",                               checked: true  },
       { id: 39, desc: "Get a full frame camera and super telephoto lens",            checked: false },
-      { id: 40, desc: "Learn to play 5 folk songs on the guitar",                   checked: false },
-      { id: 41, desc: "Learn to play 5 classical songs on the violin",              checked: false },
+      { id: 40, desc: "Learn to play 5 folk songs on the guitar",                    checked: false },
+      { id: 41, desc: "Learn to play 5 classical songs on the violin",               checked: false },
       { id: 42, desc: "Do a 2000km bike trip around Europe",                         checked: false },
+      { id: 43, desc: "Start a YouTube channel on MLOps explained",                  checked: false },
+      { id: 44, desc: "Get a piloting licence & fly at mach 1.5",                    checked: false },
+      { id: 45, desc: "Speak in a session of the EU parliament",                     checked: false },
+      { id: 46, desc: "Be as articulate as Grant Sanderson",                         checked: false },
     ];
 
     /* ================================================================
-       FLOWER POSITIONS
-       Detected by pixel-brightness analysis of full_white_orchid.png
-       (natural size: 500 × 8000 px).
-
-       pct  = vertical centre of that flower as % of image height.
-               Scales automatically with any rendered width.
-       side = which side of the stem the flower is on:
-                'right' → flower right of stem → label to the right
-                'left'  → flower left  of stem → label to the left
-       decorative = true means no goal label is shown for this flower.
-
-       The first 4 flowers form the branching top of the orchid and
-       are intentionally left decorative. Goal 0 starts at flower 4
-       (the 5th flower, first regular paired position).
-
-       To add more goals later: append to `goals`. The next non-
-       decorative flower in this list will automatically receive it.
+       FLOWER POSITIONS — light mode (full_white_orchid.png)
        ================================================================ */
     const flowers = [
-      { side: 'right', pct:  0.45, decorative: true  },  // bud tip
-      { side: 'right', pct:  2.61, decorative: true  },  // top right cluster
-      { side: 'left',  pct:  2.77, decorative: true  },  // top left cluster
-      { side: 'right', pct:  5.22, decorative: false  },  // second right — top decor ends here
-      { side: 'left',  pct:  7.80, decorative: false },  //  0 → goal 0
-      { side: 'right', pct:  9.12, decorative: false },  //  1 → goal 1
-      { side: 'left',  pct: 11.70, decorative: false },  //  2 → goal 2
-      { side: 'right', pct: 13.03, decorative: false },  //  3 → goal 3
-      { side: 'left',  pct: 15.60, decorative: false },  //  4 → goal 4
-      { side: 'right', pct: 16.93, decorative: false },  //  5 → goal 5
-      { side: 'left',  pct: 19.50, decorative: false },  //  6 → goal 6
-      { side: 'right', pct: 20.79, decorative: false },  //  7 → goal 7
-      { side: 'left',  pct: 23.36, decorative: false },  //  8 → goal 8
-      { side: 'right', pct: 24.69, decorative: false },  //  9 → goal 9
-      { side: 'left',  pct: 27.26, decorative: false },  // 10 → goal 10
-      { side: 'right', pct: 28.59, decorative: false },  // 11 → goal 11
-      { side: 'left',  pct: 31.16, decorative: false },  // 12 → goal 12
-      { side: 'right', pct: 32.49, decorative: false },  // 13 → goal 13
-      { side: 'left',  pct: 35.06, decorative: false },  // 14 → goal 14
-      { side: 'right', pct: 36.35, decorative: false },  // 15 → goal 15
-      { side: 'left',  pct: 38.92, decorative: false },  // 16 → goal 16
-      { side: 'right', pct: 40.25, decorative: false },  // 17 → goal 17
-      { side: 'left',  pct: 42.83, decorative: false },  // 18 → goal 18
-      { side: 'right', pct: 44.15, decorative: false },  // 19 → goal 19
-      { side: 'left',  pct: 46.73, decorative: false },  // 20 → goal 20
-      { side: 'right', pct: 48.04, decorative: false },  // 21 → goal 21
-      { side: 'left',  pct: 50.62, decorative: false },  // 22 → goal 22
-      { side: 'right', pct: 51.91, decorative: false },  // 23 → goal 23
-      { side: 'left',  pct: 54.49, decorative: false },  // 24 → goal 24
-      { side: 'right', pct: 55.81, decorative: false },  // 25 → goal 25
-      { side: 'left',  pct: 58.39, decorative: false },  // 26 → goal 26
-      { side: 'right', pct: 59.71, decorative: false },  // 27 → goal 27
-      { side: 'left',  pct: 62.29, decorative: false },  // 28 → goal 28
-      { side: 'right', pct: 63.60, decorative: false },  // 29 → goal 29
-      { side: 'left',  pct: 66.19, decorative: false },  // 30 → goal 30
-      { side: 'right', pct: 67.47, decorative: false },  // 31 → goal 31
-      { side: 'left',  pct: 70.05, decorative: false },  // 32 → goal 32
-      { side: 'right', pct: 71.36, decorative: false },  // 33 → goal 33
-      { side: 'left',  pct: 73.95, decorative: false },  // 34 → goal 34
-      { side: 'right', pct: 75.26, decorative: false },  // 35 → goal 35
-      { side: 'left',  pct: 77.85, decorative: false },  // 36 → goal 36
-      { side: 'right', pct: 79.16, decorative: false },  // 37 → goal 37
-      { side: 'left',  pct: 81.74, decorative: false },  // 38 → goal 38
-      { side: 'right', pct: 83.04, decorative: false },  // 39 → goal 39
-      { side: 'left',  pct: 85.61, decorative: false },  // 40 → goal 40
-      { side: 'right', pct: 86.94, decorative: false },  // 41 → goal 41
-      { side: 'left',  pct: 89.51, decorative: true },  // 42 → goal 42
-      { side: 'right', pct: 90.84, decorative: true  },  // decorative
-      { side: 'left',  pct: 93.41, decorative: true  },  // decorative
-      { side: 'right', pct: 94.73, decorative: true  },  // decorative
-      { side: 'left',  pct: 97.31, decorative: true  },  // decorative
+      { side: 'right', pct:  0.45, decorative: true  },
+      { side: 'left',  pct:  0.61, decorative: true  },
+      { side: 'right', pct:  2.61, decorative: true  },
+      { side: 'left',  pct:  2.77, decorative: true  },
+      { side: 'right', pct:  5.22, decorative: false },  //  id 0
+      { side: 'left',  pct:  7.80, decorative: false },  //  id 1
+      { side: 'right', pct:  9.12, decorative: false },  //  id 2
+      { side: 'left',  pct: 11.70, decorative: false },  //  id 3
+      { side: 'right', pct: 13.03, decorative: false },  //  id 4
+      { side: 'left',  pct: 15.60, decorative: false },  //  id 5
+      { side: 'right', pct: 16.93, decorative: false },  //  id 6
+      { side: 'left',  pct: 19.50, decorative: false },  //  id 7
+      { side: 'right', pct: 20.79, decorative: false },  //  id 8
+      { side: 'left',  pct: 23.36, decorative: false },  //  id 9
+      { side: 'right', pct: 24.69, decorative: false },  //  id 10
+      { side: 'left',  pct: 27.26, decorative: false },  //  id 11
+      { side: 'right', pct: 28.59, decorative: false },  //  id 12
+      { side: 'left',  pct: 31.16, decorative: false },  //  id 13
+      { side: 'right', pct: 32.49, decorative: false },  //  id 14
+      { side: 'left',  pct: 35.06, decorative: false },  //  id 15
+      { side: 'right', pct: 36.35, decorative: false },  //  id 16
+      { side: 'left',  pct: 38.92, decorative: false },  //  id 17
+      { side: 'right', pct: 40.25, decorative: false },  //  id 18
+      { side: 'left',  pct: 42.83, decorative: false },  //  id 19
+      { side: 'right', pct: 44.15, decorative: false },  //  id 20
+      { side: 'left',  pct: 46.73, decorative: false },  //  id 21
+      { side: 'right', pct: 48.00, decorative: false },  //  id 22
+      { side: 'left',  pct: 50.61, decorative: false },  //  id 23
+      { side: 'right', pct: 51.89, decorative: false },  //  id 24
+      { side: 'left',  pct: 54.31, decorative: false },  //  id 25
+      { side: 'right', pct: 55.89, decorative: false },  //  id 26
+      { side: 'left',  pct: 58.31, decorative: false },  //  id 27
+      { side: 'right', pct: 59.80, decorative: false },  //  id 28
+      { side: 'left',  pct: 62.00, decorative: false },  //  id 29
+      { side: 'right', pct: 63.50, decorative: false },  //  id 30
+      { side: 'left',  pct: 66.00, decorative: false },  //  id 31
+      { side: 'right', pct: 67.50, decorative: false },  //  id 32
+      { side: 'left',  pct: 70.00, decorative: false },  //  id 33
+      { side: 'right', pct: 71.25, decorative: false },  //  id 34
+      { side: 'left',  pct: 73.80, decorative: false },  //  id 35
+      { side: 'right', pct: 75.15, decorative: false },  //  id 36
+      { side: 'left',  pct: 77.80, decorative: false },  //  id 37
+      { side: 'right', pct: 79.14, decorative: false },  //  id 38
+      { side: 'left',  pct: 81.70, decorative: false },  //  id 39
+      { side: 'right', pct: 82.91, decorative: false },  //  id 40
+      { side: 'left',  pct: 85.60, decorative: false },  //  id 41
+      { side: 'right', pct: 86.71, decorative: false },  //  id 42
+      { side: 'left',  pct: 89.50, decorative: false },  //  id 43
+      { side: 'right', pct: 90.61, decorative: false },  //  id 44
+      { side: 'left',  pct: 93.50, decorative: false },  //  id 45
+      { side: 'right', pct: 95.31, decorative: false },  //  id 46
+    ];
+
+    /* ================================================================
+       FLOWER POSITIONS — dark mode (full_blue_orchid.png)
+       Tune DARK_SCALE and DARK_OFFSET to calibrate:
+         DARK_SCALE:  >1.0 spreads flowers down (fixes bottom-creep)
+         DARK_OFFSET: shifts all flowers uniformly down
+       ================================================================ */
+    const DARK_SCALE  = 1.0;  // try 1.01–1.05 if bottom labels sit too high
+    const DARK_OFFSET = 0.2;  // try 0.5–2.0 if ALL labels are too high
+    const DARK2 = 0.3
+    const DARK3 = 0.4
+    const DARK4 = 0.5
+    const DARK5 = 0.6
+
+    const flowersDark = [
+      { side: 'right', pct: 0.65, decorative: true  },
+      { side: 'left',  pct: 0.81, decorative: true  },
+      { side: 'right', pct: 1.61, decorative: true  },
+      { side: 'left',  pct: 2.77, decorative: true  },
+      { side: 'right', pct: 5.22, decorative: false },  //  id 0
+      { side: 'left',  pct: 7.80, decorative: false },  //  id 1
+      { side: 'right', pct: 9.12, decorative: false },  //  id 2
+      { side: 'left',  pct: 11.70, decorative: false },  //  id 3
+      { side: 'right', pct: 13.03, decorative: false },  //  id 4
+      { side: 'left',  pct: DARK2 + DARK_SCALE * 15.60, decorative: false },  //  id 5
+      { side: 'right', pct: DARK2 + DARK_SCALE * 16.93, decorative: false },  //  id 6
+      { side: 'left',  pct: DARK2 + DARK_SCALE * 19.50, decorative: false },  //  id 7
+      { side: 'right', pct: DARK3 + DARK_SCALE * 20.79, decorative: false },  //  id 8
+      { side: 'left',  pct: DARK3 + DARK_SCALE * 23.36, decorative: false },  //  id 9
+      { side: 'right', pct: DARK3 + DARK_SCALE * 24.69, decorative: false },  //  id 10
+      { side: 'left',  pct: DARK3 + DARK_SCALE * 27.26, decorative: false },  //  id 11
+      { side: 'right', pct: DARK3 + DARK_SCALE * 28.59, decorative: false },  //  id 12
+      { side: 'left',  pct: DARK3 + DARK_SCALE * 31.16, decorative: false },  //  id 13
+      { side: 'right', pct: DARK3 + DARK_SCALE * 32.49, decorative: false },  //  id 14
+      { side: 'left',  pct: DARK4 + DARK_SCALE * 35.06, decorative: false },  //  id 15
+      { side: 'right', pct: DARK4 + DARK_SCALE * 36.35, decorative: false },  //  id 16
+      { side: 'left',  pct: DARK4 + DARK_SCALE * 38.92, decorative: false },  //  id 17
+      { side: 'right', pct: 0.1 +  DARK4 + DARK_SCALE * 40.25, decorative: false },  //  id 18
+      { side: 'left',  pct: 0.2 + DARK4 + DARK_SCALE * 42.83, decorative: false },  //  id 19
+      { side: 'right', pct: DARK4 + DARK_SCALE * 44.15, decorative: false },  //  id 20
+      { side: 'left',  pct: DARK4 + DARK_SCALE * 46.73, decorative: false },  //  id 21
+      { side: 'right', pct: DARK5 + DARK_SCALE * 48.00, decorative: false },  //  id 22
+      { side: 'left',  pct: DARK5 + DARK_SCALE * 50.61, decorative: false },  //  id 23
+      { side: 'right', pct: DARK5 + DARK_SCALE * 51.89, decorative: false },  //  id 24
+      { side: 'left',  pct: DARK5 + DARK_SCALE * 54.31, decorative: false },  //  id 25
+      { side: 'right', pct: DARK5 + DARK_SCALE * 55.89, decorative: false },  //  id 26
+      { side: 'left',  pct: DARK5 + DARK_SCALE * 58.31, decorative: false },  //  id 27
+      { side: 'right', pct: DARK5 + DARK_SCALE * 59.80, decorative: false },  //  id 28
+      { side: 'left',  pct: DARK5 + DARK_SCALE * 62.00, decorative: false },  //  id 29
+      { side: 'right', pct: DARK5 + DARK_SCALE * 63.70, decorative: false },  //  id 30
+      { side: 'left',  pct: DARK5 + DARK_SCALE * 67.50, decorative: false },  //  id 31
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 70.05, decorative: false },  //  id 32
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 71.36, decorative: false },  //  id 33
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 73.95, decorative: false },  //  id 34
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 75.26, decorative: false },  //  id 35
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 77.85, decorative: false },  //  id 36
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 79.16, decorative: false },  //  id 37
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 81.74, decorative: false },  //  id 38
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 83.04, decorative: false },  //  id 39
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 85.61, decorative: false },  //  id 40
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 86.94, decorative: false },  //  id 41
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 89.51, decorative: false },  //  id 42
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 90.84, decorative: false },  //  id 43
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 93.41, decorative: false },  //  id 44
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 94.73, decorative: false },  //  id 45
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 97.31, decorative: true  },
     ];
 
     /* ================================================================
        LAYOUT CONFIG
-       Two anchor viewports (406 px mobile, 1707 px desktop).
-       Values between them are linearly interpolated so every viewport
-       width gets correct proportions with no hard breakpoint.
-
-       orchidWidthPct    – PNG width as % of viewport width
-       labelInsetPct     – how far INWARD from the orchid edge the label
-                           starts, as % of orchid width. Positive = label
-                           overlaps the orchid edge slightly, pulling it
-                           toward the stem. Tune this to taste.
-       goalBoxWidthPct   – goal label box width as % of orchid width
-       verticalOffsetPct – how far BELOW the flower centre the label top
-                           sits, as % of image height. Pushes labels into
-                           the gap between flower pairs.
        ================================================================ */
     const ANCHORS = {
-      406: {                      // mobile (406px viewport)
-        orchidWidthPct:    80,
-        orchidShiftPct:    2.5,   // ← shift orchid left by 3% of viewport width
-        labelInsetPctRight: 35,   // right-side flowers  // ← DECREASE to move labels further from center
-        labelInsetPctLeft:  25,   // left-side flowers // ← DECREASE to move labels further from center
-        goalBoxWidthPct:   35,
-        verticalOffsetPct: 2.0,   // ← INCREASE to move labels further down
-        fontSize:          10,   // px — mobile font size
+      406: {
+        orchidWidthPct:     80,
+        orchidShiftPct:     2.5,
+        labelInsetPctRight: 35,
+        labelInsetPctLeft:  25,
+        goalBoxWidthPct:    35,
+        verticalOffsetPct:  2.0,
+        fontSize:           10,
       },
-      1707: {                     // desktop (1707px viewport)
-        orchidWidthPct:    57,
-        orchidShiftPct:    2.5,   // ← shift orchid left by 3% of viewport width
-        labelInsetPctRight: 35,   // right-side flowers  // ← DECREASE to move labels further from center
-        labelInsetPctLeft:  1,   // left-side flowers // ← DECREASE to move labels further from center
-        goalBoxWidthPct:   25,
-        verticalOffsetPct: 2.0,   // ← INCREASE to move labels further down
-        fontSize:          15,   // px — desktop font size
+      1707: {
+        orchidWidthPct:     57,
+        orchidShiftPct:     2.5,
+        labelInsetPctRight: 35,
+        labelInsetPctLeft:  1,
+        goalBoxWidthPct:    25,
+        verticalOffsetPct:  2.0,
+        fontSize:           15,
       },
     };
 
@@ -216,39 +258,26 @@
       const stack   = document.getElementById('stemStack');
       const theme   = getCurrentTheme();
 
-      /* Swap src here when a dark-theme version exists */
       const imgSrc = theme === 'light'
         ? '/ttdil/full_white_orchid.png'
         : '/ttdil/full_blue_orchid.png';
 
-
       const cfg     = getConfig();
       const screenW = window.innerWidth;
 
-      /* Rendered pixel dimensions */
       const renderW = screenW * (cfg.orchidWidthPct / 100);
       const renderH = renderW * (ORCHID_NATURAL_H / ORCHID_NATURAL_W);
 
-      /* Center the orchid horizontally */
       const imgLeftPx  = (screenW - renderW) / 2 - screenW * (cfg.orchidShiftPct / 100);
-      const imgRightPx = imgLeftPx + renderW;   // = (screenW + renderW) / 2
+      const imgRightPx = imgLeftPx + renderW;
 
-      /* How far inward from the orchid edge the label starts (in px).
-         Positive = label overlaps the orchid edge, moving toward centre. */
-      const insetPx = renderW * (cfg.labelInsetPct / 100);
+      const boxW       = renderW * (cfg.goalBoxWidthPct / 100);
+      const vOffsetPx  = (cfg.verticalOffsetPct / 100) * renderH;
 
-      /* Label box width as a fraction of the orchid rendered width */
-      const boxW = renderW * (cfg.goalBoxWidthPct / 100);
-
-      /* Vertical drop below flower centre (in px) */
-      const vOffsetPx = (cfg.verticalOffsetPct / 100) * renderH;
-
-      /* Rebuild container */
       stack.innerHTML      = '';
       stack.style.position = 'relative';
       stack.style.height   = renderH + 'px';
 
-      /* ── Orchid image — centered ──────────────────────────────── */
       const orchid          = document.createElement('img');
       orchid.src            = imgSrc;
       orchid.alt            = '';
@@ -262,48 +291,39 @@
       orchid.style.display  = 'block';
       stack.appendChild(orchid);
 
-      /* ── Goal overlays ────────────────────────────────────────── */
-      let goalIndex = 0;  // counts only non-decorative flowers
+      let goalIndex = 0;
 
-      flowers.forEach((flower) => {
-        /* Skip decorative flowers entirely */
-        if (flower.decorative) return;
+      const activeFlowers = theme === 'dark' ? flowersDark : flowers;
 
+      const nonDecorativeFlowers = activeFlowers
+        .map((f, i) => ({ ...f, origIndex: i }))
+        .filter(f => !f.decorative);
+
+      nonDecorativeFlowers.forEach((flower, ndIdx) => {
         const goal = goals[goalIndex++];
-        if (!goal) return;   // ran out of goals — flower is implicitly decorative
+        if (!goal) return;
 
-        /* Vertical centre of this flower in rendered px */
-        const topPx = (flower.pct / 100) * renderH;
+        const topPx      = (flower.pct / 100) * renderH;
+        const labelTopPx = topPx + vOffsetPx;
 
-        /*
-          Horizontal placement — inset from the orchid's outer edge:
-          - Right-side flowers: label left edge = orchid right edge - inset
-            (pulls label leftward/inward from the far right edge)
-          - Left-side flowers:  label right edge = orchid left edge + inset
-            so label left = orchid left + inset - boxW
-            (pulls label rightward/inward from the far left edge)
-
-          Vertical placement — drop below flower centre into the gap:
-            top = flower centre + vOffsetPx (no translateY centering)
-        */
         const labelLeftPx = flower.side === 'right'
-          ? imgRightPx - (renderW * cfg.labelInsetPctRight / 100) //- boxW
+          ? imgRightPx - (renderW * cfg.labelInsetPctRight / 100)
           : imgLeftPx  + (renderW * cfg.labelInsetPctLeft  / 100);
 
         const overlay           = document.createElement('div');
         overlay.className       = 'goal-overlay';
         overlay.style.position  = 'absolute';
-        overlay.style.top       = (topPx + vOffsetPx) + 'px';
+        overlay.style.top       = labelTopPx + 'px';
         overlay.style.left      = labelLeftPx + 'px';
-        overlay.style.width     = boxW + 'px';   
+        overlay.style.width     = boxW + 'px';
         overlay.style.fontSize  = cfg.fontSize + 'px';
 
-        const checkbox       = document.createElement('div');
-        checkbox.className   = 'goal-checkbox' + (goal.checked ? ' checked' : '');
+        const checkbox     = document.createElement('div');
+        checkbox.className = 'goal-checkbox' + (goal.checked ? ' checked' : '');
 
-        const desc           = document.createElement('div');
-        desc.className       = 'goal-desc';
-        desc.textContent     = goal.desc;
+        const desc         = document.createElement('div');
+        desc.className     = 'goal-desc';
+        desc.textContent   = goal.desc;
 
         overlay.appendChild(checkbox);
         overlay.appendChild(desc);
