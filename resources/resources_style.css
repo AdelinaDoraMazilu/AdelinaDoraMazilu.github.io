@@ -477,8 +477,8 @@ body {
   .resources-grid--triangles {
     grid-template-columns: repeat(3, 29%);
     gap: 0;
-    padding-left: 5vw;
     overflow: hidden;
+    padding-left: 0;
   }
  
   /* ── Squares ── */
