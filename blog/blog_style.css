@@ -276,7 +276,6 @@ body {
     align-items: center;
     gap: 2rem;
     padding-top: 2rem;
-    padding-left: 25vw;
   }
 
   [data-theme="light"] .blog-card,
