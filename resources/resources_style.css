@@ -479,6 +479,7 @@ body {
     gap: 0;
     overflow: hidden;
     padding-left: 10vw;
+    margin-left: 10vw;
   }
  
   /* ── Squares ── */
