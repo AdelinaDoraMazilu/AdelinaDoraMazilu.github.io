@@ -145,17 +145,27 @@
     const DARK3 = 0.4
     const DARK4 = 0.5
     const DARK5 = 0.6
+    const DARK6 = 0.7
+    const DARK7 = 0.8
+    const DARK8 = 0.9
+    const DARK9 = 1.0
+    const DARK11 = 1.1
+    const DARK12 = 1.2
+    const DARK13 = 1.3
+    const DARK14 = 1.4
+    const DARK15 = 1.5
+    const DARK16 = 1.6
 
     const flowersDark = [
-      { side: 'right', pct: 0.65, decorative: true  },
-      { side: 'left',  pct: 0.81, decorative: true  },
-      { side: 'right', pct: 1.61, decorative: true  },
-      { side: 'left',  pct: 2.77, decorative: true  },
-      { side: 'right', pct: 5.22, decorative: false },  //  id 0
-      { side: 'left',  pct: 7.80, decorative: false },  //  id 1
-      { side: 'right', pct: 9.12, decorative: false },  //  id 2
-      { side: 'left',  pct: 11.70, decorative: false },  //  id 3
-      { side: 'right', pct: 13.03, decorative: false },  //  id 4
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE *0.75, decorative: true  },
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE *0.81, decorative: true  },
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE *1.61, decorative: true  },
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE *2.77, decorative: true  },
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE *5.22, decorative: false },  //  id 0
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE *7.80, decorative: false },  //  id 1
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE *9.12, decorative: false },  //  id 2
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE *11.70, decorative: false },  //  id 3
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE *13.03, decorative: false },  //  id 4
       { side: 'left',  pct: DARK2 + DARK_SCALE * 15.60, decorative: false },  //  id 5
       { side: 'right', pct: DARK2 + DARK_SCALE * 16.93, decorative: false },  //  id 6
       { side: 'left',  pct: DARK2 + DARK_SCALE * 19.50, decorative: false },  //  id 7
@@ -169,35 +179,35 @@
       { side: 'left',  pct: DARK4 + DARK_SCALE * 35.06, decorative: false },  //  id 15
       { side: 'right', pct: DARK4 + DARK_SCALE * 36.35, decorative: false },  //  id 16
       { side: 'left',  pct: DARK4 + DARK_SCALE * 38.92, decorative: false },  //  id 17
-      { side: 'right', pct: 0.1 +  DARK4 + DARK_SCALE * 40.25, decorative: false },  //  id 18
-      { side: 'left',  pct: 0.2 + DARK4 + DARK_SCALE * 42.83, decorative: false },  //  id 19
-      { side: 'right', pct: DARK4 + DARK_SCALE * 44.15, decorative: false },  //  id 20
-      { side: 'left',  pct: DARK4 + DARK_SCALE * 46.73, decorative: false },  //  id 21
-      { side: 'right', pct: DARK5 + DARK_SCALE * 48.00, decorative: false },  //  id 22
-      { side: 'left',  pct: DARK5 + DARK_SCALE * 50.61, decorative: false },  //  id 23
-      { side: 'right', pct: DARK5 + DARK_SCALE * 51.89, decorative: false },  //  id 24
-      { side: 'left',  pct: DARK5 + DARK_SCALE * 54.31, decorative: false },  //  id 25
-      { side: 'right', pct: DARK5 + DARK_SCALE * 55.89, decorative: false },  //  id 26
-      { side: 'left',  pct: DARK5 + DARK_SCALE * 58.31, decorative: false },  //  id 27
-      { side: 'right', pct: DARK5 + DARK_SCALE * 59.80, decorative: false },  //  id 28
-      { side: 'left',  pct: DARK5 + DARK_SCALE * 62.00, decorative: false },  //  id 29
-      { side: 'right', pct: DARK5 + DARK_SCALE * 63.70, decorative: false },  //  id 30
-      { side: 'left',  pct: DARK5 + DARK_SCALE * 67.50, decorative: false },  //  id 31
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 70.05, decorative: false },  //  id 32
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 71.36, decorative: false },  //  id 33
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 73.95, decorative: false },  //  id 34
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 75.26, decorative: false },  //  id 35
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 77.85, decorative: false },  //  id 36
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 79.16, decorative: false },  //  id 37
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 81.74, decorative: false },  //  id 38
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 83.04, decorative: false },  //  id 39
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 85.61, decorative: false },  //  id 40
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 86.94, decorative: false },  //  id 41
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 89.51, decorative: false },  //  id 42
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 90.84, decorative: false },  //  id 43
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 93.41, decorative: false },  //  id 44
-      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 94.73, decorative: false },  //  id 45
-      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 97.31, decorative: true  },
+      { side: 'right', pct: DARK5 + DARK_SCALE * 40.25, decorative: false },  //  id 18
+      { side: 'left',  pct: DARK5 + DARK_SCALE * 42.83, decorative: false },  //  id 19
+      { side: 'right', pct: DARK5 + DARK_SCALE * 44.15, decorative: false },  //  id 20
+      { side: 'left',  pct: DARK6 + DARK_SCALE * 46.73, decorative: false },  //  id 21
+      { side: 'right', pct: DARK6 + DARK_SCALE * 48.00, decorative: false },  //  id 22
+      { side: 'left',  pct: DARK6 + DARK_SCALE * 50.61, decorative: false },  //  id 23
+      { side: 'right', pct: DARK6 + DARK_SCALE * 51.89, decorative: false },  //  id 24
+      { side: 'left',  pct: DARK8 + DARK_SCALE * 54.31, decorative: false },  //  id 25
+      { side: 'right', pct: DARK7 + DARK_SCALE * 55.89, decorative: false },  //  id 26
+      { side: 'left',  pct: DARK8 + DARK_SCALE * 58.31, decorative: false },  //  id 27
+      { side: 'right', pct: DARK7 + DARK_SCALE * 59.80, decorative: false },  //  id 28
+      { side: 'left',  pct: DARK13 + DARK_SCALE * 62.00, decorative: false }, //  id 29
+      { side: 'right', pct: DARK7 + DARK_SCALE * 63.70, decorative: false },  //  id 30
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 66.80, decorative: false },  //  id 31
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 68.05, decorative: false },  //  id 32
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 70.96, decorative: false },  //  id 33
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 72.15, decorative: false },  //  id 34
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 74.86, decorative: false },  //  id 35===
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 76.00, decorative: false },  //  id 36
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 78.76, decorative: false },  //  id 37
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 80.00, decorative: false },  //  id 38
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 82.64, decorative: false },  //  id 39
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 83.91, decorative: false },  //  id 40
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 86.64, decorative: false },  //  id 41
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 87.81, decorative: false },  //  id 42
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 90.50, decorative: false },  //  id 43
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 91.91, decorative: false },  //  id 44
+      { side: 'left',  pct: DARK_OFFSET + DARK_SCALE * 94.53, decorative: false },  //  id 45
+      { side: 'right', pct: DARK_OFFSET + DARK_SCALE * 96.31, decorative: false  },
     ];
 
     /* ================================================================
