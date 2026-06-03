@@ -323,6 +323,11 @@ table.cv-lang-table td {
   transition: background 0.18s;
 }
 
+[data-theme="light"] .cv-download-btn {
+  background: #d3eaff;
+  color:#002060
+}
+
 .cv-download-btn:hover { background: #154d80; }
 .cv-download-btn svg { width: 16px; height: 16px; }
 
