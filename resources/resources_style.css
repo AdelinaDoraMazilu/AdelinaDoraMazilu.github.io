@@ -36,6 +36,7 @@ body {
   margin: 0;
 }
 
+
 [data-theme="light"] .resources-title {
   color: #0a1520;
 }
@@ -73,7 +74,26 @@ body {
   line-height: 1.4;
 }
 
+
+.resources-col-subtitle {
+  flex-shrink: 0;
+  padding: 1rem 0.75rem 1rem 0.75rem;
+  font-family: system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #1a6fc433;
+  line-height: 1.4;
+}
+
+
+
 [data-theme="light"] .resources-col-title {
+  color: #0a1520;
+}
+
+[data-theme="light"] .resources-col-subtitle {
   color: #0a1520;
 }
 
