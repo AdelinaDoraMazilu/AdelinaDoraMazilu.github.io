@@ -254,6 +254,10 @@
     padding: 1.5rem 1.5rem 1rem;
   }
 
+  [data-theme="light"] .home-content-overlay {
+  max-width: 380px;
+  }
+  
   .home-bottom {
     position: relative !important;
     bottom: auto !important;
