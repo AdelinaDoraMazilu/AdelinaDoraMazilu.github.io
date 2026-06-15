@@ -267,9 +267,11 @@ class BlackHole extends HTMLElement {
    * Move dots
    */
   moveDots () {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light"
+
     this.dots.forEach((dot) => {
       const v = this.tweenValue(0, 0.001, 1 - dot.d.sx * dot.d.sy, 'inExpo')
-      dot.p = (dot.p + v) % 1
+      dot.p = (dot.p + (isLight ? -v : v) + 1) % 1
     })
   }
   
