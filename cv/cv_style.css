@@ -1,3 +1,41 @@
+/* ── WAVES BACKGROUND ── */
+:root {
+  --cv-wave-color: rgba(180, 210, 255, 0.10);
+}
+
+[data-theme="light"] {
+  --cv-wave-color: rgba(255, 255, 255, 0.30);
+}
+
+a-waves {
+  --x: -0.5rem;
+  --y: 50%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+  z-index: -1;
+
+  background: var(--bg);
+}
+
+a-waves svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+a-waves svg path {
+  fill: none;
+  stroke: var(--cv-wave-color);
+  stroke-width: 1px;
+}
+
 /* ── CV PAGE ── */
 .cv-outer {
   max-width: 860px;
