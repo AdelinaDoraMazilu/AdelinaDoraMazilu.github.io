@@ -242,9 +242,12 @@ class BlackHole extends HTMLElement {
    * Move discs
    */
   moveDiscs () {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light"
+    const step = isLight ? -0.0003 : 0.0003
+
     this.discs.forEach((disc) => {
-      disc.p = (disc.p + 0.0003) % 1
-      
+      disc.p = (disc.p + step + 1) % 1
+
       this.tweenDisc(disc)
       
       const p = disc.sx * disc.sy
