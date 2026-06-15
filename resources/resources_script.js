@@ -184,7 +184,9 @@ class BlackHole extends HTMLElement {
   drawDiscs () {
     const { ctx } = this
 
-    ctx.strokeStyle = '#0329'
+    const isLight = document.documentElement.getAttribute("data-theme") === "light"
+
+    ctx.strokeStyle = isLight ? '#fff9' : '#0329'
     ctx.lineWidth = 1
 
     // Discs
