@@ -16,12 +16,39 @@ body {
 }*/
 
 
+/* ── BLACK HOLE BACKGROUND ── */
+black-hole {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #000;
+  pointer-events: none;
+}
+
+black-hole canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+[data-theme="light"] black-hole {
+  display: none;
+}
+
 /* ── RESOURCES PAGE LAYOUT ── */
 .resources-page {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
   overflow: hidden;
+  background: transparent;
 }
 
 .resources-header {
