@@ -38,7 +38,7 @@ black-hole canvas {
 }
 
 [data-theme="light"] black-hole {
-  display: none;
+  background: #397ABC;
 }
 
 /* ── RESOURCES PAGE LAYOUT ── */

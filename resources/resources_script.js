@@ -23,6 +23,34 @@ class BlackHole extends HTMLElement {
    */
   bindEvents() {
     window.addEventListener("resize", this.onResize.bind(this));
+
+    this.themeObserver = new MutationObserver(this.onThemeChange.bind(this));
+    this.themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"]
+    });
+  }
+
+  /**
+   * Theme change handler
+   */
+  onThemeChange() {
+    this.dots.forEach((dot) => {
+      dot.c = this.randomDotColor();
+    });
+  }
+
+  /**
+   * Random dot color, based on the current theme
+   */
+  randomDotColor() {
+    const isLight = document.documentElement.getAttribute("data-theme") === "light";
+
+    if (isLight) {
+      return `rgb(255, 255, 255)`;
+    }
+
+    return `rgb(${Math.random() * 0}, ${150 + Math.random() * 50}, ${150 + Math.random() * 105})`;
   }
 
   /**
@@ -105,7 +133,7 @@ class BlackHole extends HTMLElement {
       const dot = {
         d: disc,
         a: 0,
-        c: `rgb(${Math.random() * 0}, ${150 + Math.random() * 50}, ${150 + Math.random() * 105})`,
+        c: this.randomDotColor(),
         p: Math.random(),
         o: Math.random()
       }
