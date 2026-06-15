@@ -1,6 +1,6 @@
 /* ── WAVES BACKGROUND ── */
 :root {
-  --cv-wave-color: rgba(81, 147, 255, 0.1);
+  --cv-wave-color: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="light"] {
