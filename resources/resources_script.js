@@ -322,8 +322,8 @@ class NeutronStar extends HTMLElement {
 
     this.spinPeriod = 16000; // ms per full precession of the magnetic axis
     this.tiltAngle = (26 * Math.PI) / 180; // tilt of magnetic axis from spin axis
-    this.shellLs = [1.35, 1.75, 2.2, 2.7]; // dipole L-shells, in star radii
-    this.azimuths = [0, 90, 180, 270]; // degrees, around the magnetic axis
+    this.shellLs = [1.35, 1.75, 2.2, 2.7]; // loop "bulge" radii at the equator, in star radii
+    this.totalAzimuths = 12; // how many loops fan out around the magnetic axis
 
     this.setMagneticFrame();
     this.setSizes();
@@ -387,7 +387,6 @@ class NeutronStar extends HTMLElement {
     this.starRadius = Math.max(70, Math.min(Math.min(this.width, this.height) * 0.16, 220));
 
     this.setStarfield();
-    this.setSurfaceSpots();
   }
 
   /**
@@ -427,24 +426,6 @@ class NeutronStar extends HTMLElement {
     sctx.globalAlpha = 1;
 
     this.starfieldCanvas = off;
-  }
-
-  /**
-   * Random surface mottling, fixed to the star's body so it rotates with it
-   */
-  setSurfaceSpots() {
-    this.spots = [];
-
-    const total = 36;
-    for (let i = 0; i < total; i++) {
-      this.spots.push({
-        theta: Math.acos(2 * Math.random() - 1),
-        phi: Math.random() * Math.PI * 2,
-        size: Math.random() * 0.16 + 0.05,
-        light: Math.random() < 0.5,
-        o: Math.random() * 0.35 + 0.15
-      });
-    }
   }
 
   /**
@@ -489,25 +470,20 @@ class NeutronStar extends HTMLElement {
     };
   }
 
-  sphericalToCartesian(theta, phi) {
-    return {
-      x: Math.sin(theta) * Math.cos(phi),
-      y: Math.cos(theta),
-      z: Math.sin(theta) * Math.sin(phi)
-    };
-  }
-
   /**
-   * Draw the star's body: outer glow, lit sphere, rotating surface
-   * mottling, and a thin rim light
+   * Draw the star's body: a true center-out radial gradient (bright at
+   * the core, bright at the limb too, no spots), plus a seamless glow
+   * that continues outward from the surface
    */
-  drawStar(spinAngle) {
+  drawStar() {
     const { ctx, cx, cy, starRadius } = this;
 
-    const glowR = starRadius * 2.2;
-    const glow = ctx.createRadialGradient(cx, cy, starRadius * 0.4, cx, cy, glowR);
-    glow.addColorStop(0, "rgba(190,230,255,0.35)");
-    glow.addColorStop(1, "rgba(190,230,255,0)");
+    // glow, picking up exactly where the solid body's edge brightness leaves off
+    const glowR = starRadius * 2.6;
+    const glow = ctx.createRadialGradient(cx, cy, starRadius, cx, cy, glowR);
+    glow.addColorStop(0, "rgba(210,235,255,0.55)");
+    glow.addColorStop(0.4, "rgba(190,225,255,0.22)");
+    glow.addColorStop(1, "rgba(190,225,255,0)");
 
     ctx.save();
     ctx.globalCompositeOperation = "lighter";
@@ -517,15 +493,12 @@ class NeutronStar extends HTMLElement {
     ctx.fill();
     ctx.restore();
 
-    const body = ctx.createRadialGradient(
-      cx - starRadius * 0.25, cy - starRadius * 0.3, starRadius * 0.1,
-      cx, cy, starRadius
-    );
+    // solid body: bright core, bright limb, true center
+    const body = ctx.createRadialGradient(cx, cy, 0, cx, cy, starRadius);
     body.addColorStop(0, "#ffffff");
-    body.addColorStop(0.25, "#dff3ff");
-    body.addColorStop(0.55, "#9fd4ff");
-    body.addColorStop(0.8, "#4f9bdb");
-    body.addColorStop(1, "#1f4d8a");
+    body.addColorStop(0.35, "#eaf7ff");
+    body.addColorStop(0.65, "#bfe4ff");
+    body.addColorStop(1, "#8fcbff");
 
     ctx.fillStyle = body;
     ctx.beginPath();
@@ -533,31 +506,8 @@ class NeutronStar extends HTMLElement {
     ctx.fill();
 
     ctx.save();
-    ctx.beginPath();
-    ctx.arc(cx, cy, starRadius, 0, Math.PI * 2);
-    ctx.clip();
-
-    this.spots.forEach((spot) => {
-      const base = this.sphericalToCartesian(spot.theta, spot.phi);
-      const p = this.rotateY(base, spinAngle);
-      if (p.z <= 0) return;
-
-      const sx = cx + p.x * starRadius;
-      const sy = cy - p.y * starRadius;
-
-      ctx.globalAlpha = spot.o * p.z;
-      ctx.fillStyle = spot.light ? "#ffffff" : "#13345e";
-      ctx.beginPath();
-      ctx.ellipse(sx, sy, spot.size * starRadius, spot.size * starRadius * Math.max(0.3, p.z), 0, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    ctx.globalAlpha = 1;
-    ctx.restore();
-
-    ctx.save();
-    ctx.lineWidth = starRadius * 0.06;
-    ctx.strokeStyle = "rgba(220,245,255,0.55)";
+    ctx.lineWidth = starRadius * 0.05;
+    ctx.strokeStyle = "rgba(230,248,255,0.7)";
     ctx.beginPath();
     ctx.arc(cx, cy, starRadius, 0, Math.PI * 2);
     ctx.stroke();
@@ -565,7 +515,11 @@ class NeutronStar extends HTMLElement {
   }
 
   /**
-   * Draw the dipole magnetic field lines, precessing around the spin axis
+   * Draw the magnetic field loops. Each loop starts exactly at the north
+   * pole (theta=0), bulges out to its shell's radius L at the magnetic
+   * equator, and returns exactly to the south pole (theta=pi) - so every
+   * loop visibly emanates from the poles, not the sides. The whole set
+   * precesses around the spin axis together with the tilted magnetic axis.
    */
   drawFieldLines(spinAngle) {
     const { ctx, cx, cy, starRadius } = this;
@@ -575,18 +529,17 @@ class NeutronStar extends HTMLElement {
     const e2 = this.rotateY(this.e2_0, spinAngle);
 
     ctx.save();
-    ctx.lineWidth = 1.3;
+    ctx.lineWidth = 1.2;
     ctx.strokeStyle = "rgba(170,225,255,0.7)";
     ctx.shadowColor = "rgba(140,210,255,0.9)";
     ctx.shadowBlur = 4;
     ctx.globalCompositeOperation = "lighter";
 
-    this.shellLs.forEach((L) => {
-      const thetaMin = Math.asin(Math.sqrt(1 / L));
-      const steps = 40;
+    const steps = 40;
 
-      this.azimuths.forEach((azDeg) => {
-        const az = (azDeg * Math.PI) / 180;
+    this.shellLs.forEach((L) => {
+      for (let a = 0; a < this.totalAzimuths; a++) {
+        const az = (a / this.totalAzimuths) * Math.PI * 2;
         const ePhi = {
           x: e1.x * Math.cos(az) + e2.x * Math.sin(az),
           y: e1.y * Math.cos(az) + e2.y * Math.sin(az),
@@ -599,8 +552,8 @@ class NeutronStar extends HTMLElement {
         let drawing = false;
 
         for (let i = 0; i <= steps; i++) {
-          const theta = thetaMin + (Math.PI - 2 * thetaMin) * (i / steps);
-          const r = L * Math.sin(theta) ** 2;
+          const theta = (Math.PI * i) / steps;
+          const r = 1 + (L - 1) * Math.sin(theta);
           const axial = r * Math.cos(theta);
           const perp = r * Math.sin(theta);
 
@@ -629,23 +582,48 @@ class NeutronStar extends HTMLElement {
         }
 
         ctx.stroke();
-      });
+      }
     });
 
     ctx.restore();
   }
 
   /**
-   * Draw the two polar light jets along the (precessing) magnetic axis
+   * Draw one tapered beam, shaded with a gradient that runs *across* its
+   * width (bright center, fading at the edges) rather than along its
+   * length - so the beam reads as a steady burst of light, not a line
+   * fading into a wider translucent line behind it.
+   */
+  drawBeamCone(nx, ny, px, py, fx, fy, baseW, tipW, coreColor, edgeColor) {
+    const { ctx } = this;
+
+    const grad = ctx.createLinearGradient(nx - px * baseW, ny - py * baseW, nx + px * baseW, ny + py * baseW);
+    grad.addColorStop(0, edgeColor);
+    grad.addColorStop(0.5, coreColor);
+    grad.addColorStop(1, edgeColor);
+
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(nx + px * baseW, ny + py * baseW);
+    ctx.lineTo(fx + px * tipW, fy + py * tipW);
+    ctx.lineTo(fx - px * tipW, fy - py * tipW);
+    ctx.lineTo(nx - px * baseW, ny - py * baseW);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  /**
+   * Draw the two polar light jets along the (precessing) magnetic axis,
+   * each a soft outer cone with a brighter narrow core cone inside it
    */
   drawJets(spinAngle) {
-    const { ctx, cx, cy, starRadius, width, height } = this;
+    const { cx, cy, starRadius, width, height } = this;
 
     const m = this.rotateY(this.m0, spinAngle);
     const beamLen = Math.max(width, height) * 1.3;
 
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
+    this.ctx.save();
+    this.ctx.globalCompositeOperation = "lighter";
 
     [1, -1].forEach((dir) => {
       const nx = cx + m.x * starRadius * dir;
@@ -659,33 +637,22 @@ class NeutronStar extends HTMLElement {
       const px = -dy / len;
       const py = dx / len;
 
-      const baseW = starRadius * 0.42;
-      const tipW = starRadius * 0.06;
+      // soft outer flare
+      this.drawBeamCone(
+        nx, ny, px, py, fx, fy,
+        starRadius * 0.55, starRadius * 0.18,
+        "rgba(225,240,255,0.45)", "rgba(225,240,255,0)"
+      );
 
-      const grad = ctx.createLinearGradient(nx, ny, fx, fy);
-      grad.addColorStop(0, "rgba(255,255,255,0.95)");
-      grad.addColorStop(0.15, "rgba(200,235,255,0.65)");
-      grad.addColorStop(0.5, "rgba(150,210,255,0.25)");
-      grad.addColorStop(1, "rgba(150,210,255,0)");
-
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.moveTo(nx + px * baseW, ny + py * baseW);
-      ctx.lineTo(fx + px * tipW, fy + py * tipW);
-      ctx.lineTo(fx - px * tipW, fy - py * tipW);
-      ctx.lineTo(nx - px * baseW, ny - py * baseW);
-      ctx.closePath();
-      ctx.fill();
-
-      ctx.strokeStyle = "rgba(255,255,255,0.85)";
-      ctx.lineWidth = starRadius * 0.05;
-      ctx.beginPath();
-      ctx.moveTo(nx, ny);
-      ctx.lineTo(fx, fy);
-      ctx.stroke();
+      // bright inner core
+      this.drawBeamCone(
+        nx, ny, px, py, fx, fy,
+        starRadius * 0.18, starRadius * 0.05,
+        "rgba(255,255,255,0.95)", "rgba(255,255,255,0)"
+      );
     });
 
-    ctx.restore();
+    this.ctx.restore();
   }
 
   /**
@@ -707,7 +674,7 @@ class NeutronStar extends HTMLElement {
     ctx.save();
     ctx.scale(this.dpi, this.dpi);
 
-    this.drawStar(spinAngle);
+    this.drawStar();
     this.drawFieldLines(spinAngle);
     this.drawJets(spinAngle);
 
