@@ -203,50 +203,33 @@ black-hole canvas {
 }
 
 .resource-card--triangle .resource-card-inner {
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background-color: transparent;
+  background-image: url('dark_triangle_up.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   align-items: flex-end;
   padding-bottom: 10%;
   position: relative;
-  background: #1a6fc4; /* the "margin" color — blue in dark mode*/
 }
 
 .resource-card--triangle-down .resource-card-inner {
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
+  background-color: transparent;
+  background-image: url('dark_triangle_down.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   align-items: flex-start;
   padding-top: 10%;
   position: relative;
-  background: #1a6fc4; /* the "margin" color — blue in dark mode*/
-}
-
-.resource-card--triangle .resource-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 8px;  /* this controls the "margin" thickness */
-  background: #000; /* the actual card color on top */
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-}
-
-.resource-card--triangle-down .resource-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 8px;  /* this controls the "margin" thickness */
-  background: #000; /* the actual card color on top */
-  clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
 }
 
 [data-theme="light"] .resource-card--triangle .resource-card-inner {
-  background: #003d7a;
+  background-image: url('light_triangle_up.svg');
 }
 
 [data-theme="light"] .resource-card--triangle-down .resource-card-inner {
-  background: #003d7a;
-}
-
-[data-theme="light"] .resource-card--triangle .resource-card-inner::after {
-  background: #fff;
-}
-[data-theme="light"] .resource-card--triangle-down .resource-card-inner::after {
-  background: #fff;
+  background-image: url('light_triangle_down.svg');
 }
 
 /* ══════════════════════════════════════
