@@ -35,6 +35,11 @@ class BlackHole extends HTMLElement {
    * Theme change handler
    */
   onThemeChange() {
+    // Re-measure: this element may have just gone from display:none to
+    // visible (or vice-versa), so its bounding rect can have changed
+    // from the 0x0 it had while hidden.
+    this.setSizes();
+
     this.dots.forEach((dot) => {
       dot.c = this.randomDotColor();
     });
@@ -333,7 +338,7 @@ class NeutronStar extends HTMLElement {
   bindEvents() {
     window.addEventListener("resize", this.onResize.bind(this));
 
-    this.themeObserver = new MutationObserver(() => {});
+    this.themeObserver = new MutationObserver(this.onThemeChange.bind(this));
     this.themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["data-theme"]
@@ -345,6 +350,16 @@ class NeutronStar extends HTMLElement {
    */
   isActive() {
     return document.documentElement.getAttribute("data-theme") === "light";
+  }
+
+  /**
+   * Theme change handler
+   */
+  onThemeChange() {
+    // Re-measure: this element may have just gone from display:none to
+    // visible (or vice-versa), so its bounding rect can have changed
+    // from the 0x0 it had while hidden.
+    this.setSizes();
   }
 
   /**
