@@ -169,6 +169,16 @@ neutron-star canvas {
   transform: scale(1.04);
 }
 
+/* triangles, pentagons, and hexagons tessellate edge-to-edge via negative
+   margins, so the 6px breathing-room padding above would pull each shape's
+   artwork inward and open a visible gap between neighbors */
+.resource-card--triangle,
+.resource-card--triangle-down,
+.resource-card--pentagon,
+.resource-card--hexagon {
+  padding: 0;
+}
+
 .resource-card-inner {
   width: 100%;
   height: 100%;
@@ -209,10 +219,11 @@ neutron-star canvas {
   padding-left: 1.75vw; 
 }
 
-.resource-card--triangle {
+.resource-card--triangle,
+.resource-card--triangle-down {
   aspect-ratio: 1 / 0.8660254;   /* height = width * tan(60°) */
   margin-inline: -25%;  /* pull triangles together so they tessellate horizontally */
-  margin-bottom: 5%;   /* pull rows together so triangles tessellate */
+  margin-bottom: 0;   /* rows tessellate with no gap */
 }
 
 .resource-card--triangle .resource-card-inner {
@@ -223,6 +234,7 @@ neutron-star canvas {
   background-position: center;
   align-items: flex-end;
   padding-bottom: 25%;
+  box-sizing: border-box;
   position: relative;
 }
 
@@ -234,6 +246,7 @@ neutron-star canvas {
   background-position: center;
   align-items: flex-start;
   padding-top: 25%;
+  box-sizing: border-box;
   position: relative;
 }
 
