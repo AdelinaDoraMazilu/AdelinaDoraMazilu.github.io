@@ -217,32 +217,32 @@ neutron-star canvas {
 
 .resource-card--triangle .resource-card-inner {
   background-color: transparent;
-  background-image: url('dark_triangle_up.svg');
+  background-image: url('shapes/dark_triangle_up.svg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   align-items: flex-end;
-  padding-bottom: 10%;
+  padding-bottom: 25%;
   position: relative;
 }
 
 .resource-card--triangle-down .resource-card-inner {
   background-color: transparent;
-  background-image: url('dark_triangle_down.svg');
+  background-image: url('shapes/dark_triangle_down.svg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
   align-items: flex-start;
-  padding-top: 10%;
+  padding-top: 25%;
   position: relative;
 }
 
 [data-theme="light"] .resource-card--triangle .resource-card-inner {
-  background-image: url('light_triangle_up.svg');
+  background-image: url('shapes/light_triangle_up.svg');
 }
 
 [data-theme="light"] .resource-card--triangle-down .resource-card-inner {
-  background-image: url('light_triangle_down.svg');
+  background-image: url('shapes/light_triangle_down.svg');
 }
 
 /* ══════════════════════════════════════
@@ -263,23 +263,15 @@ neutron-star canvas {
 
 .resource-card--square .resource-card-inner {
   position: relative;
-  background: #1a6fc4; /* blue "border" layer */
-  border: none; /* remove the old border */
-}
-
-.resource-card--square .resource-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 8px; /* controls border thickness */
-  background: #000;
+  background-color: transparent;
+  background-image: url('shapes/dark_square.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 [data-theme="light"] .resource-card--square .resource-card-inner {
-  background: #003d7a;
-}
-
-[data-theme="light"] .resource-card--square .resource-card-inner::after {
-  background: #fff;
+  background-image: url('shapes/light_square.svg');
 }
 
 /* ══════════════════════════════════════
@@ -301,50 +293,33 @@ neutron-star canvas {
 
 .resource-card--pentagon .resource-card-inner {
   position: relative;
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  background: #1a6fc4; /* the "margin" color — blue in dark mode*/
+  background-color: transparent;
+  background-image: url('shapes/dark_pentagon_up.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* right column flipped 180° */
 .resource-card--pentagon:nth-child(2n) .resource-card-inner {
   position: relative;
-  clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
-  background: #1a6fc4; /* the "margin" color — blue in dark mode*/
+  background-color: transparent;
+  background-image: url('shapes/dark_pentagon_down.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .resource-card--pentagon:nth-child(2n) {
   margin-top: 45%;
 }
 
-.resource-card--pentagon .resource-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 8px;  /* this controls the "margin" thickness */
-  background: #000; /* the actual card color on top */
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-}
-
-.resource-card--pentagon:nth-child(2n) .resource-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 8px;  /* this controls the "margin" thickness */
-  background: #000; /* the actual card color on top */
-  clip-path: polygon(50% 100%, 0% 62%, 18% 0%, 82% 0%, 100% 62%);
-}
-
 [data-theme="light"] .resource-card--pentagon .resource-card-inner {
-  background: #003d7a;
+  background-image: url('shapes/light_pentagon_up.svg');
 }
 
 [data-theme="light"] .resource-card--pentagon:nth-child(2n) .resource-card-inner {
-  background: #003d7a;
-}
-
-[data-theme="light"] .resource-card--pentagon .resource-card-inner::after {
-  background: #fff;
-}
-[data-theme="light"] .resource-card--pentagon:nth-child(2n) .resource-card-inner::after {
-  background: #fff;
+  background-image: url('shapes/light_pentagon_down.svg');
 }
 
 /* ══════════════════════════════════════
@@ -367,9 +342,11 @@ neutron-star canvas {
 
 .resource-card--hexagon .resource-card-inner {
   position: relative;
-  clip-path: polygon(50% 0%, 88% 25%, 88% 75%, 50% 100%, 12% 75%, 12% 25%);
-  background: #1a6fc4; /* the "margin" color — blue in dark mode*/
-
+  background-color: transparent;
+  background-image: url('shapes/dark_hexagon.svg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .resource-card--hexagon:nth-child(3n) {
@@ -379,20 +356,8 @@ neutron-star canvas {
   margin-bottom: -13%;
 }
 
-.resource-card--hexagon .resource-card-inner::after {
-  content: '';
-  position: absolute;
-  inset: 8px;  /* this controls the "margin" thickness */
-  background: #000; /* the actual card color on top */
-  clip-path: polygon(50% 0%, 88% 25%, 88% 75%, 50% 100%, 12% 75%, 12% 25%);
-}
-
 [data-theme="light"] .resource-card--hexagon .resource-card-inner {
-  background: #003d7a;
-}
-
-[data-theme="light"] .resource-card--hexagon .resource-card-inner::after {
-  background: #fff;
+  background-image: url('shapes/light_hexagon.svg');
 }
 
 /* ── POST / ARTICLE CONTENT OVERLAY ── */
