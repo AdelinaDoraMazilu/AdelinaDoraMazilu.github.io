@@ -223,7 +223,7 @@ neutron-star canvas {
 .resource-card--triangle-down {
   aspect-ratio: 1 / 0.8660254;   /* height = width * tan(60°) */
   margin-inline: -25%;  /* pull triangles together so they tessellate horizontally */
-  margin-bottom: 0;   /* rows tessellate with no gap */
+  margin-bottom: 10%;   /* rows tessellate with no gap */
 }
 
 .resource-card--triangle .resource-card-inner {
@@ -245,7 +245,7 @@ neutron-star canvas {
   background-repeat: no-repeat;
   background-position: center;
   align-items: flex-start;
-  padding-top: 25%;
+  padding-top: 15%;
   box-sizing: border-box;
   position: relative;
 }
@@ -364,7 +364,7 @@ neutron-star canvas {
 
 .resource-card--hexagon:nth-child(3n) {
   grid-column: 1 / span 2;
-  width: 50%;
+  width: 60%;
   justify-self: center;
   margin-bottom: -13%;
 }
