@@ -24,7 +24,7 @@
 
     <p class="project-detail-text">
       <p><strong>&ldquo;If you think good requirements are expensive, try bad ones.&rdquo;</strong></p>
-      <p>Somewhere between "we understand who our stakeholders are" (see the <a href="/resources/PDM/understanding-stakeholders.html">Understanding Stakeholders</a> resource) and "let's start coding," there's a step almost every student team wants to rush through: figuring out, precisely, what the system actually has to do. This is requirement analysis, and rushing it is the single most reliable way to end up rebuilding a feature three times.</p>
+      <p>Somewhere between "we understand who our stakeholders are" (see the <a href="/resources/PDM/resource-01-understanding-stakeholders.html">Understanding Stakeholders</a> resource) and "let's start coding," there's a step almost every student team wants to rush through: figuring out, precisely, what the system actually has to do. This is requirement analysis, and rushing it is the single most reliable way to end up rebuilding a feature three times.</p>
     </p>
 
     <hr class="post-divider">
@@ -40,7 +40,7 @@
 
       <h2>Why is this important?</h2>
       <p>There's an old rule of thumb in software engineering, sometimes attributed to IBM's systems research in the 1980s: the cost of fixing a defect grows by roughly an order of magnitude at each stage of the project it survives to. A misunderstanding caught during a requirements conversation might cost you an awkward five minutes. The same misunderstanding caught after the client sees a finished feature can cost you days of rework, a damaged relationship, and in your case, a much worse grade. The exact multiplier is debated, but the direction is not: the earlier you catch a wrong assumption, the cheaper it is.</p>
-      <p>Weak requirement analysis is also the quiet cause behind a lot of the pain covered in the <a href="/resources/PDM/root-cause-analysis.html">Root Cause Analysis</a> resource: those late-stage "requirement changes" your client springs on you are very often not the client changing their mind at all. They're the client finally seeing something concrete enough to realise the requirement was never actually captured correctly in the first place.</p>
+      <p>Weak requirement analysis is also the quiet cause behind a lot of the pain covered in the <a href="/resources/PDM/resource-02-root-cause-analysis.html">Root Cause Analysis</a> resource: those late-stage "requirement changes" your client springs on you are very often not the client changing their mind at all. They're the client finally seeing something concrete enough to realise the requirement was never actually captured correctly in the first place.</p>
 
       <!-- Suggested image: a diagram showing the rising cost of fixing a defect across project stages (requirements -> design -> build -> test -> production) -->
 
@@ -58,13 +58,13 @@
           </ul>
         </li>
         <li><strong>Analysis</strong> &mdash; take everything you've gathered and look for gaps, contradictions, and ambiguity. Different stakeholders will often give you requirements that quietly conflict. This is where you reconcile them, or escalate the conflict back to the stakeholders rather than silently picking a winner yourself.</li>
-        <li><strong>Specification</strong> &mdash; write the requirements down in a form your team can actually build from. This might be a requirements document, but very often for student and agile-style projects it takes the shape of user stories and use cases &mdash; see the <a href="/resources/PDM/user-stories-use-cases.html">User Stories &amp; Use Cases</a> resource for how to turn a requirement into something buildable.</li>
+        <li><strong>Specification</strong> &mdash; write the requirements down in a form your team can actually build from. This might be a requirements document, but very often for student and agile-style projects it takes the shape of user stories and use cases &mdash; see the <a href="/resources/PDM/resource-04-user-stories-use-cases.html">User Stories &amp; Use Cases</a> resource for how to turn a requirement into something buildable.</li>
         <li><strong>Validation</strong> &mdash; go back to your stakeholders and confirm you understood them correctly, before you build. This step gets skipped constantly, usually because teams are eager to start coding, and it is the single cheapest insurance policy in the whole process.</li>
       </ol>
 
       <h2>Common pitfalls in student projects</h2>
       <ul>
-        <li><strong>Treating the first thing a stakeholder says as the requirement.</strong> "I want a login page with a forgot-password link" is a solution, not a requirement. The actual requirement underneath is usually something like "users need a secure way to recover access to their account." Stating the solution too early can hide better solutions from you. This is exactly the trap the <a href="/resources/PDM/root-cause-analysis.html">Root Cause Analysis</a> resource is about &mdash; treat what you're told as a symptom worth digging into, not gospel.</li>
+        <li><strong>Treating the first thing a stakeholder says as the requirement.</strong> "I want a login page with a forgot-password link" is a solution, not a requirement. The actual requirement underneath is usually something like "users need a secure way to recover access to their account." Stating the solution too early can hide better solutions from you. This is exactly the trap the <a href="/resources/PDM/resource-02-root-cause-analysis.html">Root Cause Analysis</a> resource is about &mdash; treat what you're told as a symptom worth digging into, not gospel.</li>
         <li><strong>Ignoring non-functional requirements</strong> until testing, when performance or accessibility problems are much more expensive to fix.</li>
         <li><strong>Writing requirements that are impossible to test.</strong> "The system should be user-friendly" tells your future self nothing about whether you succeeded. "A new user can complete sign-up in under 3 clicks without instructions" does.</li>
         <li><strong>Never writing anything down</strong>, and relying on memory of a conversation from three weeks ago. Requirements drift in people's memories, including your own.</li>
