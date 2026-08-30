@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Title - Adelina Mazilu</title>
+  <title>Understanding Stakeholders - Adelina Mazilu</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/resources/resources_style.css">
   <link rel="stylesheet" href="/projects/projects_style.css">
@@ -17,26 +17,85 @@
     <a href="/resources/" class="project-back-link">← Back to Resources</a>
 
     <h1 class="project-detail-title">
-      Resource Title Here
+      Understanding stakeholders
     </h1>
 
     <div class="project-status-badge">Project Development and Management</div>
 
     <p class="project-detail-text">
-      Author, source, or introduction text here.
+      <p><strong>&ldquo;The biggest risk to your project is rarely the code. It&rsquo;s the person you forgot to ask.&rdquo;</strong></p>
+      <p>Every year, some group of students builds a genuinely impressive piece of software and then gets a mediocre grade or an unhappy client, not because the code was bad, but because they built the wrong thing for the wrong person &mdash; or built the right thing but never got buy-in from someone who could have quietly killed the project at the end. Usually, that someone was a stakeholder nobody thought to ask.</p>
+      <p>Before you write a single line of code, before you even finish your requirements, you need to know: who actually cares about this project, and what do they each want from it?</p>
     </p>
 
-    <hr class="project-detail-divider">
+    <hr class="post-divider">
 
     <p class="project-detail-text">
-      Body text describing this resource goes here.
-    </p>
+      <h2>What is a stakeholder?</h2>
+      <p>A stakeholder is anyone who affects, or is affected by, your project. That's a deliberately wide net. It's not just "the client." It includes:</p>
+      <ul>
+        <li><strong>The client / project owner</strong> &mdash; the person or organisation who commissioned the work and will (hopefully) use or sell it.</li>
+        <li><strong>End users</strong> &mdash; the people who will actually click the buttons. Often not the same person as the client.</li>
+        <li><strong>Your supervisor / module coordinator</strong> &mdash; they grade you, and they have their own expectations about process, documentation, and rigor that have nothing to do with what the client wants.</li>
+        <li><strong>Your teammates</strong> &mdash; yes, really. They have a stake in the project's success (their grade too) and in how the work gets divided.</li>
+        <li><strong>Regulators, IT/security staff, future maintainers</strong> &mdash; anyone downstream who will have to live with the decisions you make now.</li>
+      </ul>
+      <p>Notice something: these groups don't always want the same thing. The client might want a flashy feature shipped fast; the end users might just want the thing to load quickly and not be confusing; your supervisor wants to see a properly documented process; and the future maintainer (possibly a version of you, six months from now) wants code that doesn't make them cry. Managing a project is largely managing this tension.</p>
 
-    <div class="project-detail-links">
-      <a href="https://link-to-resource.com" target="_blank" class="project-detail-link-btn">
-        Read the resource →
-      </a>
-    </div>
+      <!-- Suggested image: a simple stakeholder web/diagram showing client, end-users, supervisor, team, and other parties around a central project node -->
+
+      <h2>Why is this important?</h2>
+      <p>Skipping stakeholder analysis is one of the most common (and most avoidable) ways student projects go wrong. A few concrete failure modes:</p>
+      <ul>
+        <li>You build for the person who talks to you the most (often the client's junior contact) and completely miss what the actual decision-maker cares about &mdash; then get told to redo half the project two weeks before the deadline.</li>
+        <li>You never talk to real end users, so your "intuitive" interface makes perfect sense to you and to no one else.</li>
+        <li>You assume your supervisor just wants "a working app," when really 40% of the grade is about your process, documentation, and justified design decisions.</li>
+        <li>A stakeholder with quiet but real power (an IT department that has to approve deployment, a compliance officer, a professor who has to sign off) gets ignored until the very end, when they turn out to have a veto.</li>
+      </ul>
+      <p>Doing this analysis early costs you maybe an hour or two. Doing it never can cost you your entire final sprint.</p>
+
+      <h2>How to identify and analyse your stakeholders</h2>
+      <p><strong>Step 1 &mdash; Brainstorm broadly.</strong> List everyone who touches this project in any way, even loosely. Don't filter yet. Ask: who asked for this? Who will use it? Who has to approve it? Who could block it? Who inherits it after we're done?</p>
+      <p><strong>Step 2 &mdash; Map them on a power/interest grid.</strong> This is the classic tool (sometimes called Mendelow's Matrix) for making sense of a messy list of names. Draw a 2x2 grid: power (how much influence they have over the project's success or failure) on one axis, interest (how much they actually care) on the other.</p>
+      <ul>
+        <li><strong>High power, high interest</strong> &mdash; manage these people closely. Usually your client and your supervisor.</li>
+        <li><strong>High power, low interest</strong> &mdash; keep them satisfied. A department head who signed off on the project but isn't in the weeds &mdash; don't overload them, but don't blindside them either.</li>
+        <li><strong>Low power, high interest</strong> &mdash; keep them informed. Often your actual end users. They can't override decisions, but ignoring their feedback is how you end up with something no one wants to use.</li>
+        <li><strong>Low power, low interest</strong> &mdash; monitor with minimal effort.</li>
+      </ul>
+
+      <!-- Suggested image: a 2x2 power/interest grid with example stakeholders plotted in each quadrant -->
+
+      <p><strong>Step 3 &mdash; Write down what each one actually wants.</strong> Not what you assume they want &mdash; what they've told you, or what you need to go ask them. This is the bridge into <a href="/resources/PDM/requirement-analysis.html">requirement analysis</a>: stakeholders are the source of your requirements, and mixing up whose requirement is whose is a very common source of conflicting specs later on.</p>
+      <p><strong>Step 4 &mdash; Revisit it.</strong> Stakeholder maps aren't static. A quiet stakeholder can become a loud one the moment you show them a prototype. Check in on this every few weeks, not just once at kickoff.</p>
+
+      <h2>A worked example</h2>
+      <p>Say your team is building a course sign-up tool for a university department. At first glance, the "stakeholder" is just "the department." Dig one level deeper and you'll usually find:</p>
+      <ul>
+        <li>The <strong>programme coordinator</strong> who requested it (high power, high interest &mdash; the actual client).</li>
+        <li><strong>Students</strong> who will use it to sign up for courses (low power, high interest &mdash; they can't change the spec, but if the tool is unusable they will complain loudly, and rightly so).</li>
+        <li>The <strong>university's IT department</strong>, who has to approve where and how the tool is hosted, and what data it can store (high power, often low interest until you break a policy they care about).</li>
+        <li><strong>Academic staff</strong> whose timetables depend on accurate sign-up data (low power, medium interest).</li>
+        <li>Your <strong>module supervisor</strong>, who is grading your process and documentation, not just the final product (high power, high interest, and easy to forget because they aren't the "client").</li>
+      </ul>
+      <p>Five very different groups, five different sets of expectations, all tangled up in what looks like a simple "build us a sign-up tool" request. That's the norm, not the exception.</p>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>Ask "who else should I be talking to?" at the end of every stakeholder conversation. It's the cheapest way to surface people you missed.</li>
+        <li>Don't confuse "the person emailing me" with "the stakeholder." Sometimes you're only ever in contact with a proxy, and the real decision-maker only appears at the final review &mdash; with opinions.</li>
+        <li>Write your stakeholder map down somewhere your whole team can see, and keep it in your documentation. Supervisors like seeing that you actually did this deliberately, rather than by accident.</li>
+        <li>When stakeholders disagree, don't just pick a side &mdash; go back to the <a href="/resources/PDM/root-cause-analysis.html">root cause analysis</a> approach to figure out why they disagree. Often it's not that they want different features, it's that they're solving for different underlying problems.</li>
+      </ul>
+
+      <h2>References</h2>
+      <p>Sethi, R. <em>Software Engineering: Basic Principles and Best Practices</em> &mdash; a solid grounding in stakeholder identification and requirements as part of the wider software engineering process.</p>
+      <p><a href="https://www.mindtools.com/aol0rms/stakeholder-analysis/" target="_blank">Mindtools &mdash; Stakeholder Analysis</a></p>
+      <p><a href="https://www.youtube.com/watch?v=G3R4TO1l6LY" target="_blank">Video: Stakeholder Analysis &mdash; How to Use the Power/Interest Grid</a></p>
+      <p><a href="https://asana.com/resources/project-stakeholder" target="_blank">Asana &mdash; Project Stakeholder: Definition, Analysis &amp; Mapping</a></p>
+      <!-- Comments are visible in the HTML source only -->
+
+    </p>
 
   </div>
 
