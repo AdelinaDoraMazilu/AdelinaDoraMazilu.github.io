@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reproducibility in ML Experiments - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Reproducibility in ML Experiments
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A few weeks into a project, most teams end up with a folder of models named things like <code>final_model_v3_ACTUALLY_final.pkl</code>, no memory of which hyperparameters produced their best result, and no way to reliably reproduce it. Reproducibility is the discipline of avoiding that, and it's far easier to build the habit early than to reconstruct the history after the fact.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Sources of randomness to control:</strong> most ML pipelines have several points where randomness sneaks in &mdash; the train/test split, weight initialization in a neural network, dropout, data shuffling during training, and some algorithms' internal randomness (random forests, for example). Setting a fixed random seed at each of these points is what makes a run repeatable. Note that even with a fixed seed, results can still differ slightly across different hardware or library versions &mdash; "reproducible" in practice usually means "close enough to draw the same conclusions," not bit-for-bit identical.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>What to track for every experiment:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>The exact code version used (a git commit hash is ideal).</li>
+      <li>The dataset version (data changes over time too &mdash; know which snapshot you trained on).</li>
+      <li>All hyperparameters, including ones left at their default value.</li>
+      <li>The random seed(s) used.</li>
+      <li>The resulting metrics, on both validation and (sparingly) test data.</li>
+      <li>Library and framework versions &mdash; a model trained with one version of a library can behave subtly differently on another.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Tools that help:</strong> experiment tracking tools like <strong>MLflow</strong>, <strong>Weights &amp; Biases</strong>, and <strong>DVC</strong> automate most of the tracking above, logging hyperparameters, metrics, and artifacts for every run so you can compare experiments side by side later rather than digging through old notebook cells. Even a shared spreadsheet with the fields above, updated consistently, is far better than nothing.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Beyond the obvious practical benefit (you can actually find and reproduce your best model later), reproducibility is directly relevant to how your project gets evaluated &mdash; a supervisor can far more easily verify and trust results that come with a clear record of how they were produced. It also connects to <a href="/resources/PDM/effective-teamwork.html">Effective Teamwork</a>: a shared, logged experiment history means a teammate can pick up and understand your modelling work without a long verbal explanation.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://mlflow.org/docs/latest/index.html" target="_blank">MLflow documentation</a> is a practical, widely used starting point for experiment tracking, model logging, and comparing runs, with a free and open-source core.
+    </p>
+
+  </div>
+
+</body>
+</html>

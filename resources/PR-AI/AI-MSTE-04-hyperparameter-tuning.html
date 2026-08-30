@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hyperparameter Tuning - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Hyperparameter Tuning
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Hyperparameters are the settings you choose before training starts &mdash; learning rate, tree depth, number of layers, regularization strength &mdash; as opposed to parameters the model learns on its own from data. Picking good hyperparameters can be the difference between a mediocre model and a genuinely strong one, using the exact same algorithm and data.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Main search strategies:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Grid search</strong> &mdash; try every combination of a predefined set of values for each hyperparameter. Exhaustive and simple to reason about, but the number of combinations explodes quickly as you add more hyperparameters or more values per parameter.</li>
+      <li><strong>Random search</strong> &mdash; sample random combinations instead of trying every one. Perhaps counterintuitively, this is often more efficient than grid search for the same computational budget, because it explores a wider range of values for the hyperparameters that actually matter, rather than wasting evaluations on fine-grained values of ones that don't.</li>
+      <li><strong>Bayesian optimization</strong> &mdash; use the results of previous trials to intelligently choose which combination to try next, rather than searching blindly. Converges to good hyperparameters in fewer trials than grid or random search, at the cost of more complexity to set up. Tools like Optuna and Hyperopt implement this.</li>
+      <li><strong>Manual tuning</strong> &mdash; guided by experience and intuition about what each hyperparameter does. Still common for quick iteration, especially early in a project, but doesn't scale well and is easy to bias unconsciously.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Practical advice:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Always tune against your <a href="/resources/AI/train-validation-test-splits-cross-validation.html">validation set (or cross-validation)</a>, never your test set &mdash; the test set exists to give you one honest, final number, and tuning against it defeats that purpose.</li>
+      <li>Start with a coarse search over a wide range, then narrow in around promising regions, rather than guessing a fine-grained range up front.</li>
+      <li>Not all hyperparameters matter equally. Learning rate, for instance, is usually one of the most impactful for neural networks &mdash; it's often worth allocating more of your search budget there than to less sensitive settings.</li>
+      <li>Log every trial's hyperparameters and results, even informally. See the <a href="/resources/AI/reproducibility-in-ml-experiments.html">Reproducibility</a> resource &mdash; it's very easy to lose track of which combination actually produced your best result.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> The same model architecture can perform dramatically differently depending purely on hyperparameter choices. Skipping this step and just using default values leaves real performance on the table; over-investing in it too early (before your features and model choice are solid) wastes time tuning something you're about to change anyway. Get the earlier stages &mdash; data, features, model choice &mdash; roughly right first, then tune.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://optuna.readthedocs.io/" target="_blank">Optuna documentation</a> is a good practical starting point for Bayesian hyperparameter optimization in Python, with a gentle learning curve and good integration with common ML libraries.
+    </p>
+
+  </div>
+
+</body>
+</html>

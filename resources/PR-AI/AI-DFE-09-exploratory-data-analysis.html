@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exploratory Data Analysis - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Exploratory Data Analysis (EDA)
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Before you engineer a single feature or train a single model, you should actually look at your data. Exploratory Data Analysis (EDA) is the habit of examining a dataset &mdash; its shape, its distributions, its oddities &mdash; before you start building anything on top of it. Skipping this step is one of the most common ways teams waste days debugging a model that was never the actual problem; the data was.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>A reasonable EDA checklist:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Shape and types.</strong> How many rows and columns? What type is each column &mdash; numeric, categorical, date, text? Does that match what you'd expect?</li>
+      <li><strong>Missingness.</strong> Which columns have missing values, and how much? See the <a href="/resources/AI/handling-missing-values.html">Handling Missing Values</a> resource for what to do once you know.</li>
+      <li><strong>Distributions.</strong> Plot histograms for numeric columns and bar charts for categorical ones. Is anything heavily skewed? Are there unexpected spikes (a suspicious number of exact zeros, or a value like 9999 that's probably a placeholder for missing data)?</li>
+      <li><strong>Outliers.</strong> Box plots and scatter plots will often surface them immediately &mdash; see <a href="/resources/AI/handling-outliers.html">Handling Outliers</a>.</li>
+      <li><strong>Relationships between features.</strong> A correlation matrix or pairwise scatter plots for numeric features; group-by summaries for categorical ones against your target. This is often where you first spot candidates for <a href="/resources/AI/feature-selection-techniques.html">feature selection</a> or engineering.</li>
+      <li><strong>Target variable.</strong> What does its distribution look like? A heavily imbalanced classification target changes your whole approach &mdash; see the <a href="/resources/AI/handling-class-imbalance.html">Handling Class Imbalance</a> resource.</li>
+      <li><strong>Duplicates and inconsistencies.</strong> Repeated rows, inconsistent category spellings ("NY" vs "New York" vs "new york"), and mismatched units are extremely common and easy to miss without deliberately checking for them.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Every downstream step &mdash; which features to engineer, which encoding or scaling to use, which model family makes sense &mdash; is a decision you're making blind if you skip this. A five-minute look at a histogram can save hours spent debugging a model that was actually just being fed garbage.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Tips:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Do EDA on the training set only, or a held-out exploration sample &mdash; not the full dataset including your test set, for the same reasons covered in <a href="/resources/AI/data-leakage.html">Data Leakage</a>.</li>
+      <li>Write down what you notice as you go, even briefly. It's easy to spot something odd, move on, and forget it by the time it matters.</li>
+      <li>Don't treat EDA as a one-off step in week one. It's worth revisiting whenever you add new data or notice the model behaving strangely.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the Python libraries <code>pandas-profiling</code> (now <a href="https://github.com/ydataai/ydata-profiling" target="_blank">ydata-profiling</a>) and <a href="https://docs.sweetviz.com/" target="_blank">Sweetviz</a> can auto-generate a full EDA report (distributions, correlations, missingness) from a single line of code, which is a great way to get an initial overview before diving in manually.
+    </p>
+
+  </div>
+
+</body>
+</html>

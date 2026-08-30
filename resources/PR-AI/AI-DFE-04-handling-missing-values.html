@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips on Handling Missing Values - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Tips on Handling Missing Values
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Real-world datasets almost always have gaps: a sensor that dropped a reading, a survey question someone skipped, a field that simply wasn't tracked before a certain date. How you handle those gaps can change your model's performance and behaviour more than most people expect &mdash; and doing it carelessly is a common, avoidable source of bugs and biased results.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Step one: understand why the data is missing.</strong> This matters more than which technique you eventually use. Missingness is usually grouped into three types:
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Missing Completely at Random (MCAR)</strong> &mdash; the gap has nothing to do with any variable, observed or not (e.g. a random sensor glitch). Safest case to handle.</li>
+      <li><strong>Missing at Random (MAR)</strong> &mdash; the chance of missingness depends on other observed variables (e.g. older survey respondents are less likely to answer an income question). Still manageable, but naive fixes can introduce bias if you ignore the relationship.</li>
+      <li><strong>Missing Not at Random (MNAR)</strong> &mdash; the missingness depends on the missing value itself (e.g. people with very high incomes are less likely to disclose them). The hardest and most dangerous case &mdash; filling these gaps naively can systematically distort your model.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Common ways to handle it:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Deletion</strong> &mdash; drop rows or columns with missing values. Simple, but can throw away a lot of useful data if missingness is common, and can bias your dataset if the missing rows aren't random.</li>
+      <li><strong>Simple imputation</strong> &mdash; fill gaps with the mean, median, or mode of the column. Fast and often a reasonable baseline, but it can quietly shrink the variance of a feature and weaken its relationship with the target.</li>
+      <li><strong>Model-based imputation</strong> &mdash; predict the missing value from the other features, using something like k-nearest-neighbours imputation or a regression/iterative imputer. More accurate than simple imputation, more computationally expensive, and still an estimate rather than a fact.</li>
+      <li><strong>Add a "was missing" indicator column</strong> &mdash; alongside whatever imputation you use, add a binary flag marking which rows had the value filled in. This lets the model learn that missingness itself might carry information (especially useful for MAR/MNAR data), rather than hiding that signal entirely.</li>
+      <li><strong>Category of its own</strong> &mdash; for categorical features, sometimes the cleanest option is just treating "missing" as its own valid category rather than trying to guess a real one.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Pitfalls to avoid:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Never compute the mean/median/mode (or fit any imputation model) on the full dataset before splitting into train and test &mdash; that leaks test-set information into training, similar to the mistakes covered in the <a href="/resources/AI/data-leakage.html">Data Leakage</a> resource. Fit the imputer on the training set only, then apply it to the test set.</li>
+      <li>Don't assume missing always means "impute it away." Sometimes missingness is the most informative signal in the dataset (e.g. a loan applicant who leaves the income field blank), and papering over it can remove real predictive power.</li>
+      <li>Always check <em>how much</em> is missing per column before deciding on a strategy. A column that's 90% empty is usually better dropped than imputed &mdash; you'd mostly be inventing data at that point.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/impute.html" target="_blank">imputation module documentation</a> covers simple, KNN, and iterative imputers with working examples, and is a good practical starting point beyond the theory above.
+    </p>
+
+  </div>
+
+</body>
+</html>

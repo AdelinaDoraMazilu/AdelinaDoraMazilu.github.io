@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Train/Validation/Test Splits and Cross-Validation - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Train/Validation/Test Splits and Cross-Validation
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      If you evaluate your model on the same data it was trained on, you're not measuring how well it works &mdash; you're measuring how well it memorised. Splitting your data properly is how you get an honest estimate of how your model will perform on data it's never seen.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>The three-way split:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Training set</strong> &mdash; the data the model actually learns from.</li>
+      <li><strong>Validation set</strong> &mdash; used during development to tune hyperparameters and compare models. You can look at this repeatedly while iterating, but that also means it slowly stops being a fully unbiased measure the more you use it to make decisions.</li>
+      <li><strong>Test set</strong> &mdash; touched once, at the very end, to get a final, honest estimate of performance. If you tune anything based on test set results, it's no longer a fair test &mdash; it's effectively become a second validation set.</li>
+    </ul>
+    <p class="project-detail-text">
+      A common split for a reasonably sized dataset is around 70/15/15 or 80/10/10, though the right proportions depend on how much data you have overall &mdash; with very large datasets, even a small percentage held out for validation/test can be plenty of examples.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Cross-validation:</strong> with a smaller dataset, a single validation split can give a noisy, unreliable estimate of performance just by chance of which rows ended up where. K-fold cross-validation addresses this by splitting the training data into k roughly equal parts, training k times (each time holding out a different part as validation), and averaging the results. This gives a more stable estimate and uses your data more efficiently, at the cost of training the model k times instead of once.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Variants worth knowing:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Stratified k-fold</strong> &mdash; preserves the class proportions in each fold, important for classification with imbalanced classes (see <a href="/resources/AI/data-and-feature-engineering.html">Handling Class Imbalance</a>).</li>
+      <li><strong>Time-series split</strong> &mdash; for temporal data, folds must respect chronological order (train on the past, validate on the future) rather than being shuffled randomly, or you risk leaking future information into training.</li>
+      <li><strong>Group k-fold</strong> &mdash; used when multiple rows belong to the same underlying entity (e.g. multiple images of the same patient) and you need to make sure that entity's data doesn't end up split across both train and validation.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Getting this wrong is one of the most common causes of a model that looks great in development and performs poorly in the real world &mdash; closely related to the mistakes covered in the <a href="/resources/AI/data-leakage.html">Data Leakage</a> resource. A trustworthy evaluation setup is the foundation everything else in this section builds on; there's no point comparing models or tuning hyperparameters carefully if the number you're optimising against is misleading in the first place.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/cross_validation.html" target="_blank">cross-validation documentation</a> covers standard k-fold, stratified, time-series, and group splitting strategies with code examples for each.
+    </p>
+
+  </div>
+
+</body>
+</html>

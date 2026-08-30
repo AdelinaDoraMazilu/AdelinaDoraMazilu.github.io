@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bias-Variance Tradeoff, Overfitting and Underfitting - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Bias-Variance Tradeoff, Overfitting and Underfitting
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Almost every problem you'll hit while training a model traces back to one of two failure modes: the model is too simple to capture the real pattern (underfitting), or it's captured the training data too precisely, noise and all (overfitting). Understanding this tradeoff makes debugging a badly performing model far less mysterious.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Bias</strong> is the error that comes from a model being too simple to represent the true underlying pattern &mdash; think of trying to fit a straight line through data that's actually curved. High-bias models underfit: they perform poorly on both the training data and new data, because they never really learned the pattern in the first place.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Variance</strong> is the error that comes from a model being too sensitive to the specific training data it saw, including its noise and quirks. High-variance models overfit: they perform very well on training data (sometimes near-perfectly) and noticeably worse on new, unseen data, because they've effectively memorised training examples rather than learning generalisable patterns.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>The tradeoff:</strong> as you increase a model's complexity (more features, deeper trees, more layers), bias tends to go down and variance tends to go up. The goal isn't to eliminate either one entirely &mdash; it's to find the sweet spot where their combined effect on real-world error is smallest.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>How to tell which one you're dealing with:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Underfitting</strong> &mdash; both training and validation error are high and similar to each other. The model isn't even doing well on the data it learned from.</li>
+      <li><strong>Overfitting</strong> &mdash; training error is low, but validation error is noticeably higher. The gap between the two is the tell.</li>
+      <li>Plotting a <a href="/resources/AI/learning-curves.html">learning curve</a> (error vs. amount of training data or training time) is the most direct way to diagnose which regime you're in.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>What to do about each:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>If underfitting:</strong> use a more expressive model, add more/better features, reduce regularization, or train for longer.</li>
+      <li><strong>If overfitting:</strong> get more training data, simplify the model, add <a href="/resources/AI/regularization.html">regularization</a>, use early stopping, or apply <a href="/resources/AI/data-augmentation.html">data augmentation</a>.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Almost every decision covered elsewhere in this section &mdash; model choice, regularization, hyperparameter tuning, ensembling &mdash; is ultimately a way of managing this one tradeoff. Once you can look at a training/validation gap and immediately know whether you're overfitting or underfitting, most model debugging becomes a lot less like guesswork.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> IBM's <a href="https://www.ibm.com/think/topics/bias-variance-tradeoff" target="_blank">explainer on the bias-variance tradeoff</a> covers the underlying theory and prediction error decomposition in more technical depth, with clear visuals.
+    </p>
+
+  </div>
+
+</body>
+</html>

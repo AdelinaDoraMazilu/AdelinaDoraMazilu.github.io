@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handling Outliers - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Handling Outliers
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      An outlier is a data point that sits far outside the pattern of the rest of your data. Sometimes it's a genuine, important edge case; sometimes it's a data entry error or a broken sensor. Treating one as if it were the other is one of the more common ways a model quietly ends up wrong.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Step one: figure out why it's there.</strong> Before removing or transforming anything, ask whether the outlier is:
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>An error</strong> &mdash; a typo (age = 999), a unit mismatch, a broken sensor reading. These should generally be corrected or removed.</li>
+      <li><strong>A rare but real event</strong> &mdash; a genuine fraud transaction, an extreme weather event, a celebrity's unusually large purchase. These are often exactly what you care most about predicting, and removing them can quietly delete the signal your model most needs.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Common ways to detect outliers:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Z-score</strong> &mdash; flag points more than roughly 3 standard deviations from the mean. Simple, but assumes roughly normal data and is itself sensitive to extreme values pulling the mean and standard deviation around.</li>
+      <li><strong>IQR (interquartile range) method</strong> &mdash; flag points below Q1 &minus; 1.5×IQR or above Q3 + 1.5×IQR. More robust than the Z-score approach and the basis for the whiskers on a standard box plot.</li>
+      <li><strong>Visual inspection</strong> &mdash; box plots, scatter plots, and histograms will often make outliers obvious at a glance, and are a good first step before reaching for a formula. See the <a href="/resources/AI/exploratory-data-analysis.html">Exploratory Data Analysis</a> resource.</li>
+      <li><strong>Model-based detection</strong> &mdash; for higher-dimensional data where simple thresholds don't capture "unusual," methods like isolation forests or local outlier factor can flag points that are unusual across several features at once, not just one at a time.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>What to do once you've found them:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Remove</strong> confirmed errors, once you've verified they aren't real.</li>
+      <li><strong>Cap / winsorize</strong> extreme-but-real values to a reasonable maximum or minimum, keeping the row but limiting its influence.</li>
+      <li><strong>Transform</strong> the whole feature (e.g. a log transform) to shrink the relative influence of extreme values without deleting them.</li>
+      <li><strong>Use a robust technique</strong> instead of removing anything &mdash; e.g. robust scaling (see <a href="/resources/AI/feature-scaling-normalization.html">Feature Scaling and Normalization</a>) or a model that's naturally less sensitive to extreme values, like tree-based methods.</li>
+      <li><strong>Leave them in, deliberately</strong>, if they represent exactly the rare cases your model needs to learn to handle.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Pitfalls to avoid:</strong> don't reach for automatic outlier removal as a default step in every pipeline. In fraud detection, medical diagnosis, and many other domains, the outliers <em>are</em> the point. Always ask what an outlier being removed would mean for the real-world problem before deleting it.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/outlier_detection.html" target="_blank">novelty and outlier detection documentation</a> covers isolation forests, local outlier factor, and other model-based approaches with examples.
+    </p>
+
+  </div>
+
+</body>
+</html>

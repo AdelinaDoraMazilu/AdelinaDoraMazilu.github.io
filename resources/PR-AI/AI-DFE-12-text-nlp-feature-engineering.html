@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text and NLP Feature Engineering - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Text and NLP Feature Engineering
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Raw text &mdash; a sentence, a review, a support ticket &mdash; isn't something a model can use directly. Text feature engineering is the process of turning words into numeric representations a model can actually learn from, ranging from very simple counting methods to modern learned embeddings.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Cleaning and preprocessing, before feature extraction:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Lowercasing, removing punctuation/special characters</strong> &mdash; reduces unnecessary variation ("Dog" and "dog" shouldn't usually be treated as different tokens).</li>
+      <li><strong>Tokenization</strong> &mdash; splitting text into words or sub-word units.</li>
+      <li><strong>Stopword removal</strong> &mdash; dropping very common, low-information words ("the," "is," "and"), though this is worth skipping for tasks where those words carry meaning, like some sentiment or authorship tasks.</li>
+      <li><strong>Stemming / lemmatization</strong> &mdash; reducing words to a common root or dictionary form ("running" → "run"), so the model doesn't have to treat every inflected form as a separate word.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>From text to numbers, roughly from simplest to most powerful:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Bag of Words</strong> &mdash; count how many times each word appears in a document. Simple, interpretable, and a reasonable baseline, but ignores word order and context entirely, and treats every word as equally distinct.</li>
+      <li><strong>TF-IDF (Term Frequency&ndash;Inverse Document Frequency)</strong> &mdash; like Bag of Words, but down-weights words that appear in almost every document (less informative) and up-weights words that are distinctive to a particular document. A very common, strong, and cheap baseline for text classification.</li>
+      <li><strong>N-grams</strong> &mdash; count sequences of 2 or 3 consecutive words instead of (or alongside) single words, capturing a bit of local word order ("not good" carries different meaning than "not" and "good" separately).</li>
+      <li><strong>Word embeddings</strong> (word2vec, GloVe) &mdash; represent each word as a dense vector learned from large text corpora, such that words with similar meaning end up close together in the vector space. A big step up from Bag of Words/TF-IDF for capturing meaning, though a given word still gets one fixed vector regardless of context.</li>
+      <li><strong>Contextual embeddings</strong> (BERT and similar transformer models) &mdash; represent a word's meaning differently depending on its surrounding sentence, which handles cases like "bank" (river vs. finance) that fixed embeddings can't distinguish. State of the art for most modern NLP tasks, at the cost of more compute.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Which should you use?</strong> For a small student project or a quick baseline, TF-IDF with a simple classifier (logistic regression, linear SVM) is fast, interpretable, and often surprisingly competitive. Reach for pretrained embeddings or transformer models once you need to capture meaning and context more precisely, and you have the compute budget (or can use a pretrained model off the shelf) to support it.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Pitfalls to avoid:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Fit your TF-IDF vocabulary (or any text vectorizer) on the training set only, then apply it to the test set &mdash; the same leakage principle as everywhere else in this section applies here too.</li>
+      <li>Don't over-clean. Aggressive preprocessing (like removing all punctuation) can strip out meaningful signal for some tasks &mdash; e.g. exclamation marks and capitalization often matter for sentiment analysis.</li>
+      <li>Domain-specific text (medical notes, legal documents, code) often benefits from a domain-tuned tokenizer or embedding model rather than a general-purpose one trained on generic web text.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction" target="_blank">text feature extraction documentation</a> covers Bag of Words and TF-IDF with working examples; the Hugging Face <a href="https://huggingface.co/docs/transformers/index" target="_blank">Transformers documentation</a> is the standard starting point for pretrained contextual embeddings like BERT.
+    </p>
+
+  </div>
+
+</body>
+</html>

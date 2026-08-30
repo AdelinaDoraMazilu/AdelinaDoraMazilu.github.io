@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Curves and Diagnosing Model Problems - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Learning Curves and Diagnosing Model Problems
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      When a model isn't performing well, it's tempting to just start randomly trying things &mdash; a bigger model, more data, different features. A learning curve gives you a much faster, evidence-based way to figure out what's actually wrong before you spend time on the wrong fix.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>What a learning curve is:</strong> a plot of training and validation error (or accuracy) against the amount of training data used (or, in a related version, against training time/epochs). It shows you not just how the model is doing, but how it's trending &mdash; which tells you a lot about what would actually help.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>How to read one:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Both training and validation error are high, and close together.</strong> The model is underfitting &mdash; it isn't even doing well on the data it has. More data probably won't help much on its own; you likely need a more expressive model, better features, or less regularization. See <a href="/resources/AI/bias-variance-overfitting-underfitting.html">Bias-Variance Tradeoff</a>.</li>
+      <li><strong>Training error is low, validation error is noticeably higher, and the gap isn't closing.</strong> The model is overfitting. More training data often helps directly here, and so does <a href="/resources/AI/regularization.html">regularization</a>, a simpler model, or <a href="/resources/AI/data-augmentation.html">data augmentation</a>.</li>
+      <li><strong>Both curves are still improving and haven't plateaued as more data is added.</strong> You're likely data-limited &mdash; collecting more training data is probably one of the highest-leverage things you can do.</li>
+      <li><strong>Both curves have flattened out and validation error is acceptable.</strong> You're near the limit of what this model/feature combination can achieve; further gains likely require a different model, better features, or a rethink of the problem itself.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why this matters more than it seems:</strong> without this kind of diagnosis, it's very easy to spend days collecting more data when the real problem was an underfitting model that needed more capacity &mdash; or to spend days building a bigger model when the real problem was noisy, insufficient data. A learning curve turns "something's wrong, let's guess" into "here's specifically what's wrong."
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Related diagnostics worth knowing:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Validation curves</strong> &mdash; the same idea, but plotted against a specific hyperparameter (e.g. tree depth, regularization strength) instead of dataset size, useful for choosing that hyperparameter directly.</li>
+      <li><strong>Error analysis</strong> &mdash; manually look at a sample of the examples the model gets wrong. Patterns often jump out (a particular category is consistently confused, a certain input length breaks the model) that a single aggregate metric would never reveal.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/learning_curve.html" target="_blank">learning curve documentation</a> includes ready-to-use code for plotting both learning and validation curves, with example plots showing each of the patterns described above.
+    </p>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regularization - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Regularization
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Regularization is a family of techniques that deliberately constrain a model, trading a small amount of training accuracy for better generalisation to new data. It's one of the main tools for fighting the overfitting side of the <a href="/resources/AI/bias-variance-overfitting-underfitting.html">bias-variance tradeoff</a>.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Common techniques:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>L2 regularization (Ridge / weight decay)</strong> &mdash; adds a penalty proportional to the square of the model's weights, discouraging any single weight from becoming too large. Tends to shrink weights smoothly towards zero without necessarily eliminating any.</li>
+      <li><strong>L1 regularization (Lasso)</strong> &mdash; adds a penalty proportional to the absolute value of the weights. Tends to push some weights to exactly zero, which effectively performs a form of automatic <a href="/resources/AI/feature-selection-techniques.html">feature selection</a> as a side effect.</li>
+      <li><strong>Elastic Net</strong> &mdash; a blend of L1 and L2, useful when you want some feature selection but also the stability L2 provides.</li>
+      <li><strong>Dropout</strong> (neural networks) &mdash; randomly "turns off" a fraction of neurons during each training step, preventing the network from relying too heavily on any single pathway and forcing it to learn more robust, redundant representations.</li>
+      <li><strong>Early stopping</strong> &mdash; stop training once validation performance stops improving (or starts getting worse), even if training performance is still improving. Simple, cheap, and one of the most broadly useful regularization tools available.</li>
+      <li><strong>Data augmentation</strong> &mdash; not usually filed under "regularization" by name, but it has a similar effect: exposing the model to more variation makes it harder for it to simply memorise the training set. See the <a href="/resources/AI/data-augmentation.html">Data Augmentation</a> resource.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>How much regularization is right?</strong> This is itself a hyperparameter to tune (see <a href="/resources/AI/hyperparameter-tuning.html">Hyperparameter Tuning</a>), not a fixed rule. Too little and you're still overfitting; too much and you push the model back towards underfitting by constraining it more than the data actually calls for. Watch the gap between training and validation performance as you adjust the regularization strength &mdash; that gap narrowing (without both getting worse) is the sign you're moving in the right direction.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> A model that performs beautifully on training data but poorly in the real world is arguably worse than a slightly less accurate model that generalises reliably &mdash; the whole point of building a model is for it to work on data it hasn't seen yet. Regularization is one of the most direct, well-understood levers for closing that gap.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's documentation on <a href="https://scikit-learn.org/stable/modules/linear_model.html#ridge-regression" target="_blank">Ridge and Lasso regression</a> gives concrete, code-backed examples of L1 vs. L2 regularization in practice.
+    </p>
+
+  </div>
+
+</body>
+</html>

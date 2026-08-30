@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Metrics for Regression - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Evaluation Metrics for Regression
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      When you're predicting a number rather than a category &mdash; house prices, temperatures, delivery times &mdash; you need a different set of metrics from classification. They all measure some version of "how far off were the predictions," but they disagree on how to treat those errors.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>The main options:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>MAE (Mean Absolute Error)</strong> &mdash; the average of the absolute difference between predicted and actual values. Easy to interpret directly in the original units (e.g. "off by $12,000 on average"), and treats all errors proportionally &mdash; a $10 error counts exactly ten times as much as a $1 error.</li>
+      <li><strong>MSE (Mean Squared Error)</strong> &mdash; the average of the squared differences. Squaring penalises large errors much more heavily than small ones, which is useful when big mistakes are disproportionately costly, but it's less intuitive to interpret directly (the units are squared).</li>
+      <li><strong>RMSE (Root Mean Squared Error)</strong> &mdash; the square root of MSE, which brings the units back to the original scale while keeping MSE's tendency to penalise large errors more. Probably the single most commonly reported regression metric.</li>
+      <li><strong>R² (coefficient of determination)</strong> &mdash; the proportion of variance in the target that the model explains, on a scale roughly from 0 to 1 (it can go negative for a model worse than just predicting the mean). Useful for a quick sense of overall model quality, but doesn't tell you anything about the actual size of errors in real units.</li>
+      <li><strong>MAPE (Mean Absolute Percentage Error)</strong> &mdash; error expressed as a percentage of the actual value, useful when you want a scale-independent metric (e.g. comparing performance across products with very different price ranges). Breaks down badly when actual values can be at or near zero, since you end up dividing by something tiny or zero.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Which should you use?</strong> If large errors are especially costly (e.g. underestimating how much stock to order for a big event), RMSE or MSE better reflects that. If you want a metric that's robust to a few extreme outliers and easy to explain to a non-technical stakeholder, MAE is usually the friendlier choice. Reporting more than one metric is common and often useful &mdash; a low RMSE with a high MAE can be a sign that most predictions are decent but a few are wildly off.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> The choice of metric shapes what "improving the model" even means &mdash; optimising for RMSE will lead you to different modelling decisions than optimising for MAE, because they disagree about how much a handful of large errors should matter. Choose the metric that reflects the real-world cost of being wrong, not just the one that's easiest to compute.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics" target="_blank">regression metrics documentation</a> covers all of the above with formulas and usage notes.
+    </p>
+
+  </div>
+
+</body>
+</html>

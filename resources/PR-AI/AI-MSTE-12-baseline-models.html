@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baseline Models - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Baseline Models: Why You Should Always Build One First
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Before building anything sophisticated, build the simplest possible model that could plausibly work. This feels like a step you can skip to save time; in practice, skipping it usually costs you more time than it saves.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>What counts as a baseline:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>For classification:</strong> predict the majority class every time, or a random guess weighted by class frequency.</li>
+      <li><strong>For regression:</strong> predict the mean (or median) of the target every time.</li>
+      <li><strong>A simple rule-based heuristic</strong>, if you have domain knowledge &mdash; e.g. "flag a transaction as fraud if it's over $1,000 and from a new device."</li>
+      <li><strong>A simple, well-understood model</strong> with default settings and minimal feature engineering &mdash; logistic/linear regression is a common choice, since it trains in seconds and gives you a real number to compare against.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>It tells you what "good" actually means for your problem.</strong> 85% accuracy sounds impressive until you learn the majority-class baseline already gets 90%. Without a baseline, you have no way to know if your fancy model is actually adding value.</li>
+      <li><strong>It catches pipeline bugs early.</strong> A baseline model runs end-to-end through your whole pipeline &mdash; data loading, splitting, evaluation &mdash; and that plumbing needs to work correctly before a more complex model's results mean anything. Better to find a broken evaluation script when your baseline gives a nonsensical number than after a week spent tuning a neural network on top of the same broken pipeline.</li>
+      <li><strong>It sets realistic expectations.</strong> If even a strong classical model can't do much better than the baseline, that's useful information about the problem itself &mdash; maybe the features don't carry much signal, or the task is genuinely close to its ceiling of predictability.</li>
+      <li><strong>It gives you an early, working system.</strong> Especially relevant if you're following the "build a minimal working version first" approach described in the <a href="/resources/PDM/managing-overwhelming-projects.html">Managing Overwhelming Projects</a> resource &mdash; a baseline model, however crude, is a real end-to-end deliverable you can build on and demo early.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>How to use it going forward:</strong> every time you try a new model, feature, or technique, compare it explicitly against the baseline (and against your previous best result), not in isolation. A model that improves on the baseline by 1% might not be worth the added complexity and training cost it introduces &mdash; that's a judgement call the baseline lets you actually make, instead of guessing.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyClassifier.html" target="_blank">DummyClassifier</a> and <a href="https://scikit-learn.org/stable/modules/generated/sklearn.dummy.DummyRegressor.html" target="_blank">DummyRegressor</a> implement common baseline strategies (majority class, stratified random, mean/median prediction) with one line of code, making it easy to set a baseline before writing anything more complex.
+    </p>
+
+  </div>
+
+</body>
+</html>

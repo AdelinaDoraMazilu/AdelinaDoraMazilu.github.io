@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feature Selection Techniques - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Feature Selection Techniques
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      More features aren't automatically better. Irrelevant or redundant features can slow training down, make models harder to interpret, and in some cases actively hurt performance by giving the model more opportunities to fit noise instead of signal. Feature selection is the process of deciding which features actually earn their place in the model.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Three broad approaches:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Filter methods</strong> &mdash; score each feature independently of any model, using statistics like correlation with the target, chi-squared tests, or mutual information, and keep the top-scoring ones. Fast and simple, but ignores interactions between features (a feature that's useless alone but powerful in combination with another can get filtered out by mistake).</li>
+      <li><strong>Wrapper methods</strong> &mdash; actually train models on different subsets of features and see which subset performs best, using strategies like recursive feature elimination (repeatedly drop the least useful feature and retrain) or forward/backward selection. More accurate than filter methods since they account for interactions, but far more computationally expensive.</li>
+      <li><strong>Embedded methods</strong> &mdash; feature selection happens as part of training the model itself. Lasso (L1) regression naturally shrinks unhelpful feature coefficients to exactly zero; tree-based models like random forests and gradient boosting produce feature importance scores as a natural byproduct of training. Often the best balance of accuracy and cost.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Beyond the performance argument, fewer, well-chosen features usually mean a model that's faster to train, cheaper to run in production, and much easier to explain to a stakeholder or debug when something goes wrong. A model with 200 barely-relevant features is a much harder thing to reason about than one with 15 features you can each justify.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Pitfalls to avoid:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Do feature selection inside your cross-validation loop, not once on the full dataset beforehand &mdash; selecting features using information from your test set is a subtle but common form of <a href="/resources/AI/data-leakage.html">data leakage</a>, and will make your evaluation metrics look better than they really are.</li>
+      <li>A feature being weakly correlated with the target on its own doesn't mean it's useless &mdash; some features are only informative in combination with others. Filter methods alone can miss this.</li>
+      <li>Feature importance from tree-based models can be biased towards high-cardinality features; don't treat it as an absolute ranking without a bit of skepticism.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/feature_selection.html" target="_blank">feature selection documentation</a> implements filter methods, recursive feature elimination, and model-based selection with ready-to-use code.
+    </p>
+
+  </div>
+
+</body>
+</html>

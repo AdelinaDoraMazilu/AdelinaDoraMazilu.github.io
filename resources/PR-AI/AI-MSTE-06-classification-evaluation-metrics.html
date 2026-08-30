@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluation Metrics for Classification - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Evaluation Metrics for Classification
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      "Accuracy" is the metric everyone reaches for first, and it's often the wrong one. Picking the right evaluation metric matters just as much as picking the right model &mdash; the wrong metric can make a genuinely bad model look great, or a genuinely good one look mediocre.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Why accuracy can mislead you:</strong> imagine a dataset where 95% of examples are the negative class (e.g. detecting a rare disease, or fraud). A model that just predicts "negative" every single time gets 95% accuracy while being completely useless. This is exactly the scenario covered in <a href="/resources/AI/handling-class-imbalance.html">Handling Class Imbalance</a>, and it's why the metrics below usually give a far more honest picture.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>The core building blocks:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Precision</strong> &mdash; of everything the model predicted as positive, what fraction actually was? High precision means few false alarms.</li>
+      <li><strong>Recall (sensitivity)</strong> &mdash; of everything that actually was positive, what fraction did the model catch? High recall means few missed cases.</li>
+      <li><strong>F1 score</strong> &mdash; the harmonic mean of precision and recall, useful as a single number when you care about both and don't want to favour one over the other by default.</li>
+      <li><strong>Confusion matrix</strong> &mdash; a simple table of true positives, false positives, true negatives, and false negatives. Often the most informative single artifact, since every other metric here is really just a summary of it.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Which matters more, precision or recall?</strong> It depends entirely on the cost of each type of mistake. In spam detection, a false positive (a real email marked as spam) is often worse than a false negative (a spam email that slips through) &mdash; so precision matters more. In cancer screening, missing a real case (a false negative) is usually far worse than a false alarm &mdash; so recall matters more. There's no universally "correct" answer; it's a judgement call tied to the real-world consequences of each error.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Threshold-independent metrics:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>ROC-AUC</strong> &mdash; plots true positive rate against false positive rate across all possible classification thresholds, and summarises it as a single number between 0.5 (no better than random) and 1 (perfect). Useful for comparing models independent of any one chosen threshold, but can be overly optimistic on heavily imbalanced datasets.</li>
+      <li><strong>Precision-Recall AUC</strong> &mdash; similar idea, but plots precision against recall. Generally a more informative choice than ROC-AUC when the positive class is rare, since it doesn't get inflated by the (often huge) number of true negatives.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank">model evaluation documentation</a> covers all of the metrics above with formulas and code, and Google's <a href="https://developers.google.com/machine-learning/crash-course/classification" target="_blank">Machine Learning Crash Course chapter on classification</a> is a clear, visual introduction if you want the intuition built up from scratch.
+    </p>
+
+  </div>
+
+</body>
+</html>

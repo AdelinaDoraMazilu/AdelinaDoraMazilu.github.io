@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Leakage - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Data Leakage: What It Is and How to Avoid It
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Data leakage happens when information that wouldn't actually be available at prediction time somehow makes its way into your training process. It's one of the most common and most dangerous mistakes in machine learning, precisely because it doesn't look like a mistake &mdash; it looks like a great model, right up until it's deployed and quietly falls apart.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Two main flavours:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Target leakage</strong> &mdash; a feature contains information that's a direct or indirect proxy for the label, in a way that wouldn't be known at prediction time. Classic example: predicting whether a patient has a disease, using a feature like "was prescribed medication X" &mdash; the prescription often only happens <em>because</em> the diagnosis was already made.</li>
+      <li><strong>Train-test contamination</strong> &mdash; information from the test set leaks into training, usually by accident. Common causes: scaling, encoding, or imputing on the full dataset before splitting; computing aggregate features (like an average) across the whole dataset instead of within each fold; or duplicate/near-duplicate rows ending up split across both the training and test sets.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> A model suffering from data leakage will show unusually high, almost too-good-to-be-true accuracy during evaluation, and then perform noticeably worse in production &mdash; because in production, the leaked information genuinely isn't available anymore. This is one of the most common reasons a model that looked excellent on paper quietly fails once it's actually deployed, and it can be embarrassing to discover after the fact rather than before.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>How to prevent it:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Split first, transform second.</strong> Always split your data into train/validation/test before fitting any scaler, encoder, imputer, or feature selector &mdash; fit those only on the training data, then apply the fitted transformation to the rest.</li>
+      <li><strong>Be suspicious of "too good" results.</strong> If your model's accuracy seems unusually high for the problem, that's a signal to check for leakage before celebrating.</li>
+      <li><strong>Think about timing.</strong> For every feature, ask: would this value genuinely have been known at the moment you needed to make the prediction? This catches a lot of target leakage before it happens.</li>
+      <li><strong>Watch time series carefully.</strong> A random train/test split can put "future" rows in training and "past" rows in testing, letting the model implicitly learn from the future. Use a time-based split instead for temporal data.</li>
+      <li><strong>Check for duplicates across splits.</strong> Near-identical rows ending up on both sides of a split can let the model effectively memorise test answers.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where it connects:</strong> leakage can sneak in through almost every step covered elsewhere in this section &mdash; <a href="/resources/AI/handling-missing-values.html">imputing missing values</a>, <a href="/resources/AI/feature-scaling-normalization.html">scaling</a>, <a href="/resources/AI/encoding-categorical-variables.html">target encoding</a>, <a href="/resources/AI/feature-selection-techniques.html">feature selection</a>, and <a href="/resources/AI/dimensionality-reduction-pca.html">PCA</a> are all places where "fit on everything first" is a tempting shortcut that quietly introduces leakage.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the Wikipedia article on <a href="https://en.wikipedia.org/wiki/Leakage_(machine_learning)" target="_blank">Leakage (machine learning)</a> gives a solid overview of the different types and their causes, with further references for deeper reading.
+    </p>
+
+  </div>
+
+</body>
+</html>

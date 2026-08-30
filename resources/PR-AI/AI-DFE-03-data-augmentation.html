@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tips on Data Augmentation - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Tips on Data Augmentation
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Data augmentation is the practice of artificially expanding your training set by creating modified copies of existing data, rather than collecting entirely new samples. It's one of the cheapest ways to improve a model when you don't have enough labelled data to begin with, or when your model is overfitting a small dataset.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Why it matters:</strong> models generalise better when they've seen more variation. If your dataset only shows a cat facing forward in bright light, your model may struggle with a cat facing sideways in dim light &mdash; even though it's obviously still a cat. Augmentation exposes the model to that kind of variation without the cost of collecting and labelling thousands more real examples.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Common techniques by data type:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Images:</strong> random flips, rotations, crops, brightness/contrast changes, adding noise, and cutout/random erasing (blanking out a patch of the image to force the model to rely on other features).</li>
+      <li><strong>Text:</strong> synonym replacement, back-translation (translate to another language and back), random word deletion/insertion, and using a language model to paraphrase a sentence while keeping its label.</li>
+      <li><strong>Tabular data:</strong> harder to augment meaningfully, but techniques like SMOTE (creating synthetic samples between existing minority-class points) and adding small amounts of Gaussian noise to numeric features are common &mdash; especially useful alongside the <a href="/resources/AI/handling-class-imbalance.html">class imbalance</a> resource.</li>
+      <li><strong>Audio:</strong> pitch shifting, time stretching, adding background noise, and changing playback speed.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Things to watch out for:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Only augment in ways that preserve the label. Flipping a handwritten digit "6" horizontally can silently turn it into something closer to a "9" &mdash; augmentation should reflect real-world variation, not invent new classes by accident.</li>
+      <li>Augment the training set only, never the validation or test set. Augmenting your evaluation data distorts your sense of how well the model actually performs, and can even cause a form of <a href="/resources/AI/data-leakage.html">data leakage</a> if applied carelessly (for example, augmenting before splitting the data).</li>
+      <li>More augmentation isn't automatically better. Overly aggressive augmentation can make the training distribution unrealistic and hurt performance rather than help it &mdash; treat the augmentation strength as something to tune, not maximise.</li>
+      <li>Augmentation helps with limited data and overfitting, but it isn't a substitute for fixing genuinely biased or low-quality data. If your underlying data is missing an entire category of real-world cases, no amount of flipping and rotating will invent that missing information.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> most modern deep learning frameworks have augmentation built in and ready to use &mdash; for images, look at <code>torchvision.transforms</code> (PyTorch), <code>tf.keras.layers</code> augmentation layers (TensorFlow/Keras), or the standalone <a href="https://albumentations.ai/" target="_blank">Albumentations</a> library, which is fast and has a huge range of transforms. For tabular data, the <a href="https://imbalanced-learn.org/stable/" target="_blank">imbalanced-learn</a> library implements SMOTE and its variants.
+    </p>
+
+  </div>
+
+</body>
+</html>

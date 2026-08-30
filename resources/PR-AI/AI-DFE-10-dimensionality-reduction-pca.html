@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dimensionality Reduction (PCA) - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Dimensionality Reduction (PCA and friends)
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      When you have a large number of features, models can become slow to train, harder to visualise, and prone to the "curse of dimensionality" (in high-dimensional spaces, data points become sparse and distance-based methods struggle to find meaningful patterns). Dimensionality reduction techniques compress your features into a smaller set that still captures most of the useful information.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Principal Component Analysis (PCA)</strong> is the classic starting point. It finds new axes (principal components) that are combinations of your original features, ordered so that the first component captures the most variance in the data, the second captures the next most (while being uncorrelated with the first), and so on. Keeping only the top few components lets you represent most of the dataset's variation in far fewer dimensions.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>What PCA is good for:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Speeding up training and reducing memory use when you have hundreds or thousands of features.</li>
+      <li>Removing redundancy between highly correlated features.</li>
+      <li>Visualising high-dimensional data by reducing it to 2 or 3 components you can actually plot.</li>
+      <li>Reducing noise, since lower-variance components often capture more noise than signal.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>What it's not good for:</strong> PCA components are linear combinations of the original features and are often hard to interpret directly &mdash; "component 3" doesn't map cleanly onto a real-world concept the way an original feature like "age" does. This makes PCA a poor fit when interpretability matters (e.g. explaining a decision to a stakeholder or regulator). It's also a linear technique, so it can miss more complex, non-linear structure in the data &mdash; for that, non-linear alternatives like <strong>t-SNE</strong> or <strong>UMAP</strong> are commonly used, particularly for visualisation.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Pitfalls to avoid:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Scale your features first (see <a href="/resources/AI/feature-scaling-normalization.html">Feature Scaling and Normalization</a>) &mdash; PCA is sensitive to the units of your features, and an unscaled feature with a huge numeric range can dominate the components for no meaningful reason.</li>
+      <li>Fit PCA on the training data only, then apply the same transformation to the test data &mdash; fitting it on everything first is another route to <a href="/resources/AI/data-leakage.html">data leakage</a>.</li>
+      <li>Check how much variance is actually explained by the components you keep (most libraries report this directly). Reducing to 2 dimensions for a plot is fine for visualisation, but throwing away too much variance before modelling can quietly hurt performance.</li>
+      <li>t-SNE and UMAP are excellent for visualisation but are generally not meant to be used as preprocessing input to a downstream model in the same way PCA is &mdash; their distances and axes aren't as directly meaningful for that purpose.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/decomposition.html#pca" target="_blank">decomposition module documentation</a> covers PCA with a worked example, and the <a href="https://umap-learn.readthedocs.io/" target="_blank">UMAP documentation</a> is a good next step for non-linear dimensionality reduction, especially for visualisation.
+    </p>
+
+  </div>
+
+</body>
+</html>

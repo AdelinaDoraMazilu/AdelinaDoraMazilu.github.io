@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ensemble Methods - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Ensemble Methods
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Instead of picking one model and hoping it's the best possible fit, ensemble methods combine several models together, on the idea that their combined predictions can be more accurate and more stable than any single one alone &mdash; especially when the individual models make different kinds of mistakes.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Bagging (Bootstrap Aggregating)</strong> &mdash; train many versions of the same model on different random samples of the training data (sampled with replacement), then average their predictions (regression) or take a majority vote (classification). This mainly reduces variance, which is why it works especially well with high-variance models like unpruned decision trees. <strong>Random Forests</strong> are the classic example: many decision trees, each trained on a different data sample and a different random subset of features, combined together.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Boosting</strong> &mdash; train models sequentially, where each new model focuses specifically on correcting the mistakes of the ones before it. This mainly reduces bias, and tends to produce very strong predictive performance, though it's more prone to overfitting than bagging if left unchecked and needs careful <a href="/resources/AI/regularization.html">regularization</a> and <a href="/resources/AI/hyperparameter-tuning.html">tuning</a>. <strong>Gradient boosting</strong> libraries like XGBoost, LightGBM, and CatBoost are consistently among the strongest performers on structured/tabular data, and are a very common choice in real-world and competition settings alike.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Stacking</strong> &mdash; train several different models (potentially very different types &mdash; a linear model, a tree-based model, a neural network), then train a further "meta-model" on top of their outputs to learn how best to combine them. Can squeeze out extra performance by leveraging different models' different strengths, at the cost of significantly more complexity to build, tune, and maintain.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why ensembles tend to work:</strong> if individual models make somewhat different, somewhat independent errors, combining them tends to cancel out some of those errors rather than compounding them &mdash; similar in spirit to why averaging several independent guesses tends to beat any one guess. The less correlated the individual models' mistakes are, the more an ensemble typically helps.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Trade-offs to keep in mind:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Ensembles are slower to train and slower at inference time than a single model &mdash; a real consideration if you have tight latency requirements in <a href="/resources/AI/model-serving-basics.html">production</a>.</li>
+      <li>They're harder to interpret than a single simple model, which matters if explainability is a requirement.</li>
+      <li>Gradient boosting in particular is a very strong default for tabular/structured data problems &mdash; often worth trying early, not just as a final performance boost.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://xgboost.readthedocs.io/en/stable/tutorials/model.html" target="_blank">XGBoost documentation's introduction to boosted trees</a> is a clear, practical explanation of gradient boosting specifically, and scikit-learn's <a href="https://scikit-learn.org/stable/modules/ensemble.html" target="_blank">ensemble methods documentation</a> covers bagging, boosting, and stacking together with a consistent framing.
+    </p>
+
+  </div>
+
+</body>
+</html>

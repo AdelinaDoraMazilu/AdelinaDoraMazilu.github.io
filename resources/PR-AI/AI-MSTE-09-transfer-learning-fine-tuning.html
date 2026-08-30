@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transfer Learning and Fine-Tuning - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Transfer Learning and Fine-Tuning Pretrained Models
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Training a large neural network from scratch typically needs enormous amounts of data and compute &mdash; well beyond what most student or small-team projects have access to. Transfer learning sidesteps this: instead of starting from nothing, you start from a model that's already been trained on a large, general dataset, and adapt it to your specific, usually much smaller, task.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Why it works:</strong> a model trained on a huge, general dataset (millions of images, or a large corpus of text) learns broadly useful patterns along the way &mdash; edges and shapes for vision models, grammar and general world knowledge for language models &mdash; before it ever sees your specific task. Reusing that learned knowledge is often far more effective, and dramatically cheaper, than trying to relearn all of it from a small dataset of your own.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Common approaches, roughly from lightest to heaviest:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Feature extraction</strong> &mdash; freeze the pretrained model entirely and just use its outputs (or an intermediate layer's outputs) as fixed features, feeding them into a new, simple classifier you train on your own data. Fast, requires little data, and works well when your task is reasonably similar to what the model was originally trained on.</li>
+      <li><strong>Fine-tuning the head</strong> &mdash; keep most of the pretrained model frozen, but replace and train the final layer(s) on your task-specific data. A good middle ground between speed and adaptability.</li>
+      <li><strong>Full fine-tuning</strong> &mdash; unfreeze and update all (or most) of the model's weights, usually with a small learning rate, letting the whole network adjust to your task. More powerful when you have enough task-specific data, but more prone to overfitting on small datasets and more expensive computationally.</li>
+      <li><strong>Parameter-efficient fine-tuning (e.g. LoRA)</strong> &mdash; for very large models, techniques exist to fine-tune only a small number of additional parameters rather than the whole network, getting much of the benefit of full fine-tuning at a fraction of the compute and memory cost.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Practical tips:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>The more similar your task is to what the pretrained model was originally trained on, the less fine-tuning you'll typically need.</li>
+      <li>Use a much smaller learning rate than you would for training from scratch &mdash; you're making small adjustments to already-useful weights, not learning from a blank slate, and large updates can destroy what the model already knows.</li>
+      <li>With a small dataset, freezing more of the network (feature extraction or head-only fine-tuning) usually generalises better than full fine-tuning, which has more capacity to simply overfit your limited data.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Transfer learning is often the difference between "we need a research lab's compute budget" and "this is genuinely achievable in a student project timeline." It's a very common, very practical way to get strong results in vision and NLP tasks without training anything from zero.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the Hugging Face <a href="https://huggingface.co/docs/transformers/training" target="_blank">fine-tuning guide</a> is a good, practical starting point for language models, and PyTorch's <a href="https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html" target="_blank">transfer learning tutorial</a> covers the same ideas for computer vision models with runnable code.
+    </p>
+
+  </div>
+
+</body>
+</html>

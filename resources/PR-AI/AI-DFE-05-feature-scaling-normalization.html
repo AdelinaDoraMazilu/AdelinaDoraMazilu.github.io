@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feature Scaling and Normalization - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Feature Scaling and Normalization
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A lot of algorithms silently assume that all your numeric features live on roughly the same scale. If one feature ranges from 0 to 1 and another ranges from 0 to 1,000,000, many models will implicitly treat the second feature as far more important &mdash; not because it actually is, but purely because of its units.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>The main techniques:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Standardization (Z-score scaling)</strong> &mdash; subtract the mean and divide by the standard deviation, so each feature has mean 0 and standard deviation 1. The default choice for most algorithms that assume roughly normal-ish data, like linear/logistic regression, SVMs, and neural networks.</li>
+      <li><strong>Min-max scaling</strong> &mdash; rescale values into a fixed range, usually [0, 1]. Useful when you need bounded inputs (e.g. some neural network activation functions) but sensitive to outliers, since a single extreme value compresses everything else into a narrow band.</li>
+      <li><strong>Robust scaling</strong> &mdash; scale using the median and interquartile range instead of the mean and standard deviation. Much less sensitive to outliers than the two methods above, and a good default when your data has extreme values you don't want to remove.</li>
+      <li><strong>Log transformation</strong> &mdash; not strictly scaling, but often used alongside it for heavily right-skewed data (like income or word counts), to pull in a long tail before scaling the rest.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Which models actually need this?</strong> Distance-based and gradient-based algorithms care a lot: k-nearest-neighbours, k-means clustering, SVMs, PCA, and neural networks trained with gradient descent all perform noticeably better, and often converge faster, with scaled inputs. Tree-based models (decision trees, random forests, gradient boosting) are an important exception &mdash; they split on thresholds one feature at a time, so scaling generally doesn't change their behaviour at all.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Pitfalls to avoid:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Fit your scaler on the training data only, then apply that same fitted scaler to the validation/test data. Fitting it on the full dataset before splitting leaks information about the test set's distribution into training.</li>
+      <li>Remember to apply the exact same scaling at inference time in production, using the parameters learned from training &mdash; not values recalculated on whatever new data shows up.</li>
+      <li>Scaling doesn't fix a badly skewed or bimodal distribution on its own; it just changes the range. Combine it with transformations like log-scaling when the underlying shape of the data is the actual problem.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> scikit-learn's <a href="https://scikit-learn.org/stable/modules/preprocessing.html" target="_blank">preprocessing documentation</a> covers all of the scalers above with code examples and visual comparisons of how each one reshapes a distribution.
+    </p>
+
+  </div>
+
+</body>
+</html>
