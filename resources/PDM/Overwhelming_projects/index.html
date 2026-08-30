@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Title - Adelina Mazilu</title>
+  <title>Managing Overwhelming Projects - Adelina Mazilu</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/resources/resources_style.css">
   <link rel="stylesheet" href="/projects/projects_style.css">
@@ -17,26 +17,56 @@
     <a href="/resources/" class="project-back-link">← Back to Resources</a>
 
     <h1 class="project-detail-title">
-      Resource Title Here
+      Managing overwhelming projects
     </h1>
 
     <div class="project-status-badge">Project Development and Management</div>
 
     <p class="project-detail-text">
-      Author, source, or introduction text here.
+      <p>There's a specific kind of dread that shows up in week one of a big project: you've just been handed a brief that's several pages long, six months of calendar time, a team of people you may barely know, and absolutely no idea where to start. That feeling is completely normal, and it's also very solvable &mdash; not through motivation or willpower, but through structure.</p>
     </p>
 
-    <hr class="project-detail-divider">
+    <hr class="post-divider">
 
     <p class="project-detail-text">
-      Body text describing this resource goes here.
-    </p>
+      <h2>Why projects feel overwhelming</h2>
+      <p>It's rarely the actual amount of work that overwhelms people &mdash; it's the size and vagueness of the unit they're looking at. "Build a course sign-up platform for the department" is terrifying. "Design the database schema for storing course and enrolment data" is a Tuesday afternoon. Same underlying project, wildly different emotional weight, purely because of how it's been sliced up.</p>
 
-    <div class="project-detail-links">
-      <a href="https://link-to-resource.com" target="_blank" class="project-detail-link-btn">
-        Read the resource →
-      </a>
-    </div>
+      <h2>Why is this important?</h2>
+      <p>Left unmanaged, this overwhelm doesn't just feel bad &mdash; it produces real project failures: teams freeze and don't start meaningful work until deadline pressure forces bad decisions, work gets distributed unevenly because only the vague brief exists to divide, and nobody notices they're behind until it's too late to recover, because there was never a smaller checkpoint to miss along the way.</p>
+
+      <h2>Break it down: from project to task</h2>
+      <p>The standard tool here is a <strong>work breakdown structure</strong> (WBS): repeatedly splitting a big deliverable into smaller ones until each piece is something one person (or a small pair) could reasonably estimate and finish in a matter of days, not months.</p>
+      <ol>
+        <li><strong>Project</strong> &mdash; "Course sign-up platform"</li>
+        <li><strong>Major deliverables</strong> &mdash; "Authentication," "Course browsing," "Enrolment," "Admin reporting"</li>
+        <li><strong>Features within each</strong> &mdash; under Enrolment: "sign up for a course," "join a waitlist," "drop a course"</li>
+        <li><strong>Tasks within each feature</strong> &mdash; "design the enrolment database table," "build the sign-up API endpoint," "build the sign-up button and confirmation screen," "write tests for the waitlist edge case"</li>
+      </ol>
+      <p>This connects directly to <a href="/resources/PDM/requirement-analysis.html">Requirement Analysis</a> and <a href="/resources/PDM/user-stories-use-cases.html">User Stories &amp; Use Cases</a> &mdash; a well-written user story is usually already close to the right size for a task on this breakdown. If a "task" still feels overwhelming once you've broken it down this far, it isn't a task yet, it's still a mini-project; split it again.</p>
+
+      <!-- Suggested image: a work breakdown structure diagram showing project -> deliverables -> features -> tasks as a branching tree -->
+
+      <h2>Give yourself checkpoints, not just a deadline</h2>
+      <p>A single deadline six months away doesn't give your brain anything to act on today. Break the timeline into milestones (every 2&ndash;3 weeks is common for student projects) with a specific, visible goal at each one: "by week 4, we can create an account and browse courses end-to-end, even if enrolment doesn't work yet." Milestones like this turn one enormous unknown into a series of small, checkable bets, and they surface problems while there's still time to fix them.</p>
+
+      <h2>Build the smallest working version first</h2>
+      <p>Resist the urge to build every feature at 20% completeness in parallel. Instead, get a thin, ugly, end-to-end version of the core flow working first &mdash; often called a minimum viable product, or MVP &mdash; before adding polish or secondary features. A rough but functional sign-up flow is worth more, and is far less stressful to sit with for months, than five beautiful, half-built screens that don't yet connect to each other.</p>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>If a task on your board still makes you want to close the laptop and do something else, it's probably too big or too vague. Break it down one more level.</li>
+        <li>Write your task list somewhere visible to the whole team (a shared board, not a personal notebook) &mdash; see the <a href="/resources/PDM/helpful-apps.html">Helpful Apps</a> resource for tools that make this easy.</li>
+        <li>Revisit and re-break-down your plan regularly. The first WBS you write in week one will be wrong by week three, and that's fine &mdash; treat it as a living document, not a contract.</li>
+        <li>Celebrate milestones, even small internal ones. A six-month project with no sense of progress along the way is exhausting regardless of how well it's actually going.</li>
+      </ul>
+
+      <h2>References</h2>
+      <p><a href="https://en.wikipedia.org/wiki/Work_breakdown_structure" target="_blank">Wikipedia &mdash; Work Breakdown Structure</a></p>
+      <p><a href="https://www.atlassian.com/agile/product-management/minimum-viable-product" target="_blank">Atlassian &mdash; What is a Minimum Viable Product (MVP)?</a></p>
+      <!-- Comments are visible in the HTML source only -->
+
+    </p>
 
   </div>
 

@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Title - Adelina Mazilu</title>
+  <title>Divide and Conquer - Adelina Mazilu</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/resources/resources_style.css">
   <link rel="stylesheet" href="/projects/projects_style.css">
@@ -17,26 +17,54 @@
     <a href="/resources/" class="project-back-link">← Back to Resources</a>
 
     <h1 class="project-detail-title">
-      Resource Title Here
+      Divide and conquer
     </h1>
 
     <div class="project-status-badge">Project Development and Management</div>
 
     <p class="project-detail-text">
-      Author, source, or introduction text here.
+      <p><a href="/resources/PDM/Overwhelming_projects/index.html">Managing Overwhelming Projects</a> is about breaking a big project into small enough pieces for one person to hold in their head. This resource is about the next question: once you've broken it down, how do you actually split that work across a team of four or five people without everyone stepping on each other constantly?</p>
     </p>
 
-    <hr class="project-detail-divider">
+    <hr class="post-divider">
 
     <p class="project-detail-text">
-      Body text describing this resource goes here.
-    </p>
+      <h2>The core idea</h2>
+      <p>"Divide and conquer" as a team strategy means splitting work along boundaries where each person or pair can work independently, with minimal need to coordinate moment-to-moment. The goal isn't just splitting tasks &mdash; it's splitting them along lines that don't create constant collisions, blocking, or merge conflicts.</p>
 
-    <div class="project-detail-links">
-      <a href="https://link-to-resource.com" target="_blank" class="project-detail-link-btn">
-        Read the resource →
-      </a>
-    </div>
+      <h2>Why is this important?</h2>
+      <p>Badly divided work is often worse than not dividing it at all. Two people editing the same file all week, one person permanently blocked waiting on another's unfinished piece, or three people quietly rebuilding the same component in slightly different ways &mdash; these are extremely common in student teams and they erase most of the benefit of having a team in the first place. Good division of labour is what actually lets four people move faster than one, rather than just producing four times the confusion.</p>
+
+      <h2>Good ways to slice a project</h2>
+      <ul>
+        <li><strong>By layer</strong> &mdash; frontend vs. backend vs. database, for example. Works well when the interface between layers (the API contract) is agreed early and doesn't change often.</li>
+        <li><strong>By feature</strong> &mdash; one person owns "enrolment," another owns "authentication," another owns "admin reporting." Often causes fewer collisions than splitting by layer, since each person can work top-to-bottom on their own feature without waiting on someone else's layer.</li>
+        <li><strong>By pipeline stage</strong> &mdash; one person designs, another builds, another tests. Works for creative or design-heavy projects, but can create bottlenecks if one stage takes longer than expected and blocks the next.</li>
+      </ul>
+      <p>For most student software projects, splitting by feature tends to cause the least friction, because it minimises how often two people need to touch the same code at the same time.</p>
+
+      <!-- Suggested image: a diagram contrasting "split by layer" (horizontal slices: frontend/backend/database) with "split by feature" (vertical slices: auth/enrolment/reporting) -->
+
+      <h2>Watch out for hidden dependencies</h2>
+      <p>The whole strategy falls apart if the pieces secretly depend on each other in ways nobody planned for. Before splitting work, explicitly ask: what does each piece need from the others, and in what order? If the enrolment feature needs the authentication feature finished first, that's not a reason to abandon dividing the work &mdash; it's a reason to agree the shared interface (what data gets passed between them) up front, so both people can build against that agreement in parallel rather than waiting on each other.</p>
+      <p>This is where a small amount of upfront design (see <a href="/resources/PDM/Design_Thinking/index.html">Design Thinking</a> and <a href="/resources/PDM/Requirement_analysis/index.html">Requirement Analysis</a>) pays for itself: agreeing on interfaces and data shapes before splitting the work is far cheaper than discovering the mismatch after two people have each built half of an incompatible whole.</p>
+
+      <h2>Recombining the pieces</h2>
+      <p>Divide and conquer isn't finished the moment work is split up &mdash; it's finished when the pieces are successfully put back together. Plan integration points into your schedule explicitly (don't leave "merge everything" as an unplanned afterthought in the final week), and integrate early and often rather than only once at the very end. A feature that "works" in isolation but has never actually been tested alongside the rest of the system is a common and entirely avoidable source of late-project panic.</p>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>Write down the interface/contract between pieces before splitting the work, even informally &mdash; a shared doc listing what each part sends and expects to receive is usually enough.</li>
+        <li>Integrate continuously (daily or every few days) rather than saving it all for the end. Small, frequent integration surfaces mismatches while they're still cheap to fix.</li>
+        <li>Give each independent piece a clear, single owner. Shared, un-owned pieces of work tend to quietly not get done, because everyone assumes someone else is handling it.</li>
+        <li>Revisit the split partway through. Some divisions look clean on a whiteboard and turn out to be tangled in practice &mdash; that's fine, just re-divide rather than forcing the original plan.</li>
+      </ul>
+
+      <h2>References</h2>
+      <p>Sethi, R. <em>Software Engineering: Basic Principles and Best Practices</em> &mdash; covers modular decomposition and interface design as a foundation for splitting work across a team.</p>
+      <!-- Comments are visible in the HTML source only -->
+
+    </p>
 
   </div>
 

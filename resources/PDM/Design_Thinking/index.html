@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resource Title - Adelina Mazilu</title>
+  <title>Design Thinking - Adelina Mazilu</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/resources/resources_style.css">
   <link rel="stylesheet" href="/projects/projects_style.css">
@@ -17,26 +17,73 @@
     <a href="/resources/" class="project-back-link">← Back to Resources</a>
 
     <h1 class="project-detail-title">
-      Resource Title Here
+      Design thinking
     </h1>
 
     <div class="project-status-badge">Project Development and Management</div>
 
     <p class="project-detail-text">
-      Author, source, or introduction text here.
+      <p><strong>&ldquo;Fall in love with the problem, not your first solution to it.&rdquo;</strong></p>
+      <p>A common pattern in student projects: someone has an idea for a feature in the shower, the team gets excited, and three weeks later they've built something genuinely impressive that nobody who tests it actually wants. Not because the execution was bad &mdash; because the team fell in love with a solution before they properly understood the problem. Design thinking is, at its core, a discipline for slowing that down just enough to build the right thing.</p>
     </p>
 
-    <hr class="project-detail-divider">
+    <hr class="post-divider">
 
     <p class="project-detail-text">
-      Body text describing this resource goes here.
-    </p>
+      <h2>What is design thinking?</h2>
+      <p>Design thinking is a human-centred approach to solving problems, originally formalised by the Hasso Plattner Institute of Design at Stanford (the "d.school"). It's built around five stages: <strong>Empathize, Define, Ideate, Prototype, and Test</strong>. Despite being drawn as a neat five-step line, it's genuinely non-linear &mdash; teams jump backward and forward constantly, and that's expected, not a sign you're doing it wrong.</p>
 
-    <div class="project-detail-links">
-      <a href="https://link-to-resource.com" target="_blank" class="project-detail-link-btn">
-        Read the resource →
-      </a>
-    </div>
+      <!-- Suggested image: the five overlapping/looping stages of design thinking (Empathize -> Define -> Ideate -> Prototype -> Test) -->
+
+      <h2>Why is this important?</h2>
+      <p>If you skip straight from "we have a problem statement" to "let's build the obvious solution," you inherit every assumption baked into that first idea, and you don't find out it was the wrong idea until you've already sunk weeks into it. Design thinking exists to catch that failure mode early and cheaply &mdash; the same underlying instinct behind <a href="/resources/PDM/root-cause-analysis.html">Root Cause Analysis</a> (treat the causes, not the symptoms) and <a href="/resources/PDM/understanding-stakeholders.html">Understanding Stakeholders</a> (know who you're actually building for). Design thinking is the process that ties those together into something you actually do, step by step, rather than just a principle you agree with in theory.</p>
+
+      <h2>The five stages</h2>
+      <ol>
+        <li>
+          <strong>Empathize.</strong> Understand the people you're designing for &mdash; not by guessing, but through interviews, observation, and genuinely listening. This overlaps heavily with the elicitation work in <a href="/resources/PDM/Requirement_analysis/index.html">Requirement Analysis</a>. The goal here isn't to collect feature requests, it's to understand the underlying frustrations and context behind them.
+        </li>
+        <li>
+          <strong>Define.</strong> Take what you learned and turn it into a sharp, specific problem statement &mdash; not "students need a better way to sign up for courses" but something like "students miss out on popular courses because sign-up windows close before they realise spots are filling up." A vague problem statement produces vague, unfocused solutions.
+        </li>
+        <li>
+          <strong>Ideate.</strong> Generate lots of possible solutions before committing to one. Brainstorm without judging ideas yet &mdash; the goal is quantity and range first, evaluation second. Teams that jump straight to evaluating the first idea almost never end up with the best one.
+        </li>
+        <li>
+          <strong>Prototype.</strong> Build the cheapest, roughest version of an idea that lets you test it. This does not mean working code. A prototype can be paper sketches, a clickable mockup, or even a scripted walkthrough &mdash; whatever is fastest to build and good enough to react to.
+        </li>
+        <li>
+          <strong>Test.</strong> Put the prototype in front of real users (or as close as you can get) and watch what actually happens, rather than asking them to imagine it. Testing routinely sends you back to Empathize or Define with new information &mdash; that's the process working, not failing.
+        </li>
+      </ol>
+
+      <!-- Suggested image: an example low-fidelity paper prototype or wireframe sketch -->
+
+      <h2>How this fits into a student project</h2>
+      <p>You don't need a two-week design sprint to use this. A lightweight version for a course project might look like:</p>
+      <ul>
+        <li>A handful of short interviews or an observation session with real intended users, before you write any requirements.</li>
+        <li>One sentence that states the specific problem you're solving &mdash; write it down and put it somewhere visible.</li>
+        <li>A 15-minute brainstorm with the whole team where every idea gets written down before anyone critiques anything.</li>
+        <li>A rough clickable mockup (Figma is fine, even hand-drawn screens photographed and linked together work) shown to two or three real users before you build the real thing.</li>
+      </ul>
+      <p>This whole loop can realistically take a few days, and it will save you from the single most expensive mistake in a student project: building the wrong thing extremely well.</p>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>Resist the urge to prototype in code. Every hour spent making a paper sketch or mockup look "real" is an hour you're not spending testing the actual idea.</li>
+        <li>Don't let the loudest voice in the room win the ideation stage by default. Write ideas down individually first, then share &mdash; it stops early opinions from silently shrinking everyone else's options.</li>
+        <li>Test with people outside your team. Your team already understands the product; that makes you the worst possible judge of whether it's actually clear to a first-time user.</li>
+        <li>Treat "going back a stage" as normal, expected progress, not a setback to your timeline. Budget time for it up front rather than being surprised by it later.</li>
+      </ul>
+
+      <h2>References</h2>
+      <p><a href="https://ixdf.org/literature/topics/design-thinking" target="_blank">Interaction Design Foundation &mdash; What is Design Thinking?</a></p>
+      <p><a href="https://www.nngroup.com/articles/design-thinking/" target="_blank">Nielsen Norman Group &mdash; Design Thinking 101</a></p>
+      <p><a href="https://www.web.stanford.edu/~mshanks/MichaelShanks/files/509554.pdf" target="_blank">Stanford d.school &mdash; An Introduction to Design Thinking Process Guide</a></p>
+      <!-- Comments are visible in the HTML source only -->
+
+    </p>
 
   </div>
 
