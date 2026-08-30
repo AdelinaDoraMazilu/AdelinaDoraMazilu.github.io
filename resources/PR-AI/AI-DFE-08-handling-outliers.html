@@ -42,7 +42,7 @@
     <ul class="project-detail-text">
       <li><strong>Z-score</strong> &mdash; flag points more than roughly 3 standard deviations from the mean. Simple, but assumes roughly normal data and is itself sensitive to extreme values pulling the mean and standard deviation around.</li>
       <li><strong>IQR (interquartile range) method</strong> &mdash; flag points below Q1 &minus; 1.5×IQR or above Q3 + 1.5×IQR. More robust than the Z-score approach and the basis for the whiskers on a standard box plot.</li>
-      <li><strong>Visual inspection</strong> &mdash; box plots, scatter plots, and histograms will often make outliers obvious at a glance, and are a good first step before reaching for a formula. See the <a href="/resources/AI/exploratory-data-analysis.html">Exploratory Data Analysis</a> resource.</li>
+      <li><strong>Visual inspection</strong> &mdash; box plots, scatter plots, and histograms will often make outliers obvious at a glance, and are a good first step before reaching for a formula. See the <a href="/resources/PR-AI/AI-DFE-09-exploratory-data-analysis.html">Exploratory Data Analysis</a> resource.</li>
       <li><strong>Model-based detection</strong> &mdash; for higher-dimensional data where simple thresholds don't capture "unusual," methods like isolation forests or local outlier factor can flag points that are unusual across several features at once, not just one at a time.</li>
     </ul>
 
@@ -53,7 +53,7 @@
       <li><strong>Remove</strong> confirmed errors, once you've verified they aren't real.</li>
       <li><strong>Cap / winsorize</strong> extreme-but-real values to a reasonable maximum or minimum, keeping the row but limiting its influence.</li>
       <li><strong>Transform</strong> the whole feature (e.g. a log transform) to shrink the relative influence of extreme values without deleting them.</li>
-      <li><strong>Use a robust technique</strong> instead of removing anything &mdash; e.g. robust scaling (see <a href="/resources/AI/feature-scaling-normalization.html">Feature Scaling and Normalization</a>) or a model that's naturally less sensitive to extreme values, like tree-based methods.</li>
+      <li><strong>Use a robust technique</strong> instead of removing anything &mdash; e.g. robust scaling (see <a href="/resources/PR-AI/AI-DFE-05-feature-scaling-normalization.html">Feature Scaling and Normalization</a>) or a model that's naturally less sensitive to extreme values, like tree-based methods.</li>
       <li><strong>Leave them in, deliberately</strong>, if they represent exactly the rare cases your model needs to learn to handle.</li>
     </ul>
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Retraining Strategies - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Model Retraining Strategies
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Once you accept that models can go stale (see <a href="/resources/PR-AI/AI-SDM-07-data-and-concept-drift.html">Data and Concept Drift</a>), the natural next question is: when, and how, should you actually retrain? There's no single right answer &mdash; the right strategy depends on how fast your data changes, how costly retraining is, and how costly a stale model is.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Common retraining triggers:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Scheduled retraining</strong> &mdash; retrain on a fixed cadence (daily, weekly, monthly), regardless of whether drift has been explicitly detected. Simple to implement and reason about, but can waste compute retraining when nothing has meaningfully changed, or retrain too infrequently if the world is moving faster than your schedule assumes.</li>
+      <li><strong>Performance-triggered retraining</strong> &mdash; retrain when <a href="/resources/PR-AI/AI-SDM-06-monitoring-models-in-production.html">monitoring</a> detects that a key metric has dropped below an agreed threshold. More efficient than a fixed schedule, but depends on having a reliable, timely way to measure that performance drop in the first place.</li>
+      <li><strong>Drift-triggered retraining</strong> &mdash; retrain when data or prediction drift crosses a defined threshold, even before a performance drop is confirmed (useful when ground-truth labels are slow to arrive).</li>
+      <li><strong>On-demand / manual retraining</strong> &mdash; a person decides to retrain, usually after noticing a problem or after a known change in the underlying system (a new product launch, a policy change). Common for smaller teams and projects without full automation.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>What "retraining" can mean in practice:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Full retrain from scratch</strong> &mdash; retrain on the full, updated dataset. Simple and thorough, but can be expensive for large datasets or complex models.</li>
+      <li><strong>Incremental / online learning</strong> &mdash; update the existing model with just the new data, rather than starting over. Cheaper, but not all algorithms support it well, and it can be more prone to the model drifting towards whatever's most recent at the expense of older, still-relevant patterns.</li>
+      <li><strong>Sliding window retraining</strong> &mdash; retrain on only the most recent N months (or N examples) of data rather than the full history, which can help the model stay current when older data is genuinely less relevant &mdash; at the cost of potentially losing useful long-term patterns.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Before deploying a retrained model, always re-evaluate it properly</strong> &mdash; against the same held-out evaluation set (or an updated equivalent) used for the previous version, not just against whatever new data triggered the retrain. This connects directly to <a href="/resources/PR-AI/AI-SDM-08-ab-testing-canary-deployments.html">A/B Testing and Canary Deployments</a>: a retrained model should generally go through the same careful rollout process as any other new model version, not skip straight to full production traffic just because it's "the same model, just updated."
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Without a deliberate retraining strategy, teams tend to drift (no pun intended) into one of two bad defaults: never retraining until something breaks visibly, or retraining reflexively without checking whether the new version is actually better. A clear, agreed strategy avoids both.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> Google Cloud's <a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank">MLOps continuous delivery and automation pipelines guide</a> covers retraining triggers as part of a broader automated pipeline design.
+    </p>
+
+  </div>
+
+</body>
+</html>

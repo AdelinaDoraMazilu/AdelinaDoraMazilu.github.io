@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Compression and Optimization - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Model Compression and Optimization
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A large, highly accurate model isn't always a deployable one. Model compression techniques shrink a trained model's size and speed up its predictions, usually trading a small, controlled amount of accuracy for meaningful gains in speed, memory use, and cost.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Main techniques:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Quantization</strong> &mdash; reduce the numeric precision used to store and compute a model's weights (e.g. from 32-bit floating point down to 8-bit integers). This can shrink model size by roughly 4x and meaningfully speed up inference, especially on hardware with good support for lower-precision math, usually with only a small accuracy cost if done carefully.</li>
+      <li><strong>Pruning</strong> &mdash; remove weights, neurons, or entire layers that contribute little to the model's output. Many large networks are significantly over-parameterised, meaning a substantial fraction can often be removed with minimal impact on accuracy, sometimes even improving generalisation slightly.</li>
+      <li><strong>Knowledge distillation</strong> &mdash; train a smaller "student" model to mimic the outputs of a larger, more accurate "teacher" model, rather than training the student directly on the original labels alone. The student often ends up more accurate than if it had been trained from scratch at the same size, because it benefits from the richer signal in the teacher's predictions.</li>
+      <li><strong>Efficient architectures</strong> &mdash; sometimes the most effective "compression" is simply choosing an architecture designed for efficiency from the start (e.g. MobileNet-style architectures for vision on mobile devices), rather than compressing a large general-purpose model after the fact.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>When this actually matters:</strong> not every project needs this. It becomes important specifically when you're constrained &mdash; deploying to a mobile device or embedded hardware with limited memory and no GPU, needing very low latency for a real-time application, or trying to control the cost of running a large model at scale. For a lot of student and prototype-stage projects, this is a "nice to have once everything else works," not a first priority.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Practical tips:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Always re-evaluate a compressed model on your held-out test set &mdash; compression usually costs some accuracy, and you want that cost to be a deliberate, measured trade-off, not a surprise.</li>
+      <li>Quantization and pruning can often be combined, and many frameworks support them fairly directly with a few lines of code, rather than requiring you to reimplement anything from scratch.</li>
+      <li>Distillation requires training an additional (smaller) model, so it's more of an upfront investment than quantization or pruning, but it can produce the best accuracy-for-size trade-off of the group.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://pytorch.org/tutorials/recipes/quantization.html" target="_blank">PyTorch quantization documentation</a> and <a href="https://www.tensorflow.org/model_optimization" target="_blank">TensorFlow Model Optimization Toolkit</a> both provide practical, ready-to-use implementations of quantization and pruning.
+    </p>
+
+  </div>
+
+</body>
+</html>

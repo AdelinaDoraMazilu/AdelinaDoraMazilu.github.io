@@ -36,8 +36,8 @@
       <strong>How to read one:</strong>
     </p>
     <ul class="project-detail-text">
-      <li><strong>Both training and validation error are high, and close together.</strong> The model is underfitting &mdash; it isn't even doing well on the data it has. More data probably won't help much on its own; you likely need a more expressive model, better features, or less regularization. See <a href="/resources/AI/bias-variance-overfitting-underfitting.html">Bias-Variance Tradeoff</a>.</li>
-      <li><strong>Training error is low, validation error is noticeably higher, and the gap isn't closing.</strong> The model is overfitting. More training data often helps directly here, and so does <a href="/resources/AI/regularization.html">regularization</a>, a simpler model, or <a href="/resources/AI/data-augmentation.html">data augmentation</a>.</li>
+      <li><strong>Both training and validation error are high, and close together.</strong> The model is underfitting &mdash; it isn't even doing well on the data it has. More data probably won't help much on its own; you likely need a more expressive model, better features, or less regularization. See <a href="/resources/PR-AI/AI-MSTE-03-bias-variance-overfitting-underfitting.html">Bias-Variance Tradeoff</a>.</li>
+      <li><strong>Training error is low, validation error is noticeably higher, and the gap isn't closing.</strong> The model is overfitting. More training data often helps directly here, and so does <a href="/resources/PR-AI/AI-MSTE-05-regularization.html">regularization</a>, a simpler model, or <a href="/resources/PR-AI/AI-DFE-03-data-augmentation.html">data augmentation</a>.</li>
       <li><strong>Both curves are still improving and haven't plateaued as more data is added.</strong> You're likely data-limited &mdash; collecting more training data is probably one of the highest-leverage things you can do.</li>
       <li><strong>Both curves have flattened out and validation error is acceptable.</strong> You're near the limit of what this model/feature combination can achieve; further gains likely require a different model, better features, or a rethink of the problem itself.</li>
     </ul>

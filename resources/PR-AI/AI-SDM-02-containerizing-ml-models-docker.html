@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Containerizing ML Models (Docker) - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Containerizing ML Models (Docker)
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      "It works on my machine" is one of the most common phrases in software, and one of the least reassuring to hear from a teammate. Docker exists to make that phrase unnecessary, by packaging your code, its dependencies, and the environment it runs in together, so it behaves the same way wherever it's run.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>What a container actually is:</strong> a lightweight, self-contained package that bundles your application code with everything it needs to run &mdash; the exact Python version, the exact library versions, system dependencies, environment variables &mdash; isolated from whatever is (or isn't) installed on the host machine. Unlike a full virtual machine, containers share the host's operating system kernel, which makes them much faster to start and far lighter on resources.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why this matters specifically for ML:</strong> machine learning projects are notorious for dependency headaches &mdash; a model trained with one version of a library can behave differently, or fail to load at all, on another version. Containerizing your model-serving code locks in the exact environment it was built and tested in, so the same container that worked on your laptop is very likely to work the same way in production, in a teammate's environment, or on a cloud server.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>The basic workflow:</strong>
+    </p>
+    <ol class="project-detail-text">
+      <li>Write a <code>Dockerfile</code> &mdash; a simple text file describing the steps to build your environment: which base image to start from (e.g. a Python image), which dependencies to install, which files to copy in, and what command to run when the container starts.</li>
+      <li>Build an image from that Dockerfile &mdash; a snapshot of everything described in it.</li>
+      <li>Run a container from that image &mdash; an actual running instance of your application, isolated from the host system.</li>
+      <li>Optionally, push the image to a registry (like Docker Hub or a private cloud registry) so it can be pulled and run elsewhere &mdash; a teammate's machine, a CI pipeline, or a production server.</li>
+    </ol>
+
+    <p class="project-detail-text">
+      <strong>Practical tips:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Keep images as small as possible &mdash; use slim base images and avoid installing anything you don't actually need in production, since large images are slower to build, push, and deploy.</li>
+      <li>Don't bake large model files or secrets directly into the image if you can avoid it; loading them at startup (from a model registry or storage bucket) keeps images smaller and makes updating the model easier without rebuilding everything.</li>
+      <li>Test the container locally before deploying it anywhere &mdash; a surprising number of "works on my machine" bugs are actually "works outside the container" bugs.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Containerization is close to a prerequisite for most modern deployment workflows &mdash; it's what most <a href="/resources/PR-AI/AI-SDM-04-ci-cd-for-ml-pipelines.html">CI/CD pipelines</a> and cloud deployment platforms are built around, and it directly supports <a href="/resources/PR-AI/AI-MSTE-13-reproducibility-in-ml-experiments.html">reproducibility</a> by removing "the environment" as a source of unexplained differences between runs.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> Docker's own <a href="https://docs.docker.com/get-started/" target="_blank">"Get Started" guide</a> is a clear, hands-on introduction that covers writing your first Dockerfile and running your first container.
+    </p>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Visualization for Reports and Papers - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Data visualization for reports and papers
+    </h1>
+
+    <div class="project-status-badge">Academic Writing, Reading Research and Presenting</div>
+
+    <p class="project-detail-text">
+      <p>A figure that takes a reader ten seconds to understand does more work than three paragraphs explaining the same result. But a badly made figure can do the opposite &mdash; confuse a reader, misrepresent your data, or simply get ignored. The gap between a good figure and a bad one is usually a handful of deliberate choices, not raw design talent.</p>
+    </p>
+
+    <hr class="post-divider">
+
+    <p class="project-detail-text">
+      <h2>Choosing the right chart type</h2>
+      <p>Start from what you're actually trying to show, not from whichever chart type happens to be familiar or looks impressive:</p>
+      <ul>
+        <li><strong>Comparing categories</strong> &mdash; bar charts.</li>
+        <li><strong>Showing change over time</strong> &mdash; line charts.</li>
+        <li><strong>Showing the relationship between two numeric variables</strong> &mdash; scatter plots.</li>
+        <li><strong>Showing the distribution or spread of a variable</strong> &mdash; histograms or box plots.</li>
+        <li><strong>Showing composition/parts of a whole</strong> &mdash; used sparingly, and often better replaced by a simple bar chart, which is generally easier for readers to compare accurately than a pie chart.</li>
+      </ul>
+      <p>A useful habit borrowed from data science: distinguish between <strong>exploratory</strong> visualisation (quick charts you make for yourself, to understand your own data) and <strong>explanatory</strong> visualisation (polished figures made to communicate a specific finding to someone else). The bar for polish and clarity is much higher for the second kind &mdash; that's what actually goes in your report.</p>
+
+      <!-- Suggested image: a small reference chart showing which chart type suits which kind of comparison — categories, trends, relationships, distributions -->
+
+      <h2>Principles that make a figure genuinely readable</h2>
+      <ul>
+        <li><strong>Label everything.</strong> Every axis needs a label with units; every figure needs a clear, specific title or caption that could stand on its own if separated from the surrounding text.</li>
+        <li><strong>Don't distort the data.</strong> Starting a bar chart's y-axis somewhere other than zero can make small differences look dramatic and misleading &mdash; a genuine ethical issue in data presentation, not just a style preference.</li>
+        <li><strong>Cut the clutter.</strong> Unnecessary gridlines, 3D effects, decorative backgrounds, and excessive colours (sometimes called "chartjunk") make a figure harder to read, not more impressive. Every element should earn its place.</li>
+        <li><strong>Use colour intentionally, and check it's colourblind-friendly.</strong> Avoid relying on red-green distinctions alone; tools like ColorBrewer provide palettes designed to remain distinguishable for colourblind readers.</li>
+        <li><strong>One clear message per figure.</strong> If a figure is trying to show five different things at once, readers will likely walk away with none of them. Split it into multiple simpler figures if needed.</li>
+        <li><strong>Check what your target format requires</strong> &mdash; a report or thesis, a printed document, or a specific journal template may have resolution, font-size, or colour requirements worth checking before you finalise figures, not after.</li>
+      </ul>
+
+      <h2>Why is this important?</h2>
+      <p>A reader (or marker) skims a document's figures before deciding how carefully to read the surrounding text &mdash; a strong set of figures can carry a lot of the persuasive weight of your results section on its own. Poor figures, on the other hand, can make even a genuinely strong result look weaker or more confusing than it actually is.</p>
+
+      <h2>Tips</h2>
+      <ul>
+        <li>Write the caption as if the figure might be seen entirely on its own, disconnected from the surrounding paragraph &mdash; a good caption explains what's being shown and what the reader should take away from it.</li>
+        <li>Show individual data points where feasible (jittered scatter over a bar chart, for example), particularly with small sample sizes &mdash; it's more honest about the underlying variation than a single averaged bar.</li>
+        <li>Get a second opinion on your key figures before finalising a report &mdash; someone unfamiliar with the data is a good test of whether the chart actually communicates what you think it does.</li>
+        <li>For code-generated figures, tools like Python's Matplotlib/Seaborn or R's ggplot2 give you fine control over all of the above and are worth learning if you'll be making figures regularly.</li>
+      </ul>
+
+      <h2>References</h2>
+      <p>Rougier, N. P., Droettboom, M., &amp; Bourne, P. E. (2014). <em>Ten Simple Rules for Better Figures.</em> PLOS Computational Biology &mdash; a short, widely cited, practical guide to making clearer scientific figures.</p>
+      <p><a href="https://ucsd.libguides.com/data-viz/data_viz_best_practices" target="_blank">UC San Diego Library &mdash; Data Visualization Best Practices</a></p>
+      <!-- Comments are visible in the HTML source only -->
+
+    </p>
+
+  </div>
+
+</body>
+</html>

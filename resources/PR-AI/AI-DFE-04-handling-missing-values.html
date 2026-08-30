@@ -52,7 +52,7 @@
       <strong>Pitfalls to avoid:</strong>
     </p>
     <ul class="project-detail-text">
-      <li>Never compute the mean/median/mode (or fit any imputation model) on the full dataset before splitting into train and test &mdash; that leaks test-set information into training, similar to the mistakes covered in the <a href="/resources/AI/data-leakage.html">Data Leakage</a> resource. Fit the imputer on the training set only, then apply it to the test set.</li>
+      <li>Never compute the mean/median/mode (or fit any imputation model) on the full dataset before splitting into train and test &mdash; that leaks test-set information into training, similar to the mistakes covered in the <a href="/resources/PR-AI/AI-DFE-11-data-leakage.html">Data Leakage</a> resource. Fit the imputer on the training set only, then apply it to the test set.</li>
       <li>Don't assume missing always means "impute it away." Sometimes missingness is the most informative signal in the dataset (e.g. a loan applicant who leaves the income field blank), and papering over it can remove real predictive power.</li>
       <li>Always check <em>how much</em> is missing per column before deciding on a strategy. A column that's 90% empty is usually better dropped than imputed &mdash; you'd mostly be inventing data at that point.</li>
     </ul>

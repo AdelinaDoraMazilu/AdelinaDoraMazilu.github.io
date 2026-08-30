@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A/B Testing and Canary Deployments - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      A/B Testing and Canary Deployments for ML
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A new model scoring better on your offline validation set is encouraging, but it isn't proof it will actually perform better for real users in the real system. Offline metrics and real-world impact don't always agree &mdash; which is why teams rarely flip a switch and send 100% of traffic to a brand new model on day one.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Canary deployment</strong> &mdash; roll the new model out to a small slice of traffic first (say, 5%), while the rest continues to use the existing model. Watch the new version closely for errors, latency problems, or anything unexpected, and gradually increase its share of traffic if it looks healthy. This is primarily a risk-management technique: it limits the blast radius if something is wrong with the new model, rather than exposing every user to a broken deployment at once.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>A/B testing</strong> &mdash; split traffic between two (or more) versions deliberately and consistently, specifically to measure which one performs better on metrics that matter, using statistical methods to determine whether an observed difference is real or just noise. This is primarily a measurement technique: the goal isn't just to roll out safely, it's to actually learn which model is better and by how much.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>How they differ in practice:</strong> a canary deployment is usually short-lived and asymmetric (a small percentage on the new version, ramping up over time), focused on catching problems quickly. An A/B test is often run for longer, with a more even and carefully controlled split, focused on getting a statistically meaningful answer to "which one is actually better." In practice, many teams do both together &mdash; start as a canary to de-risk the rollout, then let it run long enough to also serve as a valid A/B test.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Practical considerations:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Decide your success metric and how you'll measure it <em>before</em> starting the test, not after looking at early results &mdash; deciding partway through invites bias.</li>
+      <li>Make sure the split is consistent per user (the same user should generally see the same version throughout, not randomly switch between them), or your results can become confusing and hard to interpret.</li>
+      <li>Give the test enough time and traffic to reach a meaningful sample size &mdash; ending it too early on a promising-looking early result is a common and easy mistake.</li>
+      <li>Have a clear rollback plan and a way to stop the test quickly if the new model is causing real harm, not just underperforming slightly.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Offline evaluation metrics (see <a href="/resources/PR-AI/AI-MSTE-06-classification-evaluation-metrics.html">Evaluation Metrics for Classification</a>) are a proxy for real-world value, not a guarantee of it. Controlled, gradual rollouts are how teams close that gap safely, catching both technical failures and cases where a model that looks better on paper doesn't actually translate into a better outcome for real users.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> Google Cloud's <a href="https://cloud.google.com/architecture/ml-on-gcp-best-practices" target="_blank">ML on Google Cloud best practices guide</a> touches on staged rollout strategies for models in production, and Martin Fowler's classic article on <a href="https://martinfowler.com/bliki/CanaryRelease.html" target="_blank">Canary Release</a> explains the general pattern this section adapts from standard software deployment.
+    </p>
+
+  </div>
+
+</body>
+</html>

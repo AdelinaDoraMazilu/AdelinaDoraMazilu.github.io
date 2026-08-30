@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Versioning and Experiment Tracking - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Model Versioning and a Model Registry
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      The <a href="/resources/PR-AI/AI-MSTE-13-reproducibility-in-ml-experiments.html">Reproducibility</a> resource covers tracking experiments while you're developing a model. This one is about the next stage: once a model is good enough to actually deploy, how do you keep track of which version is live, roll back safely if something goes wrong, and know exactly what's running in production at any given time?
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>What a model registry is:</strong> a central place that stores trained models alongside the metadata needed to understand and use them &mdash; which code and data produced them, their evaluation metrics, their current stage (e.g. staging, production, archived), and any notes about known issues or intended use. Think of it as version control, but for trained model artifacts instead of source code.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why "just save the file" isn't enough:</strong> a saved model file on its own tells you nothing about how it was made, whether it's actually better than the previous version, or whether it's safe to deploy. Without a registry, teams tend to end up with folders full of ambiguously named model files and no reliable way to know which one is currently live, or how to get back to a known-good version quickly if a new deployment goes wrong.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>What a good versioning setup gives you:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Traceability</strong> &mdash; for any model in production, you can trace back to the exact code, data, and hyperparameters that produced it.</li>
+      <li><strong>Safe rollback</strong> &mdash; if a newly deployed model turns out to perform badly (or breaks something unexpected), you can revert to the previous known-good version quickly, without scrambling to find or retrain it.</li>
+      <li><strong>Staged promotion</strong> &mdash; a common pattern is moving a model through stages (development → staging → production) with checks at each transition, rather than pushing straight from a notebook to production.</li>
+      <li><strong>A single source of truth</strong> &mdash; everyone on the team can see which model is currently deployed and what its known performance characteristics are, instead of relying on someone's memory or an out-of-date wiki page.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Tools that help:</strong> <strong>MLflow's Model Registry</strong> extends its experiment tracking with exactly this kind of staged versioning; <strong>DVC (Data Version Control)</strong> extends familiar git-style version control to large model and data files that don't belong in a normal git repository; cloud platforms (SageMaker, Vertex AI, Azure ML) also provide their own built-in model registries.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> This is the piece of infrastructure that makes <a href="/resources/PR-AI/AI-SDM-04-ci-cd-for-ml-pipelines.html">automated deployment</a> and <a href="/resources/PR-AI/AI-SDM-09-model-retraining-strategies.html">retraining</a> actually safe to automate &mdash; without a clear, trustworthy record of what's deployed and how to roll it back, automating deployment just means automating your ability to accidentally ship a broken model faster.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://mlflow.org/docs/latest/model-registry.html" target="_blank">MLflow Model Registry documentation</a> covers staged promotion and versioning with a practical, hands-on walkthrough.
+    </p>
+
+  </div>
+
+</body>
+</html>

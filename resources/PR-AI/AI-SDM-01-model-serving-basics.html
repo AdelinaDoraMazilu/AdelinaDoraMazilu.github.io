@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Serving Basics - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Model Serving Basics
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A trained model sitting in a notebook isn't useful to anyone else yet. Model serving is the process of making that model available so other software (or people) can actually send it inputs and get predictions back &mdash; the bridge between "we built a model" and "the model does something for someone."
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Batch vs. real-time inference:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Batch inference</strong> &mdash; run the model on a large set of inputs all at once, on a schedule (e.g. nightly), and store the results somewhere for later use. Good fit when predictions don't need to be instant &mdash; recommending products for tomorrow's homepage, generating a weekly report. Usually cheaper and simpler to build than real-time serving.</li>
+      <li><strong>Real-time (online) inference</strong> &mdash; the model responds to individual requests as they arrive, typically within milliseconds to a few seconds. Necessary when a prediction is needed immediately as part of a live interaction &mdash; fraud detection at the moment of a transaction, a chatbot response, a live recommendation while someone is browsing.</li>
+    </ul>
+    <p class="project-detail-text">
+      Choosing between them is mostly a question of latency requirements and cost: if "good enough by tomorrow morning" is actually good enough, batch inference is almost always simpler and cheaper to run.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Exposing a model as a service:</strong> for real-time inference, the model is usually wrapped behind an API so other systems can call it without needing to know anything about how it works internally.
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>REST APIs</strong> &mdash; the most common approach, using standard HTTP requests (usually JSON in, JSON out). Simple, widely understood, and easy to test with tools every developer already knows.</li>
+      <li><strong>gRPC</strong> &mdash; a faster, more efficient protocol better suited to high-throughput or low-latency internal services, at the cost of being less human-readable and slightly more complex to set up.</li>
+    </ul>
+    <p class="project-detail-text">
+      Frameworks like <strong>FastAPI</strong> or <strong>Flask</strong> (Python) make it straightforward to wrap a model in a simple REST API for a student project; dedicated model-serving tools like <strong>TensorFlow Serving</strong>, <strong>TorchServe</strong>, or <strong>BentoML</strong> add production-oriented features (batching, versioning, monitoring hooks) on top once you need them.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> A model's accuracy on a validation set means very little to the person actually using the system if it never reaches them. Serving is where a lot of practical engineering concerns show up for the first time &mdash; latency, reliability, how to handle a malformed request &mdash; that don't exist at all while you're just running experiments in a notebook.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI documentation</a> is a clear, practical starting point for wrapping a Python model in a REST API, and Google Cloud's <a href="https://cloud.google.com/architecture/ml-on-gcp-best-practices#serving" target="_blank">ML serving best practices guide</a> covers batch vs. real-time trade-offs in more depth.
+    </p>
+
+  </div>
+
+</body>
+</html>

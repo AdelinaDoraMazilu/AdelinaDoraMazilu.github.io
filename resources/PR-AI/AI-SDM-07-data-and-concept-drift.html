@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data and Concept Drift - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Data Drift and Concept Drift: When Your Model Goes Stale
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Every model is trained on a snapshot of the world at a particular moment. The world doesn't hold still afterward. "Drift" is the general term for what happens when the real-world data a deployed model sees starts to diverge from what it was trained on &mdash; and it's one of the main reasons a model that performed great at launch can quietly get worse over time, with no code changes at all.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Data drift (also called feature or covariate drift)</strong> &mdash; the distribution of the input features changes, even if the underlying relationship between features and target stays the same. Example: an e-commerce model trained mostly on desktop-browser traffic starts seeing a much higher proportion of mobile traffic. The relationship between behaviour and purchase intent might be unchanged, but the mix of inputs the model sees has shifted, which can still degrade performance if the model hasn't seen enough of that pattern before.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Concept drift</strong> &mdash; the actual relationship between the inputs and the target changes. Example: a model predicting "will this customer churn" trained before a major product change may simply no longer reflect why customers leave, because the underlying reasons themselves have changed. This is generally the more serious case, since no amount of "more of the same kind of data" fixes it &mdash; the pattern the model learned is now genuinely out of date.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>How to detect drift:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Monitor performance metrics directly</strong>, when ground truth becomes available (even with a delay) &mdash; a drop in accuracy, F1, or another task-specific metric is the most direct signal, but it's often only available after the fact.</li>
+      <li><strong>Compare input feature distributions</strong> between training data and recent production data &mdash; statistical tests (like the Kolmogorov-Smirnov test or population stability index) or simply plotting distributions side by side can flag when they've meaningfully diverged.</li>
+      <li><strong>Watch the distribution of the model's own predictions</strong> &mdash; a sudden shift in how often the model predicts each class, or in the range of its predicted values, is often a useful early warning even without ground truth labels.</li>
+      <li><strong>Segmented analysis</strong> &mdash; check whether drift or performance decline is concentrated in a specific subgroup rather than spread evenly, which changes how you'd respond to it.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>What to do once you've detected it:</strong> the usual response is some form of <a href="/resources/PR-AI/AI-SDM-09-model-retraining-strategies.html">retraining</a> on more recent data, but it's worth first understanding <em>why</em> the drift happened &mdash; a genuine, lasting shift in the real world calls for a different response than a temporary blip (a one-off event, a data pipeline bug that's mimicking drift) that might resolve on its own or need a different fix entirely.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Drift is one of the main reasons machine learning systems need ongoing maintenance in a way that a lot of traditional software doesn't &mdash; the code can be perfectly correct and unchanged while the model quietly becomes wrong, simply because reality moved. Planning for this from the start (via <a href="/resources/PR-AI/AI-SDM-06-monitoring-models-in-production.html">monitoring</a> and a retraining plan) is part of treating a model as a living system rather than a one-time deliverable.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> Evidently AI's guides on <a href="https://www.evidentlyai.com/ml-in-production/data-drift" target="_blank">data drift</a> and <a href="https://www.evidentlyai.com/ml-in-production/concept-drift" target="_blank">concept drift</a> cover both concepts with clear definitions, detection methods, and worked examples.
+    </p>
+
+  </div>
+
+</body>
+</html>

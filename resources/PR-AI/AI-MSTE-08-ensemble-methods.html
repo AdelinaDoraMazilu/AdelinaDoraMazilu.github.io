@@ -33,7 +33,7 @@
     </p>
 
     <p class="project-detail-text">
-      <strong>Boosting</strong> &mdash; train models sequentially, where each new model focuses specifically on correcting the mistakes of the ones before it. This mainly reduces bias, and tends to produce very strong predictive performance, though it's more prone to overfitting than bagging if left unchecked and needs careful <a href="/resources/AI/regularization.html">regularization</a> and <a href="/resources/AI/hyperparameter-tuning.html">tuning</a>. <strong>Gradient boosting</strong> libraries like XGBoost, LightGBM, and CatBoost are consistently among the strongest performers on structured/tabular data, and are a very common choice in real-world and competition settings alike.
+      <strong>Boosting</strong> &mdash; train models sequentially, where each new model focuses specifically on correcting the mistakes of the ones before it. This mainly reduces bias, and tends to produce very strong predictive performance, though it's more prone to overfitting than bagging if left unchecked and needs careful <a href="/resources/PR-AI/AI-MSTE-05-regularization.html">regularization</a> and <a href="/resources/PR-AI/AI-MSTE-04-hyperparameter-tuning.html">tuning</a>. <strong>Gradient boosting</strong> libraries like XGBoost, LightGBM, and CatBoost are consistently among the strongest performers on structured/tabular data, and are a very common choice in real-world and competition settings alike.
     </p>
 
     <p class="project-detail-text">
@@ -48,7 +48,7 @@
       <strong>Trade-offs to keep in mind:</strong>
     </p>
     <ul class="project-detail-text">
-      <li>Ensembles are slower to train and slower at inference time than a single model &mdash; a real consideration if you have tight latency requirements in <a href="/resources/AI/model-serving-basics.html">production</a>.</li>
+      <li>Ensembles are slower to train and slower at inference time than a single model &mdash; a real consideration if you have tight latency requirements in <a href="/resources/PR-AI/AI-SDM-01-model-serving-basics.html">production</a>.</li>
       <li>They're harder to interpret than a single simple model, which matters if explainability is a requirement.</li>
       <li>Gradient boosting in particular is a very strong default for tabular/structured data problems &mdash; often worth trying early, not just as a final performance boost.</li>
     </ul>

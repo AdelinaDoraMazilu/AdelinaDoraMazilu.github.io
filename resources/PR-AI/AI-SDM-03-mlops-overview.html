@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLOps Overview - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      MLOps Overview: What It Is and Why It Matters
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Getting a model to perform well in a notebook is genuinely a different problem from keeping that model reliably useful in the real world, month after month, as data and requirements shift underneath it. MLOps (Machine Learning Operations) is the set of practices that bridges that gap &mdash; borrowing heavily from DevOps, but adapted for the specific quirks of machine learning.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Why ML needs its own version of DevOps:</strong> traditional software mostly changes when someone edits the code. ML systems can silently degrade even when the code never changes, purely because the real-world data flowing into them has shifted (see <a href="/resources/PR-AI/AI-SDM-07-data-and-concept-drift.html">Data and Concept Drift</a>). That means "ship it and monitor it" needs to account for two moving parts &mdash; code and data &mdash; rather than just one.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>The pieces MLOps typically covers, most of which have their own resource in this section:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Reproducible experiments</strong> &mdash; see <a href="/resources/PR-AI/AI-MSTE-13-reproducibility-in-ml-experiments.html">Reproducibility in ML Experiments</a>.</li>
+      <li><strong>Automated testing and deployment pipelines</strong> &mdash; see <a href="/resources/PR-AI/AI-SDM-04-ci-cd-for-ml-pipelines.html">CI/CD for ML Pipelines</a>.</li>
+      <li><strong>Model versioning and a model registry</strong> &mdash; see <a href="/resources/PR-AI/AI-SDM-05-model-versioning-registry.html">Model Versioning and Experiment Tracking</a>.</li>
+      <li><strong>Serving infrastructure</strong> &mdash; see <a href="/resources/PR-AI/AI-SDM-01-model-serving-basics.html">Model Serving Basics</a> and <a href="/resources/PR-AI/AI-SDM-02-containerizing-ml-models-docker.html">Containerizing ML Models</a>.</li>
+      <li><strong>Monitoring in production</strong> &mdash; see <a href="/resources/PR-AI/AI-SDM-06-monitoring-models-in-production.html">Monitoring Models in Production</a>.</li>
+      <li><strong>A plan for retraining</strong> &mdash; see <a href="/resources/PR-AI/AI-SDM-09-model-retraining-strategies.html">Model Retraining Strategies</a>.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>A useful way to think about MLOps maturity:</strong> it's a spectrum, not a single destination.
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Manual / ad hoc</strong> &mdash; a data scientist manually trains a model in a notebook and manually hands it off for deployment. Fine for a first prototype, not sustainable long-term.</li>
+      <li><strong>Automated training pipeline</strong> &mdash; retraining and evaluation are scripted and repeatable, reducing manual steps and human error.</li>
+      <li><strong>Automated deployment and monitoring (CI/CD/CT)</strong> &mdash; new models are automatically tested, deployed, and monitored, with retraining triggered by defined criteria rather than someone remembering to do it.</li>
+    </ul>
+    <p class="project-detail-text">
+      Student projects will realistically sit at the lower end of this spectrum, and that's completely fine &mdash; the value here is knowing the full picture exists, so you can consciously choose which pieces are worth investing in given your project's timeline and stakes.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> A model that works well on the day it's demoed but has no plan for monitoring, retraining, or handling failures is a common and avoidable way for a genuinely good piece of ML work to quietly stop being useful weeks later. Thinking about at least the basics of MLOps &mdash; even briefly &mdash; is part of building something that actually lasts past the deadline.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> Google Cloud's <a href="https://cloud.google.com/architecture/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning" target="_blank">MLOps: Continuous delivery and automation pipelines in machine learning</a> is a widely referenced, practically minded overview of the maturity levels described above.
+    </p>
+
+  </div>
+
+</body>
+</html>

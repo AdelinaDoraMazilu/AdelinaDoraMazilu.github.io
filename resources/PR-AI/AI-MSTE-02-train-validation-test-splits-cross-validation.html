@@ -48,13 +48,13 @@
       <strong>Variants worth knowing:</strong>
     </p>
     <ul class="project-detail-text">
-      <li><strong>Stratified k-fold</strong> &mdash; preserves the class proportions in each fold, important for classification with imbalanced classes (see <a href="/resources/AI/data-and-feature-engineering.html">Handling Class Imbalance</a>).</li>
+      <li><strong>Stratified k-fold</strong> &mdash; preserves the class proportions in each fold, important for classification with imbalanced classes (see <a href="/resources/PR-AI/resource_4/">Handling Class Imbalance</a>).</li>
       <li><strong>Time-series split</strong> &mdash; for temporal data, folds must respect chronological order (train on the past, validate on the future) rather than being shuffled randomly, or you risk leaking future information into training.</li>
       <li><strong>Group k-fold</strong> &mdash; used when multiple rows belong to the same underlying entity (e.g. multiple images of the same patient) and you need to make sure that entity's data doesn't end up split across both train and validation.</li>
     </ul>
 
     <p class="project-detail-text">
-      <strong>Why is this important?</strong> Getting this wrong is one of the most common causes of a model that looks great in development and performs poorly in the real world &mdash; closely related to the mistakes covered in the <a href="/resources/AI/data-leakage.html">Data Leakage</a> resource. A trustworthy evaluation setup is the foundation everything else in this section builds on; there's no point comparing models or tuning hyperparameters carefully if the number you're optimising against is misleading in the first place.
+      <strong>Why is this important?</strong> Getting this wrong is one of the most common causes of a model that looks great in development and performs poorly in the real world &mdash; closely related to the mistakes covered in the <a href="/resources/PR-AI/AI-DFE-11-data-leakage.html">Data Leakage</a> resource. A trustworthy evaluation setup is the foundation everything else in this section builds on; there's no point comparing models or tuning hyperparameters carefully if the number you're optimising against is misleading in the first place.
     </p>
 
     <p class="project-detail-text">

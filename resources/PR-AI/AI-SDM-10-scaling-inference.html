@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scaling Inference - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Scaling Inference
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A model that comfortably serves ten requests a minute during testing can behave completely differently under real load &mdash; thousands of requests a minute, unpredictable spikes, users on the other side of the world. Scaling inference is about keeping a model fast and reliable as demand grows, without the cost growing out of control alongside it.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Core techniques:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Horizontal scaling / load balancing</strong> &mdash; run multiple copies of your model server behind a load balancer that distributes incoming requests across them. Lets you handle more traffic by adding more instances, and improves reliability, since one instance failing doesn't take the whole service down.</li>
+      <li><strong>Batching</strong> &mdash; instead of running the model once per individual request, group several incoming requests together and run them through the model in a single batch. Many models (especially neural networks on GPUs) are dramatically more efficient per-request when processing a batch than processing one input at a time, though batching adds a small amount of latency while waiting to collect a batch.</li>
+      <li><strong>Caching</strong> &mdash; if the same input (or a very similar one) is requested repeatedly, store and reuse the previous prediction instead of recomputing it. Especially effective when a meaningful share of requests repeat (a popular product recommendation, a common search query).</li>
+      <li><strong>Asynchronous / queued processing</strong> &mdash; for workloads that don't need an instant response, put requests in a queue and process them as capacity allows, smoothing out traffic spikes rather than trying to handle every burst instantly.</li>
+      <li><strong>Autoscaling</strong> &mdash; automatically add or remove server instances based on current load, so you're not paying for peak capacity around the clock when most traffic is much lower.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Reducing the cost per prediction, not just adding more servers:</strong> scaling isn't only about horizontal capacity &mdash; making each individual prediction cheaper and faster matters just as much, and is often more cost-effective than simply running more copies of an expensive model. See <a href="/resources/PR-AI/AI-SDM-11-model-compression-optimization.html">Model Compression and Optimization</a> for techniques like quantization and distillation that reduce a model's compute footprint directly.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> A model that works perfectly in a demo can fail in ways that have nothing to do with its accuracy once it meets real traffic &mdash; timeouts, dropped requests, ballooning cloud bills. These are genuinely different problems from the modelling work covered elsewhere in this section, and they're just as capable of making a project fail in practice.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the <a href="https://kubernetes.io/docs/concepts/workloads/autoscaling/" target="_blank">Kubernetes autoscaling documentation</a> is a good practical starting point once you're deploying at a scale where manually managing server instances stops being reasonable.
+    </p>
+
+  </div>
+
+</body>
+</html>

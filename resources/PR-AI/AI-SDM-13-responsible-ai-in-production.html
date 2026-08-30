@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsible AI in Production - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Responsible AI in Production
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      A model can be technically excellent by every metric covered in <a href="/resources/PR-AI/AI-MSTE-06-classification-evaluation-metrics.html">Model Selection, Training and Evaluation</a> and still cause real harm once it's making decisions that affect real people. This resource is a starting checklist for the questions worth asking once a model leaves the notebook, not a complete treatment of a genuinely large field.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Fairness:</strong> a model can perform well on average while performing meaningfully worse for a specific subgroup &mdash; a pattern that's easy to miss if you only ever look at aggregate metrics. Where it's appropriate and you have the data, evaluate performance separately across relevant groups, not just overall. Bias often enters not through deliberate intent but through training data that reflects historical inequities, or through <a href="/resources/PR-AI/resource_4/">under-representation</a> of certain groups in the data itself.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Explainability:</strong> for many applications, especially ones with real consequences for people (lending, hiring, healthcare, criminal justice), it matters not just that a model is accurate, but that its decisions can be explained. Simpler models (linear/logistic regression, single decision trees) are naturally more interpretable; for more complex models, tools like SHAP or LIME can approximate an explanation for individual predictions after the fact. Explainability requirements are also frequently a genuine legal obligation in regulated domains, not just a nice-to-have.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Security:</strong> deployed ML systems have their own specific attack surface beyond normal application security. A few worth knowing about:
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Adversarial examples</strong> &mdash; inputs deliberately, sometimes subtly, crafted to fool a model into a wrong prediction.</li>
+      <li><strong>Data poisoning</strong> &mdash; an attacker deliberately corrupting training data (especially relevant if a model retrains on data that includes user-submitted content) to bias the model's future behaviour.</li>
+      <li><strong>Model extraction/inversion</strong> &mdash; an attacker repeatedly querying a deployed model to reconstruct a close approximation of it, or to infer sensitive information about the data it was trained on.</li>
+      <li>Standard practices still matter too: input validation, rate limiting, and access control on your model's API are basic but genuinely important defences.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Privacy:</strong> models can sometimes memorise and inadvertently leak details of their training data, which matters a great deal if that data includes anything personal or sensitive. Be deliberate about what data a model is trained on, and be aware that "the model doesn't store the raw data" isn't automatically the same as "the model can't leak information about the data."
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> These considerations rarely show up in a standard accuracy metric, which is exactly why they're easy to overlook under deadline pressure. Thinking about them explicitly &mdash; even briefly, even just as a short section in your project documentation &mdash; is often what separates a project that's genuinely thoughtful about its real-world impact from one that technically works but hasn't considered who it affects and how.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> Google's <a href="https://ai.google/responsibility/responsible-ai-practices/" target="_blank">Responsible AI Practices</a> guide is a practical, non-academic starting point covering fairness, interpretability, privacy, and security together, with links to more specialised tools for each area.
+    </p>
+
+  </div>
+
+</body>
+</html>

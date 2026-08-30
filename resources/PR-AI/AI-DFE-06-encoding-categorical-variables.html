@@ -47,7 +47,7 @@
       <strong>Pitfalls to avoid:</strong>
     </p>
     <ul class="project-detail-text">
-      <li>If you're using target encoding, compute the target statistics using only the training set (ideally with cross-validation folds), never the full dataset &mdash; otherwise you're leaking the label into your features. See the <a href="/resources/AI/data-leakage.html">Data Leakage</a> resource.</li>
+      <li>If you're using target encoding, compute the target statistics using only the training set (ideally with cross-validation folds), never the full dataset &mdash; otherwise you're leaking the label into your features. See the <a href="/resources/PR-AI/AI-DFE-11-data-leakage.html">Data Leakage</a> resource.</li>
       <li>Decide up front how to handle a category at inference time that never appeared in training (an "unknown" category). Most encoders let you configure a fallback value; forgetting to handle this is a common cause of production errors.</li>
       <li>Watch out for high cardinality quietly bloating your dataset with one-hot encoding &mdash; check the number of unique values in a categorical column before blindly one-hot encoding it.</li>
     </ul>

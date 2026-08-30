@@ -50,8 +50,8 @@
       <strong>Pitfalls to avoid:</strong>
     </p>
     <ul class="project-detail-text">
-      <li>Scale your features first (see <a href="/resources/AI/feature-scaling-normalization.html">Feature Scaling and Normalization</a>) &mdash; PCA is sensitive to the units of your features, and an unscaled feature with a huge numeric range can dominate the components for no meaningful reason.</li>
-      <li>Fit PCA on the training data only, then apply the same transformation to the test data &mdash; fitting it on everything first is another route to <a href="/resources/AI/data-leakage.html">data leakage</a>.</li>
+      <li>Scale your features first (see <a href="/resources/PR-AI/AI-DFE-05-feature-scaling-normalization.html">Feature Scaling and Normalization</a>) &mdash; PCA is sensitive to the units of your features, and an unscaled feature with a huge numeric range can dominate the components for no meaningful reason.</li>
+      <li>Fit PCA on the training data only, then apply the same transformation to the test data &mdash; fitting it on everything first is another route to <a href="/resources/PR-AI/AI-DFE-11-data-leakage.html">data leakage</a>.</li>
       <li>Check how much variance is actually explained by the components you keep (most libraries report this directly). Reducing to 2 dimensions for a plot is fine for visualisation, but throwing away too much variance before modelling can quietly hurt performance.</li>
       <li>t-SNE and UMAP are excellent for visualisation but are generally not meant to be used as preprocessing input to a downstream model in the same way PCA is &mdash; their distances and axes aren't as directly meaningful for that purpose.</li>
     </ul>

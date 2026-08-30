@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring Models in Production - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Monitoring Models in Production
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Deploying a model isn't the finish line &mdash; it's the point where a new kind of work starts. Unlike most software, a machine learning model can silently get worse over time without a single line of its code changing, purely because the world it's making predictions about has moved on. Monitoring is how you find out before your users, or your grade, do.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>What to monitor &mdash; three broad layers:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>System health</strong> &mdash; the same things you'd monitor for any deployed service: latency, error rates, uptime, resource usage (CPU/memory/GPU). If the model is too slow or crashing, nothing else about it matters yet.</li>
+      <li><strong>Data and prediction health</strong> &mdash; is the incoming data still shaped like what the model was trained on? Are predictions still distributed roughly the way you'd expect? See <a href="/resources/PR-AI/AI-SDM-07-data-and-concept-drift.html">Data and Concept Drift</a> for the specific patterns to watch for here.</li>
+      <li><strong>Business/task performance</strong> &mdash; the metrics that actually matter for the model's purpose (accuracy, precision/recall, conversion rate, user engagement) &mdash; where possible, tracked against real outcomes as they become available, not just predictions in isolation.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>The tricky part: you often don't have ground truth immediately.</strong> In many real systems, you don't find out whether a prediction was actually correct until much later (or not at all) &mdash; you might know a loan default happened months after the prediction, or never directly know if a recommendation was "correct." This is exactly why monitoring input data distributions and prediction distributions matters: they're available immediately and can act as an early warning sign, even before you have the labels needed to measure accuracy directly.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Setting up useful alerts:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li>Alert on meaningful changes, not noise &mdash; a threshold that's too sensitive trains people to ignore alerts entirely, which defeats the purpose.</li>
+      <li>Segment your monitoring where it makes sense (by user group, region, input type) &mdash; an average metric can look perfectly healthy while performance has quietly collapsed for one important subgroup.</li>
+      <li>Track trends over time, not just point-in-time snapshots &mdash; a slow, steady decline is often more dangerous (and easier to miss) than a sudden obvious break.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> A model that isn't monitored can fail silently for a long time, and by the time someone notices (usually because a person complains, or a downstream number looks off), real damage may already be done. Monitoring turns "we hope it's still working" into "we know it's still working," which matters a great deal once real users or real decisions depend on the model's output.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> the open-source <a href="https://www.evidentlyai.com/" target="_blank">Evidently AI</a> library is built specifically for ML monitoring &mdash; data drift, prediction drift, and model quality reports &mdash; and its documentation is a good practical entry point even for a smaller student-scale project.
+    </p>
+
+  </div>
+
+</body>
+</html>

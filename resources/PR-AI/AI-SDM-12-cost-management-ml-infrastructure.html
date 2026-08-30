@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cost Management for ML Infrastructure - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      Cost Management for ML Infrastructure
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Machine learning workloads can get expensive fast, and often in ways that aren't obvious until a bill arrives. For student projects this usually shows up as burning through free cloud credits faster than expected; the same underlying habits matter at every scale.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>Where the cost usually comes from:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Training</strong> &mdash; especially GPU time, which is priced by the hour and adds up quickly, particularly with large models, big hyperparameter searches, or repeated experiments run without much discipline.</li>
+      <li><strong>Storage</strong> &mdash; datasets, model checkpoints, and logs all accumulate over a project, and it's easy to keep paying for old, unused versions long after they're needed.</li>
+      <li><strong>Inference at scale</strong> &mdash; serving predictions to real users, continuously, is often the largest ongoing cost once a project is actually deployed and used, as opposed to training, which is a one-off (or periodic) cost.</li>
+      <li><strong>Idle resources</strong> &mdash; a common and entirely avoidable cost: a cloud instance or notebook left running overnight or over a weekend with nothing happening on it.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Practical ways to control it:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Start small and cheap, scale up deliberately.</strong> Prototype on a small sample of data and a small/cheap instance before committing to full-scale training runs.</li>
+      <li><strong>Use spot/preemptible instances</strong> for training where possible &mdash; significantly cheaper than standard instances, at the cost of the instance possibly being reclaimed mid-job, which is a reasonable trade-off for many training workloads if you checkpoint progress regularly.</li>
+      <li><strong>Shut things down when you're not using them.</strong> Set reminders, or better, use auto-shutdown features many cloud platforms offer for idle notebooks and instances.</li>
+      <li><strong>Set up budget alerts</strong> on any cloud account you're using, so you find out about a runaway cost within hours, not at the end of the month.</li>
+      <li><strong>Reduce inference cost directly</strong> via the techniques in <a href="/resources/PR-AI/AI-SDM-11-model-compression-optimization.html">Model Compression and Optimization</a> and <a href="/resources/PR-AI/AI-SDM-10-scaling-inference.html">Scaling Inference</a> (batching, caching, autoscaling to actual demand rather than peak).</li>
+      <li><strong>Clean up unused storage and old experiment artifacts</strong> periodically, rather than letting everything accumulate indefinitely.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> For a student project, running out of free credits partway through can genuinely derail your timeline; in a professional setting, ML infrastructure costs are frequently one of the first things scrutinised when a project's value is being assessed, and an accurate model that costs far more to run than it's worth is a real failure mode, not just a technical footnote.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> most major cloud providers publish their own cost-optimisation guides for ML workloads specifically &mdash; for example, <a href="https://cloud.google.com/architecture/framework/cost-optimization/ai-and-ml" target="_blank">Google Cloud's cost optimization for AI and ML</a> guide covers many of the strategies above in more platform-specific detail.
+    </p>
+
+  </div>
+
+</body>
+</html>

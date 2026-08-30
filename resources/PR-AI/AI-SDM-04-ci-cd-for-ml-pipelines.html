@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CI/CD for ML Pipelines - Adelina Mazilu</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/resources/resources_style.css">
+  <link rel="stylesheet" href="/projects/projects_style.css">
+  <script src="/scripts.js" defer></script>
+</head>
+<body>
+
+  <div class="post-content-overlay">
+
+    <a href="/resources/" class="project-back-link">← Back to Resources</a>
+
+    <h1 class="project-detail-title">
+      CI/CD for Machine Learning Pipelines
+    </h1>
+
+    <div class="project-status-badge">Practical Resources - AI Engineering</div>
+
+    <p class="project-detail-text">
+      Continuous Integration and Continuous Deployment (CI/CD) automate the process of testing and shipping changes, so that "does this still work?" and "is this safe to release?" are answered by a machine every time, rather than by someone remembering to check manually. For ML systems, this needs a few extra pieces beyond standard software CI/CD.
+    </p>
+
+    <hr class="project-detail-divider">
+
+    <p class="project-detail-text">
+      <strong>The standard software pieces still apply:</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Continuous Integration (CI)</strong> &mdash; automatically run tests every time code is pushed, catching bugs before they merge. For an ML codebase, this includes normal unit tests for your data processing and serving code.</li>
+      <li><strong>Continuous Deployment (CD)</strong> &mdash; automatically build, package (often as a <a href="/resources/PR-AI/AI-SDM-02-containerizing-ml-models-docker.html">Docker container</a>), and deploy a new version once it passes CI, reducing manual deployment steps and the errors that come with them.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>What's different (or additional) for ML &mdash; sometimes called Continuous Training (CT):</strong>
+    </p>
+    <ul class="project-detail-text">
+      <li><strong>Data validation</strong> &mdash; automated checks that incoming or newly collected data still matches expected schemas, ranges, and distributions, catching data problems before they silently corrupt a retrained model.</li>
+      <li><strong>Model evaluation gates</strong> &mdash; a newly trained model should only be deployed if it meets a minimum performance bar (often: performs at least as well as the current production model, on the same held-out evaluation set). This prevents an automated pipeline from accidentally shipping a worse model.</li>
+      <li><strong>Automated retraining triggers</strong> &mdash; a pipeline that can kick off retraining on a schedule, when new labelled data arrives, or when <a href="/resources/PR-AI/AI-SDM-06-monitoring-models-in-production.html">monitoring</a> detects performance has dropped. See <a href="/resources/PR-AI/AI-SDM-09-model-retraining-strategies.html">Model Retraining Strategies</a>.</li>
+      <li><strong>Testing the whole pipeline, not just the code</strong> &mdash; ML systems can break in ways that pass every normal code test but still produce bad predictions (a data schema quietly changed, a feature became stale). CI/CD for ML needs to test the model's actual outputs, not just whether the code compiles and runs.</li>
+    </ul>
+
+    <p class="project-detail-text">
+      <strong>A simple version worth building even in a student project:</strong> a pipeline that, on every push, runs your data processing and unit tests, trains (or at least validates that training still runs correctly on) a small sample, and checks a couple of sanity metrics before anything gets merged. You don't need a full production-grade setup to get real value from automating even this much.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Why is this important?</strong> Without this kind of automation, "did my change break the model" becomes a question someone has to remember to ask and manually check &mdash; and under deadline pressure, that step is exactly the one that gets skipped, right when it matters most.
+    </p>
+
+    <p class="project-detail-text">
+      <strong>Where to go deeper:</strong> <a href="https://docs.github.com/en/actions" target="_blank">GitHub Actions documentation</a> is a practical, widely used starting point for building CI/CD pipelines (including ones that run ML-specific checks) directly alongside a GitHub repository.
+    </p>
+
+  </div>
+
+</body>
+</html>

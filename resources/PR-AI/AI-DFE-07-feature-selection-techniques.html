@@ -45,7 +45,7 @@
       <strong>Pitfalls to avoid:</strong>
     </p>
     <ul class="project-detail-text">
-      <li>Do feature selection inside your cross-validation loop, not once on the full dataset beforehand &mdash; selecting features using information from your test set is a subtle but common form of <a href="/resources/AI/data-leakage.html">data leakage</a>, and will make your evaluation metrics look better than they really are.</li>
+      <li>Do feature selection inside your cross-validation loop, not once on the full dataset beforehand &mdash; selecting features using information from your test set is a subtle but common form of <a href="/resources/PR-AI/AI-DFE-11-data-leakage.html">data leakage</a>, and will make your evaluation metrics look better than they really are.</li>
       <li>A feature being weakly correlated with the target on its own doesn't mean it's useless &mdash; some features are only informative in combination with others. Filter methods alone can miss this.</li>
       <li>Feature importance from tree-based models can be biased towards high-cardinality features; don't treat it as an absolute ranking without a bit of skepticism.</li>
     </ul>
